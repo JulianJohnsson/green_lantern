@@ -34,7 +34,7 @@ gem 'pg'
 gem 'pundit'
 gem 'unicorn'
 gem 'unicorn-rails'
-gem 'bundler', '2.0.2'
+gem 'bundler', '>= 2.0.1'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

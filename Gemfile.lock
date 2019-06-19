@@ -269,7 +269,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0.0)
   bourbon
-  bundler (= 2.0.2)
+  bundler (>= 2.0.1)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
