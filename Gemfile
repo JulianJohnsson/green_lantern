@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-ruby '2.6.3'
+ruby "2.6.3"
 gem 'rails', '~> 5.2.3'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
@@ -34,7 +34,6 @@ gem 'pg'
 gem 'pundit'
 gem 'unicorn'
 gem 'unicorn-rails'
-gem 'bundler', '>= 2.0.1'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
