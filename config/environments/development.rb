@@ -1,5 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:ebb168e61d403a54e9dfe0af02f1dcd1@crestfish.redistogo.com:10360/'
+  ENV["FIXIE_URL"] = 'http://fixie:OgNy6qUygKQb3Dy@velodrome.usefixie.com:80'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @bridge.token %>
+</p>
+
+<p>
+  <strong>Expires at:</strong>
+  <%= @bridge.expires_at %>
+</p>
+
+<p>
+  <strong>Bank connected:</strong>
+  <%= @bridge.bank_connected %>
+</p>
+
+<p>
+  <strong>Uuid</strong>
+  <%= @bridge.uuid %>
+</p>
+
+<p>
+  <strong>Last Sync At</strong>
+  <%= @bridge.last_sync_at %>
+</p>
+
+<%= link_to('Transactions', transactions_path) unless Transaction.find_by_user_id(@user.id).nil? %> |
+<%= link_to 'Add account', @redirect_url %> |
+<%= link_to 'Edit', edit_bridge_path(@bridge) %> |
+<%= link_to 'Back', bridges_path %>

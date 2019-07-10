@@ -34,6 +34,8 @@ gem 'pg'
 gem 'pundit'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'rest-client'
+gem 'sidekiq'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
