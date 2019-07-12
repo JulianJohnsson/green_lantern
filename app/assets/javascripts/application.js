@@ -12,10 +12,10 @@
 //
 //= require jquery3
 //= require popper
+//= require material/moment.min
 //= require material/bootstrap-material-design.min
 //= require material/bootstrap-datetimepicker
 //= require material/material-kit
-//= require material/moment.min
 //= require material/nouislider.min
 //= require rails-ujs
 //= require bootstrap-sprockets
