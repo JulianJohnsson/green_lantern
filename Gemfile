@@ -36,6 +36,9 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'rest-client'
 gem 'sidekiq'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'popper_js'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

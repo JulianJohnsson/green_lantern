@@ -1,14 +1,18 @@
 <% if user_signed_in? %>
-  <li class='nav-item'><%= link_to 'Edit account', edit_user_registration_path, class: 'nav-link' %></li>
-  <li class='nav-item'><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete', class: 'nav-link' %></li>
+  <li class='nav-item'>
+    <%= link_to bridges_path, class: 'nav-link' do %>
+      <i class='material-icons'>language</i>
+      Mon emprunte carbone
+    <% end %>
+  </li>
+  <li class='nav-item'><%= link_to 'Gérer mon compte', edit_user_registration_path, class: 'nav-link' %></li>
+  <li class='nav-item'><%= link_to 'Déconnexion', destroy_user_session_path, :method=>'delete', class: 'nav-link' %></li>
 <% else %>
-  <li class='nav-item'><%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %></li>
-  <li class='nav-item'><%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %></li>
+  <li class='nav-item'><%= link_to 'Connexion', new_user_session_path, class: 'nav-link' %></li>
+  <li class='nav-item'><%= link_to 'Inscription', new_user_registration_path, class: 'nav-link' %></li>
 <% end %>
 <% if user_signed_in? %>
   <% if current_user.try(:admin?) %>
     <li class='nav-item'><%= link_to 'Admin', '/admin', class: 'nav-link' %></li>
-
-    <li class='nav-item'><%= link_to 'Users', users_path, class: 'nav-link' %></li>
   <% end %>
 <% end %>

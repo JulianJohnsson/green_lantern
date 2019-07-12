@@ -1,2 +1,7 @@
 <%# add navigation links to this file %>
-<li class='nav-item'><%= link_to 'About', page_path('about'), class: 'nav-link' %></li>
+<li class='nav-item'>
+  <%= link_to page_path('about'), class: 'nav-link' do %>
+    <i class="material-icons">contact_support</i>
+    A propos
+  <% end %>
+</li>
