@@ -45,6 +45,7 @@ class Bridge < ApplicationRecord
         @transaction.user_id = user.id
         @transaction.save
     end
+    self.last_sync_at = Time.now.to_datetime
     self.save
   end
 
@@ -68,7 +69,6 @@ class Bridge < ApplicationRecord
       json = JSON.parse response
     end
     list = json
-    self.last_sync_at = Time.now.to_datetime
 
     until json['pagination']['next_uri'] == nil do
       response = RestClient::Request.execute(method: :get,
