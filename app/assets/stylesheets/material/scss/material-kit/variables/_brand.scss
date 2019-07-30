@@ -1,11 +1,19 @@
 // Bootstrap brand color customization
 
+/* mamane design colors */
+$brand-dark-blue:            #083849 !default;
+$brand-medium-blue:          #0B4C65 !default;
+$brand-cyan:                 #20B2AA !default;
+$brand-light-cyan:           rgba(32, 178, 170, 0.25) !default;
+$brand-grey:                 #DFE0EB !default;
+
+
 /*     brand Colors              */
 
-$brand-primary:              #73b592 !default;
-$brand-info:                 #27393e !default;
+$brand-primary:              $brand-cyan !default;
+$brand-info:                 $brand-dark-blue !default;
 $brand-success:              #58b164 !default;
 $brand-warning:              #d5a12c !default;
 $brand-danger:               #f44336 !default;
 $brand-rose:                 #AC543D !default;
-$brand-inverse:              #2E4145 !default;
+$brand-inverse:              $brand-dark-blue !default;

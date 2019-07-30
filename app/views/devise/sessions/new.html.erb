@@ -1,28 +1,58 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Sign in</h3>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%- if devise_mapping.registerable? %>
-        <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right'  %>
-      <% end -%>
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+<div class="row">
+  <div class="col-lg-4 col-md-3 d-none d-md-block mt-auto mb-auto text-center">
+    <h4>Content de vous revoir !<br /><span style="font-size:2em; line-height:1.8em">☺</span></h4>
+    <div class="signup">
+      <%= image_tag("sign_in.png") %>
     </div>
-    <div class="form-group">
-      <%- if devise_mapping.recoverable? %>
-        <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
-      <% end -%>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-      <%= f.submit 'Sign in', :class => 'button right' %>
-      <% if devise_mapping.rememberable? -%>
-        <div class="checkbox" style="width:150px">
-          <label>
-            <%= f.check_box :remember_me %> Remember me
-          </label>
+  </div>
+  <div class="col-lg-4 col-md-6">
+    <div class="card">
+      <div class="card-header card-header-dark text-center">
+        <h3 class="card-title">Me connecter</h3>
+
+        <div class="social-line">
+          <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-just-icon btn-link' do %>
+            <i class="fa fa-facebook-square"></i>
+          <% end %>
+          <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-just-icon btn-link' do %>
+            <i class="fa fa-google-plus"></i>
+          <% end %>
         </div>
-      <% end -%>
-  <% end %>
+      </div>
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <div class="authform">
+          <div class="card-body">
+            <p class="description text-center">ou plus classique</p>
+            <%= devise_error_messages! %>
+            <div class="form-group bmd-form-group">
+              <%= f.label :email, class: 'bmd-label-floating' %>
+              <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= f.label :mot_de_passe, class: 'bmd-label-floating' %>
+              <%= f.password_field :password, class: 'form-control' %>
+              <%- if devise_mapping.recoverable? %>
+                <small class="form-text text-muted">
+                  Mot de passe oublié ?
+                  <%= link_to "Réinitialiser", new_password_path(resource_name), class: 'right' %>
+                </small>
+              <% end -%>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <%= f.hidden_field :remember_me, :value => true %>
+            <% end -%>
+          </div>
+          <div class="card-footer">
+            <%= f.submit "Je me connecte", :class => 'btn btn-primary btn-lg btn-round mr-auto ml-auto'%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <p class="text-center">
+        pas encore inscrit ?
+        <%= link_to 'Créer mon compte', new_user_registration_path %>
+      </p>
+    </div>
+  </div>
 </div>

@@ -2,6 +2,7 @@ class Bridge < ApplicationRecord
   belongs_to :user
 
   RestClient.proxy = ENV["FIXIE_URL"]
+  RestClient.log = 'stdout'
 
   def verify_bridge_url(user)
     self.refresh(user)
@@ -120,6 +121,7 @@ class Bridge < ApplicationRecord
       url: "https://sync.bankin.com/v2/users?email=#{user.email}&password=#{user.email}_#{user.id}&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
       headers: {"Bankin-Version" => "2018-06-15"}
     )
+
     case response.code when 201
       json = JSON.parse response
       self.uuid = json['uuid']

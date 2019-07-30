@@ -1,5 +1,20 @@
-<h1>New Bridge</h1>
-
-<%= render 'form', bridge: @bridge %>
-
-<%= link_to 'Back', bridges_path %>
+<div class="row">
+  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card-body">
+            <h3>Mesure ton impact sans effort, et en toute sécurité !</h3>
+            <p class="description">
+              Nous utilisons la technologie Bankin' pour connecter vos données bancaires pour calculer votre impact carbone de façon 100% sécurisée. Pour sécuriser votre compte, nous devons vérifier votre adresse email en envoyant un code.
+            </p>
+            <%= render 'form', bridge: @bridge %>
+          </div>
+        </div>
+        <div class="col-md-5 d-none d-md-block">
+          <%= image_tag("gif_1.gif", :class => 'rounded img-fluid') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

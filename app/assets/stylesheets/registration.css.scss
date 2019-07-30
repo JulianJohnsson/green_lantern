@@ -1,0 +1,52 @@
+@import "material/scss/material-kit/variables";
+@import "material/scss/material-kit/mixins";
+
+footer {
+  font-family: Muli;
+  background-color: white;
+}
+
+.card-title {
+  font-family: Maven Pro;
+}
+
+h1, h2, h3, h4 {
+  font-family: Maven Pro;
+}
+
+p, a {
+  font-family: Muli;
+}
+
+.social-line a {
+  color: white !important;
+  margin-top: 0rem;
+}
+
+.registration-page {
+  background-image: url("bg_2.png");
+  background-position: right 0% top 0%;
+  font-family: Muli;
+  padding-top: 60px;
+}
+
+.onboarding-navigation .navbar-brand {
+  font-family: Maven Pro;
+  font-weight: 900;
+}
+
+.onboarding-navigation .nav-link {
+  font-family: Muli;
+  font-weight:700 !important;
+  color: $brand-grey;
+}
+
+.card .card-header {
+  border-radius: 100px;
+  padding: 0.5rem 15px;
+}
+
+.card .card-header, .card-header-dark {
+  background: linear-gradient(60deg, $brand-medium-blue, $brand-dark-blue);
+  @include shadow-big-color($brand-dark-blue);
+}

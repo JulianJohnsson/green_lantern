@@ -5,6 +5,7 @@ class TransactionsController < ApplicationController
   # GET /transactions.json
   def index
     @transactions = current_user.transactions.order(date: :desc)
+    @bridge = Bridge.find_by_user_id(current_user.id)
   end
 
   # GET /transactions/1

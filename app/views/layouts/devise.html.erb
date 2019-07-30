@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= content_for?(:title) ? yield(:title) : "Green Lantern" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Green Lantern" %>">
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons|Baloo|Maven+Pro:400,700,900|Muli:400,600,700" %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="sidebar-collapse">
+    <%= render 'layouts/registration_navigation' %>
+    <div class="page-header registration-page">
+      <div class="container">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </div>
+    </div>
+    <footer class="footer footer-default">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <%= link_to "Carbo", root_path %>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script> Carbo, fait avec <i class="material-icons">favorite</i> et liberté à Paris.
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+    $('.alert').fadeOut();
+    }, 2000);
+  })
+  </script>
+</html>

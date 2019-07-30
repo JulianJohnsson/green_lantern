@@ -24,10 +24,12 @@ group :test do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'administrate'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '>= 4.2.0'
 gem 'bourbon'
 gem 'devise'
 gem 'devise_invitable'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
@@ -36,7 +38,6 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'rest-client'
 gem 'sidekiq'
-gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'popper_js'
 group :development do

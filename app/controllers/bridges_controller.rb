@@ -6,9 +6,19 @@ class BridgesController < ApplicationController
   # GET /bridges.json
   def index
     @bridge = Bridge.find_by_user_id(current_user.id)
-    @user = current_user
     if @bridge
-      redirect_to @bridge
+      if @bridge.bank_connected = true
+        redirect_to @bridge
+        return
+      end
+      unless params[:item_id]
+        redirect_to action: 'account'
+      else
+        @bridge.bank_connected = true
+        @bridge.save
+        TransactionFetcherJob.perform_later(current_user)
+        redirect_to @bridge
+      end
     else redirect_to new_bridge_path
     end
   end
@@ -17,13 +27,16 @@ class BridgesController < ApplicationController
   # GET /bridges/1.json
   def show
     @user = current_user
-    @bridge=Bridge.find(params[:id])
-    @redirect_url = @bridge.add_item_url(current_user)
-    if @bridge.last_sync_at == nil
-      TransactionFetcherJob.perform_later(current_user)
-    elsif @bridge.last_sync_at.to_time <= Time.now - 1.day
+    if @bridge.last_sync_at.to_time <= Time.now - 1.day
       TransactionFetcherJob.perform_later(current_user)
     end
+  end
+
+  # GET /bridges/account
+  def account
+    @user = current_user
+    @bridge = Bridge.find_by_user_id(current_user.id)
+    @redirect_url = @bridge.add_item_url(current_user)
   end
 
   # GET /bridges/new
