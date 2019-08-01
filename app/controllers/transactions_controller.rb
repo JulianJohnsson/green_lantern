@@ -4,8 +4,10 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = current_user.transactions.order(date: :desc)
+    @transactions = current_user.transactions.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)
+    @last_30_days_count = @transactions.sum(&:carbone)
+    @current_month_count = current_user.transactions.month_to_date.sum(&:carbone)
   end
 
   # GET /transactions/1
@@ -70,6 +72,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id)
+      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id, :carbone, :parent_category_id)
     end
 end

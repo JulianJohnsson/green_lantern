@@ -7,6 +7,7 @@
             <h3>🎉👏 Ton compte en banque est en cours de synchronisation </h3>
             <p class="description">Dans quelques instants tu pourras découvrir ton impact carbone sur ton espace personnel privé 🕵‍♂.</p>
             <%= link_to('Je découvre mon dashboard', transactions_path, :class => 'btn btn-primary btn-round') unless Transaction.find_by_user_id(@user.id).nil? %>
+            <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
           </div>
         </div>
         <div class="col-md-5">

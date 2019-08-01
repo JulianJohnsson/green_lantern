@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  external_id: 1
+  coeff: 9.99
+  parent_id: 1
+
+two:
+  name: MyString
+  external_id: 1
+  coeff: 9.99
+  parent_id: 1

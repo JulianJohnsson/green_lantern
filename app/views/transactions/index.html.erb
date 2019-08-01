@@ -1,6 +1,15 @@
 <div class="row">
   <div class="col-md-6">
     <div class="card">
+      <div class="card-body">
+        <p>30 derniers jours : <%= @last_30_days_count %></p>
+        <p>Ce mois-ci : <%= @current_month_count %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
       <div class="card-body table-responsive">
         <h3>Mes dernières dépenses</h3>
         <p class="description">
@@ -12,8 +21,7 @@
             <% @transactions.first(5).each do |transaction| %>
               <tr>
                 <td style="width:40%;"><%= transaction.description %></td>
-                <td><%= transaction.amount %></td>
-                <td><%= transaction.category_id %></td>
+                <td><%= transaction.carbone %> ç</td>
                 <td><%= link_to 'Show', transaction %></td>
                 <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
               </tr>
