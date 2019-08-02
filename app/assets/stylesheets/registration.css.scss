@@ -1,6 +1,10 @@
 @import "material/scss/material-kit/variables";
 @import "material/scss/material-kit/mixins";
 
+body {
+  font-family: Muli;
+}
+
 footer {
   font-family: Muli;
   background-color: white;
@@ -26,7 +30,6 @@ p, a {
 .registration-page {
   background-image: url("bg_2.png");
   background-position: right 0% top 0%;
-  font-family: Muli;
   padding-top: 60px;
 }
 

@@ -1,0 +1,65 @@
+@import "material/scss/material-kit/variables";
+
+.navbar.bg-dark {
+  background-color: $brand-dark-blue !important;
+}
+
+.navbar.navbar-transparent {
+  background-color: transparent !important;
+}
+
+.home-section h1 {
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.home-section {
+  height: 100vh;
+}
+
+.badge.badge-primary {
+  color: #20B2AA;
+  background-color: transparent;
+  border-color: $brand-cyan;
+  border: 1px solid;
+}
+
+.home-section1 {
+  background-image: url("home_section1.png");
+  background-position: right 0% top 0%;
+  padding-top: 60px;
+}
+
+.home-section2 {
+  background-image: url("home_section2.png");
+  background-position: left 0% top 30%;
+}
+
+.home-section3 {
+  background-image: url("home_section3.png");
+  background-position: right 0% top 80%;
+}
+
+.home-section4 {
+  background-image: url("home_section4.png");
+  background-position: right 0% top 40%;
+}
+
+.home-section5 {
+  background-image: url("home_section5.png");
+  background-position: right 0% top 50%;
+}
+
+.home-section5 ul {
+  margin-top: 50px;
+}
+
+.home-section5 .tab-content {
+  margin-top: 20px;
+}
+
+.home-section6 {
+  background: linear-gradient(81.33deg, #20B2AA 0%, #0B4C65 100%);
+  background-position: right 0% top 0%;
+  height: 50vh;
+}

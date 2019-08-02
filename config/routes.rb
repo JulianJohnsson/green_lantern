@@ -13,8 +13,6 @@ Rails.application.routes.draw do
     root 'bridges#index', as: :authenticated_root
   end
 
-  root to: 'visitors#index'
-
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'
 

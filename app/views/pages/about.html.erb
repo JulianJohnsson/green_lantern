@@ -1,7 +1,129 @@
 <% content_for :title do %>About<% end %>
-<h3>About the Website</h3>
-<p>
-This web application was created with
-<%= link_to('Rails Composer', 'http://railsapps.github.io/rails-composer/') %>
-from the <%= link_to('RailsApps project', 'http://railsapps.github.io/') %>.
-</p>
+<div class="page-header home-section home-section1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-auto mb-auto">
+        <span class="badge badge-pill badge-primary">alpha</span>
+        <h1>Suivez l'impact de vos dépenses</h1>
+        <h4 class="description">
+          Carbo, l'application qui mesure et compare sans effort le poids carbone de vos dépenses bancaires.
+        </h4>
+        <%= link_to "M'inscrire", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag("phone_section1.png", class: "w-100") %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <%= image_tag("phone_section2.png", class: "w-100") %>
+      </div>
+      <div class="col-md-6 offset-md-1 mt-auto mb-auto text-center">
+        <h1>👌<br />Ne Changez rien</h1>
+        <h4 class="description">
+          Synchronisez vos comptes bancaires en 3 clics et continuez de faire ce que vous aimez.  Carbo calcule pour vous votre impact sur la planète.
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto text-center">
+        <h1>Suivez, Mesurez, Comparez</h1>
+        <h4 class="description">
+          Des graphiques simples et clairs.<br />
+          Analyser votre impact devient un jeu d'enfant avec Carbo !<br />
+          Apprenez des profils vertueux, invitez vos amis et comparez votre impact.
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 ml-auto mr-auto text-center">
+        <%= image_tag("phone_section3.png", class: "w-100") %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 offset-md-2 mt-auto mb-auto">
+        <h1>Suivez, Mesurez, Comparez</h1>
+        <h4 class="description">
+          Des graphiques simples et clairs.<br />
+          Analyser votre impact devient un jeu d'enfant avec Carbo !<br />
+          Apprenez des profils vertueux, invitez vos amis et comparez votre impact.
+        </h4>
+      </div>
+      <div class="col-md-5">
+        <%= image_tag("phone_section4.png", class: "w-100") %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag("phone_section5.png", class: "w-55") %>
+      </div>
+      <div class="col-md-6 mt-auto mb-auto ">
+        <h1>🔒 Carbo est 100% sécurisé</h1>
+        <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+              <i class="material-icons">dashboard</i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#schedule-1" role="tab" data-toggle="tab">
+              <i class="material-icons">schedule</i> Schedule
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+              <i class="material-icons">list</i> Tasks
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content tab-space">
+          <div class="tab-pane" id="dashboard-1">
+            Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+            <br>
+            <br> Dramatically visualize customer directed convergence without revolutionary ROI.
+          </div>
+          <div class="tab-pane active" id="schedule-1">
+            Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+            <br>
+            <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+          </div>
+          <div class="tab-pane" id="tasks-1">
+            Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+            <br>
+            <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section6">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mt-auto mb-auto">
+        <span class="badge badge-pill badge-primary">Disponible en version alpha</span>
+        <h2>Rejoignez l’aventure Carbo  🚀</h2>
+        <%= link_to "M'inscrire", new_user_registration_path, class: "btn btn-lg btn-round btn-dark" %>
+      </div>
+      <div class="col-md-4" style="margin-bottom:-38px; text-align:right;">
+        <%= image_tag("phone_section6.png") %>
+      </div>
+    </div>
+  </div>
+</div>
