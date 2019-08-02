@@ -31,7 +31,7 @@
   left: 0;
   z-index: 2;
   width: 260px;
-  background: #fff;
+  background: #0B4C65;
   box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
@@ -42,6 +42,13 @@
     position: relative;
     z-index: 4;
     text-align: center;
+}
+
+.sidebar .logo a {
+    color: white;
+    opacity: 0.7;
+    font-family: Maven Pro;
+    font-weight: 900;
 }
 
 .sidebar .sidebar-wrapper {
@@ -81,14 +88,36 @@
     text-align: center;
 }
 
+.sidebar .nav p {
+    margin: 0;
+    line-height: 30px;
+    font-size: 16px;
+    position: relative;
+    display: block;
+    height: auto;
+    white-space: nowrap;
+}
+
+
 .sidebar .nav li a, .sidebar .nav li .dropdown-menu a {
     margin: 10px 15px 0;
     border-radius: 3px;
     padding-left: 10px;
     padding-right: 10px;
     text-transform: capitalize;
-
+    color: #DFE0EB;
+    opacity: 0.7;
     padding: 10px 15px;
+}
+
+.sidebar li.active>a, .sidebar li:hover>a {
+    background-color: #20B2AA;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(32, 178, 170, 0.4);
+}
+
+.sidebar .nav li.active>a, .sidebar li:hover>a, .sidebar .nav li.active>a i, .sidebar .nav li:hover>a i {
+    color: #fff;
+    opacity: 1;
 }
 
 .main-panel {
@@ -102,8 +131,38 @@
     margin-bottom: 0;
 }
 
+.main-panel .navbar-collapse p {
+    margin: 0;
+    line-height: 30px;
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    height: auto;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+.main-panel .navbar-collapse i {
+    line-height: 30px;
+
+}
+
 .main-panel .navbar-brand {
     margin-left: 1rem;
+}
+
+.navbar.navbar-transparent .navbar-toggler .navbar-toggler-icon {
+    background-color: #0B4C65;
+}
+
+.nav-open .navbar-toggler {
+    left: 0;
+    -webkit-transform: translate3d(-230px, 0, 0);
+    -moz-transform: translate3d(-230px, 0, 0);
+    -o-transform: translate3d(-230px, 0, 0);
+    -ms-transform: translate3d(-230px, 0, 0);
+    transform: translate3d(-230px, 0, 0);
+    transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 
 .navbar .notification {

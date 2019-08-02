@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <div class="logo">
+    <%= link_to "Carbo", root_path, class: 'navbar-brand' %>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item active  ">
+        <%= link_to transactions_path, class: 'nav-link' do %>
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to transactions_path, class: 'nav-link' do %>
+          <i class="material-icons">pie_chart</i>
+          <p>Catégories</p>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to transactions_path, class: 'nav-link' do %>
+          <i class="material-icons">timeline</i>
+          <p>Statistiques</p>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to transactions_path, class: 'nav-link' do %>
+          <i class="material-icons">group</i>
+          <p>Communauté</p>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
