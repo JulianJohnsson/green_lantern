@@ -45,7 +45,7 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-            <%= if user_signed_in? %>
+            <% if user_signed_in? %>
               <%= link_to 'Profil', user_path(current_user), class: 'dropdown-item' %>
               <%= link_to 'Paramètres', edit_user_registration_path, class: 'dropdown-item' %>
               <div class="dropdown-divider"></div>
