@@ -10,7 +10,7 @@
             <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 d-none d-md-block">
           <%= image_tag("gif_2.gif", :class => 'rounded img-fluid') %>
         </div>
       </div>
