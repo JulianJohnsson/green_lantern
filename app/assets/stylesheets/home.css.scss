@@ -63,3 +63,31 @@
   background-position: right 0% top 0%;
   height: 50vh;
 }
+
+.home-section6 h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.badge.badge-white {
+  border-color: white;
+  border: 1px solid;
+}
+
+.prefooter {
+  height: 40vh;
+  background: white;
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.prefooter h5 {
+  color: $brand-dark-blue;
+  font-family: Maven Pro;
+  font-weight: bold;
+}
+
+.prefooter li {
+  line-height: 40px;
+}
