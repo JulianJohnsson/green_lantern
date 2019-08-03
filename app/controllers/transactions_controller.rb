@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
     @bridge = Bridge.find_by_user_id(current_user.id)
     @last_30_days_count = @transactions.sum(&:carbone)
     @current_month_count = current_user.transactions.month_to_date.sum(&:carbone)
-    AnalyticService.new.identify(current_user)
+    AnalyticService.new.identify(current_user,request)
   end
 
   # GET /transactions/1

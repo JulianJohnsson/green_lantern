@@ -50,6 +50,10 @@
   background-position: right 0% top 50%;
 }
 
+.home-section5 .nav-pills-primary .active {
+  background: linear-gradient(46.44deg, #20B2AA 0%, #0B4C65 106.37%);
+}
+
 .home-section5 ul {
   margin-top: 50px;
 }
@@ -72,6 +76,7 @@
   color: white;
   font-weight: bold;
   font-size: 48px;
+  margin-bottom: 20px;
 }
 
 .badge.badge-white {

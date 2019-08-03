@@ -2,9 +2,14 @@ class User < ApplicationRecord
   has_many :transactions
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
+  after_create_commit :notify_signup
 
   def set_default_role
     self.role ||= :user
+  end
+
+  def notify_signup
+    AnalyticService.new.track('Signed Up', nil, self)
   end
 
   def self.new_with_session(params, session)

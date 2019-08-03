@@ -6,14 +6,17 @@ class BridgesController < ApplicationController
   # GET /bridges.json
   def index
     @bridge = Bridge.find_by_user_id(current_user.id)
+    AnalyticService.new.identify(current_user,request)
     if @bridge
       if @bridge.bank_connected == true
         redirect_to @bridge
         return
       end
       if params[:item_id] == nil
+        AnalyticService.new.track('Account Verified', nil, current_user)
         redirect_to action: 'account'
       else
+        AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
         @bridge.save
         TransactionFetcherJob.perform_later(current_user)
@@ -27,6 +30,7 @@ class BridgesController < ApplicationController
   # GET /bridges/1.json
   def show
     @user = current_user
+    AnalyticService.new.identify(current_user,request)
     unless @bridge.last_sync_at == nil
       if @bridge.last_sync_at.to_time <= Time.now - 1.day
         TransactionFetcherJob.perform_later(current_user)
@@ -37,6 +41,8 @@ class BridgesController < ApplicationController
   # GET /bridges/account
   def account
     @user = current_user
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Bank Connection Asked', nil, current_user)
     @bridge = Bridge.find_by_user_id(current_user.id)
     @redirect_url = @bridge.add_item_url(current_user)
   end
@@ -45,6 +51,8 @@ class BridgesController < ApplicationController
   def new
     @bridge = Bridge.new
     @user = current_user
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Account Verification Asked', nil, current_user)
   end
 
   # GET /bridges/1/edit
@@ -59,6 +67,7 @@ class BridgesController < ApplicationController
     @user = current_user
 
     redirect_url = @bridge.verify_bridge_url(@user)
+    AnalyticService.new.track('Account Verification Started', nil, current_user)
     @bridge.save
 
     respond_to do |format|

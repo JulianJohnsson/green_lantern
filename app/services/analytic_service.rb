@@ -1,5 +1,5 @@
 class AnalyticService
-  def identify(user)
+  def identify(user,request)
     bridge = Bridge.find_by_user_id(user.id)
     unless bridge == nil
       Analytics.identify(
@@ -9,6 +9,10 @@ class AnalyticService
           verified: "#{ true unless bridge.uuid == nil }",
           onboarded: "#{ bridge.bank_connected }",
           last_sync_date: "#{ bridge.last_sync_at }"
+        },
+        context: {
+          ip: "#{request.remote_ip}",
+          referer: "#{request.referer}"
         }
       )
     else
@@ -16,11 +20,20 @@ class AnalyticService
         user_id: "#{ user.id }",
         traits: {
           email: "#{ user.email }"
+        },
+        context: {
+          ip: "#{request.remote_ip}",
+          referer: "#{request.referer}"
         }
       )
     end
   end
 
-  def track(event,user)
+  def track(event,properties,user)
+    Analytics.track(
+      user_id: "#{user.id}",
+      event: event,
+      properties: properties
+    )
   end
 end
