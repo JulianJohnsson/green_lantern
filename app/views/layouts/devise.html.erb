@@ -22,7 +22,9 @@
         <nav class="float-left">
           <ul>
             <li>
-              <%= link_to "Carbo", root_path %>
+              <%= link_to(root_path, style: "padding-top: 0px;") do %>
+                <%= image_tag("Logo-Carbo-Blue", style: "width:55px;") %>
+              <% end %>
             </li>
           </ul>
         </nav>
@@ -35,6 +37,7 @@
       </div>
     </footer>
   </body>
+  <%= render 'layouts/analytics' %>
   <script type="text/javascript">
   $(document).ready(function(){
     setTimeout(function(){

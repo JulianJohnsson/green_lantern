@@ -1,13 +1,10 @@
 class Bridge < ApplicationRecord
   belongs_to :user
 
-  RestClient.proxy = ENV["FIXIE_URL"]
-  RestClient.log = 'stdout'
-
   def verify_bridge_url(user)
     self.refresh(user)
     response = RestClient::Request.execute(method: :get,
-      url: "https://sync.bankin.com/v2/connect/users/email/confirmation/url?client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+      url: "https://sync.bankin.com/v2/connect/users/email/confirmation/url?client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
       headers: {'Bankin-Version' => '2018-06-15',
       'Authorization' => "Bearer #{token}"}
     )
@@ -22,7 +19,7 @@ class Bridge < ApplicationRecord
   def add_item_url(user)
     self.refresh(user)
     response = RestClient::Request.execute(method: :get,
-      url: "https://sync.bankin.com/v2/connect/items/add/url?client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+      url: "https://sync.bankin.com/v2/connect/items/add/url?client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
       headers: {'Bankin-Version' => '2018-06-15',
       'Authorization' => "Bearer #{token}"}
     )
@@ -54,13 +51,13 @@ class Bridge < ApplicationRecord
     self.refresh(user)
     if self.last_sync_at == nil
       response = RestClient::Request.execute(method: :get,
-        url: "https://sync.bankin.com/v2/transactions?limit=500&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+        url: "https://sync.bankin.com/v2/transactions?limit=500&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
         headers: {'Bankin-Version' => '2018-06-15',
         'Authorization' => "Bearer #{token}"}
       )
     else
       response = RestClient::Request.execute(method: :get,
-        url: "https://sync.bankin.com/v2/transactions/updated?since=#{last_sync_at}&limit=500&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+        url: "https://sync.bankin.com/v2/transactions/updated?since=#{last_sync_at}&limit=500&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
         headers: {'Bankin-Version' => '2018-06-15',
         'Authorization' => "Bearer #{token}"}
       )
@@ -73,7 +70,7 @@ class Bridge < ApplicationRecord
 
     until json['pagination']['next_uri'] == nil do
       response = RestClient::Request.execute(method: :get,
-      url: "https://sync.bankin.com#{json['pagination']['next_uri']}&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+      url: "https://sync.bankin.com#{json['pagination']['next_uri']}&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
       headers: {'Bankin-Version' => '2018-06-15',
         'Authorization' => "Bearer #{token}"}
       )
@@ -89,7 +86,7 @@ class Bridge < ApplicationRecord
   def list_accounts(user)
     self.refresh(user)
     response = RestClient::Request.execute(method: :get,
-      url: "https://sync.bankin.com/v2/accounts?limit=500&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+      url: "https://sync.bankin.com/v2/accounts?limit=500&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
       headers: {'Bankin-Version' => '2018-06-15',
       'Authorization' => "Bearer #{token}"}
     )
@@ -118,7 +115,7 @@ class Bridge < ApplicationRecord
 
   def create_account(user)
     response = RestClient::Request.execute(method: :post,
-      url: "https://sync.bankin.com/v2/users?email=#{user.email}&password=#{user.email}_#{user.id}&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+      url: "https://sync.bankin.com/v2/users?email=#{user.email}&password=#{user.email}_#{user.id}&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
       headers: {"Bankin-Version" => "2018-06-15"}
     )
 
@@ -130,7 +127,7 @@ class Bridge < ApplicationRecord
 
   def authenticate(user)
     response = RestClient::Request.execute(method: :post,
-      url: "https://sync.bankin.com/v2/authenticate?email=#{user.email}&password=#{user.email}_#{user.id}&client_id=#{Rails.application.credentials.bridge[:client_id]}&client_secret=#{Rails.application.credentials.bridge[:client_secret]}",
+      url: "https://sync.bankin.com/v2/authenticate?email=#{user.email}&password=#{user.email}_#{user.id}&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
       headers: {'Bankin-Version' => '2018-06-15'}
     )
 
