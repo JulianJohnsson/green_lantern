@@ -4,6 +4,14 @@
       <div class="card-body">
         <p>30 derniers jours : <%= @last_30_days_count %></p>
         <p>Ce mois-ci : <%= @current_month_count %></p>
+        <p>
+          Historique :
+          <% historic = [] %>
+          <% 12.times do |i| %>
+            <% historic << [i.month.ago.strftime("%Y-%m"), current_user.transactions.month_ago(i).sum(&:carbone)] %>
+          <% end %>
+          <%= historic %>
+        </p>
       </div>
     </div>
   </div>

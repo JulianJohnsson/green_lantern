@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @parent_categories.each do |category| %>
+            <tr>
+              <td>
+                <%= category.name %>
+              </td>
+              <td>
+                <%= @transactions.parent_category_id(category.external_id).sum(&:carbone) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
