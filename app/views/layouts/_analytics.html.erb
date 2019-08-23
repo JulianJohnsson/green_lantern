@@ -22,7 +22,14 @@
         a.parentNode.insertBefore(n,a);analytics._loadOptions=e};
         analytics.SNIPPET_VERSION="4.1.0";
         analytics.load("<%= Rails.application.credentials[:segment][Rails.env.to_sym][:write_key] %>");
-        analytics.page();
+        analytics.page({
+          <% if user_signed_in? %>
+            user_id: <%= current_user.id %>
+          <% end %>
+        });
+        <% if user_signed_in? %>
+            analytics.identify(<%= current_user.id %>);
+          <% end %>
       }
     }
   ();
