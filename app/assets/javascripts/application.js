@@ -19,4 +19,6 @@
 //= require material/nouislider.min
 //= require rails-ujs
 //= require bootstrap-sprockets
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .

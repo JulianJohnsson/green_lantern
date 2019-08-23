@@ -41,6 +41,8 @@ gem 'sidekiq'
 gem 'font-awesome-rails'
 gem 'popper_js'
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
+gem 'chartkick'
+gem 'groupdate'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

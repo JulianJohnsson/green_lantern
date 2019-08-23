@@ -2,16 +2,10 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <p>30 derniers jours : <%= @last_30_days_count %></p>
-        <p>Ce mois-ci : <%= @current_month_count %></p>
+        <p>30 derniers jours : <%= @last_30_days_count %> g CO2</p>
+        <p>Ce mois-ci : <%= @current_month_count %> g CO2</p>
         <p>
-          Historique :
-          <% historic = [] %>
-          <% 12.times do |i| %>
-            <% historic << [i.month.ago.strftime("%Y-%m"), current_user.transactions.month_ago(i).sum(&:carbone)] %>
-          <% end %>
-          <%= historic %>
-        </p>
+          <%= line_chart current_user.transactions.group_by_month(:date, last: 12).sum(:carbone), defer: true %>
       </div>
     </div>
   </div>
@@ -29,7 +23,7 @@
             <% @transactions.first(5).each do |transaction| %>
               <tr>
                 <td style="width:40%;"><%= transaction.description %></td>
-                <td><%= transaction.carbone %> ç</td>
+                <td><%= transaction.carbone %> g</td>
                 <td><%= link_to 'Show', transaction %></td>
                 <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
               </tr>
