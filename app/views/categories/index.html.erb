@@ -1,21 +1,47 @@
+<% I18n.locale = :en %>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <%= pie_chart current_user.transactions.group(:parent_category_id).sum(:carbone) %>
-      <table class="table">
-        <tbody>
-          <% @parent_categories.each do |category| %>
-            <tr>
-              <td>
-                <%= category.name %>
-              </td>
-              <td>
-                <%= @transactions.parent_category_id(category.external_id).sum(&:carbone) %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col-md-12 text-center">
+      <div class="card">
+        <div class="card-title">
+          <h3>
+            <%= link_to "<", :month => (params[:month].to_i || 0) + 1 %>
+            <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
+            <%= link_to(">", :month => (params[:month].to_i) - 1) if params[:month].to_i > 0 %>
+          </h3>
+        </div>
+        <div class="card-body table-responsive">
+          <%= pie_chart @transactions.group(:parent_category_id).sum(:carbone), donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "bottom" %>
+          <table class="table table-hover text-left">
+            <thead>
+              <tr>
+                  <th>Type</th>
+                  <th>Carbone</th>
+                  <th>Part</th>
+                  <th>Précision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.map {|t| t.parent_category_id}.uniq.sort.each do |c| %>
+                <tr>
+                  <td>
+                    <%= Category.find_by_external_id(c).name %>
+                  </td>
+                  <td>
+                    <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone), precision: 2).to_s + " Kg" %>
+                  </td>
+                  <td>
+                    <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
+                  </td>
+                  <td>
+                    <span class="badge badge-pill badge-danger">Basse</span>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

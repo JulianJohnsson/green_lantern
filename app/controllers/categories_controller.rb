@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   def index
-    @parent_categories = Category.where("parent_id = 0")
-    @transactions = current_user.transactions.month_to_date
+    @transactions = current_user.transactions.carbone_contribution.month_ago(params[:month].to_i || 0)
   end
 end
