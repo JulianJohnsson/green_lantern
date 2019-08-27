@@ -11,35 +11,61 @@
           </h3>
         </div>
         <div class="card-body table-responsive">
-          <%= pie_chart @transactions.group(:parent_category_id).sum(:carbone), donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "bottom" %>
-          <table class="table table-hover text-left">
-            <thead>
-              <tr>
-                  <th>Type</th>
-                  <th>Carbone</th>
-                  <th>Part</th>
-                  <th>Précision</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @transactions.map {|t| t.parent_category_id}.uniq.sort.each do |c| %>
-                <tr>
-                  <td>
-                    <%= Category.find_by_external_id(c).name %>
-                  </td>
-                  <td>
-                    <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone), precision: 2).to_s + " Kg" %>
-                  </td>
-                  <td>
-                    <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
-                  </td>
-                  <td>
-                    <span class="badge badge-pill badge-danger">Basse</span>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <div class="row">
+            <div class="col-md-4 mt-auto mb-auto">
+              <%= image_tag("group_left.png", class: "img-fluid") %>
+            </div>
+            <div class="col-md-4 mt-auto mb-auto">
+              <%= pie_chart @carbone_by_parent_category, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "none" %>
+              <span class="ml-auto mr-auto mt-auto mb-auto" style="position:relative; z-index: 20;">
+                <%= number_with_precision(@transactions.sum(&:carbone), precision: 2).to_s + " Kg" %>
+              </span>
+            </div>
+            <div class="col-md-4 mt-auto mb-auto">
+              <%= image_tag("group_right.png", class: "img-fluid") %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-hover text-left table-category">
+                <thead>
+                  <tr>
+                      <th />
+                      <th>Type</th>
+                      <th>Carbone</th>
+                      <th>Part</th>
+                      <th>Précision</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% i = 0 %>
+                  <% @transactions.sort_by {|t| Category.find_by_external_id(t.parent_category_id).name}.map {|t| t.parent_category_id}.uniq.each do |c| %>
+                    <tr>
+                      <td>
+                        <div class="category-pill" style="background:<%= Chartkick.options[:colors][i] %>;"/>
+                        <% i = i+1 %>
+                      </td>
+                      <td>
+                          <%= Category.find_by_external_id(c).name %>
+                          <small>
+                            <br /><%= @transactions.parent_category_id(c).count.to_s + " transactions" %>
+                          </small>
+                      </td>
+                      <td>
+                        <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone), precision: 2).to_s + " Kg" %>
+                      </td>
+                      <td>
+                        <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
+                      </td>
+                      <td>
+                        <span class="badge badge-pill badge-danger">Basse</span>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
