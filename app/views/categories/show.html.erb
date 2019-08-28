@@ -29,7 +29,7 @@
               <%= image_tag("group_left.png", class: "img-fluid") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
-              <%= pie_chart @carbone_by_parent_category, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "none" %>
+              <%= pie_chart @transactions.group(:category_id).sum(:carbone).sort, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "none" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
               <%= image_tag("group_right.png", class: "img-fluid") %>
@@ -50,7 +50,7 @@
                 </thead>
                 <tbody>
                   <% i = 0 %>
-                  <% @transactions.sort_by {|t| Category.find_by_external_id(t.parent_category_id).name}.map {|t| t.parent_category_id}.uniq.each do |c| %>
+                  <% @transactions.sort_by {|t| t.category_id}.map {|t| t.category_id}.uniq.each do |c| %>
                     <% @category = Category.find_by_external_id(c) %>
                     <tr>
                       <td>
@@ -60,22 +60,22 @@
                       <td>
                         <%= @category.name %>
                         <small>
-                          <br /><%= @transactions.parent_category_id(c).count.to_s + " transactions" %>
+                          <br /><%= @transactions.category_id(c).count.to_s + " transactions" %>
                         </small>
                       </td>
                       <td>
-                        <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone), precision: 2).to_s + " Kg" %>
+                        <%= number_with_precision(@transactions.category_id(c).sum(&:carbone), precision: 2).to_s + " Kg" %>
                       </td>
                       <td>
-                        <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
+                        <%= number_with_precision(@transactions.category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
                       </td>
                       <td>
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td>
                       <td>
-                        <%= link_to "/categories/#{@category.id}"  do %>
+                        <a href="" data-toggle="modal" data-target="#moreInfoModal">
                           <i class="material-icons">more_vert</i>
-                        <% end %>
+                        </a>
                       </td>
                     </tr>
                   <% end %>
@@ -91,6 +91,29 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title ml-auto mr-auto" id="moreInfoModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="material-icons">wb_incandescent</i>
+        <p>
+          À ce stade, notre méthode de calcul comporte plusieurs incertitudes. Améliorez la précision de vos données en fournissant plus d’informations sur vos dépenses.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-primary ml-auto mr-auto">Enrichir mes données</button>
       </div>
     </div>
   </div>
