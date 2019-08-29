@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'
+  get '/dashboard' => 'transactions#dashboard'
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

@@ -12,37 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :external_id %>
-    <%= form.text_field :external_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
 
   <div class="field">
-    <%= form.label :raw_description %>
-    <%= form.text_field :raw_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
-  </div>
-
-  <div class="field">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :user_id, :value => @user.id %>
+    <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.external_id]}, :selected => transaction.category_id, class: "custom-select") %>
   </div>
 
   <div class="actions">

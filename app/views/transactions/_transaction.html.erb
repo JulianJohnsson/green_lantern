@@ -1,0 +1,18 @@
+<td>
+  <%= transaction.description %>
+</td>
+<td>
+  <%= Category.find_by_external_id(transaction.category_id).name %>
+<td>
+  <%= number_with_precision(transaction.carbone, precision: 2).to_s + " Kg" %>
+</td>
+<td>
+  <%= transaction.date %>
+</td>
+<td>
+  <%= link_to edit_transaction_path(transaction)  do %>
+    <i class="material-icons">more_vert</i>
+  <% end %>
+</td>
+
+

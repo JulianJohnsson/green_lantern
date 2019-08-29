@@ -1,0 +1,37 @@
+<% content_for :title, "Dashboard" %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <p>30 derniers jours : <%= @last_30_days_count %> g CO2</p>
+        <p>Ce mois-ci : <%= @current_month_count %> g CO2</p>
+        <p>
+          <%= line_chart current_user.transactions.group_by_month(:date, last: 12).sum(:carbone), defer: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body table-responsive">
+        <h3>Mes dernières dépenses</h3>
+        <p class="description">
+          Dernière synchronisation le
+          <%= @bridge.last_sync_at.to_s %>
+        </p>
+        <table class="table table-hover">
+          <tbody>
+            <% @transactions.first(5).each do |transaction| %>
+              <tr>
+                <td style="width:40%;"><%= transaction.description %></td>
+                <td><%= transaction.carbone %> g</td>
+                <td><%= link_to 'Show', transaction %></td>
+                <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="navbar-wrapper">
       <p class="navbar-brand">
-        Dashboard
+        <%= content_for?(:title) ? yield(:title) : "Carbo" %></title>
       </p>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,10 +14,10 @@
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to transactions_path, class: "nav-link" do %>
+          <%= link_to '/dashboard', class: "nav-link" do %>
             <i class="material-icons">dashboard</i>
             <p class="d-lg-none d-md-inline-block">
-              Stats
+              Dashboard
             </p>
           <% end %>
         </li>

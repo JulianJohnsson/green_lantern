@@ -1,3 +1,4 @@
+<% content_for :title, "Catégories" %>
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
@@ -6,7 +7,7 @@
           <div class="row">
             <div class="col-4 text-right mt-auto mb-auto">
               <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
-                <i class="material-icons">arrow_left</i>
+                <i class="material-icons">arrow_back</i>
               <% end %>
             </div>
             <div class="col-4 text-center mt-auto mb-auto">
@@ -17,21 +18,21 @@
             <div class="col-4 text-left mt-auto mb-auto">
               <% if params[:month].to_i > 0 %>
                 <%= link_to(:month => (params[:month].to_i) - 1)  do %>
-                  <i class="material-icons">arrow_right</i>
+                  <i class="material-icons">arrow_forward</i>
                 <% end %>
               <% end %>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive">
           <div class="row">
-            <div class="col-md-4 mt-auto mb-auto">
+            <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("group_left.png", class: "img-fluid") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
               <%= pie_chart @carbone_by_parent_category, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "none" %>
             </div>
-            <div class="col-md-4 mt-auto mb-auto">
+            <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("group_right.png", class: "img-fluid") %>
             </div>
           </div>
@@ -73,7 +74,7 @@
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td>
                       <td>
-                        <%= link_to "/categories/#{@category.id}"  do %>
+                        <%= link_to "/categories/#{@category.id}?month=#{params[:month]}", :month => (params[:month].to_i || 0)  do %>
                           <i class="material-icons">more_vert</i>
                         <% end %>
                       </td>

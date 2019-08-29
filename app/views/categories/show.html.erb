@@ -1,3 +1,4 @@
+<% content_for :title, "#{@category.name}" %>
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
@@ -6,7 +7,7 @@
           <div class="row">
             <div class="col-4 text-right mt-auto mb-auto">
               <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
-                <i class="material-icons">arrow_left</i>
+                <i class="material-icons">arrow_back</i>
               <% end %>
             </div>
             <div class="col-4 text-center mt-auto mb-auto">
@@ -17,21 +18,21 @@
             <div class="col-4 text-left mt-auto mb-auto">
               <% if params[:month].to_i > 0 %>
                 <%= link_to(:month => (params[:month].to_i) - 1)  do %>
-                  <i class="material-icons">arrow_right</i>
+                  <i class="material-icons">arrow_forward</i>
                 <% end %>
               <% end %>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive">
           <div class="row">
-            <div class="col-md-4 mt-auto mb-auto">
+            <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("group_left.png", class: "img-fluid") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
               <%= pie_chart @transactions.group(:category_id).sum(:carbone).sort, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "none" %>
             </div>
-            <div class="col-md-4 mt-auto mb-auto">
+            <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("group_right.png", class: "img-fluid") %>
             </div>
           </div>
@@ -79,10 +80,16 @@
                       </td>
                     </tr>
                   <% end %>
-                  <tr class="text-right">
-                    <td colspan=6 >
+                  <tr >
+                    <td colspan=3 class="text-left" >
+                      <%= link_to "/categories" do %>
+                        <i class="material-icons">arrow_back</i>
+                        Retour aux catégories
+                      <% end %>
+                    </td>
+                    <td colspan=3 class="text-right" >
                       <%= link_to "" do %>
-                        Suggérer une nouvelle catégorie
+                        Suggérer une sous-catégorie
                         <i class="material-icons">add_circle</i>
                       <% end %>
                     </td>

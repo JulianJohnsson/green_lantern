@@ -10,8 +10,8 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item <%= 'active' if current_page?(transactions_path) %>">
-        <%= link_to transactions_path, class: 'nav-link' do %>
+      <li class="nav-item <%= 'active' if current_page?('/dashboard') %>">
+        <%= link_to '/dashboard', class: 'nav-link' do %>
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         <% end %>
@@ -41,13 +41,13 @@
 <nav class="navbar fixed-bottom d-md-none bottom-nav">
 <div class="container text-center mr-auto ml-auto">
     <ul class="nav">
-      <li class="nav-item <%= 'active' if current_page?(transactions_path) %>">
-        <%= link_to transactions_path, class: 'nav-link' do %>
+      <li class="nav-item <%= 'active' if current_page?('/dashboard') %>">
+        <%= link_to '/dashboard', class: 'nav-link' do %>
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         <% end %>
       </li>
-      <li class="nav-item" <%= 'active' if current_page?(categories_path) %>>
+      <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
         <%= link_to categories_path, class: 'nav-link' do %>
           <i class="material-icons">pie_chart</i>
           <p>Catégories</p>

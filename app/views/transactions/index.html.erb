@@ -1,35 +1,48 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <p>30 derniers jours : <%= @last_30_days_count %> g CO2</p>
-        <p>Ce mois-ci : <%= @current_month_count %> g CO2</p>
-        <p>
-          <%= line_chart current_user.transactions.group_by_month(:date, last: 12).sum(:carbone), defer: true %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body table-responsive">
-        <h3>Mes dernières dépenses</h3>
-        <p class="description">
-          Dernière synchronisation le
-          <%= @bridge.last_sync_at.to_s %>
-        </p>
-        <table class="table table-hover">
-          <tbody>
-            <% @transactions.first(5).each do |transaction| %>
+<% content_for :title, "Dépenses détaillées" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card">
+        <div class="card-title month-nav">
+          <div class="row">
+            <div class="col-4 text-right mt-auto mb-auto">
+              <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
+                <i class="material-icons">arrow_back</i>
+              <% end %>
+            </div>
+            <div class="col-4 text-center mt-auto mb-auto">
+              <h3>
+                <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
+              </h3>
+            </div>
+            <div class="col-4 text-left mt-auto mb-auto">
+              <% if params[:month].to_i > 0 %>
+                <%= link_to(:month => (params[:month].to_i) - 1)  do %>
+                  <i class="material-icons">arrow_forward</i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table text-left">
+            <thead>
               <tr>
-                <td style="width:40%;"><%= transaction.description %></td>
-                <td><%= transaction.carbone %> g</td>
-                <td><%= link_to 'Show', transaction %></td>
-                <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Carbone</th>
+                <th>Date</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr class="<%= 'text-danger' if transaction.category_id == 1 %>" >
+                  <%= render transaction %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

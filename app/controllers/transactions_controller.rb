@@ -5,6 +5,11 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
+    @transactions = current_user.transactions.month_ago(params[:month].to_i || 0).order(date: :desc)
+    AnalyticService.new.identify(current_user,request)
+  end
+
+  def dashboard
     @transactions = current_user.transactions.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)
     @last_30_days_count = @transactions.sum(&:carbone)
