@@ -4,12 +4,12 @@
     <div class="card">
       <div class="card-body">
         <p>12 derniers mois :
-          <%= 50 * (1- Math.tanh((@last_year_count - 12000) / (@last_year_count - 1200))) %>
-          <small><%= @last_year_count %> kg CO2</small>
+          <%= number_with_precision(50 * (1- Math.tanh(0.1*(@last_year_count - 12000) / (@last_year_count - 1200))), precision: 0) %>
+          <small><%= number_with_precision(@last_year_count, precision: 2) %> kg CO2</small>
         </p>
         <p>30 derniers jours :
-          <%= 50 * (1- Math.tanh((@last_30_days_count - 1000) / (@last_30_days_count - 100))) %>
-          <small><%= @last_30_days_count %> kg CO2</small>
+          <%= number_with_precision(50 * (1- Math.tanh(0.1*(@last_30_days_count - 1000) / (@last_30_days_count - 100))), precision: 0) %>
+          <small><%= number_with_precision(@last_30_days_count, precision: 2) %> kg CO2</small>
         </p>
         <p>Ce mois-ci : <%= @current_month_count %> kg CO2</p>
         <p>
@@ -31,8 +31,7 @@
             <% @transactions.first(5).each do |transaction| %>
               <tr>
                 <td style="width:40%;"><%= transaction.description %></td>
-                <td><%= transaction.carbone %> g</td>
-                <td><%= link_to 'Show', transaction %></td>
+                <td><%= number_with_precision(transaction.carbone, precision: 2) %> kg</td>
                 <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
               </tr>
             <% end %>
