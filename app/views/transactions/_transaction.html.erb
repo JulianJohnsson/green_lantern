@@ -10,7 +10,7 @@
   <%= transaction.date %>
 </td>
 <td>
-  <%= link_to edit_transaction_path(transaction)  do %>
+  <%= link_to edit_transaction_path(transaction, :month => params[:month])  do %>
     <i class="material-icons">more_vert</i>
   <% end %>
 </td>

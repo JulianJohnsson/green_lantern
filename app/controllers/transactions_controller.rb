@@ -5,7 +5,13 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = current_user.transactions.month_ago(params[:month].to_i || 0).order(date: :desc)
+    if params[:parent_category] != nil
+       @transactions = current_user.transactions.month_ago(params[:month].to_i || 0).parent_category_id(params[:parent_category]).order(date: :desc)
+    elsif params[:category] != nil
+      @transactions = current_user.transactions.month_ago(params[:month].to_i || 0).category_id(params[:category]).order(date: :desc)
+    else
+      @transactions = current_user.transactions.month_ago(params[:month].to_i || 0).order(date: :desc)
+    end
     AnalyticService.new.identify(current_user,request)
   end
 
@@ -52,7 +58,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to transactions_path(:month => params[:transaction][:month]), notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }

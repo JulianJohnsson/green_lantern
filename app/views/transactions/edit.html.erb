@@ -1,6 +1,32 @@
-<h1>Editing Transaction</h1>
-
-<%= render 'form', transaction: @transaction %>
-
-<%= link_to 'Show', @transaction %> |
-<%= link_to 'Back', transactions_path %>
+<% content_for :title, "Détail d'une dépense" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card">
+        <div class="card-title">
+          <h3><small>Description : </small><%= @transaction.description %></h3>
+        </div>
+        <div class="card-body">
+          <h4>
+            <small>Effectuée le : </small>
+            <%= @transaction.date %>
+          </h4>
+          <h4>
+            <small>Montant de la dépense : </small>
+            <%= -1 * @transaction.amount %> €
+          </h4>
+          <h4>
+            <small>Coût carbone : </small>
+            <%= @transaction.carbone %> kg
+          </h4>
+          <div class="row">
+            <div class="col-md-12">
+              <%= render 'form', transaction: @transaction %>
+              <%= link_to '< Retour à la liste', transactions_path(:month => params[:month]) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

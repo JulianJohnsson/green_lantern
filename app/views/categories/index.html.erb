@@ -30,7 +30,7 @@
               <%= image_tag("group_left.png", class: "img-fluid") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
-              <%= pie_chart @carbone_by_parent_category, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} Kg", legend: "none" %>
+              <%= pie_chart @carbone_by_parent_category, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} kg", legend: "none" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("group_right.png", class: "img-fluid") %>
@@ -61,11 +61,14 @@
                       <td>
                         <%= @category.name %>
                         <small>
-                          <br /><%= @transactions.parent_category_id(c).count.to_s + " transactions" %>
+                          <br />
+                          <%= link_to "/transactions?month=#{params[:month]}&parent_category=#{@category.external_id}" do %>
+                            <%= @transactions.parent_category_id(c).count.to_s + " transactions" %>
+                          <% end %>
                         </small>
                       </td>
                       <td>
-                        <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone), precision: 2).to_s + " Kg" %>
+                        <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone), precision: 2).to_s + " kg" %>
                       </td>
                       <td>
                         <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>

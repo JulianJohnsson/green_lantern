@@ -12,16 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.hidden_field :month, :value => params[:month] %>
   </div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.external_id]}, :selected => transaction.category_id, class: "custom-select") %>
+  <div class="field text-center">
+    <h4><small>Catégorie : </small></h4>
+    <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.external_id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mettre à jour la catégorie', class: 'btn btn-primary' %>
   </div>
 <% end %>
