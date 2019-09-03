@@ -3,10 +3,17 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <p>30 derniers jours : <%= @last_30_days_count %> g CO2</p>
-        <p>Ce mois-ci : <%= @current_month_count %> g CO2</p>
+        <p>12 derniers mois :
+          <%= 50 * (1- Math.tanh((@last_year_count - 12000) / (@last_year_count - 1200))) %>
+          <small><%= @last_year_count %> kg CO2</small>
+        </p>
+        <p>30 derniers jours :
+          <%= 50 * (1- Math.tanh((@last_30_days_count - 1000) / (@last_30_days_count - 100))) %>
+          <small><%= @last_30_days_count %> kg CO2</small>
+        </p>
+        <p>Ce mois-ci : <%= @current_month_count %> kg CO2</p>
         <p>
-          <%= line_chart current_user.transactions.group_by_month(:date, last: 12).sum(:carbone), defer: true %>
+          <%= line_chart current_user.transactions.group_by_month(:date).sum(:carbone), defer: true %>
       </div>
     </div>
   </div>

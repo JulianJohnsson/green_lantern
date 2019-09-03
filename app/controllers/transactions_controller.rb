@@ -19,6 +19,7 @@ class TransactionsController < ApplicationController
     @transactions = current_user.transactions.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)
     @last_30_days_count = @transactions.sum(&:carbone)
+    @last_year_count = current_user.transactions.year.sum(&:carbone)
     @current_month_count = current_user.transactions.month_to_date.sum(&:carbone)
     AnalyticService.new.identify(current_user,request)
   end
