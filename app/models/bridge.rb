@@ -99,6 +99,22 @@ class Bridge < ApplicationRecord
 
   end
 
+  def list_items(user)
+    self.refresh(user)
+    response = RestClient::Request.execute(method: :get,
+      url: "https://sync.bankin.com/v2/items?limit=500&client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}",
+      headers: {'Bankin-Version' => '2018-06-15',
+      'Authorization' => "Bearer #{token}"}
+    )
+
+    case response.code when 200
+      json = JSON.parse response
+    end
+
+    list = json['resources']
+
+  end
+
   def refresh(user)
     unless self.uuid
       self.create_account(user)

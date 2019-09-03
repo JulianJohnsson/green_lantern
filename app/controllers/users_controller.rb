@@ -9,6 +9,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @bridge = Bridge.find_by_user_id(@user.id)
+    @list = @bridge.list_accounts(@user)
+    @redirect_url = @bridge.add_item_url(current_user)
     authorize @user
   end
 
