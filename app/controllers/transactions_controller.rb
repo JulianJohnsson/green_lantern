@@ -59,7 +59,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to transactions_path(:month => params[:transaction][:month]), notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to transactions_path(:month => params[:transaction][:month]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }

@@ -40,4 +40,17 @@
       </div>
     </div>
   </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body table-responsive">
+        <h3><%= current_user.transactions.category_id(1).where("amount<-5").count %> dépenses à catégorisées</h3>
+        <p class="description">
+          Pour améliorer la précision de votre score, vous devez préciser la catégorie de ces dépenses.
+        </p>
+        <%= link_to "Préciser mon score", "/transactions?category=1", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+
 </div>

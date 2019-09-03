@@ -6,7 +6,7 @@
         <div class="card-title month-nav">
           <div class="row">
             <div class="col-4 text-right mt-auto mb-auto">
-              <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
+              <%= link_to :month => (params[:month].to_i || 0) + 1, :category => params[:category], :parent_category => params[:parent_category] do %>
                 <i class="material-icons">arrow_back</i>
               <% end %>
             </div>
@@ -17,7 +17,7 @@
             </div>
             <div class="col-4 text-left mt-auto mb-auto">
               <% if params[:month].to_i > 0 %>
-                <%= link_to(:month => (params[:month].to_i) - 1)  do %>
+                <%= link_to:month => (params[:month].to_i) - 1, :category => params[:category], :parent_category => params[:parent_category]  do %>
                   <i class="material-icons">arrow_forward</i>
                 <% end %>
               <% end %>
