@@ -1,0 +1,29 @@
+@import "material/scss/material-kit/variables";
+
+.table {
+  margin-top: 1em;
+}
+
+.table thead th {
+  border-top: none;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.card.border-primary {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-primary !important;
+}
+
+.card.border-warning {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-warning !important;
+}
+
+.card.transparent {
+  background: transparent;
+}

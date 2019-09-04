@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_175339) do
+ActiveRecord::Schema.define(version: 2019_09_04_143609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_07_31_175339) do
     t.datetime "updated_at", null: false
     t.decimal "carbone"
     t.integer "parent_category_id"
+    t.boolean "updated_by_user"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -75,6 +76,8 @@ ActiveRecord::Schema.define(version: 2019_07_31_175339) do
     t.integer "invitations_count", default: 0
     t.string "provider"
     t.string "uid"
+    t.string "city"
+    t.date "birthdate"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

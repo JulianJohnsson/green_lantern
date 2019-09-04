@@ -59,13 +59,21 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to transactions_path(:month => params[:transaction][:month]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
+        format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
+    AnalyticService.new.track('Transaction updated',
+      {
+        updated_by_user: params[:transaction][:updated_by_user],
+        previous_category: params[:transaction][:previous_category],
+        new_category: params[:transaction][:category_id]
+      },
+      current_user
+    )
   end
 
   # DELETE /transactions/1
@@ -86,6 +94,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id, :carbone, :parent_category_id)
+      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id, :carbone, :parent_category_id, :updated_by_user)
     end
 end

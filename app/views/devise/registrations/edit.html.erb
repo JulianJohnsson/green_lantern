@@ -1,53 +1,76 @@
+<% content_for :title, "Mon profil" %>
 <div class="row">
-  <div class="col-md-8">
-    <div class="card">
+  <div class="col-md-12">
+    <h4>Informations obligatoires</h4>
+    <div class="card border-primary">
       <div class="card-body">
-        <h3>Edit <%= resource_name.to_s.humanize %></h3>
-        <div class="authform">
+        <div class="text-center">
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
             <%= devise_error_messages! %>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.label :name %>
+                  <%= f.label :nom %>
                   <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <%= f.label :email %>
-                  <%= f.email_field :email, class: 'form-control' %>
-                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-                  <% end %>
+                  <%= f.email_field :email, class: 'form-control', disabled: true %>
                 </div>
               </div>
             </div>
-            <%= f.submit 'Update', :class => 'button right' %>
-            <fieldset>
-              <h3>Changer de mot de passe</h3>
-              <div class="form-group">
-                <%= f.label :password %>
-                <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.label :ville_actuelle %>
+                  <%= f.text_field :city, class: 'form-control' %>
+                </div>
               </div>
-              <div class="form-group">
-                <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation, class: 'form-control' %>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.label :date_de_naissance %>
+                  <%= f.text_field :birthdate, class: 'form-control', :placeholder => 'JJ/MM/AAAA', :value => resource.birthdate.strftime("%d/%m/%Y") %>
+                </div>
               </div>
-              <div class="form-group">
-                <%= f.label :current_password %>
-                <%= f.password_field :current_password, class: 'form-control' %>
-              </div>
-            </fieldset>
-            <%= f.submit 'Update', :class => 'button right' %>
+            </div>
+            <%= f.submit 'Mettre à jour', :class => 'btn btn-round btn-primary btn-center' %>
           <% end %>
-        </div>
-        <div class="authform">
-        <h3>Cancel Account</h3>
-        <p>Unhappy? We'll be sad to see you go.</p>
-        <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h4>Changement de mot de passe</h4>
+    <div class="card border-warning">
+      <div class="card-body">
+        <div class="text-center">
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
+            <%= devise_error_messages! %>
+              <div class="form-group">
+                <%= f.label :nouveau_mot_de_passe %>
+                <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :confirmation_du_nouveau_mot_de_passe %>
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :mot_de_passe_actuel %>
+                <%= f.password_field :current_password, class: 'form-control' %>
+              </div>
+            <%= f.submit 'Changer mon mot de passe', :class => 'btn btn-round btn-warning' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="authform">
+  <h4>Supprimer mon compte</h4>
+  <p>Pas satisfait ? Nous sommes triste de vous voir partir 😢</p>
+  <%= button_to "Supprimer mon compte", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger btn-round' %>
 </div>

@@ -24,7 +24,8 @@
 .main-panel .navbar-collapse p {
     margin: 0;
     line-height: 30px;
-    font-size: 16px;
+    font-size: 1.5em;
+    font-weight: bold;
     position: relative;
     display: inline-block;
     height: auto;
@@ -32,13 +33,16 @@
     text-transform: capitalize;
 }
 
-.main-panel .navbar-collapse i {
+.main-panel .navbar-collapse .material-icons {
     line-height: 30px;
-
+    font-size: 1.5em !important;
+    margin-left: 10px;
 }
 
 .main-panel .navbar-brand {
     margin-left: 1rem;
+    font-size: 1.7em;
+    font-weight: bold;
 }
 
 .navbar.navbar-transparent .navbar-toggler .navbar-toggler-icon {

@@ -9,6 +9,7 @@ class BridgesController < ApplicationController
     AnalyticService.new.identify(current_user,request)
     if @bridge
       if @bridge.bank_connected == true
+        TransactionFetcherJob.perform_later(current_user)
         redirect_to @bridge
         return
       end

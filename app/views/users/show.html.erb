@@ -1,29 +1,45 @@
-<h3>User</h3>
-<p>Email: <%= @user.email if @user.email %></p>
-<%= link_to 'Modifier', edit_user_registration_path %>
-
-<h3>Connexions bancaires</h3>
-<table class="table table-responsive">
-  <tbody>
-    <% @list.each do |account| %>
-      <% if account['type'] != 'savings' %>
-        <tr>
-          <td>
-            <%= account['name'] %>
-            <br />
-            <small>
-              <%= account['updated_at'].to_datetime.strftime("Mis à jour le %d/%m/%Y") %>
-            </small>
-          </td>
-          <td><%= account['status'] %></td>
-          <td><%= link_to 'Modifier mes identifiants' %></td>
-          <td><%= link_to 'Supprimer le compte' %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'Ajouter un compte', @redirect_url, :class => 'btn btn-primary btn-round' %>
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", user_registration_path, :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
+<% content_for :title, "Mes comptes" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body table-responsive">
+          <div class="container">
+            <div class="row">
+              <div class="col-6 text-left">
+                <h3>Comptes bancaires connectés</h3>
+              </div>
+              <div class="col-6 text-right mt-auto mb-auto">
+                <%= link_to @redirect_url do %>
+                  Ajouter un compte bancaire
+                  <i class="material-icons">add_circle</i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <table class="table">
+            <tbody>
+              <% @list.each do |account| %>
+                <% if account['type'] != 'savings' %>
+                  <tr>
+                    <td>
+                      <%= account['name'] %>
+                      <br />
+                      <small>
+                        <%= account['updated_at'].to_datetime.strftime("Mis à jour le %d/%m/%Y") %>
+                      </small>
+                    </td>
+                    <td><%= account['status'] %></td>
+                    <td class="text-right"><%= link_to 'Modifier mes identifiants', @bridge.edit_item_url(current_user, account['item']['id']) %></td>
+                    <td class="text-right"><%= link_to 'Supprimer le compte' %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= link_to 'Ajouter un nouveau compte', @redirect_url, :class => 'btn btn-lg btn-primary btn-round' %>
+</div>

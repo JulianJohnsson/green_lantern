@@ -23,4 +23,5 @@ class Transaction < ApplicationRecord
     end
     self.parent_category_id = @category.external_id
   end
+
 end

@@ -31,6 +31,21 @@ class Bridge < ApplicationRecord
     redirect_url
   end
 
+  def edit_item_url(user, item_id)
+    self.refresh(user)
+    response = RestClient::Request.execute(method: :get,
+      url: "https://sync.bankin.com/v2/connect/items/edit/url?client_id=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]}&item_id=#{item_id}",
+      headers: {'Bankin-Version' => '2018-06-15',
+      'Authorization' => "Bearer #{token}"}
+    )
+
+    case response.code when 200
+      json = JSON.parse response
+      redirect_url = json['redirect_url']
+    end
+    redirect_url
+  end
+
   def create_transactions(user)
     json = self.list_transactions(user)
     json['resources'].each do |transaction|
@@ -39,7 +54,7 @@ class Bridge < ApplicationRecord
         @transaction.raw_description = transaction['raw_description']
         @transaction.amount = transaction['amount']
         @transaction.date = transaction['date']
-        @transaction.category_id = transaction['category']['id']
+        @transaction.category_id = transaction['category']['id'] unless @transaction.updated_by_user == true
         @transaction.user_id = user.id
         @transaction.save
     end
