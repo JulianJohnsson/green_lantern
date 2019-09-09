@@ -1,23 +1,87 @@
 <% content_for :title, "Dashboard" %>
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
+<div class="row justify-content-center">
+  <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
+    <%= image_tag("dashboard_left.png", class: "img-fluid illustration") %>
+  </div>
+  <div class="col-md-5" style="z-index:12;" >
+    <div class="card bg-info text-center">
+      <div class="card-header card-header-info">
+        <h3>
+          Mon carbone en
+          <%= l(Date.today, format: '%B') %>
+        </h3>
+      </div>
       <div class="card-body">
-        <p>12 derniers mois :
-          <%= number_with_precision(50 * (1- Math.tanh(0.1*(@last_year_count - 12000) / (@last_year_count - 1200))), precision: 0) %>
-          <small><%= number_with_precision(@last_year_count, precision: 2) %> kg CO2</small>
+        <p class="number number-lg">
+          <%= number_with_precision(@current_month_count, precision: 0) %>
         </p>
-        <p>30 derniers jours :
-          <%= number_with_precision(50 * (1- Math.tanh(0.1*(@last_30_days_count - 1000) / (@last_30_days_count - 100))), precision: 0) %>
-          <small><%= number_with_precision(@last_30_days_count, precision: 2) %> kg CO2</small>
-        </p>
-        <p>Ce mois-ci : <%= @current_month_count %> kg CO2</p>
         <p>
-          <%= line_chart current_user.transactions.group_by_month(:date).sum(:carbone), defer: true %>
+          kg CO2
+        </p>
       </div>
     </div>
   </div>
+  <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
+    <%= image_tag("dashboard_right.png", class: "img-fluid illustration") %>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-4">
+    <div class="card border-info card-plain text-center">
+      <div class="card-header card-header-info">
+        <h4>
+          Mon carbone en
+          <%= l(1.month.ago, format: '%B') %>
+        </h4>
+      </div>
+      <div class="card-body justify-content">
+        <p class="number number-md">
+          <%= number_with_precision(@last_month_count, precision: 0) %>
+        </p>
+        <p>
+          Au même stade, mes dépenses sont moins carbonées que le mois dernier
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card border-primary card-plain text-center">
+      <div class="card-header card-header-primary">
+        <h4>
+          Moyenne des membres
+        </h4>
+      </div>
+      <div class="card-body justify-content">
+        <p class="number number-md">
+          <%= number_with_precision(@average_by_user, precision: 0) %>
+        </p>
+        <p>
+          Mes dépenses sont moins carbonées que la moyenne des membres
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card border-warning card-plain text-center">
+      <div class="card-header card-header-warning">
+        <h4>
+          Mon coût de compensation
+        </h4>
+      </div>
+      <div class="card-body justify-content">
+        <p class="number number-md">
+          <%= number_with_precision(@current_month_count * 0.1, precision: 0) %> €
+        </p>
+        <p>
+          Au même stade, mon coût carbone est supérieur à celui du mois dernier
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-6">
     <div class="card">
       <div class="card-body table-responsive">
@@ -37,6 +101,15 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h3>Mon carbone sur 6 mois</h3>
+        <p>
+          <%= line_chart current_user.transactions.group_by_month(:date).sum(:carbone), defer: true %>
       </div>
     </div>
   </div>

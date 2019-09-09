@@ -1,4 +1,33 @@
 @import "material/scss/material-kit/variables";
+@import "material/scss/material-kit/mixins";
+
+.card .card-header {
+  border-radius: 6px;
+  padding: 0.5rem 15px;
+}
+
+.card .card-header.card-header-dark, .card-header.card-header-info {
+  background: linear-gradient(60deg, $brand-medium-blue, $brand-dark-blue);
+  @include shadow-big-color($brand-dark-blue);
+}
+
+.card.border-primary {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-primary !important;
+}
+
+.card.border-info {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-info !important;
+}
+
+.card.border-warning {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-warning !important;
+}
 
 .table {
   margin-top: 1em;
@@ -12,18 +41,14 @@
   vertical-align: middle;
 }
 
-.card.border-primary {
-  border: 1px;
-  border-style: solid;
-  border-color: $brand-primary !important;
+.number {
+  font-family: Baloo;
 }
 
-.card.border-warning {
-  border: 1px;
-  border-style: solid;
-  border-color: $brand-warning !important;
+.number-lg {
+  font-size: 5em;
 }
 
-.card.transparent {
-  background: transparent;
+.number-md {
+  font-size: 3em;
 }

@@ -13,25 +13,25 @@
       <li class="nav-item <%= 'active' if current_page?('/dashboard') %>">
         <%= link_to '/dashboard', class: 'nav-link' do %>
           <i class="material-icons">dashboard</i>
-          <p>Dashboard</p>
+          <p>Suivre</p>
         <% end %>
       </li>
       <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
         <%= link_to categories_path, class: 'nav-link' do %>
           <i class="material-icons">pie_chart</i>
-          <p>Catégories</p>
+          <p>Comprendre</p>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to transactions_path, class: 'nav-link' do %>
+        <%= link_to "", class: 'nav-link' do %>
           <i class="material-icons">timeline</i>
-          <p>Statistiques</p>
+          <p>Progresser</p>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to transactions_path, class: 'nav-link' do %>
+        <%= link_to "", class: 'nav-link' do %>
           <i class="material-icons">group</i>
-          <p>Communauté</p>
+          <p>Compenser</p>
         <% end %>
       </li>
     </ul>
