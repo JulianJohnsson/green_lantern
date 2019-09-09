@@ -32,11 +32,6 @@ class BridgesController < ApplicationController
   def show
     @user = current_user
     AnalyticService.new.identify(current_user,request)
-    unless @bridge.last_sync_at == nil
-      if @bridge.last_sync_at.to_time <= Time.now - 1.day
-        TransactionFetcherJob.perform_later(current_user)
-      end
-    end
   end
 
   # GET /bridges/account

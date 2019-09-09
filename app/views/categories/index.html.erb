@@ -27,13 +27,13 @@
         <div class="card-body table-responsive">
           <div class="row">
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
-              <%= image_tag("group_left.png", class: "img-fluid") %>
+              <%= image_tag("category_left.png", class: "img-fluid illustration") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
               <%= pie_chart @carbone_by_parent_category, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 2)} kg", legend: "none" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
-              <%= image_tag("group_right.png", class: "img-fluid") %>
+              <%= image_tag("category_right.png", class: "img-fluid illustration") %>
             </div>
           </div>
           <div class="row">
@@ -96,6 +96,12 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-3 text-center">
+      <%= image_tag("reduire_CTA.png", class: "img-fluid") %>
+      <%= link_to "Réduire mon impact", "", class: "btn btn-lg btn-rose btn-round" %>
     </div>
   </div>
 </div>

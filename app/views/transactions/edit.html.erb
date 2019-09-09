@@ -22,9 +22,14 @@
           <div class="row">
             <div class="col-md-12">
               <%= render 'form', transaction: @transaction %>
-              <%= link_to '< Retour à la liste', transactions_path(:month => params[:month]) %>
             </div>
           </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to transactions_path(:month => params[:month]) do %>
+            <i class="material-icons">arrow_back</i>
+            Retour à la liste
+          <% end %>
         </div>
       </div>
     </div>

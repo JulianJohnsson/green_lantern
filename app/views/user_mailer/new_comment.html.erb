@@ -1,0 +1,15 @@
+<h1>
+  <%= @transaction.user.name %> a commenté la transaction <%= @transaction.description %>
+</h1>
+<p>
+  Montant : <%= @transaction.amount %>
+</p>
+<p>
+  Carbone : <%= @transaction.carbone %>
+</p>
+<p>
+  Catégorie : <%= Category.find_by_external_id(@transaction.category_id).name %>
+</p>
+<p>
+  Commentaire : <%= @comment.description %>
+</p>

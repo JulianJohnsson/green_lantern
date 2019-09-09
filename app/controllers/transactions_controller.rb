@@ -36,6 +36,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+    @comment = Comment.new
   end
 
   # POST /transactions
@@ -59,8 +60,13 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
-        format.json { render :show, status: :ok, location: @transaction }
+        if params[:transaction][:previous_category] != ""
+          format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
+          format.json { render :show, status: :ok, location: @transaction }
+        else
+          format.html { redirect_to transactions_path(:month => params[:transaction][:month]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
+          format.json { render :show, status: :ok, location: @transaction }
+        end
       else
         format.html { render :edit }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }

@@ -1,5 +1,7 @@
 class Transaction < ApplicationRecord
   belongs_to :user
+  has_many :comments
+
   before_save :calculate_carbone
 
   scope :recent, -> {where("date > ?", 1.month.ago)}
