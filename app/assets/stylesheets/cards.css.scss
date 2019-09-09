@@ -1,6 +1,10 @@
 @import "material/scss/material-kit/variables";
 @import "material/scss/material-kit/mixins";
 
+.card {
+  color: inherit;
+}
+
 .card .card-header {
   border-radius: 6px;
   padding: 0.5rem 15px;

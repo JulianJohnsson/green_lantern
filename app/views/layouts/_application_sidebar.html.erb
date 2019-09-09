@@ -22,8 +22,8 @@
           <p>Comprendre</p>
         <% end %>
       </li>
-      <li class="nav-item">
-        <%= link_to "", class: 'nav-link' do %>
+      <li class="nav-item <%= 'active' if current_page?('/compare') %>">
+        <%= link_to "/compare", class: 'nav-link' do %>
           <i class="material-icons">timeline</i>
           <p>Progresser</p>
         <% end %>

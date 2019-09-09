@@ -1,0 +1,51 @@
+<% content_for :title, "Réduire mon impact" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card">
+        <div class="card-title month-nav">
+          <div class="row">
+            <div class="col-4 text-right mt-auto mb-auto">
+              <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
+                <i class="material-icons">arrow_back</i>
+              <% end %>
+            </div>
+            <div class="col-4 text-center mt-auto mb-auto">
+              <h3>
+                <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
+              </h3>
+            </div>
+            <div class="col-4 text-left mt-auto mb-auto">
+              <% if params[:month].to_i > 0 %>
+                <%= link_to(:month => (params[:month].to_i) - 1)  do %>
+                  <i class="material-icons">arrow_forward</i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2>MON CARBONE <strong>VS</strong> LES MEMBRES</h2>
+      <div class="card">
+        <div class="card-body">
+          <%= column_chart [
+            {name: "Mon carbone", data: @carbone_by_category},
+            {name: "Moyenne des membres", data: @avg_carbone_by_category}
+          ], defer: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center bottom-cta">
+    <div class="col-md-4 text-center">
+      <%= image_tag("projects_CTA.png", class: "img-fluid", style: "margin-bottom: -18px;") %>
+      <%= link_to "Découvrir comment compenser", "", class: "btn btn-lg btn-warning btn-round" %>
+    </div>
+  </div>
+</div>
