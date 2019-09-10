@@ -1,11 +1,14 @@
 <% content_for :title, "Dashboard" %>
+<small class="description">
+  <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") %>
+</small>
 <div class="row justify-content-center">
   <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
     <%= image_tag("dashboard_left.png", class: "img-fluid illustration") %>
   </div>
   <div class="col-md-5" style="z-index:12;" >
     <div class="card bg-info text-center">
-      <div class="card-header card-header-info">
+      <div class="card-header card-header-dark border-white">
         <h3>
           Mon carbone en
           <%= l(Date.today, format: '%B') %>
@@ -16,7 +19,7 @@
           <%= number_with_precision(@current_month_count, precision: 0) %>
         </p>
         <p>
-          kg CO2
+          <strong>kg CO2</strong>
         </p>
       </div>
     </div>
@@ -39,9 +42,23 @@
         <p class="number number-md">
           <%= number_with_precision(@last_month_count, precision: 0) %>
         </p>
+        <p class="tag-line">
+          <span class="tag tag-info">
+            <% if @current_month_count - @last_month_count > 0 %>
+              <%= number_with_precision((@current_month_count - @last_month_count) * 100 / @last_month_count, precision: 0) %>
+              % de
+              <%= " plus" %>
+            <% else %>
+              <%= number_with_precision((@current_month_count - @last_month_count) * -100 / @last_month_count, precision: 0) %>
+              % de
+              <%= " moins" %>
+            <% end %>
+          </span>
+        </p>
         <p>
           Au même stade, mes dépenses sont moins carbonées que le mois dernier
         </p>
+        <%= link_to "Comprendre", categories_path, class: "btn btn-outline-info btn-round" %>
       </div>
     </div>
   </div>
@@ -56,9 +73,23 @@
         <p class="number number-md">
           <%= number_with_precision(@average_by_user, precision: 0) %>
         </p>
+        <p class="tag-line">
+          <span class="tag tag-primary">
+            <% if @current_month_count - @last_month_count > 0 %>
+              <%= number_with_precision((@current_month_count - @average_by_user) * 100 / @average_by_user, precision: 0) %>
+              % de
+              <%= " plus" %>
+            <% else %>
+              <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>
+              % de
+              <%= " moins" %>
+            <% end %>
+          </span>
+        </p>
         <p>
           Mes dépenses sont moins carbonées que la moyenne des membres
         </p>
+        <%= link_to "Progresser", '/compare', class: "btn btn-outline-primary btn-round" %>
       </div>
     </div>
   </div>
@@ -71,11 +102,17 @@
       </div>
       <div class="card-body justify-content">
         <p class="number number-md">
-          <%= number_with_precision(@current_month_count * 0.1, precision: 0) %> €
+          <%= number_with_precision(@current_month_count * 0.1, precision: 0) %>
+        </p>
+        <p class="tag-line">
+          <span class="tag tag-warning">
+            euros
+          </span>
         </p>
         <p>
           Au même stade, mon coût carbone est supérieur à celui du mois dernier
         </p>
+        <%= link_to "Compenser", '', class: "btn btn-outline-warning btn-round" %>
       </div>
     </div>
   </div>
@@ -85,14 +122,10 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body table-responsive">
-        <h3>Mes dernières dépenses</h3>
-        <p class="description">
-          Dernière synchronisation le
-          <%= @bridge.last_sync_at.to_s %>
-        </p>
+        <h4>💳  Mes dernières dépenses</h4>
         <table class="table table-hover">
           <tbody>
-            <% @transactions.first(5).each do |transaction| %>
+            <% @transactions.first(6).each do |transaction| %>
               <tr>
                 <td style="width:40%;"><%= transaction.description %></td>
                 <td><%= number_with_precision(transaction.carbone, precision: 2) %> kg</td>
@@ -107,15 +140,15 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <h3>Mon carbone sur 6 mois</h3>
+        <h4>📉  Mon carbone sur 6 mois</h4>
         <p>
-          <%= line_chart current_user.transactions.group_by_month(:date).sum(:carbone), defer: true %>
+          <%= area_chart current_user.transactions.group_by_month(:date).sum(:carbone), defer: true %>
       </div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="card">
-      <div class="card-body table-responsive">
+      <div class="card-body">
         <h3><%= current_user.transactions.category_id(1).where("amount<-5").count %> dépenses à catégorisées</h3>
         <p class="description">
           Pour améliorer la précision de votre score, vous devez préciser la catégorie de ces dépenses.

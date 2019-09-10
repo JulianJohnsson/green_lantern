@@ -1,5 +1,10 @@
 <% content_for :title, "Mes comptes" %>
 <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <%= image_tag("accounts_illustration.png", class: "img-fluid", style: "margin-bottom: -30px;") %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -30,8 +35,10 @@
                       </small>
                     </td>
                     <td><%= account['status'] %></td>
-                    <td class="text-right"><%= link_to 'Modifier mes identifiants', @bridge.edit_item_url(current_user, account['item']['id']) %></td>
-                    <td class="text-right"><%= link_to 'Supprimer le compte' %></td>
+                    <td class="text-right">
+                      <%= link_to 'Modifier mes identifiants', @bridge.edit_item_url(current_user, account['item']['id']), class: "btn btn-link btn-info" %>
+                      <%= link_to 'Supprimer le compte', "", class: "btn btn-link btn-danger" %>
+                    </td>
                   </tr>
                 <% end %>
               <% end %>

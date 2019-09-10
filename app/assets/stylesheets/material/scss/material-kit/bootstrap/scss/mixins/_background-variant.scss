@@ -4,7 +4,7 @@
 
 @mixin bg-variant($parent, $color) {
   #{$parent} {
-    background-color: $color !important;
+    background-color: $color;
   }
   a#{$parent},
   button#{$parent} {
