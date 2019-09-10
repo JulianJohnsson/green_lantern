@@ -4,13 +4,28 @@
   background-image: url("bg_3.png");
   background-position: right 0% top 0%;
   font-family: Muli;
-  padding-top: 80px;
+
+}
+
+.mini-navigation {
+  position: absolute;
 }
 
 .mini-navigation .navbar-brand {
   font-size: 2em;
   font-family: Maven Pro;
   font-weight: 900;
+}
+
+.onboarding-page h3 {
+  text-transform: uppercase;
+  color: $brand-primary;
+}
+
+.onboarding-page h3 small {
+  text-transform: none;
+  color: $brand-grey;
+  font-weight: bold;
 }
 
 .onboarding-indicator {
