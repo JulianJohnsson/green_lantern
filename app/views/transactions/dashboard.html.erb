@@ -122,34 +122,42 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body table-responsive">
-        <h4>💳  Mes dernières dépenses</h4>
+        <h4>
+          💳  Mes dernières dépenses
+        </h4>
+
         <table class="table table-hover">
           <tbody>
-            <% @transactions.first(6).each do |transaction| %>
+            <% @transactions.first(5).each do |transaction| %>
               <tr>
-                <td style="width:40%;"><%= transaction.description %></td>
-                <td><%= number_with_precision(transaction.carbone, precision: 2) %> kg</td>
-                <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+                <td style="width:50%;"><%= transaction.description %></td>
+                <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
+                <td class="text-right">
+                  <%= link_to edit_transaction_path(transaction) do %>
+                    <i class='material-icons'>edit</i>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
         </table>
+        <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-link btn-primary btn-sm close" %>
       </div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <h4>📉  Mon carbone sur 6 mois</h4>
+        <h4>📉  Mon carbone sur 12 mois</h4>
         <p>
-          <%= area_chart current_user.transactions.group_by_month(:date).sum(:carbone), defer: true %>
+          <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-1), points: false %>
       </div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <h3><%= current_user.transactions.category_id(1).where("amount<-5").count %> dépenses à catégorisées</h3>
+        <h3><%= current_user.transactions.category_id(1).where("amount<-5").count %> dépenses à catégoriser</h3>
         <p class="description">
           Pour améliorer la précision de votre score, vous devez préciser la catégorie de ces dépenses.
         </p>
