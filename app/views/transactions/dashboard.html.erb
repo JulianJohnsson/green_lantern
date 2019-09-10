@@ -1,173 +1,173 @@
 <% content_for :title, "Dashboard" %>
-<small class="description">
-  <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") %>
-</small>
-<div class="row justify-content-center">
-  <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
-    <%= image_tag("dashboard_left.png", class: "img-fluid illustration") %>
-  </div>
-  <div class="col-md-5" style="z-index:12;" >
-    <div class="card bg-info text-center">
-      <div class="card-header card-header-dark border-white">
-        <h3>
-          Mon carbone en
-          <%= l(Date.today, format: '%B') %>
-        </h3>
-      </div>
-      <div class="card-body">
-        <p class="number number-lg">
-          <%= number_with_precision(@current_month_count, precision: 0) %>
-        </p>
-        <p>
-          <strong>kg CO2</strong>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
-    <%= image_tag("dashboard_right.png", class: "img-fluid illustration") %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="card border-info text-center">
-      <div class="card-header card-header-info">
-        <h4>
-          Mon carbone en
-          <%= l(1.month.ago, format: '%B') %>
-        </h4>
-      </div>
-      <div class="card-body justify-content">
-        <p class="number number-md">
-          <%= number_with_precision(@last_month_count, precision: 0) %>
-        </p>
-        <p class="tag-line">
-          <span class="tag tag-info">
-            <% if @current_month_count - @last_month_count > 0 %>
-              <%= number_with_precision((@current_month_count - @last_month_count) * 100 / @last_month_count, precision: 0) %>
-              % de
-              <%= " plus" %>
-            <% else %>
-              <%= number_with_precision((@current_month_count - @last_month_count) * -100 / @last_month_count, precision: 0) %>
-              % de
-              <%= " moins" %>
-            <% end %>
-          </span>
-        </p>
-        <p>
-          Au même stade, mes dépenses sont moins carbonées que le mois dernier
-        </p>
-        <%= link_to "Comprendre", categories_path, class: "btn btn-outline-info btn-round" %>
+  <small class="description">
+    <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") %>
+  </small>
+  <div class="row justify-content-center">
+    <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
+      <%= image_tag("dashboard_left.png", class: "img-fluid illustration") %>
+    </div>
+    <div class="col-md-5" style="z-index:12;" >
+      <div class="card bg-info text-center">
+        <div class="card-header card-header-dark border-white">
+          <h4>
+            Mon impact carbone en
+            <%= l(Date.today, format: '%B') %>
+          </h4>
+        </div>
+        <div class="card-body">
+          <p class="number number-lg">
+            <%= number_with_precision(@current_month_count, precision: 0) %>
+          </p>
+          <p>
+            <strong>kg CO2</strong>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card border-primary text-center">
-      <div class="card-header card-header-primary">
-        <h4>
-          Moyenne des membres
-        </h4>
-      </div>
-      <div class="card-body justify-content">
-        <p class="number number-md">
-          <%= number_with_precision(@average_by_user, precision: 0) %>
-        </p>
-        <p class="tag-line">
-          <span class="tag tag-primary">
-            <% if @current_month_count - @last_month_count > 0 %>
-              <%= number_with_precision((@current_month_count - @average_by_user) * 100 / @average_by_user, precision: 0) %>
-              % de
-              <%= " plus" %>
-            <% else %>
-              <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>
-              % de
-              <%= " moins" %>
-            <% end %>
-          </span>
-        </p>
-        <p>
-          Mes dépenses sont moins carbonées que la moyenne des membres
-        </p>
-        <%= link_to "Progresser", '/compare', class: "btn btn-outline-primary btn-round" %>
-      </div>
+    <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
+      <%= image_tag("dashboard_right.png", class: "img-fluid illustration") %>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card border-warning text-center">
-      <div class="card-header card-header-warning">
-        <h4>
-          Mon coût de compensation
-        </h4>
-      </div>
-      <div class="card-body justify-content">
-        <p class="number number-md">
-          <%= number_with_precision(@current_month_count * 0.1, precision: 0) %>
-        </p>
-        <p class="tag-line">
-          <span class="tag tag-warning">
-            euros
-          </span>
-        </p>
-        <p>
-          Au même stade, mon coût carbone est supérieur à celui du mois dernier
-        </p>
-        <%= link_to "Compenser", '', class: "btn btn-outline-warning btn-round" %>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body table-responsive">
-        <h4>
-          💳  Mes dernières dépenses
-        </h4>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card border-info text-center">
+        <div class="card-header card-header-info">
+          <h4>
+            Mon impact en
+            <%= l(1.month.ago, format: '%B') %>
+          </h4>
+        </div>
+        <div class="card-body justify-content">
+          <p class="number number-md">
+            <%= number_with_precision(@last_month_count, precision: 0) %>
+          </p>
+          <% if @current_month_count - @last_month_count > 0 %>
+            <p class="tag-line">
+              <span class="tag tag-info">
+                <%= number_with_precision((@current_month_count - @last_month_count) * 100 / @last_month_count, precision: 0) %>
+                % de plus
+              </span>
+            </p>
+            <p>
+              Au même stade, mes dépenses sont plus carbonées que le mois dernier
+            </p>
+          <% else %>
+            <p class="tag-line">
+              <span class="tag tag-info">
+                <%= number_with_precision((@current_month_count - @last_month_count) * -100 / @last_month_count, precision: 0) %>
+                % de moins
+              </span>
+            </p>
+            <p>
+              Au même stade, mes dépenses sont moins carbonées que le mois dernier
+            </p>
+          <% end %>
+          <%= link_to "Comprendre", categories_path, class: "btn btn-outline-info btn-round" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-primary text-center">
+        <div class="card-header card-header-primary">
+          <h4>
+            Impact des membres
+          </h4>
+        </div>
+        <div class="card-body justify-content">
+          <p class="number number-md">
+            <%= number_with_precision(@average_by_user, precision: 0) %>
+          </p>
+          <% if @current_month_count - @average_by_user > 0 %>
+            <p class="tag-line">
+              <span class="tag tag-primary">
+                <%= number_with_precision((@current_month_count - @average_by_user) * 100 / @average_by_user, precision: 0) %>
+                % de plus
+              </span>
+            </p>
+            <p>
+              Mes dépenses sont plus carbonées que la moyenne des membres
+            </p>
+          <% else %>
+            <p class="tag-line">
+              <span class="tag tag-primary">
+                <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>
+                % de moins
+              </span>
+            </p>
+            <p>
+              Mes dépenses sont moins carbonées que la moyenne des membres
+            </p>
+          <% end %>
+          <%= link_to "Progresser", '/compare', class: "btn btn-outline-primary btn-round" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-warning text-center">
+        <div class="card-header card-header-warning">
+          <h4>
+            Mon coût de compensation
+          </h4>
+        </div>
+        <div class="card-body justify-content">
+          <p class="number number-md">
+            <%= number_with_precision(@current_month_count / 50, precision: 0) %>
+          </p>
+          <p class="tag-line">
+            <span class="tag tag-warning">
+              euros
+            </span>
+          </p>
+          <p>
+            Au même stade, mon coût carbone est supérieur à celui du mois dernier
+          </p>
+          <%= link_to "Compenser", '', class: "btn btn-outline-warning btn-round" %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <table class="table table-hover">
-          <tbody>
-            <% @transactions.first(5).each do |transaction| %>
-              <tr>
-                <td style="width:50%;"><%= transaction.description %></td>
-                <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
-                <td class="text-right">
-                  <%= link_to edit_transaction_path(transaction) do %>
-                    <i class='material-icons'>edit</i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-link btn-primary btn-sm close" %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h4>📉  Mon carbone sur 12 mois</h4>
-        <p>
-          <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-1), points: false %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h3><%= current_user.transactions.category_id(1).where("amount<-5").count %> dépenses à catégoriser</h3>
-        <p class="description">
-          Pour améliorer la précision de votre score, vous devez préciser la catégorie de ces dépenses.
-        </p>
-        <%= link_to "Préciser mon score", "/transactions?category=1", class: "btn btn-primary" %>
-      </div>
-    </div>
-  </div>
-</div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body table-responsive">
+          <h4>
+            💳  Mes dernières dépenses
+          </h4>
 
-<div class="row justify-content-center bottom-cta">
+          <table class="table table-hover">
+            <tbody>
+              <% @transactions.first(5).each do |transaction| %>
+                <tr>
+                  <td style="width:50%;"><%= transaction.description %></td>
+                  <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
+                  <td class="text-right">
+                    <%= link_to edit_transaction_path(transaction) do %>
+                      <i class='material-icons'>edit</i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-link btn-primary btn-sm close" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4>📉  Mon carbone sur 12 mois</h4>
+          <p>
+            <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-1), points: false %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center bottom-cta">
     <div class="col-md-3 text-center">
       <%= image_tag("comprendre_CTA.png", class: "img-fluid", style: "margin-bottom: -15px;") %>
       <%= link_to "Comprendre mon impact", "/categories", class: "btn btn-lg btn-info btn-round" %>
