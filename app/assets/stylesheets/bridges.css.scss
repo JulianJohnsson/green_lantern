@@ -1,3 +1,5 @@
+@import "material/scss/material-kit/variables";
+
 .onboarding-page {
   background-image: url("bg_3.png");
   background-position: right 0% top 0%;
@@ -9,4 +11,54 @@
   font-size: 2em;
   font-family: Maven Pro;
   font-weight: 900;
+}
+
+.onboarding-indicator {
+  position: absolute;
+  right: 0;
+  /* bottom: 10px; */
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+
+.onboarding-indicator li {
+    position: relative;
+    flex: 0 1 auto;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    margin-left: 6px;
+    /* text-indent: -999px; */
+    background-color: $brand-grey;
+    border-radius: 100px;
+}
+
+.onboarding-indicator li.active {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    margin-left: 4px;
+    margin-top: -1px;
+    background-color: $brand-primary;
+}
+
+.animation-top {
+  -webkit-transition: 2s ease-in-out;
+  -moz-transition: 2s ease-in-out;
+  -o-transition: 2s ease-in-out;
+  transition: 2s ease-in-out;
+}
+
+html:hover .animation-top {
+  -webkit-transform: translate(0px,-50px);
+  -moz-transform: translate(0px,-50px);
+  -o-transform: translate(0px,-50px);
+  -ms-transform: translate(0px,-50px);
+  transform: translate(0px,-50px);
 }

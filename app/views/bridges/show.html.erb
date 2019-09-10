@@ -1,19 +1,34 @@
 <div class="row">
   <div class="col-lg-9 col-md-12 ml-auto mr-auto">
     <div class="card">
-      <div class="row">
-        <div class="col-md-7">
-          <div class="card-body">
-            <h3>🎉👏 Ton compte en banque est en cours de synchronisation </h3>
-            <p class="description">Dans quelques instants tu pourras découvrir ton impact carbone sur ton espace personnel privé 🕵‍♂.</p>
-            <%= link_to('Je découvre mon dashboard', '/dashboard', :class => 'btn btn-primary btn-round') unless Transaction.find_by_user_id(@user.id).nil? %>
-            <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-7">
+            <h3>
+              <small>Ce que tu vas pouvoir faire avec Carbo</small>
+              <br>
+              Découvre ton dashboard
+            </h3>
+            <p><span class="text-primary">Suivre</span> ton impact au fil du mois, son coût de compensation, le comparer à tes performances passées et à celles des membres</p>
+            <p><span class="text-primary">Comprendre</span> en détail l’impact de chacune de tes dépenses, en naviguant au sein des catégories et en parcourant l’historique</p>
+            <p><span class="text-primary">Progresser</span> chaque jour et réduire ton impact en apprenant des meilleurs profils et en suivant des recommendations sur mesure</p>
+            <p><span class="text-primary">Compenser</span> ton empreinte en découvrant nos projets de puits de carbone et en souscrivant à l’abonnement mensuel de ton choix</p>
+          </div>
+          <div class="col-md-5 d-none d-md-block align-self-end">
+            <%= image_tag("onboarding_4.png", :class => 'img-fluid animation-top') %>
           </div>
         </div>
-        <div class="col-md-5 d-none d-md-block">
-          <%= image_tag("gif_2.gif", :class => 'rounded img-fluid') %>
+        <div class="row justify-content-center">
+          <%= link_to("Accéder à l'application", '/dashboard', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
+          <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
         </div>
       </div>
     </div>
+    <ol class="onboarding-indicator">
+      <li class=""></li>
+      <li class=""></li>
+      <li class=""></li>
+      <li class="active"></li>
+    </ol>
   </div>
 </div>
