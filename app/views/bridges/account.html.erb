@@ -1,18 +1,33 @@
 <div class="row">
   <div class="col-lg-9 col-md-12 ml-auto mr-auto">
     <div class="card">
-      <div class="row">
-        <div class="col-md-7">
-          <div class="card-body">
-            <h3>Connecte ton compte en banque pour commencer à calculer ton impact carbone automatiquement</h3>
-            <p class="description">Tu peux y aller les yeux fermés, tout est sécurisé par notre partenaire Bankin'</p>
-            <%= link_to 'Connecter mon compte', @redirect_url, :class => 'btn btn-primary btn-round' %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-7">
+            <h3><strong>
+              <small>Ton compte est à présent vérifié</small>
+              <br>
+              Calcule ton empreinte
+            </strong></h3>
+            <p>Connecte dès maintenant ton compte bancaire principal et laisser la magie Carbo opérer ! </p>
+            <p>Psss....sois tranquille, la connexion est cryptée et sécurisée par notre par Bankin’, agréé par l'ACPR (autorité administrative de la Banque de France). Carbo applique ainsi les mêmes standards de sécurité que les plus grandes banques internationales. Voilà, c’est dit ! </p>
+            <p>On s’y met ?</p>
+          </div>
+          <div class="col-md-5 d-none d-md-block align-self-center">
+            <%= image_tag("onboarding_2.png", :class => 'img-fluid') %>
           </div>
         </div>
-        <div class="col-md-5 d-none d-md-block">
-          <%= image_tag("gif_1.gif", :class => 'rounded img-fluid') %>
+        <div class="row justify-content-center">
+          <%= link_to 'Connecter mon compte', @redirect_url, :class => 'btn btn-primary btn-round' %>
         </div>
       </div>
     </div>
+    <ol class="onboarding-indicator">
+      <li class=""></li>
+      <li class="active"></li>
+      <li class=""></li>
+      <li class=""></li>
+    </ol>
   </div>
 </div>
+

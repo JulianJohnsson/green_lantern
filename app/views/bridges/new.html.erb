@@ -1,20 +1,32 @@
 <div class="row">
   <div class="col-lg-9 col-md-12 ml-auto mr-auto">
     <div class="card">
-      <div class="row">
-        <div class="col-md-7">
-          <div class="card-body">
-            <h3>Mesure ton impact sans effort, et en toute sécurité !</h3>
-            <p class="description">
-              Nous utilisons la technologie Bankin' pour connecter vos données bancaires pour calculer votre impact carbone de façon 100% sécurisée. Pour sécuriser votre compte, nous devons vérifier votre adresse email en envoyant un code.
-            </p>
-            <%= render 'form', bridge: @bridge %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-7">
+            <h3><strong>
+              <small>Bienvenue à bord <%= current_user.name %> !</small>
+              <br>
+              Sécuriser ton compte
+            </strong></h3>
+            <p>Difficile de déterminer ton empreinte carbone une fois pour toute, car tes choix quotidiens peuvent évoluer : consommation plus responsable, nouveau vélo, etc.</p>
+            <p>En analysant tes dépenses régulièrement, Carbo prend en compte ses évolutions de manière dynamique. Sans effort, ton calcul d’impact est constamment à jour !</p>
+            <p>La protection de tes données est une priorité pour nous. Par mesure de sécurité, ton compte doit d’abord être vérifié en réutilisant ton email d’inscription.</p>
+          </div>
+          <div class="col-md-5 d-none d-md-block align-self-center">
+            <%= image_tag("onboarding_1.png", :class => 'img-fluid') %>
           </div>
         </div>
-        <div class="col-md-5 d-none d-md-block">
-          <%= image_tag("gif_1.gif", :class => 'rounded img-fluid') %>
+        <div class="row justify-content-center">
+          <%= render 'form', bridge: @bridge %>
         </div>
       </div>
     </div>
+    <ol class="onboarding-indicator">
+      <li class="active"></li>
+      <li class=""></li>
+      <li class=""></li>
+      <li class=""></li>
+    </ol>
   </div>
 </div>
