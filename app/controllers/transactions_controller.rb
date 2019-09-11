@@ -18,9 +18,9 @@ class TransactionsController < ApplicationController
   def dashboard
     @transactions = current_user.transactions.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)
-    @current_month_count = current_user.transactions.month_to_date(0).sum(&:carbone)
-    @last_month_count = current_user.transactions.month_to_date(1).sum(&:carbone)
-    @average_by_user = Transaction.all.month_to_date(0).sum(&:carbone) / Transaction.all.month_to_date(0).distinct.count(:user_id)
+    @current_month_count = current_user.transactions.month_to_date(0).sum(:carbone)
+    @last_month_count = current_user.transactions.month_to_date(1).sum(:carbone)
+    @average_by_user = Transaction.all.month_to_date(0).sum(:carbone) / Transaction.all.month_to_date(0).distinct.count(:user_id)
 
     AnalyticService.new.identify(current_user,request)
   end

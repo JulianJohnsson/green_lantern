@@ -1,5 +1,9 @@
 @import "material/scss/material-kit/variables";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .navbar.bg-dark {
   background-color: $brand-dark-blue !important;
 }
@@ -153,10 +157,6 @@
 
 .prefooter li a {
   color: #999;
-}
-
-footer .material-icons {
-  color: $brand-primary;
 }
 
 .page-header .btn {

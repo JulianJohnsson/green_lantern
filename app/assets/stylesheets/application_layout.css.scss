@@ -86,7 +86,7 @@ body {
 
 .main-panel>.content {
     margin-top: 70px;
-    padding: 0px 15px 20px 15px;
+    padding: 0px 15px 0px 15px;
     min-height: calc(100vh - 123px);
 }
 
@@ -106,4 +106,12 @@ h1, h2, h3, .h1, .h2, .h3 {
 h2, h3, h4 {
     font-weight: bold;
     line-height: 1.3em;
+}
+
+footer .copyright {
+    padding: 0px 0;
+}
+
+footer .material-icons {
+  color: $brand-primary;
 }
