@@ -14,18 +14,7 @@
     <%= render 'layouts/registration_navigation' %>
     <%= render 'layouts/messages' %>
     <%= yield %>
-    <footer class="footer footer-default">
-      <div class="container">
-        <hr/>
-        <div class="copyright float-right text-right" style="vertical-align:middle;">
-          Carbo &copy;
-          <script>
-            document.write(new Date().getFullYear())
-          </script> tous droits réservés<br>
-          Fait avec <i class="material-icons">favorite</i> et liberté à Paris
-        </div>
-      </div>
-    </footer>
+    <%= render 'layouts/footer' %>
   </body>
   <%= render 'layouts/analytics' %>
   <script type="text/javascript">
