@@ -1,52 +1,144 @@
-<% content_for :title do %>About<% end %>
+<% content_for :title do %>Découvre Carbo<% end %>
+<% content_for :description do %>L'application qui calcule et compense pour toi l’impact carbone de tes dépenses quotidiennes<% end %>
 <div class="page-header home-section home-section1">
   <div class="container">
     <div class="row">
       <div class="col-md-6 mt-auto mb-auto">
         <span class="badge badge-pill badge-primary">alpha</span>
-        <h5 class="description" style="margin-bottom:-15px;font-family:Maven Pro;">Arrête de faire l'autruche</h5>
-        <h1>Suis l'impact carbone de tes dépenses</h1>
+        <h1>Une nouvelle vie sans carbone</h1>
         <h4 class="description">
-          Carbo mesure et compare sans effort le poids carbone de tes dépenses bancaires pour t'aider à le maîtriser.
+          Carbo calcule et compense pour toi l’impact carbone de tes dépenses quotidiennes.
         </h4>
         <%= link_to "M'inscrire", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
       </div>
       <div class="col-md-6">
-        <%= image_tag("phone_section1.png", class: "w-100") %>
+        <%= image_tag("phone_section1.png", class: "img-fluid") %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section3" id="section3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 ml-auto mr-auto text-center">
+        <h2>Ton allié contre le réchauffement climatique</h2>
+        <h4 class="description">
+          En plus de réduire, réutiliser ou recycler tes consommations, utilise dès aujourd’hui Carbo pour neutraliser totalement ton impact sur la planète. Voici comment ça marche :
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <%= image_tag("illu1_section3.png", class: "img-fluid") %>
+        <div class="card">
+          <div class="card-body justify-content">
+            <div class="row">
+              <div class="col-2">
+                <p class="number number-lg">
+                  1
+                </p>
+              </div>
+              <div class="col-8">
+                <h4>
+                  Calcule l’impact de tes dépenses
+                </h4>
+              </div>
+            </div>
+            <p class="description">
+              Connecte ton compte bancaire, Carbo calcule instantanément l’impact carbone de tes choix quotidiens
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= image_tag("illu2_section3.png", class: "img-fluid") %>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2">
+                <p class="number number-lg">
+                  2
+                </p>
+              </div>
+              <div class="col-8">
+                <h4>
+                  Réduis ton empreinte
+                </h4>
+              </div>
+            </div>
+            <p class="description">
+              Apprends des profils vertueux, compare tes choix et prends de meilleures décisions pour maîtriser ton empreinte
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= image_tag("illu3_section3.png", class: "img-fluid") %>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2">
+                <p class="number number-lg">
+                  3
+                </p>
+              </div>
+              <div class="col-8">
+                <h4>
+                  Compense ton impact
+                </h4>
+              </div>
+            </div>
+            <p class="description">
+              Soutiens des projets vraiment efficaces contre le changement climatique avec un simple abonnement mensuel
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="page-header home-section home-section2">
   <div class="container">
-    <div class="row">
-      <div class="col-md-5">
-        <%= image_tag("phone_section2.png", class: "w-100") %>
+    <div class="row justify-content-end">
+      <div class="col-md-3">
+        <div class="phone-parent">
+          <%= image_tag("phone_section2.png", class: "img-fluid phone") %>
+          <%= image_tag("phone_section2.gif", class: "img-fluid gif") %>
+        </div>
       </div>
-      <div class="col-md-6 offset-md-1 mt-auto mb-auto text-center">
-        <h1>👌<br />Ne Changez rien</h1>
-        <h4 class="description">
-          Synchronisez vos comptes bancaires en 3 clics et continuez de faire ce que vous aimez.  Carbo calcule pour vous votre impact sur la planète.
-        </h4>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="page-header home-section home-section3">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 ml-auto mr-auto text-center">
-        <h1>Suivez, Mesurez, Comparez</h1>
-        <h4 class="description">
-          Des graphiques simples et clairs.<br />
-          Analyser votre impact devient un jeu d'enfant avec Carbo !<br />
-          Apprenez des profils vertueux, invitez vos amis et comparez votre impact.
-        </h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 ml-auto mr-auto text-center">
-        <%= image_tag("phone_section3.png", class: "w-100") %>
+      <div class="col-md-7 mt-auto mb-auto">
+        <h2>Ton impact carbone en un clin d’oeil</h2>
+        <div class="row align-items-center">
+          <div class="col-2">
+            <%= image_tag("illu1_section2.png", class: "img-fluid illu_section2") %>
+          </div>
+          <div class="col-10">
+            <p class="description">
+              Propulsé par les recherches d’Aland* et de la Banque Mondiale, le calculateur Carbo s’appuie sur des données environnementales et sociales reconnues et robustes.
+            </p>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2">
+            <%= image_tag("illu2_section2.png", class: "img-fluid illu_section2") %>
+          </div>
+          <div class="col-10">
+            <p class="description">
+              Notre technologie bancaire est cryptée et 100% sécurisée. 3 petites minutes suffisent à synchroniser ton compte bancaire habituel et découvrir ton impact sur la planète !
+            </p>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-end">
+          <div class="col-4">
+            <%= image_tag("logo1_section2.png", class: "img-fluid") %>
+          </div>
+          <div class="col-4">
+            <%= image_tag("logo2_section2.png", class: "img-fluid") %>
+          </div>
+          <div class="col-4">
+            <%= image_tag("logo3_section2.png", class: "img-fluid") %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,51 +147,41 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5 offset-md-2 mt-auto mb-auto">
-        <h1>💪<br />Passez à l’action</h1>
-        <h4 class="description">
-          Grâce à nos algorithmes intelligents et notre équipe de Coachs, découvrez des Opportunités uniques pour optimiser votre impact écologique.
-        </h4>
+        <h2>Réduis ton empreinte autant que possible</h2>
+        <p class="description">
+          Carbo utilise le meilleur du design et de la technologie pour t’aider à comprendre l’impact de tes choix quotidiens, avec des données ludiques, instantanées et constamment à jour.
+        </p>
+        <p class="description">
+          Apprends des profils vertueux, compare tes choix, découvre des recommandations personnalisées et prends de meilleures décisions pour réduire ton empreinte.
+        </p>
+        <%= link_to "Créer mon compte", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
       </div>
       <div class="col-md-5">
-        <%= image_tag("phone_section4.png", class: "w-100") %>
+        <%= image_tag("phone_section4.png", class: "img-fluid") %>
       </div>
     </div>
   </div>
 </div>
 <div class="page-header home-section home-section5">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <%= image_tag("phone_section5.png", class: "w-100") %>
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-end">
+      <div class="col-md-3">
+        <%= image_tag("phone_section5.png", class: "img-fluid") %>
       </div>
-      <div class="col-md-6 mt-auto mb-auto ">
-        <h1>🔒 Carbo est 100% sécurisé</h1>
-        <ul class="nav nav-pills nav-pills-primary nav-pills-icons" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
-              <i class="material-icons">dashboard</i> Agréé
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#schedule-1" role="tab" data-toggle="tab">
-              <i class="material-icons">schedule</i> Localisé
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
-              <i class="material-icons">list</i> Crypté
-            </a>
-          </li>
-        </ul>
-        <div class="tab-content tab-space">
-          <div class="tab-pane description" id="dashboard-1">
-            Notre technologie est agréée par l’ACPR (autorité administrative adossée à la Banque de France) et applique les mêmes standards de sécurité que les plus grandes banques internationales.
+      <div class="col-md-7" style="margin-right:-35px;">
+        <h2>Compense ton impact avec<br> un simple abonnement</h2>
+        <div class="row">
+          <div class="col-7">
+            <p class="description">
+              Carbo te permet de compenser chaque mois la part d’empreinte carbone que tu n’as pas pu réduire.
+            </p>
+            <p class="description">
+              Ton abonnement mensuel contribue à financer des projets de protection et de renouvellement des forêts qui séquestent efficacement et durablement les émissions de CO2.
+            </p>
+            <%= link_to "En savoir plus", "", class: "btn btn-outline-info btn-lg btn-round" %>
           </div>
-          <div class="tab-pane description active" id="schedule-1">
-            Notre technologie est agréée par l’ACPR (autorité administrative adossée à la Banque de France) et applique les mêmes standards de sécurité que les plus grandes banques internationales.
-          </div>
-          <div class="tab-pane description" id="tasks-1">
-            Notre technologie est agréée par l’ACPR (autorité administrative adossée à la Banque de France) et applique les mêmes standards de sécurité que les plus grandes banques internationales.
+          <div class="col-5">
+            <%= image_tag("illu_section5.png", class: "img-fluid") %>
           </div>
         </div>
       </div>
@@ -111,73 +193,58 @@
     <div class="row">
       <div class="col-md-8 mt-auto mb-auto">
         <span class="badge badge-pill badge-white">Disponible en version alpha</span>
-        <h2>Rejoignez l’aventure Carbo  🚀</h2>
-        <%= link_to "M'inscrire", new_user_registration_path, class: "btn btn-lg btn-round btn-info" %>
+        <h2>Essaie Carbo dès aujourd'hui  🚀</h2>
+        <%= link_to "Créer mon compte", new_user_registration_path, class: "btn btn-lg btn-round btn-info" %>
       </div>
-      <div class="col-md-4" style="margin-bottom:-48px; text-align:right;">
+      <div class="col-md-4" style="margin-bottom:-250px; text-align:center;">
         <%= image_tag("phone_section6.png", class: "w-50") %>
       </div>
     </div>
   </div>
 </div>
-<div class="prefooter text-center">
+<div class="prefooter">
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center">
+      <div class="col-md-3" style="margin-top:-20px;">
+        <h3>
+          <%= image_tag("Logo-Carbo-Blue", style: "width:55px;") %>
+          Carbo
+        </h3>
+        <p class="description">
+          L'application qui calcule et compense pour toi l’impact carbone de tes dépenses quotidiennes
+        </p>
+        <%= link_to "hello@carbo.com", "mailto:contact.carbo2019@gmail.com" %>
+      </div>
       <div class="col-md-3">
-        <h5>Liens</h5>
+        <h5>Explorer</h5>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <%= link_to "Accueil", page_path('about') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Pourquoi Carbo ?", page_path('about') %>
+            <%= link_to "Comment ça marche ?", page_path('about') %>
           </li>
           <li class="nav-item">
             <%= link_to "A propos", page_path('about') %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "FAQ", page_path('about') %>
           </li>
         </ul>
       </div>
       <div class="col-md-3">
-        <h5>Liens</h5>
+        <h5>Liens utiles</h5>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <%= link_to "Accueil", page_path('about') %>
+            <%= link_to "Poser une question", page_path('about') %>
           </li>
           <li class="nav-item">
-            <%= link_to "Pourquoi Carbo ?", page_path('about') %>
+            <%= link_to "Ecrire aux fondateurs", page_path('about') %>
           </li>
           <li class="nav-item">
-            <%= link_to "A propos", page_path('about') %>
+            <%= link_to "Suivre notre développement", page_path('about') %>
           </li>
         </ul>
       </div>
       <div class="col-md-3">
-        <h5>Liens</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <%= link_to "Accueil", page_path('about') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Pourquoi Carbo ?", page_path('about') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "A propos", page_path('about') %>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h5>Liens</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <%= link_to "Accueil", page_path('about') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Pourquoi Carbo ?", page_path('about') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "A propos", page_path('about') %>
-          </li>
-        </ul>
+        <%= image_tag("illu_prefooter.png", class: "img-fluid illu") %>
       </div>
     </div>
   </div>

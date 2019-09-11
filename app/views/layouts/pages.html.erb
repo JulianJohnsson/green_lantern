@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><%= content_for?(:title) ? yield(:title) : "Green Lantern" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Green Lantern" %>">
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons|Baloo|Maven+Pro:400,700,900|Muli:400,600,700" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Material+Icons|Baloo|Maven+Pro:400,700,900|Quicksand:400,700&display=swap" %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -15,20 +16,13 @@
     <%= yield %>
     <footer class="footer footer-default">
       <div class="container">
-        <nav class="float-left">
-          <ul>
-            <li>
-              <%= link_to(root_path, style: "padding-top: 0px;") do %>
-                <%= image_tag("Logo-Carbo-Blue", style: "width:55px;") %>
-              <% end %>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright float-right" style="vertical-align:middle;">
-          &copy;
+        <hr/>
+        <div class="copyright float-right text-right" style="vertical-align:middle;">
+          Carbo &copy;
           <script>
             document.write(new Date().getFullYear())
-          </script> Carbo, fait avec <i class="material-icons">favorite</i> et liberté à Paris.
+          </script> tous droits réservés<br>
+          Fait avec <i class="material-icons">favorite</i> et liberté à Paris
         </div>
       </div>
     </footer>

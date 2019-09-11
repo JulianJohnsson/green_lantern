@@ -13,6 +13,10 @@
   margin-bottom: 20px;
 }
 
+.home-section h4.description {
+  font-weight: normal;
+}
+
 .home-section {
   height: 100vh;
 }
@@ -30,46 +34,88 @@
   padding-top: 60px;
 }
 
-.home-section2 {
-  background-image: url("home_section2.png");
-  background-position: left 0% top 30%;
+.home-section1 img {
+  padding: 70px;
 }
 
 .home-section3 {
   background-image: url("home_section3.png");
-  background-position: right 0% top 80%;
+  background-position: right 0% top 50%;
+}
+
+.home-section3 {
+  height: 110vh;
+}
+
+.home-section3 .container {
+  margin-top:-50px;
+}
+
+.home-section3 img {
+  padding: 50px;
+}
+
+.home-section3 .card {
+  margin-top: -60px;
+}
+
+.home-section2 {
+  background-image: url("home_section2.png");
+  background-position: left 0% top 40%;
+  background-size: 40%;
+  background-repeat: no-repeat;
+}
+
+.home-section2 .phone-parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.home-section2 .phone {
+  padding: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.home-section2 .gif {
+  position: absolute;
+  padding: 62px;
+  top: 0%;
+  left: 0px;
+}
+
+.home-section2 h2 {
+  margin-bottom: 2em;
+}
+
+.home-section2 .row {
+  margin-bottom: 1em;
 }
 
 .home-section4 {
   background-image: url("home_section4.png");
-  background-position: right 0% top 40%;
+  background-position: right 0% top 70%;
+}
+
+.home-section4 img {
+  transform: translate(80px);
 }
 
 .home-section5 {
   background-image: url("home_section5.png");
-  background-position: right 0% top 50%;
-}
-
-.home-section5 .nav-pills-primary .active {
-  background: linear-gradient(46.44deg, #20B2AA 0%, #0B4C65 106.37%);
-}
-
-.home-section5 ul {
-  margin-top: 50px;
+  background-position: left 0% top 50%;
 }
 
 .home-section5 img {
-  padding-right: 40%;
-}
-
-.home-section5 .tab-content {
-  margin-top: 20px;
+  padding: 20px;
 }
 
 .home-section6 {
   background: linear-gradient(81.33deg, #20B2AA 0%, #0B4C65 100%);
   background-position: right 0% top 0%;
-  height: 50vh;
+  height: 70vh;
 }
 
 .home-section6 h2 {
@@ -85,7 +131,7 @@
 }
 
 .prefooter {
-  height: 40vh;
+  height: 45vh;
   background: white;
   padding-top: 50px;
   padding-bottom: 30px;
@@ -97,6 +143,18 @@
   font-weight: bold;
 }
 
+.prefooter .illu {
+  padding: 30px;
+}
+
 .prefooter li {
   line-height: 40px;
+}
+
+.prefooter li a {
+  color: #999;
+}
+
+footer .material-icons {
+  color: $brand-primary;
 }
