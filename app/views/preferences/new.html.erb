@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="row align-items-end">
+          <div class="col-md-6">
+            <h3><strong>
+              <small>Ton compte bancaire est synchronisé</small>
+              <br>
+              Améliore ton calcul
+            </strong></h3>
+            <p>Dernière étape ! Réponds à trois petites questions pour permettre à Carbo d’enrichir l’analyse de tes dépenses et de comparer tes résultats avec ceux d’autres membres.</p>
+            <%= form_for @preference do |form| %>
+            <div class="row justify-content-center">
+              <div class="col-md-9">
+                <div class="field">
+                  <%= form.hidden_field :user_id, :value => @user.id %>
+                </div>
+                <div class="form-group">
+                  <%= form.label  "Dans quelle ville se trouve ton logement principal ?" %>
+                  <%= form.text_field :city, class: 'form-control', :autofocus => true %>
+                </div>
+                <div class="form-group">
+                  <%= form.label  "Comment décrirais-tu ton régime alimentaire ?" %>
+                  <%= form.text_field :regime, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= form.label  "Quel type de contrat d'énergie utilises-tu ?" %>
+                  <%= form.text_field :city, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-none d-md-block">
+            <%= image_tag("onboarding_3.png", :class => 'img-fluid') %>
+            <div class="actions">
+              <%= form.submit 'Valider mes informations', class: 'btn btn-primary btn-round' %>
+              <%= link_to "Plus tard", @bridge, class: 'btn btn-outline-primary btn-round' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="onboarding-indicator">
+      <li class=""></li>
+      <li class=""></li>
+      <li class="active"></li>
+      <li class=""></li>
+    </ol>
+  </div>
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :transactions
   resources :bridges
   resources :comments
+  resources :preferences
   namespace :admin do
       resources :users
       root to: "users#index"

@@ -21,7 +21,7 @@ class BridgesController < ApplicationController
         @bridge.bank_connected = true
         @bridge.save
         TransactionFetcherJob.perform_later(current_user)
-        redirect_to @bridge
+        redirect_to new_preference_path
       end
     else redirect_to new_bridge_path
     end
