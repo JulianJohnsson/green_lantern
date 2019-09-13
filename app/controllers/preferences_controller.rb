@@ -28,7 +28,7 @@ class PreferencesController < ApplicationController
   def destroy
   end
 
-  private
+  protected
 
   def preference_params
     params.require(:preference).permit(:user_id, :city, :regime, :energy_contract)

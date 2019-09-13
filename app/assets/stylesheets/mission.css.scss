@@ -1,22 +1,69 @@
-.mission2 {
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
-    background-image: url("mission2.png");
-    background-position: right 0% bottom 0%;
-    background-size: 35%;
-    background-repeat: no-repeat;
+@import "material/scss/material-kit/variables";
+
+.mission-section {
+  p {
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  }
 }
 
-.mission2 h2 {
-  font-size: 3.5rem;
-  line-height: 3.7rem;
+.mission-section h1 {
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  mark {
+  color: inherit;
+  }
+}
+
+.mission2 {
+  background: white;
+  mark {
+    background-color: #ffe8b6;
+  }
 }
 
 .mission3 {
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
-    background-image: url("mission3.png");
-    background-position: left 0% bottom 0%;
+  background: white;
+  mark {
+    background-color: #a9e0dd;
+    transform: matrix(1, 0, 0.01, 1, 0, 0);
+  }
+}
+
+.mission4 {
+  background: linear-gradient(180deg, #FFFFFF 0%, #E5E5E5 100%);
+  mark {
+    background-color: #fec0cd;
+    transform: matrix(1, 0, 0.01, 1, 0, 0);
+  }
+}
+
+.mission5 {
+  background: linear-gradient(180deg, #E5E5E5 0%, #FFFFFF 68.4%);
+  .container {
+    background-image: url("mission_section5.png");
+    background-position: right 50% bottom 50%;
     background-size: 40%;
     background-repeat: no-repeat;
+  }
+  h4 {
+    color: $brand-primary;
+    font-weight: normal;
+  }
+  .description {
+    font-weight: normal;
+    font-size: 0.8em;
+    text-align: justify;
+  }
+}
+
+.mission6 {
+  background: linear-gradient(180deg, #FFFFFF 0%, #E5E5E5 100%);
+  h4 {
+    font-weight: normal;
+    small {
+      font-weight: bold;
+    }
+  }
 }

@@ -1,43 +1,283 @@
 <% content_for :title do %>Mission<% end %>
-<div class="page-header home-section home-section1">
-  <div class="container">
-    <div class="row" style="padding-top:100px;">
-      <div class="col-md-6 mt-auto mb-auto">
-        <h1>Notre mission : faciliter la maîtrise de votre impact</h1>
-        <h4 class="description">
-          Nous utilisons le design et la technologie pour simplifier le suivi de votre impact concret et quotidien sur la planète.
-        </h4>
-      </div>
-      <div class="col-md-6">
-        <%= image_tag("mission1.png", class: "w-100", style: "margin-left:100px;") %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="page-header mission2">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h2>
-          Réinventer la mesure d’impact
-        </h2>
-        <h4 class="description">
-          Le calcul d’une empreinte écologique se résume souvent à un formulaire complexe, chronophage et vite obsolète. Chez Carbo, nous utilisons le meilleur du design et de la technologie pour vous apporter des données instantanées, simples et constamment à jour.
-        </h4>
+<div class="mission-page">
+  <div class="page-header home-section home-section1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mt-auto mb-auto">
+          <h1>
+            Notre mission
+          </h1>
+          <h3 class="description">Donner au plus grand nombre le pouvoir d'agir contre le changement climatique</h3>
+        </div>
+        <div class="col-md-6">
+          <%= image_tag("illu_prefooter.png", class: "img-fluid") %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="page-header mission3">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-6">
-        <h2>
-          Enrichir notre quotidien
-        </h2>
-        <h4 class="description">
-          Le calcul d’une empreinte écologique se résume souvent à un formulaire complexe, chronophage et vite obsolète. Chez Carbo, nous utilisons le meilleur du design et de la technologiepour vous apporter des données instantanées, simples et constamment à jour.
-        </h4>
+  <div class="page-header mission-section mission2">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-md-6">
+          <h1>
+            <mark>Notre raison d'être</mark>
+          </h1>
+          <p class="description">
+            Le changement climatique est un problème urgent dont nous sommes tous responsables.
+          </p>
+          <p class="description">
+            Nous sommes aussi les seuls à pouvoir inverser cette tendance.
+          </p>
+          <p class="description">
+            Nos gouvernements et nos institutions ne sont souvent ni préparés ni incités à agir rapidement. On peut espérer que des réformes d’envergure seront lancées sous la pression des citoyens ; d’ici là, nous pensons que chacun doit, à son échelle, y consacrer du temps et de l’énergie.
+          </p>
+        </div>
+        <div class="col-md-5">
+          <%= image_tag("mission_section2.png", class: "img-fluid") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-header mission-section mission3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 align-self-end">
+          <%= image_tag("mission_section3.png", class: "img-fluid") %>
+        </div>
+        <div class="col-md-7">
+          <h1>
+            <mark>Pourquoi Carbo ?</mark>
+          </h1>
+          <p class="description">
+            De nombreux groupes, structures et organisations voient le jour pour relever le défi du siècle. Chez Carbo, nous concentrons nos efforts sur ce que nous croyons le plus efficace : construite une entreprise qui redonne au plus grand nombre le pouvoir d’agir pour le climat.
+          </p>
+          <p class="description">
+            Notre première offre permet à chacun d’éclairer ses choix quotidiens pour réduire et compenser son empreinte carbone à l’aide d’un abonnement mensuel : c’est simple, accessible à tous et cela permet de répondre efficacement à l’urgence climatique.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-header mission-section mission4">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-md-7">
+          <h1>
+            <mark>Nos intentions</mark>
+          </h1>
+          <p class="description">
+            Le changement climatique est un problème urgent.
+          </p>
+          <p class="description">
+            Il y a trop de dioxyde de carbone dans l’atmosphère et nous autres êtres humains en sommes les responsables.
+          </p>
+          <p class="description">
+            Nous sommes aussi les seuls à pouvoir inverser cette tendance. Nos gouvernements et nos institutions ne sont souvent ni préparés ni incités à agir rapidement pour répondre au défi du siècle.
+          </p>
+          <p class="description">
+            On peut espérer que des réformes d’envergure seront lancées sous la pression des citoyens ; d’ici là, nous pensons que chacun doit, à son échelle, y consacrer la plupart de son temps et énergie.
+          </p>
+        </div>
+        <div class="col-md-5 align-self-end">
+          <%= image_tag("mission_section4.png", class: "img-fluid") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-header mission-section mission5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2>Nos valeurs</h2>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-5">
+                  <%= image_tag("valeur1.png", class: "img-fluid") %>
+                </div>
+                <div class="col-7">
+                  <h4>Ambition</h4>
+                  <p class="description">
+                    Nous voulons révolutionner votre quotidien et avoir un impact fort dans le temps en nous attaquant à des problèmes complexes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-5">
+                  <%= image_tag("valeur2.png", class: "img-fluid") %>
+                </div>
+                <div class="col-7">
+                  <h4>Humilité</h4>
+                  <p class="description">
+                    Nous voulons révolutionner votre quotidien et avoir un impact fort dans le temps en nous attaquant à des problèmes complexes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-7">
+                  <h4>Partage</h4>
+                  <p class="description">
+                    La magie opère toujours lorsque nous travaillons ensemble ! Notre équipe partage, communique et apprend sans cesse.
+                  </p>
+                </div>
+                <div class="col-5">
+                  <%= image_tag("valeur3.png", class: "img-fluid") %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-7">
+                  <h4>Intégrité</h4>
+                  <p class="description">
+                    Nous respectons les réglementations qui encadrent nos activités et prenons la sécurité et la confidentialité très au sérieux.
+                  </p>
+                </div>
+                <div class="col-5">
+                  <%= image_tag("valeur4.png", class: "img-fluid") %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-header mission-section mission6">
+    <div class="container">
+      <div class="row justify-content-center">
+        <h2>Derrière Carbo</h2>
+      </div>
+      <div class="row justify-content-center text-center">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h4>
+                  Simon Letourneau
+                  <br><small>Ingénierie & Partenariats</small>
+                </h4>
+              </div>
+            </div>
+            <div class="card-img-bottom">
+              <%= image_tag("valeur4.png", class: "img-fluid") %>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Contacter Simon", "mailto:symon.letourneau@gmail.com", class: "btn btn-round btn-info ml-auto mr-auto" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h4>
+                  Emmanuel Watrinet
+                  <br><small>Marketing & Design</small>
+                </h4>
+              </div>
+            </div>
+            <div class="card-img-bottom">
+              <%= image_tag("imanouel.png", class: "img-fluid") %>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Contacter Emmanuel", "mailto:e.watrinet@gmail.com", class: "btn btn-round btn-info ml-auto mr-auto" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">
+                <h4>
+                  Julien Janson
+                  <br><small>Opérations</small>
+                </h4>
+              </div>
+            </div>
+            <div class="card-img-bottom">
+              <%= image_tag("valeur4.png", class: "img-fluid") %>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Contacter Julien", "mailto:juljanson@gmail.com", class: "btn btn-round btn-info ml-auto mr-auto" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-header home-section home-section6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mt-auto mb-auto">
+          <span class="badge badge-pill badge-white">Disponible en version alpha</span>
+          <h2>Essaie Carbo dès aujourd'hui  🚀</h2>
+          <%= link_to "Créer mon compte", new_user_registration_path, class: "btn btn-lg btn-round btn-info" %>
+        </div>
+        <div class="col-md-4" style="margin-bottom:-250px; text-align:center;">
+          <%= image_tag("phone_section6.png", class: "w-50") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="prefooter">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-3" style="margin-top:-20px;">
+          <h3>
+            <%= image_tag("Logo-Carbo-Blue", style: "width:55px;") %>
+            Carbo
+          </h3>
+          <p class="description">
+            Donner au plus grand nombre le pouvoir d’agir contre le réchauffement climatique.
+          </p>
+          <%= link_to "hello@carbo.com", "mailto:contact.carbo2019@gmail.com" %>
+        </div>
+        <div class="col-md-3">
+          <h5>Explorer</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <%= link_to "Comment ça marche ?", "/pages/about#section3" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "A propos", page_path('mission') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "FAQ", page_path('about') %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>Liens utiles</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <%= link_to "Poser une question", page_path('about') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Ecrire aux fondateurs", page_path('about') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Suivre notre développement", page_path('about') %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <%= image_tag("illu_prefooter.png", class: "img-fluid illu") %>
+        </div>
       </div>
     </div>
   </div>

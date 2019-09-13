@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :transactions
+  has_many :preferences
+
+  accepts_nested_attributes_for :preferences
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
   after_create_commit :notify_signup
