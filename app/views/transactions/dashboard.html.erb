@@ -1,5 +1,4 @@
 <% content_for :title, "Dashboard" %>
-
   <small class="description">
     <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") %>
   </small>
@@ -9,7 +8,7 @@
     </div>
     <div class="col-md-5" style="z-index:12;" >
       <div class="card bg-info text-center">
-        <div class="card-header card-header-dark border-white">
+        <div class="card-header card-header-dark">
           <h4>
             Mon impact carbone en
             <%= l(Date.today, format: '%B') %>
@@ -108,7 +107,7 @@
       <div class="card border-warning text-center">
         <div class="card-header card-header-warning">
           <h4>
-            Mon coût de compensation
+            Coût à compenser
           </h4>
         </div>
         <div class="card-body justify-content">
