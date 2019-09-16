@@ -29,9 +29,11 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <%= f.fields_for @preference do |p| %>
-                    <%= p.label :ville_de_résidence_principale %>
-                    <%= p.text_field :city, class: 'form-control' %>
+                  <% unless @preference == nil %>
+                    <%= f.fields_for @preference do |p| %>
+                      <%= p.label :ville_de_résidence_principale %>
+                      <%= p.text_field :city, class: 'form-control' %>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
