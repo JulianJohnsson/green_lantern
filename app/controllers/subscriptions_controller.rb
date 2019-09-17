@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Merci et bravo pour votre engagement ! Nous allons traiter votre demande et vous contacter dans les prochaines heures.' }
+        format.html { redirect_to @subscription, notice: "Votre demande d'abonnement a bien été prise en compte" }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }

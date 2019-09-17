@@ -1,0 +1,45 @@
+<% content_for :title, "Dépenses détaillées" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= image_tag("illu1_section3.png", class: "img-fluid", style: "margin-bottom: -48px; width:30%") %>
+      <div class="card">
+        <div class="card-title">
+          <h3>
+            <%= @transactions.count %> dépenses à catégoriser
+          </h3>
+        </div>
+        <div class="card-body table-responsive">
+          <div class="row justify-content-center">
+            <div class="col-4">
+              <p class="description">
+                niveau de précision actuel
+              <div class="progress progress-line-primary">
+                <div class="progress-bar progress-bar-primary" role="progress-bar" style="width:<%= 100*(1 - @transactions.count.to_f / current_user.transactions.carbone_contribution.count.to_f) %>%;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class="table text-left">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Catégorie</th>
+                <th>Carbone</th>
+                <th>Date</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <%= render transaction %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,6 +31,9 @@
   <h2 class="description">
     Mes équivalents carbone
   </h2>
+  <p class="big">
+    Tes dépenses du mois génèrent une quantité de C02 équivalente à...
+  </p>
   <div class="row text-center">
     <div class="col-md-3 col-6">
       <div class="card">
@@ -39,10 +42,10 @@
         </div>
         <div class="card-body">
           <p class="number number-md">
-            9
+            <%= number_with_precision(@carbone_count / 3, precision: 0) %>
           </p>
           <p>
-            le poids de 9 coqs dodus et élevés en plein air
+            le poids de <%= number_with_precision(@carbone_count / 3, precision: 0) %> coqs élevés en plein air
           </p>
         </div>
       </div>
@@ -50,14 +53,14 @@
     <div class="col-md-3 col-6">
       <div class="card">
         <div class="card-title emoji-title">
-          🚆
+          🛩
         </div>
         <div class="card-body">
           <p class="number number-md">
-            2
+            <%= number_with_precision(@carbone_count / 170, precision: 0) %>
           </p>
           <p>
-            2 allers-retours Paris-Marseille en Ouigo
+            ou encore <%= number_with_precision(@carbone_count / 170, precision: 0) %> allers simple Paris-Nice en avion
           </p>
         </div>
       </div>
@@ -69,10 +72,10 @@
         </div>
         <div class="card-body">
           <p class="number number-md">
-            6
+            <%= number_with_precision(@carbone_count / 0.202, precision: 0) %>
           </p>
           <p>
-            6 km parcourus en trotinette électrique
+            mais aussi <%= number_with_precision(@carbone_count / 0.202, precision: 0) %> km parcourus en trotinette électrique
           </p>
         </div>
       </div>
@@ -84,27 +87,36 @@
         </div>
         <div class="card-body">
           <p class="number number-md">
-            43
+            <%= number_with_precision(@carbone_count / 5, precision: 0) %>
           </p>
           <p>
-            la production de 43 burgers bien grassouillets
+            et.. la production de <%= number_with_precision(@carbone_count / 5, precision: 0) %> burgers bien grassouillets
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <h2 class="description">Moi et les membres</h2>
+  <h2 class="description">Il y a moi et les autres</h2>
+  <p class="big">
+    Ce mois-ci, tu génères
+    <% if @carbone_count < @carbone_average %>
+     moins
+    <% else %>
+      plus
+    <% end %>
+    de C02 que la moyenne des membres
+  </p>
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
           <%= column_chart [
             {name: "Mon carbone",
-              data: @categories.sort_by {|c| c.name}.map {|c| [c.name , current_user.transactions.carbone_contribution.parent_category_id(c.external_id).month_ago(params[:month].to_i || 0).sum(:carbone)]}
+              data: @my_carbone
             },
             {name: "Moyenne des membres",
-              data: @categories.sort_by {|c| c.name}.map {|c| [c.name , Transaction.all.carbone_contribution.parent_category_id(c.external_id).month_ago(params[:month].to_i || 0).sum(:carbone) / Transaction.all.carbone_contribution.parent_category_id(c.external_id).month_ago(params[:month].to_i || 0).distinct.count(:user_id)]}
+              data: @average_carbone
             }
           ], defer: true %>
         </div>
@@ -113,55 +125,10 @@
   </div>
   <div class="row text-center">
     <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-header-success">
-          <h4>TOP</h4>
-        </div>
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col-3 emoji">
-              🚘
-            </div>
-            <div class="col-9 text-left">
-              À ce stade, mes dépenses de transport sont 22% moins carbonées que les autres membres
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col-3 emoji">
-              🏠
-            </div>
-            <div class="col-9 text-left">
-              À ce stade, mes dépenses de logement sont 15% moins carbonées que les autres membres
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render 'top' %>
     </div>
     <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-header-danger">
-          <h4>FLOP</h4>
-        </div>
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col-3 emoji">
-              🛍
-            </div>
-            <div class="col-9 text-left">
-              À ce stade, mes achats de biens et services sont 13% plus carbonées que les autres membres
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col-3 emoji">
-              📣
-            </div>
-            <div class="col-9 text-left text-danger">
-              Oooops, Carbo ne dispose pas de suffisamment d’informations pour pour analyser tes dépenses d’alimentation.<br>
-              <%= link_to "Améliorer le calcul >", edit_user_registration_path %>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render 'flop' %>
     </div>
   </div>
 
@@ -171,41 +138,10 @@
   </p>
   <div class="row text-center">
     <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-header-info">
-          <h4>ALIMENTATION</h4>
-        </div>
-        <div class="card-body">
-          <p class="emoji">
-            🥑
-          </p>
-          <h5>
-            Deviens Vegan
-          </h5>
-          <p>
-            En évitant totalement les produits d'origine animale, tu réduirais ton empreinte de 65 kgCO2 par mois environ. Tu économiserais ainsi 1 € de compensation sur ton abonnement.
-          </p>
-        </div>
-      </div>
+      <%= render 'food_advice' %>
     </div>
     <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-header-primary">
-          <h4>LOGEMENT</h4>
-        </div>
-        <div class="card-body text-danger">
-          <p class="emoji">
-            📣
-          </p>
-          <h5>
-            Oooooops
-          </h5>
-          <p>
-            pour obtenir des premières astuces pour réduire l’impact de tes choix alimentaires, tu dois d’abord
-            <%= link_to "préciser ton régime ici >", edit_user_registration_path %>
-          </p>
-        </div>
-      </div>
+      <%= render 'home_advice' %>
     </div>
   </div>
   <p class="big">

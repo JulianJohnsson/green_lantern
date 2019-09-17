@@ -32,3 +32,30 @@ $(document).ready(function(){
     theme: "bootstrap"
   });
 });
+
+/*$(document).ready(function(){
+  var slider = document.getElementById('sliderRegular');
+
+  noUiSlider.create(slider, {
+    start: 40,
+    connect: [true,false],
+    step: 20,
+    range: {
+      min: 0,
+      max: 100
+    },
+    behaviour: 'tap-drag',
+    tooltips: true,
+  });
+
+  slider.noUiSlider.on('update', function () {
+    $("#preference_energy_contract").val(slider.noUiSlider.get());
+  });
+
+  slider.noUiSlider.on('update', function () {
+    document.getElementById("energy_contract").innerHTML = slider.noUiSlider.get();
+  });
+});
+*/
+
+

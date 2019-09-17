@@ -15,6 +15,10 @@ class TransactionsController < ApplicationController
     AnalyticService.new.identify(current_user,request)
   end
 
+  def categorize
+    @transactions = current_user.transactions.category_id(1).order(date: :desc)
+  end
+
   def dashboard
     @transactions = current_user.transactions.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)

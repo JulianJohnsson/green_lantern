@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header card-header-success">
+    <h4>TOP</h4>
+  </div>
+  <div class="card-body">
+    <% @count = 0 %>
+    <% if @my_carbone[0][1] < @average_carbone[0][1] %>
+      <% @count = @count + 1 %>
+      <div class="row align-items-center">
+        <div class="col-3 emoji">
+          🛍
+        </div>
+        <div class="col-9 text-left">
+          <p>
+            Le shopping ne semble pas être ton grand dada (-<%= number_with_precision(100*(@average_carbone[0][1] - @my_carbone[0][1]) / @average_carbone[0][1], precision: 0) %>%), et la planète te dit merci !
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <% if @my_carbone[1][1] < @average_carbone[1][1] %>
+      <% @count = @count + 1 %>
+      <div class="row align-items-center">
+        <div class="col-3 emoji">
+          🍴
+        </div>
+        <div class="col-9 text-left">
+          <p>Ton alimentation est plus légère en carbone que la moyenne (-<%= number_with_precision(100*(@average_carbone[1][1] - @my_carbone[1][1]) / @average_carbone[1][1], precision: 0) %>%). Bon appétit !
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <% if @my_carbone[2][1] < @average_carbone[2][1] %>
+      <% @count = @count + 1 %>
+      <div class="row align-items-center">
+        <div class="col-3 emoji">
+          🚘
+        </div>
+        <div class="col-9 text-left">
+          <p>
+            À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[2][1] - @my_carbone[2][1]) / @average_carbone[2][1], precision: 0) %>% moins carbonées que les autres membres
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <% if @my_carbone[3][1] < @average_carbone[3][1] %>
+      <% @count = @count + 1 %>
+      <div class="row align-items-center">
+        <div class="col-3 emoji">
+          🏠
+        </div>
+        <div class="col-9 text-left">
+          <p>
+            Home sweet home ! Ta vie à la maison génère <%= number_with_precision(100*(@average_carbone[3][1] - @my_carbone[3][1]) / @average_carbone[3][1], precision: 0) %>% moins de C02 que la moyenne
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <% if @my_carbone[4][1] < @average_carbone[4][1] %>
+      <% @count = @count + 1 %>
+      <div class="row align-items-center">
+        <div class="col-3 emoji">
+          🏥
+        </div>
+        <div class="col-9 text-left">
+          <p>
+            À ce stade, mes dépenses de santé et services publics sont <%= number_with_precision(100*(@average_carbone[4][1] - @my_carbone[4][1]) / @average_carbone[4][1], precision: 0) %>% moins carbonées que les autres membres
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <% if @count == 0 %>
+      <%= image_tag 'illu_top.png', class: "img-fluid", style: "width:30%; margin-bottom: 20px; opacity:0.4;" %>
+      <p class="description justify-content">
+        <%= current_user.name %>, tes dépenses sont plus carbonées que la moyenne des membres dans toutes les catégories 😳 Une seule conclusion possible : tu es Donald Trump ! La bonne nouvelle, c’est que tu as l’embarras du choix pour commencer à réduire ton impact 💪
+      </p>
+    <% end %>
+  </div>
+</div>
