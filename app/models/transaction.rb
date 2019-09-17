@@ -5,6 +5,7 @@ class Transaction < ApplicationRecord
   before_save :calculate_carbone
 
   scope :recent, -> {where("date > ?", 1.month.ago)}
+  scope :six_month, -> {where("date > ?", 6.months.ago)}
   scope :year, -> {where("date > ?", 1.year.ago)}
 
   scope :parent_category_id, -> (category_id) {where("parent_category_id = ?", category_id)}

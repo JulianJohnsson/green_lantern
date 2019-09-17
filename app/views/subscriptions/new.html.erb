@@ -23,11 +23,11 @@
 <div class="row justify-content-around text-center">
   <div class="col-md-3">
     <div class="stat stat-info">
-      <div class="emoji">
+      <div class="emoji" style="transform: translate(0,-10px);">
         ⚖
       </div>
       <p class="number number-md">
-        750
+        <%= number_with_precision(@carbone_count, precision: 0) %>
       </p>
     </div>
     <h5 class="text-info">
@@ -39,11 +39,11 @@
   </div>
   <div class="col-md-3">
     <div class="stat stat-primary">
-      <div class="emoji">
+      <div class="emoji" style="transform: translate(0,-10px);">
         🌲
       </div>
       <p class="number number-md">
-        5
+        <%= number_with_precision(@carbone_count / (750/5), precision: 0) %>
       </p>
     </div>
     <h5 class="text-primary">
@@ -55,11 +55,11 @@
   </div>
   <div class="col-md-3">
     <div class="stat stat-warning">
-      <div class="emoji">
+      <div class="emoji" style="transform: translate(0,-10px);">
         💸
       </div>
       <p class="number number-md">
-        15
+        <%= number_with_precision(@carbone_count / (750/15), precision: 0) %>
       </p>
     </div>
     <h5 class="text-warning">
@@ -97,7 +97,10 @@
           PSS...POUR COMPENSER TON IMPACT MOYEN SUR LES 6 DERNIERS MOIS, ABONNE TOI À HAUTEUR DE
         </p>
         <p>
-          <strong>19 € / MOIS</strong>
+          <strong>
+            <%= number_with_precision(@average_price, precision: 0) %>
+            € / MOIS
+          </strong>
         </p>
       </div>
     </div>
@@ -151,7 +154,7 @@
               <i class="material-icons">euro</i>
             </span>
           </div>
-          <%= form.text_field :price, class: 'form-control' %>
+          <%= form.number_field :price, class: 'form-control', :autofocus => true, :value => number_with_precision(2*@average_price, precision: 0) %>
         </div>
       </div>
       <div class="col-5 actions">
@@ -199,7 +202,7 @@
               <i class="material-icons">euro</i>
             </span>
           </div>
-          <%= form.text_field :price, class: 'form-control' %>
+          <%= form.number_field :price, class: 'form-control', :value => number_with_precision(@average_price, precision: 0) %>
         </div>
       </div>
       <div class="col-5 actions">
