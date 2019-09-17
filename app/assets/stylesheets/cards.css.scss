@@ -6,6 +6,10 @@
   border-radius: 12px !important;
 }
 
+.card-title {
+  font-family: Maven Pro;
+}
+
 .main-panel .card .card-header {
   border-radius: 12px 12px 0px 0px;
   padding: 0.5rem 15px;
@@ -42,6 +46,21 @@
   box-shadow: none;
 }
 
+.main-panel .card .card-header.card-header-success {
+  background: $brand-success;
+  box-shadow: none;
+}
+
+.main-panel .card .card-header.card-header-danger {
+  background: $brand-danger;
+  box-shadow: none;
+}
+
+.main-panel .card .card-header.card-header-rose {
+  background: $brand-rose;
+  box-shadow: none;
+}
+
 .card.border-primary {
   border: 1px;
   border-style: solid;
@@ -58,6 +77,12 @@
   border: 1px;
   border-style: solid;
   border-color: $brand-warning !important;
+}
+
+.card.border-rose {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-rose !important;
 }
 
 .table {

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  plan: 1
+  price: 9.99
+  frequency: MyString
+  start_date: 2019-09-16
+  end_date: 2019-09-16
+
+two:
+  user_id: 1
+  plan: 1
+  price: 9.99
+  frequency: MyString
+  start_date: 2019-09-16
+  end_date: 2019-09-16

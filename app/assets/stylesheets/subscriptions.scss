@@ -1,0 +1,60 @@
+@import "material/scss/material-kit/variables";
+
+.stat {
+  border-radius: 100px;
+  width: 100px;
+  height: 100px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.stat-info {
+  background-color: $brand-info;
+}
+
+.stat-primary {
+  background-color: $brand-primary;
+}
+
+.stat-warning {
+  background-color: $brand-warning;
+}
+
+.tip {
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.packs {
+  .card {
+    min-height: 240px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .card-body {
+    padding-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    line-height: 1.2em;
+    .row {
+      margin-bottom: 1em;
+    }
+  }
+  img {
+  height: 20%;
+  margin-bottom: -45px;
+  }
+}
+
+.new_subscription {
+  .form-group {
+    margin-bottom: 0;
+  }
+  .bmd-form-group {
+    padding-top: 0;
+  }
+}

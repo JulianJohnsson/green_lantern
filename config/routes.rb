@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bridges
   resources :comments
   resources :preferences
+  resources :subscriptions
   namespace :admin do
       resources :users
       root to: "users#index"

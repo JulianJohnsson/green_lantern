@@ -28,9 +28,75 @@
     </div>
   </div>
 
+  <h2 class="description">
+    Mes équivalents carbone
+  </h2>
+  <div class="row text-center">
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <div class="card-title emoji-title">
+          🐓
+        </div>
+        <div class="card-body">
+          <p class="number number-md">
+            9
+          </p>
+          <p>
+            le poids de 9 coqs dodus et élevés en plein air
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <div class="card-title emoji-title">
+          🚆
+        </div>
+        <div class="card-body">
+          <p class="number number-md">
+            2
+          </p>
+          <p>
+            2 allers-retours Paris-Marseille en Ouigo
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <div class="card-title emoji-title">
+          🛴
+        </div>
+        <div class="card-body">
+          <p class="number number-md">
+            6
+          </p>
+          <p>
+            6 km parcourus en trotinette électrique
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="card">
+        <div class="card-title emoji-title">
+          🍔
+        </div>
+        <div class="card-body">
+          <p class="number number-md">
+            43
+          </p>
+          <p>
+            la production de 43 burgers bien grassouillets
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="description">Moi et les membres</h2>
   <div class="row">
-    <div class="col-12 text-center">
-      <h2>MON CARBONE <strong>VS</strong> LES MEMBRES</h2>
+    <div class="col-12">
       <div class="card">
         <div class="card-body">
           <%= column_chart [
@@ -45,11 +111,111 @@
       </div>
     </div>
   </div>
+  <div class="row text-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-success">
+          <h4>TOP</h4>
+        </div>
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-3 emoji">
+              🚘
+            </div>
+            <div class="col-9 text-left">
+              À ce stade, mes dépenses de transport sont 22% moins carbonées que les autres membres
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-3 emoji">
+              🏠
+            </div>
+            <div class="col-9 text-left">
+              À ce stade, mes dépenses de logement sont 15% moins carbonées que les autres membres
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4>FLOP</h4>
+        </div>
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-3 emoji">
+              🛍
+            </div>
+            <div class="col-9 text-left">
+              À ce stade, mes achats de biens et services sont 13% plus carbonées que les autres membres
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-3 emoji">
+              📣
+            </div>
+            <div class="col-9 text-left text-danger">
+              Oooops, Carbo ne dispose pas de suffisamment d’informations pour pour analyser tes dépenses d’alimentation.<br>
+              <%= link_to "Améliorer le calcul >", edit_user_registration_path %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="description">Mes recommandations</h2>
+  <p class="big justify-content">
+    Nous t’encourageons à réduire tes émissions autant que possible. Pour cela, toutes les actions ne se valent pas ! Si, par exemple, tu ne veux pas devenir végétarien, tu peux éviter un vol long courrier, cela aura le même impact. De petits efforts chaque mois peuvent suffire à diminuer ton empreinte de plusieurs centaines de kilos !
+  </p>
+  <div class="row text-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-info">
+          <h4>ALIMENTATION</h4>
+        </div>
+        <div class="card-body">
+          <p class="emoji">
+            🥑
+          </p>
+          <h5>
+            Deviens Vegan
+          </h5>
+          <p>
+            En évitant totalement les produits d'origine animale, tu réduirais ton empreinte de 65 kgCO2 par mois environ. Tu économiserais ainsi 1 € de compensation sur ton abonnement.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4>LOGEMENT</h4>
+        </div>
+        <div class="card-body text-danger">
+          <p class="emoji">
+            📣
+          </p>
+          <h5>
+            Oooooops
+          </h5>
+          <p>
+            pour obtenir des premières astuces pour réduire l’impact de tes choix alimentaires, tu dois d’abord
+            <%= link_to "préciser ton régime ici >", edit_user_registration_path %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="big">
+    Dans un pays au PIB élevé, il te sera presque impossible de réduire ton empreinte à zéro en améliorant purement tes choix quotidiens. Carbo te permet de compenser le reste en soutenant des projets efficaces contre le réchauffement climatique.
+  </p>
 
   <div class="row justify-content-center bottom-cta">
     <div class="col-md-4 text-center">
       <%= image_tag("compenser_CTA.png", class: "img-fluid", style: "margin-bottom: -15px;") %>
-      <%= link_to "Compenser mon impact", "", class: "btn btn-lg btn-warning btn-round" %>
+      <%= link_to "Compenser mon impact", new_subscription_path, class: "btn btn-lg btn-warning btn-round" %>
     </div>
   </div>
 

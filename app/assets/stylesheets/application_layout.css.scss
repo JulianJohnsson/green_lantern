@@ -98,12 +98,34 @@ strong {
     margin-top: 2em;
 }
 
+h1, h2, h3, h4 {
+  font-family: Maven Pro;
+}
+
+p, a, h5 {
+  font-family: Quicksand;
+}
+
+body {
+  font-family: Quicksand;
+}
+
+footer {
+  font-family: Quicksand;
+}
+
 h1, h2, h3, .h1, .h2, .h3 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-h2, h3, h4 {
+h2.description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: $brand-grey;
+}
+
+h2, h3, h4, h5 {
     font-weight: bold;
     line-height: 1.3em;
 }
