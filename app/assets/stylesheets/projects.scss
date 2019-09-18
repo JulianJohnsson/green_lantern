@@ -1,0 +1,35 @@
+@import "material/scss/material-kit/variables";
+
+.project-card {
+  .card-body {
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  .card-title {
+    border-bottom: 1px solid $brand-grey;
+  }
+  .tag {
+    text-transform: none;
+    font-family: Quicksand;
+    font-size: 1.1em;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  .card-footer {
+    border-top: 1px solid $brand-grey;
+  }
+  img {
+    margin-top: -0.9375rem;
+    height: 240px;
+  }
+}
+
+
+.project-CTA {
+  width: 100%;
+  background: $brand-primary;
+  color: white;
+  border-bottom-right-radius: 12px;
+  padding: 1.2em;
+  font-weight: bold;
+}

@@ -1,0 +1,53 @@
+<div class="card project-card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-8">
+        <div class="card-title">
+          <h4>
+            <%= project.name %>
+          </h4>
+        </div>
+        <p><%= project.description %></p>
+        <div class="row">
+          <div class="col-4">
+            <p style="line-height:2em;">
+              <strong>Pays</strong><br>
+              <span class="tag tag-primary">
+                <%= project.country %>
+              </span>
+            </p>
+          </div>
+          <div class="col-4">
+            <p style="line-height:2em;">
+              <strong>Type</strong><br>
+              <span class="tag tag-primary">
+                <%= project.kind %>
+              </span>
+            </p>
+          </div>
+          <div class="col-4">
+            <p style="line-height:2em;">
+              <strong>TCO2 absorbées</strong><br>
+              <span class="tag tag-primary">
+                🌎 <%= number_with_precision(project.cost, precision: 0) %> Millions
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <i>
+            - utilisateurs Carbo soutiennent actuellement <%= project.name %>
+          </i>
+        </div>
+      </div>
+      <div class="col-4">
+        <%= image_tag "project_#{project.id}.png", class: "img-fluid" %>
+        <%= link_to project.url, target: "_blank" do %>
+          <div class="project-CTA text-center">
+            Télécharger le dossier >
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

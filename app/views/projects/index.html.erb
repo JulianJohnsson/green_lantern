@@ -1,1 +1,42 @@
 <% content_for :title, "Les projets (en cours)" %>
+
+<div class="row text-center">
+  <div class="col-md-4">
+    <p class="number number-lg">-</p>
+    <p class="tag-line">
+      <span class="tag tag-warning">
+        projets soutenus
+      </span>
+    </p>
+  </div>
+  <div class="col-md-4">
+    <p class="number number-lg">-</p>
+    <p class="tag-line">
+      <span class="tag tag-warning">
+        contributeurs
+      </span>
+    </p>
+  </div>
+  <div class="col-md-4">
+    <p class="number number-lg">-</p>
+    <p class="tag-line">
+      <span class="tag tag-warning">
+        TCO2 compensées
+      </span>
+    </p>
+  </div>
+</div>
+<p class="big">
+  Les projets Carbo sont une des clés pour lutter contre le changement climatique. Nous facilitons la recherche de projets fiables et rentables qui aident à atténuer la tendance actuelle. Voici 2 exemples :
+</p>
+<% @projects.each do |project| %>
+  <%= render project %>
+<% end %>
+
+<div class="row justify-content-center bottom-cta">
+  <div class="col-md-4 text-center">
+    <%= image_tag("compenser_CTA.png", class: "img-fluid", style: "margin-bottom: -10px; width:70%;") %>
+    <%= link_to "Choisir mon abonnement", new_subscription_path, class: "btn btn-lg btn-rose btn-round" %>
+  </div>
+</div>
+
