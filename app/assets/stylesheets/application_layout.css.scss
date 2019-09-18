@@ -10,6 +10,12 @@ body {
   height: 100vh;
 }
 
+@media screen and (max-width: 768px) {
+    .fb_dialog {
+        bottom: 36pt !important;
+    }
+}
+
 .main-panel {
     position: relative;
     float: right;
