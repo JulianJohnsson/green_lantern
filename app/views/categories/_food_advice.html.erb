@@ -3,31 +3,31 @@
     <h4>ALIMENTATION</h4>
   </div>
   <div class="card-body">
-    <% if @preference.regime == :végétarien %>
+    <% if @preference.regime.to_sym == :végétarien %>
       <p class="emoji">🥑</p>
       <h5>Deviens Végétalien</h5>
       <p>
         Psss...en évitant totalement les produits d'origine animale, tu réduis ton empreinte alimentaire de 16%. Et tu économises X€ par mois sur ton abonnement Carbo !
       </p>
-    <% elsif @preference.regime == :viandard %>
+    <% elsif @preference.regime.to_sym == :viandard %>
       <p class="emoji">🐄</p>
       <h5>Moins de viande</h5>
       <p>
         En limitant ta consommation de viande à 6 repas par semaine, tu réduis ton empreinte carbone de 28%. Et tu économises X€ par mois sur ton abonnement Carbo !
       </p>
-    <% elsif @preference.regime == :moyen %>
+    <% elsif @preference.regime.to_sym == :moyen %>
       <p class="emoji">🐓</p>
       <h5>Moins de viande</h5>
       <p>
         En limitant ta consommation de viande à 3 repas par semaine, tu réduis ton empreinte alimentaire de 17%. Et tu économises X€ par mois sur ton abonnement Carbo !
       </p>
-    <% elsif @preference.regime == :flexitarien %>
+    <% elsif @preference.regime.to_sym == :flexitarien %>
       <p class="emoji">🥚</p>
       <h5>Deviens Végétarien !</h5>
       <p>
         Psss...en évitant totalement la viande et le poisson, tu réduis déjà ton empreinte alimentaire de 15%. Et tu économises X€ par mois sur ton abonnement Carbo
       </p>
-    <% elsif @preference.regime == :végétalien %>
+    <% elsif @preference.regime.to_sym == :végétalien %>
       <p class="emoji">🥑</p>
       <h5>Ne change rien !</h5>
       <p>

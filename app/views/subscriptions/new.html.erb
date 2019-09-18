@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-4 text-center">
     <%= image_tag("projects_CTA.png", class: "img-fluid", style: "margin-bottom: -15px; width:80%") %>
-    <%= link_to "Découvrir les projets", "", class: "btn btn-lg btn-rose btn-round" %>
+    <%= link_to "Découvrir les projets", projects_path, class: "btn btn-lg btn-rose btn-round" %>
   </div>
 </div>
 
@@ -154,7 +154,7 @@
               <i class="material-icons">euro</i>
             </span>
           </div>
-          <%= form.number_field :price, class: 'form-control', :autofocus => true, :value => number_with_precision(2*@average_price, precision: 0) %>
+          <%= form.number_field :price, class: 'form-control', :value => number_with_precision(2*@average_price, precision: 0) %>
         </div>
       </div>
       <div class="col-5 actions">
