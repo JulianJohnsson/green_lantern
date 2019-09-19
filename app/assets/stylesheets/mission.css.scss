@@ -8,9 +8,17 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .mission-section {
+    height: auto;
+    padding: 20px 0;
+  }
+}
+
 .mission-section h1, h2 {
   font-weight: bold;
   margin-bottom: 50px;
+  line-height: 1.5em;
   mark {
   color: inherit;
   }
@@ -24,7 +32,7 @@
 }
 
 .mission3 {
-  background: white;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E5E5E5 100%);
   mark {
     background-color: #a9e0dd;
     transform: matrix(1, 0, 0.01, 1, 0, 0);
@@ -32,7 +40,6 @@
 }
 
 .mission4 {
-  background: linear-gradient(180deg, #FFFFFF 0%, #E5E5E5 100%);
   mark {
     background-color: #fec0cd;
     transform: matrix(1, 0, 0.01, 1, 0, 0);

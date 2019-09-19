@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def notify_signup
     AnalyticService.new.track('Signed Up', nil, self)
-    UserMailer.welcome_email(self).deliver_later
+    #UserMailer.welcome_email(self).deliver_later
   end
 
   def self.new_with_session(params, session)
