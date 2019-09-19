@@ -67,16 +67,16 @@
 }
 
 .animation-top {
-  -webkit-transition: 2s ease-in-out;
-  -moz-transition: 2s ease-in-out;
-  -o-transition: 2s ease-in-out;
-  transition: 2s ease-in-out;
+  -webkit-transition: 4s ease-in-out;
+  -moz-transition: 4s ease-in-out;
+  -o-transition: 4s ease-in-out;
+  transition: 4s ease-in-out;
 }
 
 html:hover .animation-top {
-  -webkit-transform: translate(0px,-50px);
-  -moz-transform: translate(0px,-50px);
-  -o-transform: translate(0px,-50px);
-  -ms-transform: translate(0px,-50px);
-  transform: translate(0px,-50px);
+  -webkit-transform: translate(0px,-500px);
+  -moz-transform: translate(0px,-500px);
+  -o-transform: translate(0px,-500px);
+  -ms-transform: translate(0px,-500px);
+  transform: translate(0px,-500px);
 }

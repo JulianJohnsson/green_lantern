@@ -17,12 +17,22 @@ class PreferencesController < ApplicationController
         format.json { render :show, status: :created, location: @preference }
       else
         format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.json { render json: @preference.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
+    @preference = current_user.preferences.last
+    respond_to do |format|
+      if @preference.update(preference_params)
+        format.html { redirect_to edit_user_registration_path, notice: 'Vos préférences ont bien été mises à jour' }
+        format.json { render :show, status: :ok, location: @preference }
+      else
+        format.html { render edit_user_registration_path }
+        format.json { render json: @preference.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

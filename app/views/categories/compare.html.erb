@@ -31,21 +31,21 @@
   <h2 class="description">
     Mes équivalents carbone
   </h2>
-  <p class="big">
-    Tes dépenses du mois génèrent une quantité de C02 équivalente à...
+  <p class="big description">
+    Tes dépenses du mois génèrent <%= number_with_precision(@carbone_count, precision: 0) %> kg C02, une quantité équivalente à...
   </p>
   <div class="row text-center">
     <div class="col-md-3 col-6">
       <div class="card">
         <div class="card-title emoji-title">
-          🐓
+          🦛
         </div>
         <div class="card-body">
           <p class="number number-md">
-            <%= number_with_precision(@carbone_count / 3, precision: 0) %>
+            <%= number_with_precision(@carbone_count / 180, precision: 0) %>
           </p>
           <p>
-            le poids de <%= number_with_precision(@carbone_count / 3, precision: 0) %> coqs élevés en plein air
+            le poids de <%= number_with_precision(@carbone_count / 180, precision: 0) %> hippopotames nains
           </p>
         </div>
       </div>
@@ -53,14 +53,14 @@
     <div class="col-md-3 col-6">
       <div class="card">
         <div class="card-title emoji-title">
-          🛩
+          👖
         </div>
         <div class="card-body">
           <p class="number number-md">
-            <%= number_with_precision(@carbone_count / 170, precision: 0) %>
+            <%= number_with_precision(@carbone_count / 15, precision: 0) %>
           </p>
           <p>
-            ou encore <%= number_with_precision(@carbone_count / 170, precision: 0) %> allers simple Paris-Nice en avion
+            la fabrication de <%= number_with_precision(@carbone_count / 15, precision: 0) %> jeans délavés (ou pas)
           </p>
         </div>
       </div>
@@ -75,7 +75,7 @@
             <%= number_with_precision(@carbone_count / 0.202, precision: 0) %>
           </p>
           <p>
-            mais aussi <%= number_with_precision(@carbone_count / 0.202, precision: 0) %> km parcourus en trotinette électrique
+            <%= number_with_precision(@carbone_count / 0.202, precision: 0) %> km en trotinette électrique
           </p>
         </div>
       </div>
@@ -90,15 +90,15 @@
             <%= number_with_precision(@carbone_count / 5, precision: 0) %>
           </p>
           <p>
-            et.. la production de <%= number_with_precision(@carbone_count / 5, precision: 0) %> burgers bien grassouillets
+            <%= number_with_precision(@carbone_count / 5, precision: 0) %> burgers bien grassouillets
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <h2 class="description">Il y a moi et les autres</h2>
-  <p class="big">
+  <h2 class="description">Moi et les autres</h2>
+  <p class="big description">
     Ce mois-ci, tu génères
     <% if @carbone_count < @carbone_average %>
      moins
@@ -133,8 +133,8 @@
   </div>
 
   <h2 class="description">Mes recommandations</h2>
-  <p class="big justify-content">
-    Nous t’encourageons à réduire tes émissions autant que possible. Pour cela, toutes les actions ne se valent pas ! Si, par exemple, tu ne veux pas devenir végétarien, tu peux éviter un vol long courrier, cela aura le même impact. De petits efforts chaque mois peuvent suffire à diminuer ton empreinte de plusieurs centaines de kilos !
+  <p class="big description justify-content">
+    Nous t’encourageons à réduire tes émissions autant que possible, en commençant par celles qui ont le plus d’impact. Si, par exemple, tu ne souhaites pas devenir végétarien, tu peux éviter au moins un vol long courrier dans l’année, cela réduira d’autant ton impact. De petits efforts peuvent suffire chaque mois à diminuer ton empreinte de plusieurs centaines de kilos !
   </p>
   <div class="row text-center">
     <div class="col-md-6">
@@ -144,7 +144,7 @@
       <%= render 'home_advice' %>
     </div>
   </div>
-  <p class="big">
+  <p class="big description">
     Dans un pays au PIB élevé, il te sera presque impossible de réduire ton empreinte à zéro en améliorant purement tes choix quotidiens. Carbo te permet de compenser le reste en soutenant des projets efficaces contre le réchauffement climatique.
   </p>
 

@@ -118,6 +118,7 @@ body {
 
 footer {
   font-family: Quicksand;
+  font-size: 0.9em;
 }
 
 h1, h2, h3, .h1, .h2, .h3 {
@@ -139,6 +140,14 @@ h2, h3, h4, h5 {
 .btn {
     text-transform: none;
     font-weight: bold;
+}
+
+.btn.btn-outline-rose {
+    color: $brand-rose;
+    background-color: transparent;
+    border-color: $brand-rose;
+    border-style: solid;
+    border-width: 1px;
 }
 
 footer .copyright {

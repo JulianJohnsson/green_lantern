@@ -6,21 +6,34 @@
     <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
       <%= image_tag("dashboard_left.png", class: "img-fluid illustration") %>
     </div>
-    <div class="col-md-5" style="z-index:12;" >
+    <div class="col-md-4" style="z-index:12;" >
       <div class="card bg-info text-center">
         <div class="card-header card-header-dark">
           <h4>
-            Mon impact carbone en
+            Mon impact en
             <%= l(Date.today, format: '%B') %>
           </h4>
         </div>
         <div class="card-body">
-          <p class="number number-lg">
-            <%= number_with_precision(@current_month_count, precision: 0) %>
-          </p>
-          <p>
-            <strong>kg CO2</strong>
-          </p>
+          <div class="row">
+            <div class="col-7 text-right">
+              <p class="number number-lg">
+                <%= number_with_precision(@current_month_count, precision: 0) %>
+              </p>
+            </div>
+            <div class="col-5 text-left">
+              <span style="opacity:0.5; font-weight:bold;">
+                kg CO2
+              </span><br>
+              <% if @current_month_count < @last_month_count %>
+                <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:40%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus faible que le mois dernier 💪 continue comme ça !" %>
+              <% elsif @current_month_count > @last_month_count %>
+                <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:40%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus élevé que le mois dernier 😱 encore un effort !" %>
+              <% else %>
+                <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:40%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que le mois dernier, 🎯 bien visé !" %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,7 +78,7 @@
         <div class="card-header card-header-primary">
           <div class="emoji-title">
             📉
-            <h4>Mon carbone sur 12 mois</h4>
+            <h4>Mon historique</h4>
           </div>
         </div>
         <div class="card-body">
@@ -81,9 +94,9 @@
       <div class="card border-primary text-center">
         <div class="card-header card-header-primary">
           <div class="emoji-title">
-            🏆
+            🙃
             <h4>
-              Ma top catégorie
+              Ma flop catégorie
             </h4>
           </div>
         </div>
@@ -99,7 +112,9 @@
           <p>
             Mes dépenses en
             <%= @top_category.keys.first %>
-            génèrent le plus de carbone ce mois-ci
+            génèrent
+            <%= number_with_precision(@top_category.values.first, precision: 0) %>
+            kg de carbone ce mois-ci
           </p>
           <%= link_to "Comprendre", categories_path, class: "btn btn-outline-primary btn-round" %>
         </div>
@@ -111,7 +126,7 @@
           <div class="emoji-title">
             👥
             <h4>
-              Impact des membres
+              Impact moyen des membres
             </h4>
           </div>
         </div>
@@ -127,7 +142,7 @@
               </span>
             </p>
             <p>
-              Mes dépenses sont plus carbonées que la moyenne des membres
+              Mes dépenses sont <%= number_with_precision((@current_month_count - @average_by_user) * 100 / @average_by_user, precision: 0) %>% plus carbonées que la moyenne des membres
             </p>
           <% else %>
             <p class="tag-line">
@@ -137,7 +152,7 @@
               </span>
             </p>
             <p>
-              Mes dépenses sont moins carbonées que la moyenne des membres
+              Mes dépenses sont <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>% moins carbonées que la moyenne des membres
             </p>
           <% end %>
           <%= link_to "Progresser", '/compare', class: "btn btn-outline-info btn-round" %>
@@ -148,25 +163,25 @@
       <div class="card border-rose text-center">
         <div class="card-header card-header-rose">
           <div class="emoji-title">
-            🌲
+            🌳
             <h4>
-              Coût à compenser
+              Compenser mon impact
             </h4>
           </div>
         </div>
         <div class="card-body justify-content">
           <p class="number number-md">
-            <%= number_with_precision(@current_month_count / 50, precision: 0) %>
+            <%= number_with_precision(0.5 + @current_month_count / 150, precision: 0) %>
           </p>
           <p class="tag-line">
             <span class="tag tag-rose">
-              euros
+              arbres
             </span>
           </p>
           <p>
-            Au même stade, mon coût carbone est supérieur à celui du mois dernier
+            Il faudrait planter <%= number_with_precision(0.5 + @current_month_count / 150, precision: 0) %> arbres pour compenser le carbone de tes dépenses
           </p>
-          <%= link_to "Compenser", new_subscription_path, class: "btn btn-rose btn-round" %>
+          <%= link_to "Compenser", new_subscription_path, class: "btn btn-outline-rose btn-round" %>
         </div>
       </div>
     </div>

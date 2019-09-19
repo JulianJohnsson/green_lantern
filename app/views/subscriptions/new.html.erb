@@ -77,14 +77,13 @@
 <div class="row align-items-center">
   <div class="col-md-7">
     <p class="big">
-      Tu peux compenser ton impact de 2 manières.
       Choisis l’abonnement mensuel qui te ressemble !
     </p>
     <p class="big">
-      <strong>DYNAMIQUE :</strong> laisse opérer la magie Carbo, qui compensera la totalité de tes émissions dans la limite du budget mensuel qui tu auras prédéfini.
+      <strong>DYNAMIQUE :</strong> laisse opérer la magie Carbo pour compenser la totalité de tes émissions dans la limite du plafond mensuel que tu définis.
     </p>
     <p class="big">
-      <strong>SEREIN :</strong> choisis toi-même ta compensation mensuelle, quelque soit le calcul opéré par Carbo
+      <strong>SEREIN :</strong> fixe toi-même le montant de ta compensation, quelque soit le calcul opéré par Carbo
     </p>
   </div>
   <div class="col-md-5 text-center">
@@ -141,7 +140,7 @@
       </div>
     </div>
     <p class="big">
-      Mon budget maximal mensuel :
+      Mon plafond mensuel :
     </p>
     <%= form_for @subscription do |form| %>
     <%= form.hidden_field :user_id, :value => @user.id %>

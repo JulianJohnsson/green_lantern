@@ -22,22 +22,22 @@
         En limitant ta consommation de viande à 3 repas par semaine, tu réduis ton empreinte alimentaire de 17%. Et tu économises X€ par mois sur ton abonnement Carbo !
       </p>
     <% elsif @preference.regime.to_sym == :flexitarien %>
-      <p class="emoji">🥚</p>
-      <h5>Deviens Végétarien !</h5>
+      <p class="emoji">🥦</p>
+      <h5>Deviens Végétarien</h5>
       <p>
         Psss...en évitant totalement la viande et le poisson, tu réduis déjà ton empreinte alimentaire de 15%. Et tu économises X€ par mois sur ton abonnement Carbo
       </p>
     <% elsif @preference.regime.to_sym == :végétalien %>
       <p class="emoji">🥑</p>
-      <h5>Ne change rien !</h5>
+      <h5>Reste Végétalien</h5>
       <p>
         Tu es déjà végétalien, régime alimentaire le plus efficace pour limiter ton impact sur la planète ! Ton empreinte alimentaire est ainsi 2 fois plus faible que la moyenne.
       </p>
     <% else %>
       <p class="emoji">📣</p>
-      <h5 class="text-danger">Oooops</h5>
+      <h5 class="text-danger">Ooops</h5>
       <p class="text-danger">
-        Pour obtenir des premières infos sur tes choix alimentaires, Carbo dois d’abord connaître ton régime actuel.
+        Pour obtenir des premières infos sur tes choix alimentaires, Carbo doit d’abord savoir ce qu'il y a dans ton assiette.
         <%= link_to 'Préciser ton régime ici >', edit_user_registration_path %>
       </p>
     <% end %>

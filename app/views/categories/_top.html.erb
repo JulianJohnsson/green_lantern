@@ -24,7 +24,7 @@
           🍴
         </div>
         <div class="col-9 text-left">
-          <p>Ton alimentation est plus légère en carbone que la moyenne (-<%= number_with_precision(100*(@average_carbone[1][1] - @my_carbone[1][1]) / @average_carbone[1][1], precision: 0) %>%). Bon appétit !
+          <p>Tes repas génèrent moins de carbone que la moyenne (-<%= number_with_precision(100*(@average_carbone[1][1] - @my_carbone[1][1]) / @average_carbone[1][1], precision: 0) %>%). Bon appétit !
           </p>
         </div>
       </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[2][1] - @my_carbone[2][1]) / @average_carbone[2][1], precision: 0) %>% moins carbonées que les autres membres
+            À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[2][1] - @my_carbone[2][1]) / @average_carbone[2][1], precision: 0) %>% moins carbonés que les autres membres
           </p>
         </div>
       </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            Home sweet home ! Ta vie à la maison génère <%= number_with_precision(100*(@average_carbone[3][1] - @my_carbone[3][1]) / @average_carbone[3][1], precision: 0) %>% moins de C02 que la moyenne
+            Home sweet home ! Ton logement engendre <%= number_with_precision(100*(@average_carbone[3][1] - @my_carbone[3][1]) / @average_carbone[3][1], precision: 0) %>% moins de C02 que la moyenne
           </p>
         </div>
       </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            À ce stade, mes dépenses de santé et services publics sont <%= number_with_precision(100*(@average_carbone[4][1] - @my_carbone[4][1]) / @average_carbone[4][1], precision: 0) %>% moins carbonées que les autres membres
+            À ce stade, tes dépenses en santé et services publics sont <%= number_with_precision(100*(@average_carbone[4][1] - @my_carbone[4][1]) / @average_carbone[4][1], precision: 0) %>% moins carbonées que les autres
           </p>
         </div>
       </div>

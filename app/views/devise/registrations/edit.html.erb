@@ -53,6 +53,35 @@
 </div>
 <div class="row">
   <div class="col-md-12">
+    <h4>Préférences de consommation</h4>
+    <div class="card border-rose">
+      <div class="card-body">
+        <div class="text-center">
+          <%= form_for(@preference, :html => { :method => :put, :role => 'form'}) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="row text-left">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.label "Comment décrirais-tu ton régime alimentaire ?" %>
+                  <%= f.select(:regime, Preference.regimes.keys.map {|regime| [regime.titleize,regime]}, {}, {:class => 'form-control selectpicker'}) %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <%= f.label  "Quelle est la part de renouvelable dans ton contrat d'énergie ?" %>
+                  <%= f.select(:energy_contract, Preference.energy_contracts.keys.map {|regime| [regime.humanize,regime]}, {}, {:class => 'form-control selectpicker'}) %>
+                </div>
+              </div>
+            </div>
+            <%= f.submit 'Mettre à jour', :class => 'btn btn-round btn-rose btn-center' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <h4>Changement de mot de passe</h4>
     <div class="card border-warning">
       <div class="card-body">
@@ -80,6 +109,9 @@
 </div>
 <div class="authform">
   <h4>Supprimer mon compte</h4>
-  <p>Pas satisfait ? Nous sommes triste de vous voir partir 😢</p>
+  <p>Tu nous quittes déjà ? 😢</p>
+  <p>On sera un peu triste mais ça passera, promis</p>
   <%= button_to "Supprimer mon compte", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger btn-round' %>
 </div>
+
+

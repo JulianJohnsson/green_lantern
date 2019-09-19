@@ -12,7 +12,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            +<%= number_with_precision(-100*(@average_carbone[0][1] - @my_carbone[0][1]) / @average_carbone[0][1], precision: 0) %>% ....ton shopping est plus carboné que la moyenne <%= current_user.name %>, le savais-tu ?
+            +<%= number_with_precision(-100*(@average_carbone[0][1] - @my_carbone[0][1]) / @average_carbone[0][1], precision: 0) %>% ....ton empreinte shopping est plus forte que la moyenne <%= current_user.name %>, le savais-tu ?
           </p>
         </div>
       </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            À ce stade, tes déplacements sont <%= number_with_precision(-100*(@average_carbone[2][1] - @my_carbone[2][1]) / @average_carbone[2][1], precision: 0) %>% plus carbonées que les autres membres
+            À ce stade, tes déplacements sont <%= number_with_precision(-100*(@average_carbone[2][1] - @my_carbone[2][1]) / @average_carbone[2][1], precision: 0) %>% plus carbonés que les autres membres
           </p>
         </div>
       </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            Home sweet home ! Ta vie à la maison génère <%= number_with_precision(-100*(@average_carbone[3][1] - @my_carbone[3][1]) / @average_carbone[3][1], precision: 0) %>% de C02 en plus que la moyenne.
+            Home sweet home ! Ton logement génère <%= number_with_precision(-100*(@average_carbone[3][1] - @my_carbone[3][1]) / @average_carbone[3][1], precision: 0) %>% de C02 en plus que la moyenne.
           </p>
         </div>
       </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="col-9 text-left">
           <p>
-            À ce stade, mes dépenses de santé et services publics sont <%= number_with_precision(-100*(@average_carbone[4][1] - @my_carbone[4][1]) / @average_carbone[4][1], precision: 0) %>% moins carbonées que les autres membres
+            À ce stade, tes dépenses de santé et services publics sont <%= number_with_precision(-100*(@average_carbone[4][1] - @my_carbone[4][1]) / @average_carbone[4][1], precision: 0) %>% moins carbonées que les autres
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@
     <% if @count2 == 0 %>
       <%= image_tag 'illu_flop.png', class: "img-fluid", style: "width:30%; margin-bottom:20px; opacity:0.4;" %>
       <p class="description justify-content">
-        Bien joué <%= current_user.name %>, tes dépenses sont moins carbonées que la moyenne des membres dans toutes les catégories 😳 2 conclusions possibles : soit tu n’a pas connecté ton compte bancaire principal (petit malin) , soit...tu es le futur Ministre de la Transition Écologique !
+        Bien joué <%= current_user.name %>, tes dépenses sont moins carbonées que la moyenne des membres dans toutes les catégories 😳 2 conclusions possibles : soit tu n’a pas connecté ton compte bancaire principal (petit malin), soit...tu es le futur Ministre de la Transition Écologique !
       </p>
     <% end %>
   </div>

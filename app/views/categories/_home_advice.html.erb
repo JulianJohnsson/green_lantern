@@ -5,13 +5,13 @@
   <div class="card-body">
     <% if @preference.energy_contract.to_sym == :sans_energie_renouvelable %>
       <p class="emoji">🔌</p>
-      <h5>VERS UNE ÉNERGIE PLUS VERTE</h5>
+      <h5>Une énergie plus verte</h5>
       <p>
         Psss…en changeant ton contrat d’énergie pour inclure plus de renouvelables, tu peux réduire ton empreinte d’au moins 20% et économiser X € sur ton abonnement Carbo.
       </p>
     <% elsif @preference.energy_contract.to_sym == :partiellement_renouvelable %>
       <p class="emoji">🔌</p>
-      <h5>VERS UNE ÉNERGIE PLUS VERTE</h5>
+      <h5>Une énergie plus verte</h5>
       <p>
         Psss…avec un contrat d’énergie 100% de renouvelables, tu peux réduire jusqu’à 30% ton empreinte logement...et économiser jusqu’à X € sur ton abonnement Carbo !
       </p>
@@ -23,9 +23,9 @@
       </p>
     <% else %>
       <p class="emoji">📣</p>
-      <h5 class="text-danger">Oooops</h5>
+      <h5 class="text-danger">Ooops</h5>
       <p class="text-danger">
-        Pour obtenir des premières infos sur tes dépenses liées au logement, Carbo doit d’abord en savoir un peu plus sur ton contrat d’énergie.
+        Pour obtenir des premières infos sur tes dépenses de logement, Carbo doit d’abord en savoir un peu plus sur ton contrat d’énergie.
         <%= link_to 'Préciser ton contrat ici >', edit_user_registration_path %>
       </p>
     <% end %>

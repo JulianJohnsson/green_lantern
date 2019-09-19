@@ -62,7 +62,7 @@
 }
 
 .card .card-title.emoji-title {
-  font-size: 2.5em;
+  font-size: 3em;
   margin-top: -15px;
 }
 
@@ -152,3 +152,9 @@
   background-color: #fae7c3;
   color: $brand-warning;
 }
+
+.tag-rose {
+  background-color: #ffc1ce;
+  color: $brand-rose;
+}
+
