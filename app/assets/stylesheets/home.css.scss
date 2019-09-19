@@ -91,7 +91,14 @@ html {
   background-image: url("home_section2.png");
   background-position: left 0% top 40%;
   background-size: 40%;
+  background-opacity: 0.4;
   background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .home-section2 {
+  background-image: none;
+  }
 }
 
 .home-section2 .phone-parent {
@@ -157,6 +164,12 @@ html {
   font-weight: bold;
   font-size: 48px;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .home-section6 h2 {
+    font-size: 40px;
+  }
 }
 
 .badge.badge-white {

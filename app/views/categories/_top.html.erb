@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <% @count = 0 %>
-    <% if @my_carbone[0][1] < @average_carbone[0][1] %>
+    <% if @my_carbone[0][1] < @average_carbone[0][1] && @my_carbone[0][1] > 0 %>
       <% @count = @count + 1 %>
       <div class="row align-items-center">
         <div class="col-3 emoji">
@@ -17,7 +17,7 @@
         </div>
       </div>
     <% end %>
-    <% if @my_carbone[1][1] < @average_carbone[1][1] %>
+    <% if @my_carbone[1][1] < @average_carbone[1][1] && @my_carbone[1][1] > 0 %>
       <% @count = @count + 1 %>
       <div class="row align-items-center">
         <div class="col-3 emoji">
@@ -29,7 +29,7 @@
         </div>
       </div>
     <% end %>
-    <% if @my_carbone[2][1] < @average_carbone[2][1] %>
+    <% if @my_carbone[2][1] < @average_carbone[2][1] && @my_carbone[2][1] > 0 %>
       <% @count = @count + 1 %>
       <div class="row align-items-center">
         <div class="col-3 emoji">
@@ -42,7 +42,7 @@
         </div>
       </div>
     <% end %>
-    <% if @my_carbone[3][1] < @average_carbone[3][1] %>
+    <% if @my_carbone[3][1] < @average_carbone[3][1] && @my_carbone[3][1] > 0 %>
       <% @count = @count + 1 %>
       <div class="row align-items-center">
         <div class="col-3 emoji">
@@ -55,7 +55,7 @@
         </div>
       </div>
     <% end %>
-    <% if @my_carbone[4][1] < @average_carbone[4][1] %>
+    <% if @my_carbone[4][1] < @average_carbone[4][1] && @my_carbone[4][1] > 0 %>
       <% @count = @count + 1 %>
       <div class="row align-items-center">
         <div class="col-3 emoji">

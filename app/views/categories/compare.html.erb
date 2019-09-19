@@ -32,7 +32,7 @@
     Mes équivalents carbone
   </h2>
   <p class="big description">
-    Tes dépenses du mois génèrent <%= number_with_precision(@carbone_count, precision: 0) %> kg C02, une quantité équivalente à...
+    Tes dépenses du mois génèrent <strong><%= number_with_precision(@carbone_count, precision: 0) %> kg C02</strong>, une quantité équivalente à...
   </p>
   <div class="row text-center">
     <div class="col-md-3 col-6">
@@ -42,10 +42,10 @@
         </div>
         <div class="card-body">
           <p class="number number-md">
-            <%= number_with_precision(@carbone_count / 180, precision: 0) %>
+            <%= number_with_precision(@carbone_count / 180, precision: 1) %>
           </p>
           <p>
-            le poids de <%= number_with_precision(@carbone_count / 180, precision: 0) %> hippopotames nains
+            le poids de <%= number_with_precision(@carbone_count / 180, precision: 1) %> hippopotames nains
           </p>
         </div>
       </div>
@@ -90,7 +90,7 @@
             <%= number_with_precision(@carbone_count / 5, precision: 0) %>
           </p>
           <p>
-            <%= number_with_precision(@carbone_count / 5, precision: 0) %> burgers bien grassouillets
+            l'empreinte de <%= number_with_precision(@carbone_count / 5, precision: 0) %> burgers bien gras
           </p>
         </div>
       </div>
@@ -118,7 +118,7 @@
             {name: "Moyenne des membres",
               data: @average_carbone
             }
-          ], defer: true %>
+          ], defer: true, suffix: " kg" %>
         </div>
       </div>
     </div>

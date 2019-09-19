@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="card-body">
-          <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-1), points: false, :style => "margin-top:30px;" %>
+          <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-1), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
           <%= link_to "Voir le détail", categories_path, class: "btn btn-outline-primary btn-round" %>
         </div>
       </div>
