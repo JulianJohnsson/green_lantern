@@ -160,7 +160,7 @@
       </div>
     </div>
   </div>
-  <div class="page-header mission-section mission6">
+  <div class="page-header mission-section mission6" id="anchor">
     <div class="container">
       <div class="row justify-content-center">
         <h2>Derrière Carbo</h2>
@@ -259,7 +259,7 @@
             <li class="nav-item">
               <%= link_to "A propos", page_path('mission') %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" hidden>
               <%= link_to "FAQ", page_path('about') %>
             </li>
           </ul>
@@ -267,14 +267,14 @@
         <div class="col-md-3">
           <h5>Liens utiles</h5>
           <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item" hidden>
               <%= link_to "Poser une question", page_path('about') %>
             </li>
             <li class="nav-item">
-              <%= link_to "Ecrire aux fondateurs", page_path('about') %>
+              <%= link_to "Ecrire aux fondateurs", '/pages/mission#anchor' %>
             </li>
             <li class="nav-item">
-              <%= link_to "Suivre notre développement", page_path('about') %>
+              <%= link_to "Suivre notre développement", 'https://www.facebook.com/hellocarbo/', :target => "_blank" %>
             </li>
           </ul>
         </div>
