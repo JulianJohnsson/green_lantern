@@ -43,7 +43,7 @@
                   <tr>
                       <th />
                       <th>Type</th>
-                      <th>Carbone</th>
+                      <th class="d-none d-md-block">Carbone</th>
                       <th>Part</th>
                       <!-- <th>Précision</th> -->
                       <th />
@@ -67,7 +67,7 @@
                           <% end %>
                         </small>
                       </td>
-                      <td>
+                      <td class="d-none d-md-block">
                         <%= number_with_precision(@transactions.category_id(c).sum(&:carbone), precision: 2).to_s + " kg" %>
                       </td>
                       <td>

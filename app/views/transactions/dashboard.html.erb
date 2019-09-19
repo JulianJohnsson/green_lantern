@@ -6,11 +6,11 @@
     <div class="col-md-3 mt-auto mb-auto d-none d-md-block">
       <%= image_tag("dashboard_left.png", class: "img-fluid illustration") %>
     </div>
-    <div class="col-md-4" style="z-index:12;" >
+    <div class="col-md-5" style="z-index:12;" >
       <div class="card bg-info text-center">
         <div class="card-header card-header-dark">
           <h4>
-            Mon impact en
+            Mon impact carbone en
             <%= l(Date.today, format: '%B') %>
           </h4>
         </div>
@@ -26,11 +26,11 @@
                 kg CO2
               </span><br>
               <% if @current_month_count < @last_month_count %>
-                <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:40%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus faible que le mois dernier 💪 continue comme ça !" %>
+                <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus faible que le mois dernier 💪 continue comme ça !" %>
               <% elsif @current_month_count > @last_month_count %>
-                <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:40%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus élevé que le mois dernier 😱 encore un effort !" %>
+                <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus élevé que le mois dernier 😱 encore un effort !" %>
               <% else %>
-                <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:40%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que le mois dernier, 🎯 bien visé !" %>
+                <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que le mois dernier, 🎯 bien visé !" %>
               <% end %>
             </div>
           </div>
@@ -56,9 +56,9 @@
         <div class="card-body table-responsive">
           <table class="table table-hover">
             <tbody>
-              <% @transactions.first(5).each do |transaction| %>
+              <% @transactions.first(6).each do |transaction| %>
                 <tr>
-                  <td class="text-left" style="width:70%;"><%= transaction.description %></td>
+                  <td class="text-left" style="width:70%;"><%= truncate(transaction.description, :length => 33) %></td>
                   <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
                   <td class="text-right">
                     <%= link_to edit_transaction_path(transaction) do %>
