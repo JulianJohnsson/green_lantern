@@ -11,7 +11,7 @@
         </h4>
         <%= link_to "Découvrir Carbo", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 d-none d-md-block">
         <%= image_tag("phone_section1.png", class: "img-fluid") %>
       </div>
     </div>
@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 ml-auto mr-auto text-center">
-        <h2>Ton allié contre le réchauffement climatique</h2>
+        <h2>Ton allié contre le changement climatique</h2>
         <h4 class="description">
           En plus de réduire, réutiliser ou recycler tes consommations, utilise dès aujourd’hui Carbo pour neutraliser totalement ton impact sur la planète. Voici comment ça marche :
         </h4>
@@ -100,7 +100,7 @@
 <div class="page-header home-section home-section2">
   <div class="container">
     <div class="row justify-content-end">
-      <div class="col-md-3">
+      <div class="col-md-3 d-none d-md-block">
         <div class="phone-parent">
           <%= image_tag("phone_section2.png", class: "img-fluid phone") %>
           <%= image_tag("phone_section2.gif", class: "img-fluid gif") %>
@@ -156,7 +156,7 @@
         </p>
         <%= link_to "Créer mon compte", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 d-none d-md-block">
         <%= image_tag("phone_section4.png", class: "img-fluid") %>
       </div>
     </div>
@@ -165,13 +165,13 @@
 <div class="page-header home-section home-section5">
   <div class="container-fluid">
     <div class="row align-items-center justify-content-end">
-      <div class="col-md-3">
+      <div class="col-md-3 d-none d-md-block">
         <%= image_tag("phone_section5.png", class: "img-fluid") %>
       </div>
       <div class="col-md-7">
         <h2>Compense ton impact avec<br> un simple abonnement</h2>
         <div class="row">
-          <div class="col-7">
+          <div class="col-md-7">
             <p class="description">
               Carbo te permet de compenser chaque mois la part d’empreinte carbone que tu ne peux pas réduire.
             </p>
@@ -180,7 +180,7 @@
             </p>
             <%= link_to "En savoir plus", new_project_path, class: "btn btn-outline-info btn-lg btn-round" %>
           </div>
-          <div class="col-5">
+          <div class="col-md-5 col-6 mr-auto ml-auto">
             <%= image_tag("illu_section5.png", class: "img-fluid") %>
           </div>
         </div>
@@ -196,7 +196,7 @@
         <h2>Essaie Carbo dès aujourd'hui  🚀</h2>
         <%= link_to "Créer mon compte", new_user_registration_path, class: "btn btn-lg btn-round btn-info" %>
       </div>
-      <div class="col-md-4" style="margin-bottom:-250px; text-align:center;">
+      <div class="col-md-4 d-none d-md-block" style="margin-bottom:-250px; text-align:center;">
         <%= image_tag("phone_section6.png", class: "w-50") %>
       </div>
     </div>
@@ -243,7 +243,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 d-none d-md-block">
         <%= image_tag("illu_prefooter.png", class: "img-fluid illu") %>
       </div>
     </div>

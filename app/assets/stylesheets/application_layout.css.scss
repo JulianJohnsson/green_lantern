@@ -58,6 +58,10 @@ body {
     font-weight: bold;
 }
 
+.navbar .navbar-nav .nav-item .nav-link {
+    text-transform: none;
+}
+
 .navbar.navbar-transparent .navbar-toggler .navbar-toggler-icon {
     background-color: #0B4C65;
 }

@@ -25,6 +25,13 @@ html {
   height: 100vh;
 }
 
+@media screen and (max-width: 768px) {
+  .home-section {
+    height: auto;
+    padding: 20px 0;
+  }
+}
+
 .home-section .number-lg {
   color: $brand-grey;
   transform: matrix(1, -0.1, 0.07, 0.99, 0, 0);
@@ -56,8 +63,20 @@ html {
   height: 110vh;
 }
 
+@media screen and (max-width: 768px) {
+  .home-section3 {
+    height: auto;
+  }
+}
+
 .home-section3 .container {
   margin-top:-50px;
+}
+
+@media screen and (max-width: 768px) {
+  .home-section3 .container {
+    margin-top:20px;
+  }
 }
 
 .home-section3 img {
@@ -127,6 +146,12 @@ html {
   height: 70vh;
 }
 
+@media screen and (max-width: 768px) {
+  .home-section6 {
+    height: auto;
+  }
+}
+
 .home-section6 h2 {
   color: white;
   font-weight: bold;
@@ -144,6 +169,12 @@ html {
   background: white;
   padding-top: 50px;
   padding-bottom: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  .prefooter {
+    height: auto;
+  }
 }
 
 .prefooter h5 {
