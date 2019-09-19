@@ -45,7 +45,7 @@
                       <th>Type</th>
                       <th>Carbone</th>
                       <th>Part</th>
-                      <th>Précision</th>
+                      <!-- <th>Précision</th> -->
                       <th />
                   </tr>
                 </thead>
@@ -73,9 +73,9 @@
                       <td>
                         <%= number_with_precision(@transactions.category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
                       </td>
-                      <td>
+                      <!-- <td>
                         <span class="badge badge-pill badge-danger">Basse</span>
-                      </td>
+                      </td> -->
                       <td>
                         <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.external_id}" do %>
                           <i class="material-icons">more_vert</i>
@@ -83,24 +83,16 @@
                       </td>
                     </tr>
                   <% end %>
-                  <tr >
-                    <td colspan=3 class="text-left" >
-                      <%= link_to "/categories?month=#{params[:month]}" do %>
-                        <i class="material-icons">arrow_back</i>
-                        Retour aux catégories
-                      <% end %>
-                    </td>
-                    <td colspan=3 class="text-right" >
-                      <%= link_to "" do %>
-                        Suggérer une sous-catégorie
-                        <i class="material-icons">add_circle</i>
-                      <% end %>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to "/categories?month=#{params[:month]}", class: "btn btn-primary btn-link" do %>
+            <i class="material-icons">arrow_back</i>
+            Retour aux catégories
+          <% end %>
         </div>
       </div>
     </div>

@@ -45,7 +45,7 @@
                       <th>Type</th>
                       <th>Carbone</th>
                       <th>Part</th>
-                      <th>Précision</th>
+                      <!-- <th>Précision</th> -->
                       <th />
                   </tr>
                 </thead>
@@ -73,9 +73,9 @@
                       <td>
                         <%= number_with_precision(@transactions.parent_category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
                       </td>
-                      <td>
+                      <!-- <td>
                         <span class="badge badge-pill badge-danger">Basse</span>
-                      </td>
+                      </td> -->
                       <td>
                         <%= link_to "/categories/#{@category.id}?month=#{params[:month]}", :month => (params[:month].to_i || 0)  do %>
                           <i class="material-icons">more_vert</i>
@@ -83,13 +83,6 @@
                       </td>
                     </tr>
                   <% end %>
-                  <tr class="text-right">
-                    <td colspan=6 >
-                      <%= link_to "" do %>
-                        Suggérer une nouvelle catégorie
-                        <i class="material-icons">add_circle</i>
-                      <% end %>
-                    </td>
                 </tbody>
               </table>
             </div>
