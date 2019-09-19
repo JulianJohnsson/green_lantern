@@ -1,0 +1,232 @@
+<% content_for :title, "Des projets pour la planète" %>
+<div class="page-header home-section home-section1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mt-auto mb-auto">
+        <h1>
+          Des projets pour la planète
+        </h1>
+        <h3 class="description">Compense ton impact en plantant des arbres avec Carbo</h3>
+      </div>
+      <div class="col-md-7">
+        <%= image_tag("projects_section1.png", class: "img-fluid") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-header mission-section projects2">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-6">
+        <h2><mark>Simple, accessible, efficace</mark></h2>
+        <p class="description">
+          Parmi les nombreuses solutions à notre portée, planter des arbres est une des clefs de la lutte contre le réchauffement climatique.
+        </p>
+        <p class="description">
+          L’ abonnement Carbo te permet de compenser la part d’empreinte carbone que tu ne peux pas réduire, en finançant des projets certifiés de protection et de renouvellement des forêts.
+        </p>
+        <div class="row text-center">
+          <div class="col-4">
+            <div class="stat stat-info">
+              <div class="emoji">
+                ⚖
+              </div>
+            </div>
+            <h5 class="text-info">
+              kgC02 générés<br>
+              <small>
+                par tes dépenses du mois
+              </small>
+            </h5>
+          </div>
+          <div class="col-4">
+            <div class="stat stat-primary">
+              <div class="emoji">
+                🌲
+              </div>
+            </div>
+            <h5 class="text-primary">
+              arbres à planter<br>
+              <small>
+                pour absorber ton impact
+              </small>
+            </h5>
+          </div>
+          <div class="col-4">
+            <div class="stat stat-warning">
+              <div class="emoji">
+                💸
+              </div>
+            </div>
+            <h5 class="text-warning">
+              € à débourser<br>
+              <small>
+                pour le compenser
+              </small>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-header home-section mission-section home-section3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 ml-auto mr-auto text-center">
+        <h2><mark>Des projets vérifiés et certifiés</mark></h2>
+        <h4 class="description">
+          Par le passé, plusieurs projets de puits de carbone ont été confrontés à la fraude ou à des conséquences imprévues. C'est pourquoi nous opèrons une sélection drastique des projets pour retenir ceux que nous jugeons exceptionnels et qui séquestent efficacement et durablement les émissions de CO2.
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <%= image_tag("illu1_projects3.png", class: "img-fluid") %>
+        <div class="card">
+          <div class="card-body justify-content">
+            <div class="card-title">
+              <h4>
+                Mesurable
+              </h4>
+            </div>
+            <p>
+              Les projets soutenus disposent d’un protocole fiable et reconnu par la communauté internationale
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= image_tag("illu2_projects3.png", class: "img-fluid") %>
+        <div class="card">
+          <div class="card-body justify-content">
+            <div class="card-title">
+              <h4>
+                Additionnel
+              </h4>
+            </div>
+            <p>
+              Ces projets ne peuvent se réaliser sans le soutien de la communauté Carbo car leur modèle économique en dépend
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= image_tag("illu3_projects3.png", class: "img-fluid") %>
+        <div class="card">
+          <div class="card-body justify-content">
+            <div class="card-title">
+              <h4>
+                Transparent
+              </h4>
+            </div>
+            <p>
+              Ils partagent avec nous un maximum d’informations : résultats, jalons clefs, coûts, obstacles, succès, évolutions...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <h2>Les derniers projets</h2>
+    <div class="col-md-10">
+      <% @projects.each do |project| %>
+        <%= render project %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="page-header mission-section mission2">
+  <div class="container">
+    <div class="row justify-content-around align-items-end">
+      <div class="col-md-6">
+        <h2>
+          <mark>En faire toujours plus</mark>
+        </h2>
+        <p class="description">
+          Si nous voulons inciter le plus grand nombre à contribuer à son échelle, nous sommes aussi conscients que planter de arbres ne peut suffire à enrayer la crise climatique.
+        </p>
+        <p class="description">
+          Notre équipe est constamment à la recherche de nouveaux moyens de réduire et compenser ton impact, pour fédérer un maximum de personnes autour de la question du climat. Nous apprécions que nos membres utilisent Carbo en complément d’autres initiatives quotidiennes - politiques, sociales, associatives, etc. pour maximiser leur impact positif sur la planète.
+        </p>
+        <p class="description">
+          Tu as une bonne idée ? Écris nous à
+          <%= link_to "contact@hellocarbo.com", "mailto:contact@hellocarbo.com" %>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <%= image_tag("mission_section2.png", class: "img-fluid") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-header home-section home-section6">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mt-auto mb-auto">
+        <span class="badge badge-pill badge-white">Disponible en version alpha</span>
+        <h2>Essaie Carbo dès aujourd'hui  🚀</h2>
+        <%= link_to "Créer mon compte", new_user_registration_path, class: "btn btn-lg btn-round btn-info" %>
+      </div>
+      <div class="col-md-4" style="margin-bottom:-250px; text-align:center;">
+        <%= image_tag("phone_section6.png", class: "w-50") %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="prefooter">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-3" style="margin-top:-20px;">
+        <h3>
+          <%= image_tag("Logo-Carbo-Blue", style: "width:55px;") %>
+          Carbo
+        </h3>
+        <p class="description">
+          Donner au plus grand nombre le pouvoir d’agir contre le réchauffement climatique.
+        </p>
+        <%= link_to "hello@carbo.com", "mailto:contact.carbo2019@gmail.com" %>
+      </div>
+      <div class="col-md-3">
+        <h5>Explorer</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to "Comment ça marche ?", "/pages/about#section3" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "A propos", page_path('mission') %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "FAQ", page_path('about') %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h5>Liens utiles</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to "Poser une question", page_path('about') %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Ecrire aux fondateurs", page_path('about') %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Suivre notre développement", page_path('about') %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <%= image_tag("illu_prefooter.png", class: "img-fluid illu") %>
+      </div>
+    </div>
+  </div>
+</div>
+

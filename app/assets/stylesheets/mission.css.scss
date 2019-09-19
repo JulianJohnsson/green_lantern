@@ -2,13 +2,13 @@
 
 .mission-section {
   p {
-  font-weight: bold;
+  font-weight: normal;
   font-size: 1.2em;
   line-height: 1.5em;
   }
 }
 
-.mission-section h1 {
+.mission-section h1, h2 {
   font-weight: bold;
   margin-bottom: 50px;
   mark {
@@ -65,5 +65,18 @@
     small {
       font-weight: bold;
     }
+  }
+}
+
+.projects2 {
+  background-image: url("background_projects2.png");
+  background-position: left -20% bottom 50%;
+  background-size: 55%;
+  background-repeat: no-repeat;
+}
+
+.mission-section {
+  .emoji {
+    line-height: 2.5em;
   }
 }
