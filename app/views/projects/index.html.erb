@@ -1,6 +1,6 @@
 <% content_for :title, "Les projets (en cours)" %>
 
-<div class="row text-center">
+<div class="row text-center projects">
   <div class="col-md-4">
     <p class="number number-lg">-</p>
     <p class="tag-line">
@@ -27,7 +27,7 @@
   </div>
 </div>
 <p class="big">
-  Les projets Carbo sont une des clés pour lutter contre le changement climatique. Nous facilitons la recherche de projets fiables et rentables qui aident à atténuer la tendance actuelle. Voici 2 exemples :
+  Les projets Carbo sont une des clés pour lutter contre le changement climatique. Nous facilitons la recherche de projets fiables et durables qui aident à atténuer la tendance actuelle. Voici 2 exemples de projets que nous pourrions soutenir ensemble :
 </p>
 <% @projects.each do |project| %>
   <%= render project %>
@@ -36,7 +36,7 @@
 <div class="row justify-content-center bottom-cta">
   <div class="col-md-4 text-center">
     <%= image_tag("compenser_CTA.png", class: "img-fluid", style: "margin-bottom: -10px; width:70%;") %>
-    <%= link_to "Choisir mon abonnement", new_subscription_path, class: "btn btn-lg btn-rose btn-round" %>
+    <%= link_to "Choisir mon abonnement", '/subscriptions/new#anchor', class: "btn btn-lg btn-rose btn-round" %>
   </div>
 </div>
 

@@ -34,10 +34,17 @@
                         <%= account['updated_at'].to_datetime.strftime("Mis à jour le %d/%m/%Y") %>
                       </small>
                     </td>
-                    <td><%= account['status'] %></td>
+                    <td>
+                      <% if account['status'] == 0 %>
+                        <div class="category-pill pill-success" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Ton compte est bien synchronisé, RAS !"/>
+                      <% else %>
+                        <div class="category-pill pill-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Ton compte n'est plus synchronisé, réessaie demain et si cela persiste merci de nous contacter"/>
+                      <% end %>
+                    </td>
                     <td class="text-right">
                       <%= link_to 'Modifier mes identifiants', @bridge.edit_item_url(current_user, account['item']['id']), class: "btn btn-link btn-info" %>
-                      <%= link_to 'Supprimer le compte', "", class: "btn btn-link btn-danger" %>
+                      <%= link_to 'Supprimer le compte', "mailto:contact.carbo2019@gmail.com?subject=Supprimer%20mon%20compte%20bancaire&body=Hey%20Carbo,%20ici%20#{current_user.name}%20!
+                        %0d%0dPourriez%20vous%20svp%20supprimer%20mon%20compte%20bancaire%20libellé%20:%20_______________%0d%0dMerci%20!", class: "btn btn-link btn-danger" %>
                     </td>
                   </tr>
                 <% end %>

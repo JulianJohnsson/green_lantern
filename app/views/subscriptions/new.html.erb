@@ -40,7 +40,7 @@
   <div class="col-md-3">
     <div class="stat stat-primary">
       <div class="emoji" style="transform: translate(0,-10px);">
-        🌲
+        🌳
       </div>
       <p class="number number-md">
         <%= number_with_precision(@carbone_count / (750/5), precision: 0) %>
@@ -71,7 +71,7 @@
   </div>
 </div>
 
-<h2 class="description">
+<h2 class="description" id="anchor">
   Comment ?
 </h2>
 <div class="row align-items-center">
@@ -95,7 +95,7 @@
         <p>
           PSS...POUR COMPENSER TON IMPACT MOYEN SUR LES 6 DERNIERS MOIS, ABONNE TOI À HAUTEUR DE
         </p>
-        <p>
+        <p class="number number-sm">
           <strong>
             <%= number_with_precision(@average_price, precision: 0) %>
             € / MOIS
@@ -153,7 +153,7 @@
               <i class="material-icons">euro</i>
             </span>
           </div>
-          <%= form.number_field :price, class: 'form-control', :value => number_with_precision(2*@average_price, precision: 0) %>
+          <%= form.number_field :price, class: 'form-control big-input-rose', :value => number_with_precision(2*@average_price, precision: 0) %>
         </div>
       </div>
       <div class="col-5 actions">
@@ -201,7 +201,7 @@
               <i class="material-icons">euro</i>
             </span>
           </div>
-          <%= form.number_field :price, class: 'form-control', :value => number_with_precision(@average_price, precision: 0) %>
+          <%= form.number_field :price, class: 'form-control big-input-info', :value => number_with_precision(@average_price, precision: 0) %>
         </div>
       </div>
       <div class="col-5 actions">

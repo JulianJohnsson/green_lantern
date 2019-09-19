@@ -35,6 +35,9 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .card-header {
+    font-weight: bold;
+  }
   .card-body {
     padding-top: 2em;
     padding-left: 1em;
@@ -57,4 +60,16 @@
   .bmd-form-group {
     padding-top: 0;
   }
+}
+
+.big-input-rose {
+  font-family: Baloo;
+  font-size: 2em;
+  color: $brand-rose;
+}
+
+.big-input-info {
+  font-family: Baloo;
+  font-size: 2em;
+  color: $brand-info;
 }

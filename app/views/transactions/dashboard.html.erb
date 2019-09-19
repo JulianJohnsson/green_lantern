@@ -21,7 +21,7 @@
                 <%= number_with_precision(@current_month_count, precision: 0) %>
               </p>
             </div>
-            <div class="col-5 text-left">
+            <div class="col-5 text-left" style="margin-left: -20px;">
               <span style="opacity:0.5; font-weight:bold;">
                 kg CO2
               </span><br>
@@ -62,7 +62,7 @@
                   <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
                   <td class="text-right">
                     <%= link_to edit_transaction_path(transaction) do %>
-                      <i class='material-icons'>edit</i>
+                      <i class='material-icons text-warning'>edit</i>
                     <% end %>
                   </td>
                 </tr>
@@ -77,7 +77,7 @@
       <div class="card">
         <div class="card-header card-header-primary">
           <div class="emoji-title">
-            📉
+            👣
             <h4>Mon historique</h4>
           </div>
         </div>
@@ -91,8 +91,8 @@
 
   <div class="row">
     <div class="col-md-4">
-      <div class="card border-primary text-center">
-        <div class="card-header card-header-primary">
+      <div class="card border-info text-center">
+        <div class="card-header card-header-info">
           <div class="emoji-title">
             🙃
             <h4>
@@ -105,7 +105,7 @@
             <%= number_with_precision(@top_category.values.first, precision: 0) %>
           </p>
           <p class="tag-line">
-            <span class="tag tag-primary">
+            <span class="tag tag-info">
               kg de CO2
             </span>
           </p>
@@ -116,13 +116,13 @@
             <%= number_with_precision(@top_category.values.first, precision: 0) %>
             kg de carbone ce mois-ci
           </p>
-          <%= link_to "Comprendre", categories_path, class: "btn btn-outline-primary btn-round" %>
+          <%= link_to "Comprendre", categories_path, class: "btn btn-outline-info btn-round" %>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card border-info text-center">
-        <div class="card-header card-header-info">
+      <div class="card border-primary text-center">
+        <div class="card-header card-header-primary">
           <div class="emoji-title">
             👥
             <h4>
@@ -136,7 +136,7 @@
           </p>
           <% if @current_month_count - @average_by_user > 0 %>
             <p class="tag-line">
-              <span class="tag tag-info">
+              <span class="tag tag-primary">
                 <%= number_with_precision((@current_month_count - @average_by_user) * 100 / @average_by_user, precision: 0) %>
                 % de plus
               </span>
@@ -146,7 +146,7 @@
             </p>
           <% else %>
             <p class="tag-line">
-              <span class="tag tag-info">
+              <span class="tag tag-primary">
                 <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>
                 % de moins
               </span>
@@ -155,7 +155,7 @@
               Mes dépenses sont <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>% moins carbonées que la moyenne des membres
             </p>
           <% end %>
-          <%= link_to "Progresser", '/compare', class: "btn btn-outline-info btn-round" %>
+          <%= link_to "Réduire", '/compare', class: "btn btn-outline-primary btn-round" %>
         </div>
       </div>
     </div>
