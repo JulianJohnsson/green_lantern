@@ -77,9 +77,9 @@
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td>
                       <td>
-                        <a href="" data-toggle="modal" data-target="#moreInfoModal">
+                        <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.external_id}" do %>
                           <i class="material-icons">more_vert</i>
-                        </a>
+                        <% end %>
                       </td>
                     </tr>
                   <% end %>
@@ -96,6 +96,7 @@
                         <i class="material-icons">add_circle</i>
                       <% end %>
                     </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

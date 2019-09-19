@@ -44,6 +44,43 @@
             </tbody>
           </table>
         </div>
+        <div class="card-footer">
+          <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-primary btn-link" do %>
+            <i class="material-icons">arrow_back</i>
+            Retour
+          <% end %>
+          <div class="ml-auto">
+            <%= link_to 'Signaler un problème', "", class: 'btn btn-danger btn-link', "data-toggle" => "modal", "data-target" => "#commentModal" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="commentModalLabel">Signaler un problème</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for @comment do |form| %>
+              <div class="field">
+                <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true %>
+              </div>
+              <div class="actions">
+                <%= form.submit 'Envoyer mon commentaire', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
