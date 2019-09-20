@@ -10,6 +10,14 @@
   font-size: 0.7rem;
 }
 
+@media screen and (max-width: 768px) {
+  .onboarding-page {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 60px;
+  }
+}
+
 .mini-navigation {
   position: absolute;
 }
