@@ -32,6 +32,12 @@ html {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .mobile-contrast {
+      text-shadow: 1px 1px 1px black;
+    }
+}
+
 .home-section .number-lg {
   color: $brand-grey;
   transform: matrix(1, -0.1, 0.07, 0.99, 0, 0);

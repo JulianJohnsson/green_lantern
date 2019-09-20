@@ -77,9 +77,18 @@
 
 .projects2 {
   background-image: url("background_projects2.png");
-  background-position: left -20% bottom 50%;
+  background-position: left -20% bottom 55%;
   background-size: 55%;
   background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .projects2 {
+    background-size: 100%;
+    p {
+      color: white;
+    }
+ }
 }
 
 .mission-section {

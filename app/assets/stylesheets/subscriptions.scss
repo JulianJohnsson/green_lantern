@@ -65,12 +65,13 @@
 .big-input-rose {
   font-family: Baloo;
   font-size: 2em;
-  line-height: 2em;
+  line-height: 2em !important;
   color: $brand-rose;
 }
 
 .big-input-info {
   font-family: Baloo;
-  font-size: 2em !important;
+  font-size: 2em;
+  line-height: 2em !important;
   color: $brand-info;
 }

@@ -34,8 +34,8 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 d-none d-md-block">
-            <%= image_tag("onboarding_3.png", :class => 'img-fluid') %>
+          <div class="col-md-6">
+            <%= image_tag("onboarding_3.png", :class => 'img-fluid d-none d-md-block') %>
             <div class="actions">
               <%= form.submit 'Valider mes informations', class: 'btn btn-primary btn-round' %>
               <%= link_to "Plus tard", @bridge, class: 'btn btn-outline-primary btn-round' %>

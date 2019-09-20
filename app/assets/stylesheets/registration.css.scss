@@ -11,6 +11,12 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .registration-page {
+    height: auto;
+  }
+}
+
 .social-line a {
   color: white !important;
   margin-top: 0rem;
