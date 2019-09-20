@@ -5,17 +5,17 @@
       <div class="card">
         <div class="card-title month-nav">
           <div class="row">
-            <div class="col-4 text-right mt-auto mb-auto">
+            <div class="col-3 text-right mt-auto mb-auto">
               <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
                 <i class="material-icons">arrow_back</i>
               <% end %>
             </div>
-            <div class="col-4 text-center mt-auto mb-auto">
+            <div class="col-6 text-center mt-auto mb-auto">
               <h3>
                 <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
               </h3>
             </div>
-            <div class="col-4 text-left mt-auto mb-auto">
+            <div class="col-3 text-left mt-auto mb-auto">
               <% if params[:month].to_i > 0 %>
                 <%= link_to(:month => (params[:month].to_i) - 1)  do %>
                   <i class="material-icons">arrow_forward</i>
@@ -35,7 +35,7 @@
     Tes dépenses du mois génèrent <strong><%= number_with_precision(@carbone_count, precision: 0) %> kg C02</strong>, une quantité équivalente à...
   </p>
   <div class="row text-center">
-    <div class="col-md-3 col-6">
+    <div class="col-md-3">
       <div class="card">
         <div class="card-title emoji-title">
           🦛
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-6">
+    <div class="col-md-3">
       <div class="card">
         <div class="card-title emoji-title">
           👖
@@ -65,7 +65,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-6">
+    <div class="col-md-3">
       <div class="card">
         <div class="card-title emoji-title">
           🛴
@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-6">
+    <div class="col-md-3">
       <div class="card">
         <div class="card-title emoji-title">
           🍔
