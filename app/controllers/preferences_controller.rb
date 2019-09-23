@@ -13,8 +13,13 @@ class PreferencesController < ApplicationController
     @bridge = Bridge.find_by_user_id(current_user.id)
     respond_to do |format|
       if @preference.save
-        format.html { redirect_to @bridge, notice: 'Merci ! Vos préférences ont bien été enregistrées' }
-        format.json { render :show, status: :created, location: @preference }
+        if request.referer.include? "/users/edit"
+          format.html { redirect_to edit_user_registration_path, notice: 'Vos préférences ont bien été mises à jour' }
+          format.json { render :show, status: :ok, location: @preference }
+        else
+          format.html { redirect_to @bridge, notice: 'Merci ! Vos préférences ont bien été enregistrées' }
+          format.json { render :show, status: :created, location: @preference }
+        end
       else
         format.html { render :new }
         format.json { render json: @preference.errors, status: :unprocessable_entity }

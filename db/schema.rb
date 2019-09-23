@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_123047) do
+ActiveRecord::Schema.define(version: 2019_09_20_170630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_09_18_123047) do
     t.string "uuid"
     t.datetime "expires_at"
     t.datetime "last_sync_at"
+    t.string "credential"
     t.index ["user_id"], name: "index_bridges_on_user_id"
   end
 

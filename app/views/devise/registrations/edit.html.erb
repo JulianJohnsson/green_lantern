@@ -57,7 +57,8 @@
     <div class="card border-rose">
       <div class="card-body">
         <div class="text-center">
-          <%= form_for(@preference, :html => { :method => :put, :role => 'form'}) do |f| %>
+          <%= form_for(@preference) do |f| %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= devise_error_messages! %>
             <div class="row text-left">
               <div class="col-md-6">

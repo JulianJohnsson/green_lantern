@@ -25,12 +25,14 @@
               <span style="opacity:0.5; font-weight:bold;">
                 kg CO2
               </span><br>
-              <% if @current_month_count < @last_month_count %>
-                <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus faible que le mois dernier 💪 continue comme ça !" %>
-              <% elsif @current_month_count > @last_month_count %>
-                <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus élevé que le mois dernier 😱 encore un effort !" %>
-              <% else %>
-                <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que le mois dernier, 🎯 bien visé !" %>
+              <% if @last_month_count > 0 %>
+                <% if @current_month_count < @last_month_count %>
+                  <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus faible que le mois dernier 💪 continue comme ça !" %>
+                <% elsif @current_month_count > @last_month_count %>
+                  <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus élevé que le mois dernier 😱 encore un effort !" %>
+                <% else %>
+                  <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:30%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que le mois dernier, 🎯 bien visé !" %>
+                <% end %>
               <% end %>
             </div>
           </div>

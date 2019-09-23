@@ -21,6 +21,8 @@ class BridgesController < ApplicationController
         @bridge.bank_connected = true
         @bridge.save
         TransactionFetcherJob.perform_later(current_user)
+        TransactionFetcherJob.set(wait: 1.minute).perform_later(current_user)
+        TransactionFetcherJob.set(wait: 3.minutes).perform_later(current_user)
         redirect_to new_preference_path
       end
     else redirect_to new_bridge_path
@@ -109,6 +111,6 @@ class BridgesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bridge_params
-      params.require(:bridge).permit(:token, :expires_at, :bank_connected, :user_id, :uuid, :last_sync_at)
+      params.require(:bridge).permit(:token, :expires_at, :bank_connected, :user_id, :uuid, :last_sync_at, :credential)
     end
 end

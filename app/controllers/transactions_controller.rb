@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
   end
 
   def dashboard
-    @transactions = current_user.transactions.recent.order(date: :desc)
+    @transactions = current_user.transactions.carbone_contribution.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)
     @current_month_count = current_user.transactions.month_to_date(0).sum(:carbone)
     @last_month_count = current_user.transactions.month_to_date(1).sum(:carbone)

@@ -6,6 +6,7 @@ class AnalyticService
         user_id: "#{ user.id }",
         traits: {
           email: "#{ user.email }",
+          name: "#{ user.name }",
           verified: "#{ true unless bridge.uuid == nil }",
           onboarded: "#{ bridge.bank_connected }",
           last_sync_date: "#{ bridge.last_sync_at }"
@@ -19,7 +20,8 @@ class AnalyticService
       Analytics.identify(
         user_id: "#{ user.id }",
         traits: {
-          email: "#{ user.email }"
+          email: "#{ user.email }",
+          name: "#{ user.name }"
         },
         context: {
           ip: "#{request.remote_ip}",

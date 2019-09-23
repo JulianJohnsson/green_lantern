@@ -33,6 +33,18 @@ $(document).ready(function(){
   });
 });
 
+$(window).scroll(function() {
+if ($("#registration-navbar").offset().top > 80) {
+    $('#custom-nav').addClass('affix');
+    $(".navbar-fixed-top").addClass("top-nav-collapse");
+    $('.navbar-brand img').attr('src','/assets/Logo-Carbo-White.png'); //change src
+} else {
+    $('#custom-nav').removeClass('affix');
+    $(".navbar-fixed-top").removeClass("top-nav-collapse");
+    $('.navbar-brand img').attr('src','/assets/Logo-Carbo-Blue.png')
+}
+});
+
 /*$(document).ready(function(){
   var slider = document.getElementById('sliderRegular');
 
