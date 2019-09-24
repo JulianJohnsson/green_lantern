@@ -26,7 +26,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'administrate'
 gem 'bootstrap', '>= 4.2.0'
 gem 'bourbon'
-gem 'devise'
+gem 'devise', ">= 4.7.1"
 gem 'devise_invitable'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
