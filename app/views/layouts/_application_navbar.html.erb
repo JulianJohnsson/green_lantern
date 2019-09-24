@@ -39,6 +39,7 @@
             <i class="material-icons">person</i></p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+            <%= link_to 'FAQ', page_path('faq'), class: 'dropdown-item' %>
             <% if user_signed_in? %>
               <%= link_to 'Profil', edit_user_registration_path, class: 'dropdown-item' %>
               <%= link_to 'Comptes', user_path(current_user), class: 'dropdown-item' %>
