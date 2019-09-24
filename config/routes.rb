@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'transactions#dashboard'
   get '/categorize' => 'transactions#categorize'
   get '/compare' => 'categories#compare'
+  get '/faq' => 'high_voltage/pages#show', id: 'faq'
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

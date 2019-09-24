@@ -34,16 +34,18 @@
           <li class="nav-item">
             <%= link_to "A propos", page_path('mission') %>
           </li>
-          <li class="nav-item" hidden>
-            <%= link_to "FAQ", page_path('about') %>
+          <li class="nav-item">
+            <%= link_to "FAQ", page_path('faq') %>
           </li>
         </ul>
       </div>
       <div class="col-md-3">
         <h5>Liens utiles</h5>
         <ul class="nav flex-column">
-          <li class="nav-item" hidden>
-            <%= link_to "Poser une question", page_path('about') %>
+          <li class="nav-item">
+            <%= link_to "" do %>
+              <i class="fa fa-facebook-square"></i>
+            <% end %>
           </li>
           <li class="nav-item">
             <%= link_to "Ecrire aux fondateurs", '/pages/mission#anchor' %>
