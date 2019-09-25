@@ -4,69 +4,33 @@
   </div>
   <div class="card-body">
     <% @count = 0 %>
-    <% if @my_carbone[0][1] < @average_carbone[0][1] && @my_carbone[0][1] > 0 %>
-      <% @count = @count + 1 %>
-      <div class="row align-items-center">
-        <div class="col-3 emoji">
-          🛍
+    <% i = 0 %>
+    <% 5.times do %>
+      <% if @my_carbone[i][1] < @average_carbone[i][1] && @my_carbone[i][1] > 0 %>
+        <% @count = @count + 1 %>
+        <div class="row align-items-center">
+          <div class="col-3 emoji">
+            <%= @my_carbone[i][0].emoji %>
+          </div>
+          <div class="col-9 text-left">
+            <p>
+              <% case i %>
+              <% when 0 %>
+                Tes repas génèrent moins de carbone que la moyenne (-<%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>%). Bon appétit !
+              <% when 1 %>
+                Le shopping ne semble pas être ton grand dada (-<%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>%), et la planète te dit merci !
+              <% when 2 %>
+                Home sweet home ! Ton logement engendre <%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>% moins de C02 que la moyenne
+              <% when 3 %>
+                À ce stade, tes dépenses en loisirs et services sont <%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>% moins carbonées que les autres
+              <% when 4 %>
+                À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>% moins carbonés que les autres membres
+              <% end %>
+            </p>
+          </div>
         </div>
-        <div class="col-9 text-left">
-          <p>
-            Le shopping ne semble pas être ton grand dada (-<%= number_with_precision(100*(@average_carbone[0][1] - @my_carbone[0][1]) / @average_carbone[0][1], precision: 0) %>%), et la planète te dit merci !
-          </p>
-        </div>
-      </div>
-    <% end %>
-    <% if @my_carbone[1][1] < @average_carbone[1][1] && @my_carbone[1][1] > 0 %>
-      <% @count = @count + 1 %>
-      <div class="row align-items-center">
-        <div class="col-3 emoji">
-          🍴
-        </div>
-        <div class="col-9 text-left">
-          <p>Tes repas génèrent moins de carbone que la moyenne (-<%= number_with_precision(100*(@average_carbone[1][1] - @my_carbone[1][1]) / @average_carbone[1][1], precision: 0) %>%). Bon appétit !
-          </p>
-        </div>
-      </div>
-    <% end %>
-    <% if @my_carbone[2][1] < @average_carbone[2][1] && @my_carbone[2][1] > 0 %>
-      <% @count = @count + 1 %>
-      <div class="row align-items-center">
-        <div class="col-3 emoji">
-          🚘
-        </div>
-        <div class="col-9 text-left">
-          <p>
-            À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[2][1] - @my_carbone[2][1]) / @average_carbone[2][1], precision: 0) %>% moins carbonés que les autres membres
-          </p>
-        </div>
-      </div>
-    <% end %>
-    <% if @my_carbone[3][1] < @average_carbone[3][1] && @my_carbone[3][1] > 0 %>
-      <% @count = @count + 1 %>
-      <div class="row align-items-center">
-        <div class="col-3 emoji">
-          🏠
-        </div>
-        <div class="col-9 text-left">
-          <p>
-            Home sweet home ! Ton logement engendre <%= number_with_precision(100*(@average_carbone[3][1] - @my_carbone[3][1]) / @average_carbone[3][1], precision: 0) %>% moins de C02 que la moyenne
-          </p>
-        </div>
-      </div>
-    <% end %>
-    <% if @my_carbone[4][1] < @average_carbone[4][1] && @my_carbone[4][1] > 0 %>
-      <% @count = @count + 1 %>
-      <div class="row align-items-center">
-        <div class="col-3 emoji">
-          🏥
-        </div>
-        <div class="col-9 text-left">
-          <p>
-            À ce stade, tes dépenses en santé et services publics sont <%= number_with_precision(100*(@average_carbone[4][1] - @my_carbone[4][1]) / @average_carbone[4][1], precision: 0) %>% moins carbonées que les autres
-          </p>
-        </div>
-      </div>
+      <% end %>
+      <% i = i+1 %>
     <% end %>
     <% if @count == 0 %>
       <%= image_tag 'illu_top.png', class: "img-fluid", style: "width:30%; margin-bottom: 20px; opacity:0.4;" %>

@@ -113,10 +113,10 @@
         <div class="card-body">
           <%= column_chart [
             {name: "Mon carbone",
-              data: @my_carbone
+              data: @my_carbone.map { |c,v| [c.name,v]}
             },
             {name: "Moyenne des membres",
-              data: @average_carbone
+              data: @average_carbone.map { |c,v| [c.name,v]}
             }
           ], defer: true, suffix: " kg" %>
         </div>
