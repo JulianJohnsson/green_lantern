@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
 
   def categorize
     @comment = Comment.new
-    @transactions = current_user.transactions.category_id(1).order(date: :desc)
+    @transactions = current_user.transactions.category_id(115).order(date: :desc)
   end
 
   def dashboard
@@ -72,10 +72,10 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        if params[:transaction][:previous_category] == "1"
+        if params[:transaction][:previous_category] == "115"
           format.html { redirect_to '/categorize', notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
           format.json { render :show, status: :ok, location: @transaction }
-        elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "1"
+        elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"
           format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
           format.json { render :show, status: :ok, location: @transaction }
         else
