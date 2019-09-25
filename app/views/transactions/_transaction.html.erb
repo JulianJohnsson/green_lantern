@@ -2,7 +2,7 @@
   <%= transaction.description %>
 </td>
 <td>
-  <%= Category.find_by_external_id(transaction.category_id).name %>
+  <%= Category.find(transaction.category_id).name %>
 <td>
   <%= number_with_precision(transaction.carbone, precision: 2).to_s + " Kg" %>
 </td>
