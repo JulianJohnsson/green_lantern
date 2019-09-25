@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_170630) do
+ActiveRecord::Schema.define(version: 2019_09_25_100533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bankin_categories", force: :cascade do |t|
+    t.integer "bankin_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bridges", force: :cascade do |t|
     t.string "token"
@@ -35,6 +42,9 @@ ActiveRecord::Schema.define(version: 2019_09_20_170630) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "color"
+    t.string "emoji"
+    t.boolean "visible"
   end
 
   create_table "comments", force: :cascade do |t|

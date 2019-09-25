@@ -51,8 +51,8 @@
                 </thead>
                 <tbody>
                   <% i = 0 %>
-                  <% @transactions.sort_by {|t| Category.find_by_external_id(t.parent_category_id).name}.map {|t| t.parent_category_id}.uniq.each do |c| %>
-                    <% @category = Category.find_by_external_id(c) %>
+                  <% @transactions.sort_by {|t| Category.find(t.parent_category_id).name}.map {|t| t.parent_category_id}.uniq.each do |c| %>
+                    <% @category = Category.find(c) %>
                     <tr>
                       <td>
                         <div class="category-pill" style="background:<%= Chartkick.options[:colors][i] %>;"/>
@@ -62,7 +62,7 @@
                         <%= @category.name %>
                         <small>
                           <br />
-                          <%= link_to "/transactions?month=#{params[:month]}&parent_category=#{@category.external_id}" do %>
+                          <%= link_to "/transactions?month=#{params[:month]}&parent_category=#{@category.id}" do %>
                             <%= @transactions.parent_category_id(c).count.to_s + " transactions" %>
                           <% end %>
                         </small>

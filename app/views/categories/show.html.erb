@@ -52,7 +52,7 @@
                 <tbody>
                   <% i = 0 %>
                   <% @transactions.sort_by {|t| t.category_id}.map {|t| t.category_id}.uniq.each do |c| %>
-                    <% @category = Category.find_by_external_id(c) %>
+                    <% @category = Category.find(c) %>
                     <tr>
                       <td>
                         <div class="category-pill" style="background:<%= Chartkick.options[:colors][i] %>;"/>
@@ -62,7 +62,7 @@
                         <%= @category.name %>
                         <small>
                           <br />
-                          <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.external_id}" do %>
+                          <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.id}" do %>
                             <%= @transactions.category_id(c).count.to_s + " transactions" %>
                           <% end %>
                         </small>
@@ -77,7 +77,7 @@
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td> -->
                       <td>
-                        <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.external_id}" do %>
+                        <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.id}" do %>
                           <i class="material-icons">more_vert</i>
                         <% end %>
                       </td>

@@ -1,5 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :user
+  belongs_to :category
   has_many :comments
 
   before_save :calculate_carbone
@@ -17,15 +18,15 @@ class Transaction < ApplicationRecord
   scope :carbone_contribution, -> {where "carbone > 0"}
 
   def calculate_carbone
-    @category = Category.find_by_external_id(category_id)
+    @category = Category.find(category_id)
     self.carbone = 0
     unless @category.coeff == nil
       self.carbone = self.amount * -1 * @category.coeff
     end
     until @category.parent_id == 0
-      @category = Category.find_by_external_id(@category.parent_id)
+      @category = Category.find(@category.parent_id)
     end
-    self.parent_category_id = @category.external_id
+    self.parent_category_id = @category.id
   end
 
 end

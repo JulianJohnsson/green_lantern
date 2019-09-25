@@ -28,7 +28,7 @@ class TransactionsController < ApplicationController
     @last_month_count = current_user.transactions.month_to_date(1).sum(:carbone)
 
     @categories = Category.all.parent_categories
-    @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.external_id).month_ago(0).sum(:carbone)]}.to_h
+    @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(0).sum(:carbone)]}.to_h
     @top_category = {@carbone_by_category.key(@carbone_by_category.values.max) => @carbone_by_category.values.max }
 
     @average_by_user = Transaction.all.month_to_date(0).sum(:carbone) / Transaction.all.month_to_date(0).distinct.count(:user_id)

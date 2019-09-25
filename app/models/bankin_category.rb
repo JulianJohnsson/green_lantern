@@ -1,0 +1,2 @@
+class BankinCategory < ApplicationRecord
+end
