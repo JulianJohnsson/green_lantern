@@ -100,6 +100,12 @@ body {
     min-height: calc(100vh - 123px);
 }
 
+@media screen and (max-width: 768px) {
+    .main-panel>.content {
+        padding: 0px 0px 0px 0px;
+    }
+}
+
 strong {
   font-weight: bold;
 }
