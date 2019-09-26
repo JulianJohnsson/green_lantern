@@ -26,14 +26,16 @@
         </div>
         <div class="card-body table-responsive">
           <div class="row">
+            <div class="piechart-title text-center">
+              <div>
+                <span class="number number-md"><%= number_with_precision(@carbone_total, precision: 0) %></span>
+                <br>kgCO2
+              </div>
+            </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("category_left.png", class: "img-fluid illustration") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
-              <div class="piechart-title">
-                <span class="number number-md"><%= number_with_precision(@carbone_total, precision: 0) %></span>
-                <br>kgCO2
-              </div>
               <%= pie_chart @carbone_by_parent_category.map { |c,v| [c.name,number_with_precision(v, precision: 2)] }, donut: true, legend: "none", suffix: " kg" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">

@@ -11,13 +11,19 @@
 }
 
 .piechart-title {
+  width: 85px;
   position:absolute;
+  left: 50%;
   z-index: 12;
-  -webkit-transform: translate(96px,120px);
-  -moz-transform: translate(96px,120px);
-  -o-transform: translate(96px,120px);
-  -ms-transform: translate(96px,120px);
-  transform: translate(96px,120px);
+  -webkit-transform: translate(0,120px);
+  -moz-transform: translate(0,120px);
+  -o-transform: translate(0,120px);
+  -ms-transform: translate(0,120px);
+  transform: translate(0,120px);
+  div {
+    position: relative;
+    left: -50%;
+  }
 }
 
 .table-category {
