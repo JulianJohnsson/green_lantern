@@ -60,11 +60,14 @@
             <tbody>
               <% @transactions.first(6).each do |transaction| %>
                 <tr>
-                  <td class="text-left" style="width:70%;"><%= truncate(transaction.description, :length => 33) %></td>
+                  <td class="text-left">
+                    <%= Category.find(transaction.parent_category_id).emoji %>
+                  </td>
+                  <td class="text-left" style="width:50%;"><%= truncate(transaction.description, :length => 33) %></td>
                   <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
                   <td class="text-right">
                     <%= link_to edit_transaction_path(transaction) do %>
-                      <i class='material-icons text-warning'>edit</i>
+                      <i class='material-icons text-warning' style="font-size:18px;">edit</i>
                     <% end %>
                   </td>
                 </tr>

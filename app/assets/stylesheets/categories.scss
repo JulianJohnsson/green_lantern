@@ -1,3 +1,4 @@
+@import "material/scss/material-kit/variables";
 
 .month-nav {
   margin-bottom: 0.625rem !important;
@@ -9,10 +10,34 @@
   border-radius: 32px;
 }
 
+.piechart-title {
+  position:absolute;
+  z-index: 12;
+  -webkit-transform: translate(96px,120px);
+  -moz-transform: translate(96px,120px);
+  -o-transform: translate(96px,120px);
+  -ms-transform: translate(96px,120px);
+  transform: translate(96px,120px);
+}
+
+.table-category {
+  line-height: 1.2em;
+  .inactive {
+  color: grey;
+  opacity: 0.6;
+  }
+}
+
 .category-pill {
   border-radius: 30px;
   width:30px;
   height:30px;
+}
+
+.category-pill-small {
+  border-radius: 20px;
+  width:20px;
+  height:20px;
 }
 
 .illustration {
