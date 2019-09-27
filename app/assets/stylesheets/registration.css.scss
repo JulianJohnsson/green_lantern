@@ -1,5 +1,9 @@
 @import "material/scss/material-kit/variables";
 
+#registration-navbar .navbar-toggler {
+  border: none;
+}
+
 .navbar .navbar-nav .nav-item .nav-link {
   font-size: 14px;
 }

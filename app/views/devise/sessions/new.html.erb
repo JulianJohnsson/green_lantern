@@ -34,7 +34,7 @@
               <%- if devise_mapping.recoverable? %>
                 <small class="form-text text-muted">
                   Mot de passe oublié ?
-                  <%= link_to "Réinitialiser", new_password_path(resource_name), class: 'right' %>
+                  <strong><%= link_to "Réinitialiser", new_password_path(resource_name), class: 'right' %></strong>
                 </small>
               <% end -%>
             </div>
@@ -51,7 +51,7 @@
     <div>
       <p class="text-center">
         pas encore inscrit ?
-        <%= link_to 'Créer mon compte', new_user_registration_path %>
+        <strong><%= link_to 'Créer mon compte', new_user_registration_path %></strong>
       </p>
     </div>
   </div>
