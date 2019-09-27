@@ -1,3 +1,5 @@
+@import "material/scss/material-kit/variables";
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -96,8 +98,8 @@
 
 .bottom-nav {
     margin-bottom: 0;
-    background: #0B4C65;
-    height: 50px;
+    background: $brand-dark-blue !important;
+    height: 55px;
     padding: 0;
 }
 
@@ -113,6 +115,16 @@
 
 .bottom-nav li {
     width: 25%;
+    a {
+        color: $brand-grey;
+        opacity: 0.8;
+    }
+}
+
+.bottom-nav li.active a {
+    color: $brand-primary;
+    font-weight: bold;
+    opacity: 1;
 }
 
 .bottom-nav a {

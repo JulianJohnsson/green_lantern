@@ -13,8 +13,14 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    # @carbone_by_subcategory = Category.all.find_by_parent_id(@category.external_id).map {|c| [c.name, current_user.transactions.carbone_contribution.find_by_external_id(c.external_id).month_ago(params[:month].to_i || 0).sum(:carbone)]}
+    @categories = Category.all.sub_categories(@category.id)
     @transactions = current_user.transactions.carbone_contribution.parent_category_id(@category.id).month_ago(params[:month].to_i || 0)
+
+    @carbone_by_category = @categories.sort_by {|c| c.id}.map {|c| [c, @transactions.category_id(c.id).sum(:carbone)]}
+    @carbone_category_total = @transactions.sum(:carbone)
+
+    @colors = @categories.sort_by {|c| c.id}.map { |c| c.color }
+
   end
 
   def compare

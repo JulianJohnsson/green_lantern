@@ -25,12 +25,18 @@
           </div>
         </div>
         <div class="card-body table-responsive">
+            <div class="piechart-title text-center">
+              <div>
+                <span class="number number-md"><%= number_with_precision(@carbone_category_total, precision: 0) %></span>
+                <br>kgCO2
+              </div>
+            </div>
           <div class="row">
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("category_left.png", class: "img-fluid illustration") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
-              <%= pie_chart @transactions.group(:category_id).sum(:carbone).sort, donut: true, title: "#{number_with_precision(@transactions.sum(&:carbone), precision: 0)} kg", legend: "none" %>
+              <%= pie_chart @carbone_by_category.map { |c,v| [c.name, number_with_precision(v, precision:0)] }, colors: @colors, donut: true, legend: "none", suffix: " kgCO2" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("category_right.png", class: "img-fluid illustration") %>
@@ -43,41 +49,46 @@
                   <tr>
                       <th />
                       <th>Type</th>
-                      <th class="d-none d-md-block">Carbone</th>
+                      <th class="d-none d-md-block">kgCO2</th>
                       <th>Part</th>
                       <!-- <th>Précision</th> -->
                       <th />
                   </tr>
                 </thead>
                 <tbody>
-                  <% i = 0 %>
-                  <% @transactions.sort_by {|t| t.category_id}.map {|t| t.category_id}.uniq.each do |c| %>
-                    <% @category = Category.find(c) %>
-                    <tr>
-                      <td>
-                        <div class="category-pill" style="background:<%= Chartkick.options[:colors][i] %>;"/>
-                        <% i = i+1 %>
+                  <% @carbone_by_category.each do |c,v| %>
+                    <tr class="<%= "inactive" if v == 0 %>">
+                      <td class="text-right" style="width:8%;">
+                        <div class="category-pill ml-auto" style="background:<%= c.color unless v== 0 %><%= "grey" if v== 0 %>;"/>
                       </td>
                       <td>
-                        <%= @category.name %>
+                        <%= c.name %>
                         <small>
                           <br />
-                          <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.id}" do %>
-                            <%= @transactions.category_id(c).count.to_s + " transactions" %>
+                          <% unless v == 0 %>
+                            <%= link_to "/transactions?month=#{params[:month]}&category=#{c.id}" do %>
+                              <%= @transactions.category_id(c.id).count.to_s + " transactions" %>
+                            <% end %>
+                          <% else %>
+                           pas de transaction
                           <% end %>
                         </small>
                       </td>
-                      <td class="d-none d-md-block">
-                        <%= number_with_precision(@transactions.category_id(c).sum(&:carbone), precision: 2).to_s + " kg" %>
+                      <td class="d-none d-md-table-cell">
+                        <%= number_with_precision(v, precision: 0).to_s %>
                       </td>
-                      <td>
-                        <%= number_with_precision(@transactions.category_id(c).sum(&:carbone)*100 / @transactions.sum(&:carbone), precision: 1).to_s + " %" %>
+                      <td style="width:20%;">
+                        <%= number_with_precision(v*100 / @carbone_category_total, precision: 0).to_s + " %" %>
                       </td>
                       <!-- <td>
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td> -->
-                      <td>
-                        <%= link_to "/transactions?month=#{params[:month]}&category=#{@category.id}" do %>
+                      <td class="text-left" style="width:8%;">
+                        <% unless v == 0 %>
+                          <%= link_to "/transactions?month=#{params[:month]}&category=#{c.id}" do %>
+                          <i class="material-icons">more_vert</i>
+                        <% end %>
+                        <% else %>
                           <i class="material-icons">more_vert</i>
                         <% end %>
                       </td>

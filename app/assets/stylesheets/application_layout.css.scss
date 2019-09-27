@@ -110,10 +110,6 @@ strong {
   font-weight: bold;
 }
 
-.row.bottom-cta {
-    margin-top: 2em;
-}
-
 h1, h2, h3, h4 {
   font-family: Maven Pro;
 }
@@ -124,11 +120,6 @@ p, a, h5 {
 
 body {
   font-family: Quicksand;
-}
-
-footer {
-  font-family: Quicksand;
-  font-size: 0.9em;
 }
 
 h1, h2, h3, .h1, .h2, .h3 {
@@ -160,8 +151,22 @@ h2, h3, h4, h5 {
     border-width: 1px;
 }
 
+.row.bottom-cta {
+    margin-top: 2em;
+    img {
+        opacity: 0.3;
+    }
+}
+
+
+footer {
+  font-family: Quicksand;
+  font-size: 0.9em;
+}
+
 footer .copyright {
     padding: 0px 0;
+    font-size: 0.8em;
 }
 
 footer .material-icons {
