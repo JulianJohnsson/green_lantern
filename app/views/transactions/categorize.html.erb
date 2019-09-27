@@ -24,16 +24,67 @@
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Catégorie</th>
-                <th>Carbone</th>
+                <th>Montant</th>
                 <th>Date</th>
+                <th>Catégorie</th>
                 <th />
               </tr>
             </thead>
             <tbody>
               <% @transactions.each do |transaction| %>
                 <tr>
-                  <%= render transaction %>
+                  <%= form_with(model: transaction, local: true) do |form| %>
+                    <td style="width:25%;">
+                      <%= transaction.description %>
+                    </td>
+                    <td>
+                      <%= number_with_precision(transaction.amount * -1, precision: 2).to_s + " €" %>
+                    </td>
+                    <td>
+                      <%= transaction.date %>
+                    </td>
+                    <td>
+                      <%= form.hidden_field :previous_category, :value => 115 %>
+                      <%= form.hidden_field :updated_by_user, :value => true %>
+                      <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
+                    </td>
+                    <td style="width:20%;">
+                      <%= button_tag class: 'btn btn-sm btn-outline-primary', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "", "data-container" => "body", "data-original-title" => "Mettre à jour la catégorie" do %>
+                        <i class="material-icons">done</i>
+                      <% end %>
+                      <%= link_to '', class: 'btn btn-sm btn-outline-danger', "data-toggle" => "modal", "data-target" => "#commentModal" do %>
+                        <i class="material-icons">warning</i>
+                      <% end %>
+                      <!-- Modal -->
+                      <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="commentModalLabel">Signaler un problème</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <%= form_for @comment do |form| %>
+                                    <div class="field">
+                                      <%= form.hidden_field :transaction_id, :value => transaction.id %>
+                                      <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true %>
+                                    </div>
+                                    <div class="actions">
+                                      <%= form.submit 'Envoyer mon commentaire', class: 'btn btn-primary' %>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  <% end %>
                 </tr>
               <% end %>
             </tbody>
@@ -44,34 +95,6 @@
             <i class="material-icons">arrow_back</i>
             Retour
           <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="commentModalLabel">Signaler un problème</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12">
-            <%= form_for @comment do |form| %>
-              <div class="field">
-                <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true %>
-              </div>
-              <div class="actions">
-                <%= form.submit 'Envoyer mon commentaire', class: 'btn btn-primary' %>
-              </div>
-            <% end %>
-          </div>
         </div>
       </div>
     </div>

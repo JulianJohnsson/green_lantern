@@ -1,4 +1,7 @@
 <td>
+  <%= Category.find(transaction.parent_category_id).emoji %>
+</td>
+<td>
   <%= transaction.description %>
 </td>
 <td>
@@ -10,7 +13,7 @@
   <%= transaction.date %>
 </td>
 <td>
-  <%= link_to edit_transaction_path(transaction, :month => params[:month], :category => ('1' if current_page?('/categorize') || params[:category])) do %>
+  <%= link_to edit_transaction_path(transaction, :month => params[:month], :category => ('115' if current_page?('/categorize') || params[:category])) do %>
     <i class="material-icons">more_vert</i>
   <% end %>
 </td>

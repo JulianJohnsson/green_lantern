@@ -1,29 +1,9 @@
-<% content_for :title, "#{@category.name}" %>
+<% content_for :title, "#{@category.emoji} #{@category.name}" %>
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
       <div class="card">
-        <div class="card-title month-nav">
-          <div class="row">
-            <div class="col-4 text-right mt-auto mb-auto">
-              <%= link_to :month => (params[:month].to_i || 0) + 1 do %>
-                <i class="material-icons">arrow_back</i>
-              <% end %>
-            </div>
-            <div class="col-4 text-center mt-auto mb-auto">
-              <h3>
-                <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
-              </h3>
-            </div>
-            <div class="col-4 text-left mt-auto mb-auto">
-              <% if params[:month].to_i > 0 %>
-                <%= link_to(:month => (params[:month].to_i) - 1)  do %>
-                  <i class="material-icons">arrow_forward</i>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render 'month_nav' %>
         <div class="card-body table-responsive">
             <div class="piechart-title text-center">
               <div>

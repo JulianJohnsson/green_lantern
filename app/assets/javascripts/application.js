@@ -28,7 +28,7 @@ $(document).ready(function(){
   // Turn on js-selectable class so that it becomes SELCT 2 tag
   $('select#transaction_category_id').select2({
     allowClear: true,
-    width: 300,
+    width: 250,
     theme: "bootstrap"
   });
 });
