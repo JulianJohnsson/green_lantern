@@ -34,7 +34,7 @@
               <% @transactions.each do |transaction| %>
                 <tr>
                   <%= form_with(model: transaction, local: true) do |form| %>
-                    <td style="width:25%;">
+                    <td style="width:30%;">
                       <%= transaction.description %>
                     </td>
                     <td>
@@ -48,11 +48,11 @@
                       <%= form.hidden_field :updated_by_user, :value => true %>
                       <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
                     </td>
-                    <td style="width:20%;">
-                      <%= button_tag class: 'btn btn-sm btn-outline-primary', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "", "data-container" => "body", "data-original-title" => "Mettre à jour la catégorie" do %>
+                    <td style="width:12%;">
+                      <%= button_tag class: 'btn btn-fab btn-sm btn-outline-primary', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "", "data-container" => "body", "data-original-title" => "Mettre à jour la catégorie" do %>
                         <i class="material-icons">done</i>
                       <% end %>
-                      <%= link_to '', class: 'btn btn-sm btn-outline-danger', "data-toggle" => "modal", "data-target" => "#commentModal" do %>
+                      <%= link_to '', class: 'btn btn-fab btn-sm btn-outline-danger', "data-toggle" => "modal", "data-target" => "#commentModal" do %>
                         <i class="material-icons">warning</i>
                       <% end %>
                       <!-- Modal -->

@@ -35,6 +35,9 @@
 .main-panel .card .card-header.card-header-info, .card.bg-info {
   /* background: linear-gradient(60deg, lighten($brand-info, 10%), $brand-info); */
   background: $brand-info;
+}
+
+.main-panel .card .card-header.card-header-info {
   box-shadow: none;
 }
 
