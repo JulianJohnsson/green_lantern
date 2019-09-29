@@ -1,14 +1,34 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-    <h3>Change your password</h3>
-    <%= devise_error_messages! %>
-    <%= f.hidden_field :reset_password_token %>
-    <div class="form-group">
-      <%= f.label :password, 'New password' %>
-        <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
-      <%= f.label :password_confirmation, 'Confirm new password' %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+<div class="row">
+  <div class="col-lg-4 col-md-3 d-none d-md-block mt-auto mb-auto text-center">
+    <h4>Content de te revoir ici !<br /><span style="font-size:2em; line-height:1.8em">☺</span></h4>
+    <div class="signup">
+      <%= image_tag "sign_in.png", class: "img-fluid", style: "width: 60%;"%>
     </div>
-     <%= f.submit 'Change my Password', :class => 'button right' %>
-  <% end %>
+  </div>
+  <div class="col-lg-4 col-md-6">
+    <div class="card">
+      <div class="card-header card-header-dark text-center">
+        <h3 class="card-title">Défini ton nouveau mot de passe</h3>
+      </div>
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+        <div class="authform">
+          <div class="card-body">
+            <%= devise_error_messages! %>
+            <%= f.hidden_field :reset_password_token %>
+            <div class="form-group bmd-form-group">
+              <%= f.label :mot_de_passe, class: 'bmd-label-floating' %>
+              <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= f.label :confirmation_du_mot_de_passe, class: 'bmd-label-floating' %>
+              <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= f.submit "Changer mon mot de passe", :class => 'btn btn-primary btn-lg btn-round mr-auto ml-auto'%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
