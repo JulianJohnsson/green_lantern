@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
   </head>
   <body class="sidebar-collapse">
     <%= render 'layouts/registration_navigation' %>
@@ -17,6 +18,7 @@
     <%= render 'layouts/prefooter' %>
     <%= render 'layouts/footer' %>
     <%= render 'layouts/messenger' %>
+    <%= render 'layouts/cookies' %>
   </body>
   <%= render 'layouts/analytics' %>
   <script type="text/javascript">
