@@ -13,13 +13,15 @@
         <% end %>
       </li>
       <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
-        <%= link_to categories_path, class: 'nav-link' do %>
+        <!-- accomodate empty beginning of month by displaying previous month -->
+        <%= link_to categories_path(month: "#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}"), class: 'nav-link'  do %>
           <i class="material-icons">pie_chart</i>
           <p>Comprendre</p>
         <% end %>
       </li>
       <li class="nav-item <%= 'active' if current_page?('/compare') %>">
-        <%= link_to "/compare", class: 'nav-link' do %>
+        <!-- accomodate empty beginning of month by displaying previous month -->
+        <%= link_to "/compare?month=#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}", class: 'nav-link' do %>
           <i class="material-icons">trending_down</i>
           <p>Réduire</p>
         <% end %>
@@ -44,13 +46,15 @@
         <% end %>
       </li>
       <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
-        <%= link_to categories_path, class: 'nav-link' do %>
+        <!-- accomodate empty beginning of month by displaying previous month -->
+        <%= link_to categories_path(month: "#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}"), class: 'nav-link' do %>
           <i class="material-icons">pie_chart</i>
           <p>Comprendre</p>
         <% end %>
       </li>
       <li class="nav-item <%= 'active' if current_page?('/compare') %>">
-        <%= link_to "/compare", class: 'nav-link' do %>
+        <!-- accomodate empty beginning of month by displaying previous month -->
+        <%= link_to "/compare?month=#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}", class: 'nav-link' do %>
           <i class="material-icons">trending_down</i>
           <p>Réduire</p>
         <% end %>

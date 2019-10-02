@@ -24,15 +24,21 @@ class TransactionsController < ApplicationController
   def dashboard
     @transactions = current_user.transactions.carbone_contribution.recent.order(date: :desc)
     @bridge = Bridge.find_by_user_id(current_user.id)
-    @current_month_count = current_user.transactions.month_to_date(0).sum(:carbone)
-    @last_month_count = current_user.transactions.month_to_date(1).sum(:carbone)
-
     @categories = Category.all.parent_categories
-    @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(0).sum(:carbone)]}.to_h
+
+    if (Date.today - Date.today.beginning_of_month).to_i < 5
+      # accomodate empty beginning of month by displaying previous month
+      @current_month_count = current_user.transactions.month_ago(1).sum(:carbone)
+      @last_month_count = current_user.transactions.month_ago(2).sum(:carbone)
+      @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(1).sum(:carbone)]}.to_h
+      @average_by_user = Transaction.all.month_ago(1).sum(:carbone) / Transaction.all.month_ago(1).distinct.count(:user_id)
+    else
+      @current_month_count = current_user.transactions.month_to_date(0).sum(:carbone)
+      @last_month_count = current_user.transactions.month_to_date(1).sum(:carbone)
+      @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(0).sum(:carbone)]}.to_h
+      @average_by_user = Transaction.all.month_to_date(0).sum(:carbone) / Transaction.all.month_to_date(0).distinct.count(:user_id)
+    end
     @top_category = {@carbone_by_category.key(@carbone_by_category.values.max) => @carbone_by_category.values.max }
-
-    @average_by_user = Transaction.all.month_to_date(0).sum(:carbone) / Transaction.all.month_to_date(0).distinct.count(:user_id)
-
     AnalyticService.new.identify(current_user,request)
   end
 

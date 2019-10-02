@@ -11,7 +11,7 @@
         <div class="card-header card-header-dark">
           <h4>
             Mon impact carbone en
-            <%= l(Date.today, format: '%B') %>
+            <%= l(5.days.ago, format: '%B') %>
           </h4>
         </div>
         <div class="card-body">
@@ -121,7 +121,7 @@
             <%= number_with_precision(@top_category.values.first, precision: 0) %>
             kg de carbone ce mois-ci
           </p>
-          <%= link_to "Comprendre", categories_path, class: "btn btn-outline-info btn-round" %>
+          <%= link_to "Comprendre", categories_path(month: "#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}"), class: "btn btn-outline-info btn-round" %>
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@
               Mes dépenses sont <%= number_with_precision((@current_month_count - @average_by_user) * -100 / @average_by_user, precision: 0) %>% moins carbonées que la moyenne des membres
             </p>
           <% end %>
-          <%= link_to "Réduire", '/compare', class: "btn btn-outline-primary btn-round" %>
+          <%= link_to "Réduire", "/compare?month=#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}", class: "btn btn-outline-primary btn-round" %>
         </div>
       </div>
     </div>
@@ -195,6 +195,6 @@
   <div class="row justify-content-center bottom-cta">
     <div class="col-md-3 text-center">
       <%= image_tag("comprendre_CTA.png", class: "img-fluid", style: "margin-bottom: -15px;") %>
-      <%= link_to "Comprendre mon impact", "/categories", class: "btn btn-lg btn-info btn-round" %>
+      <%= link_to "Comprendre mon impact", categories_path(month: "#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}"), class: "btn btn-lg btn-info btn-round" %>
     </div>
   </div>
