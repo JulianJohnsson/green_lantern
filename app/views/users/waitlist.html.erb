@@ -6,16 +6,19 @@
       L'accès à l'application est pour l'instant limité, nous t'informerons par email dès que tu pourras y accéder.
     </p>
     <p>
-      En attendant tu peux nous suivre sur :
+      En attendant tu peux suivre le développement de l'application et le reste de notre actualité sur :
     </p>
     <%= link_to "https://www.facebook.com/hellocarbo/", :target => "_blank" do %>
-      <i class="fa fa-facebook-square" style="font-size:1.5em; margin-right: 10px;"></i>
+      <i class="fa fa-facebook-square text-info" style="font-size:1.5em; margin-right: 10px;"></i>
     <% end %>
     <%= link_to "https://www.instagram.com/meetcarbo/", :target => "_blank" do %>
-      <i class="fa fa-instagram" style="font-size:1.5em; margin-right: 10px;"></i>
+      <i class="fa fa-instagram text-rose" style="font-size:1.5em; margin-right: 10px;"></i>
     <% end %>
     <%= link_to "https://medium.com/hello-carbo", :target => "_blank" do %>
-      <i class="fa fa-medium" style="font-size:1.5em; margin-right: 10px;"></i>
+      <i class="fa fa-medium text-warning" style="font-size:1.5em; margin-right: 10px;"></i>
     <% end %>
+    <div>
+      <%= link_to "Retour à l'accueil", page_path('about'), class: "btn btn-lg btn-primary btn-round" %>
+      </div>
   </div>
 </div>
