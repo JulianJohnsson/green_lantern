@@ -2,6 +2,14 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized
 
+  def waitlist
+    render :layout => 'bridges'
+    @user = current_user
+    authorize @user
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Added to waitlist', nil, current_user)
+  end
+
   def index
     @users = User.all
     authorize User

@@ -25,7 +25,12 @@ class BridgesController < ApplicationController
         TransactionFetcherJob.set(wait: 3.minutes).perform_later(current_user)
         redirect_to new_preference_path
       end
-    else redirect_to new_bridge_path
+    else
+      if cookies[:carbo_alpha] == "true"
+        redirect_to new_bridge_path
+      else
+        redirect_to controller: 'users', action: 'waitlist'
+      end
     end
   end
 
@@ -36,7 +41,7 @@ class BridgesController < ApplicationController
     AnalyticService.new.identify(current_user,request)
   end
 
-  # GET /bridges/account
+  # GET /account
   def account
     @user = current_user
     AnalyticService.new.identify(current_user,request)
