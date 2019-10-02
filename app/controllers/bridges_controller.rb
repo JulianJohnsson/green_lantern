@@ -26,6 +26,9 @@ class BridgesController < ApplicationController
         redirect_to new_preference_path
       end
     else
+      cookies[:ajs_anonymous_id].slice!("\"")
+      cookies[:ajs_anonymous_id].slice!("\"")
+      Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
       if cookies[:carbo_alpha] == "true"
         redirect_to new_bridge_path
       else
