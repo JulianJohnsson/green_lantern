@@ -15,6 +15,8 @@ class Transaction < ApplicationRecord
   scope :month_ago, -> (int) {where("date >= ? AND date <= ?", int.months.ago.beginning_of_month, int.months.ago.end_of_month)}
   scope :month_to_date, -> (int) {where("date >= ? AND date <= ?", int.months.ago.beginning_of_month, int.months.ago)}
 
+  scope :year_to_date, -> (int) {where("date >= ? AND date <= ?", int.years.ago.beginning_of_year, int.years.ago)}
+
   scope :carbone_contribution, -> {where "carbone > 0"}
 
   def calculate_carbone

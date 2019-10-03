@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/waitlist' => 'users#waitlist'
   get '/dashboard' => 'transactions#dashboard'
   get '/categorize' => 'transactions#categorize'
+  get '/track' => 'categories#track'
   get '/compare' => 'categories#compare'
   get '/faq' => 'high_voltage/pages#show', id: 'faq'
 
