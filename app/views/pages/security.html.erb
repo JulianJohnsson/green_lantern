@@ -1,0 +1,143 @@
+<% content_for :title do %>Découvre Carbo<% end %>
+<% content_for :description do %>L'application qui calcule et compense pour toi l’impact carbone de tes dépenses quotidiennes<% end %>
+<div class="page-header home-section home-section1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-auto mb-auto">
+        <span class="badge badge-pill badge-primary d-none d-md-inline">alpha</span>
+        <h1>Oui, Carbo est sûr et sécurisé.</h1>
+        <%= link_to "Découvrir pourquoi", "#section3", class: "btn btn-round btn-primary" %>
+      </div>
+      <div class="col-md-6 d-none d-md-block">
+        <%= image_tag("onboarding_1.png", class: "img-fluid") %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section3" id="section3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 ml-auto mr-auto text-center">
+        <h2>Pourquoi utiliser mes données bancaires ?</h2>
+        <h4 class="description">
+          Nos membres autorisent Carbo à lire le contenu de leur relevé bancaire pour catégoriser leurs dépenses et en mesurer l’empreinte carbone.
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <%= image_tag("security_1.png", class: "img-fluid w-50") %>
+        <div class="card">
+          <div class="card-body justify-content">
+            <h4>
+              Tes données bancaires t’appartiennent
+            </h4>
+            <p class="description">
+              Carbo n’accède en aucun cas à tes identifiants personnels, ta CB ou autre moyen de paiement
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= image_tag("security_2.png", class: "img-fluid w-50") %>
+        <div class="card">
+          <div class="card-body">
+            <h4>
+              Tes données sont cryptées et protégées
+            </h4>
+            <p class="description">
+              Mieux, nous utilisons actuellement les algorithmes de chiffrement les plus robustes du marché
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= image_tag("security_3.png", class: "img-fluid w-50") %>
+        <div class="card">
+          <div class="card-body">
+            <h4>
+              Une techno adoptée par de nombreuses banques
+            </h4>
+            <p class="description">
+              300 établissements bancaires l’utilisent dans la gestion de près de 10 millions de comptes clients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <% for i in 1..10  %>
+        <div class="col-1">
+          <%= image_tag "bank_#{i}.png", class: "img-fluid bank" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section2">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-3 d-none d-md-block">
+        <div class="phone-parent">
+          <%= image_tag("security_4.png", class: "img-fluid phone") %>
+        </div>
+      </div>
+      <div class="col-md-7 mt-auto mb-auto">
+        <h2>Tu es protégé par les lois françaises et européennes</h2>
+        <div class="row align-items-center">
+          <div class="col-2">
+            <%= image_tag("valeur4.png", class: "img-fluid illu_section2") %>
+          </div>
+          <div class="col-10">
+            <p class="description">
+              Notre activité est encadrée par la Directive Européenne sur les services de paiement n°2 (DSP2) et respecte les règles préconisées par la CNIL
+            </p>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2">
+            <%= image_tag("illu2_section2.png", class: "img-fluid illu_section2") %>
+          </div>
+          <div class="col-10">
+            <p class="description">
+              Notre partenaire bancaire est agréé par l'ACPR (autorité administrative adossée à la Banque de France) et applique les mêmes standards de sécurité que les plus grandes banques internationales
+            </p>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-end">
+          <div class="col-4">
+            <%= image_tag("banque_de_france.png", class: "img-fluid") %>
+          </div>
+          <div class="col-4">
+            <%= image_tag("logo3_section2.png", class: "img-fluid") %>
+          </div>
+          <div class="col-4">
+            <%= image_tag("commission_europeenne.png", class: "img-fluid") %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-header home-section home-section4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 offset-md-3 text-center">
+        <h2>Au service de la planète</h2>
+        <p class="description">
+          Nous sommes nombreux à permettre à des entreprises privées de s'enrichir grâce à nos données personnelles.
+        </p>
+        <p class="description">
+          Pour Carbo, l’accès limité à des données bancaires n’est pas une fin mais un moyen : celui d’enrichir ton quotidien et te permettre d'agir concrètement pour la planète.
+        </p>
+        <p class="description">
+          C’est aussi pourquoi Carbo ne vendra jamais tes données : notre objectif est de construire, ensemble, un modèle économique plus vertueux.
+        </p>
+        <%= link_to "Lire notre manifeste", page_path('mission'), class: "btn btn-round btn-primary" %>
+      </div>
+      <div class="col-md-4 d-none d-md-block">
+        <%= image_tag("security_5.png", class: "img-fluid") %>
+      </div>
+    </div>
+  </div>
+</div>

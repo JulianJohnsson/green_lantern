@@ -26,8 +26,11 @@
   background: linear-gradient(60deg, lighten($brand-dark-blue, 10%), $brand-dark-blue);
 }
 
-.main-panel .card .card-header.card-header-dark {
-  /* background: linear-gradient(60deg, lighten($brand-dark-blue, 10%), $brand-dark-blue); */
+.main-panel .card.bg-dark {
+  background: $brand-dark-blue;
+}
+
+.main-panel .card.bg-dark .card-header.card-header-dark {
   background: $brand-dark-blue;
   border-bottom: 1px solid white;
 }
@@ -35,6 +38,10 @@
 .main-panel .card .card-header.card-header-info, .card.bg-info {
   /* background: linear-gradient(60deg, lighten($brand-info, 10%), $brand-info); */
   background: $brand-info;
+}
+
+.main-panel .card.bg-info .card-header.card-header-info {
+  border-bottom: 1px solid white;
 }
 
 .main-panel .card .card-header.card-header-info {

@@ -7,7 +7,7 @@
   </h2>
   <div class="row justify-content-center">
     <div class="col-md-4">
-      <div class="card text-center">
+      <div class="card bg-info text-center">
         <div class="card-header card-header-info">
           <h4>
             En
@@ -36,12 +36,12 @@
               <% end %>
             </div>
           </div>
-          <%= link_to "Voir le détail", "", class: "btn btn-outline-info btn-round" %>
+          <%= link_to "Voir le détail", "", class: "btn btn-outline-white btn-round" %>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card bg-info text-center">
+      <div class="card bg-dark text-center">
         <div class="card-header card-header-dark">
           <h4>
             En
@@ -184,7 +184,7 @@
         <div class="card-body">
           <%= area_chart @categories.map { |category|
             { name: category.name, data: @transactions.parent_category_id(category.id).group_by_month(:date).sum(:carbone), dataset: {backgroundColor: category.color, borderColor: category.color}, color: category.color }
-            }, defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-1), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", stacked: true %>
+            }, defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", stacked: true %>
           <%= link_to "Voir le détail", categories_path, class: "btn btn-outline-primary btn-round" %>
         </div>
       </div>

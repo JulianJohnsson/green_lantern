@@ -155,13 +155,20 @@ h2, h3, h4, h5 {
     border-width: 1px;
 }
 
+.btn.btn-outline-white {
+    color: white;
+    background-color: transparent;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+}
+
 .row.bottom-cta {
     margin-top: 2em;
     img {
         opacity: 0.3;
     }
 }
-
 
 footer {
   font-family: Quicksand;
