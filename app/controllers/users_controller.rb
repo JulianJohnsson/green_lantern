@@ -10,6 +10,18 @@ class UsersController < ApplicationController
     AnalyticService.new.track('Added to waitlist', nil, current_user)
   end
 
+  def track_trump
+  end
+
+  def compare_trump_greta
+  end
+
+  def reduce_trump
+  end
+
+  def subscription_trump
+  end
+
   def index
     @users = User.all
     authorize User

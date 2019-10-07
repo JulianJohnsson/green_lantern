@@ -59,3 +59,39 @@
 .big {
   font-size: 1.1em;
 }
+
+.track_1 .card {
+  height: 80%
+}
+
+.track_1 .carbone-count .card-body {
+  padding-top: 25px;
+}
+
+.accuracy-level {
+  width: 10%;
+  margin: 10px;
+}
+
+.underline-info {
+  opacity: 0.6;
+  p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.carousel-control-prev, .carousel-control-next {
+  align-items: center;
+  width: 32px;
+  vertical-align: middle;
+  color: $brand-info;
+  opacity: 1;
+  i.material-icons {
+    font-size: 24px !important;
+    height: 32px !important;
+    background: #F8F7FC;
+    border-radius: 32px;
+    padding: 5px;
+  }
+}
