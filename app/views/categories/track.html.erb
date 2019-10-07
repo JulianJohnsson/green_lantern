@@ -7,7 +7,7 @@
   </h2>
   <div class="row justify-content-center track_1">
     <div class="col-md-4">
-      <div class="card bg-info text-center carbone-count">
+      <div class="card bg-info text-center carbone-count" data-toggle="popover" data-html="true" data-placement="bottom" title="" data-content="Il est calculé à partir de tes dépenses du mois, que nous comparons avec la même période sur le mois précédent pour anticiper son évolution.<br><a href='/pages/faq' target='_blank'>En savoir plus</a>" data-container="body" data-original-title="Ton impact du mois">
         <div class="card-header card-header-info">
           <h4>
             En
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="card bg-dark text-center carbone-count">
+      <div class="card bg-dark text-center carbone-count" data-toggle="popover" data-html="true" data-placement="bottom" title="" data-content="Il est calculé à partir de tes dépenses de l'année en cours, que nous comparons avec la même période sur l'année précédente (si nous avons assez d'historique) pour anticiper son évolution.<br><a href='/pages/faq' target='_blank'>En savoir plus</a>" data-container="body" data-original-title="Ton impact sur l'année">
         <div class="card-header card-header-dark">
           <h4>
             En
@@ -104,7 +104,7 @@
             <div class="col-3 emoji text-right">
               <%= @top_category.keys.first.emoji %>
             </div>
-            <div class="col-6 text-left">
+            <div class="col-7 text-left">
               <p>
                 <strong><%= @top_category.keys.first.name %></strong> <br>
                 <%= number_with_precision(@top_category.values.first, precision: 0) %> kgCO2
@@ -176,6 +176,10 @@
           <%= area_chart @categories.map { |category|
             { name: category.name, data: @transactions.parent_category_id(category.id).group_by_month(:date).sum(:carbone), dataset: {backgroundColor: category.color, borderColor: category.color}, color: category.color }
             }, defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", stacked: true %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
           <h4>Répartition de mon impact par mois</h4>
           <%= render 'month_nav' %>
           <div class="row">
