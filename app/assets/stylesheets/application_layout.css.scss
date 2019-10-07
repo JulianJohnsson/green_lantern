@@ -34,6 +34,18 @@ body {
     }
 }
 
+.push-bridge {
+    position: fixed;
+    width: 100%;
+    background: $brand-rose;
+    color: white;
+    z-index: 12;
+    .btn-white {
+        color: $brand-rose;
+        margin-left: 10px;
+    }
+}
+
 .main-panel>.navbar {
     margin-bottom: 0;
 }

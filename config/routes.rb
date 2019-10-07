@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     root 'bridges#index', as: :authenticated_root
   end
 
+  get 'track_trump' => 'users#track_trump'
+
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'
   get '/waitlist' => 'users#waitlist'
