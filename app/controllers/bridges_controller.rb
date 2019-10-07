@@ -10,12 +10,12 @@ class BridgesController < ApplicationController
     if @bridge
       if @bridge.bank_connected == true
         TransactionFetcherJob.perform_later(current_user)
-        redirect_to @bridge
+        redirect_to @bridge , notice: 'Ton compte est en cours de synchronisation !'
         return
       end
       if params[:item_id] == nil
         AnalyticService.new.track('Account Verified', nil, current_user)
-        redirect_to action: 'account'
+        redirect_to action: 'account', notice: 'Ton email a bien été vérifié !'
       else
         AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
@@ -23,7 +23,7 @@ class BridgesController < ApplicationController
         TransactionFetcherJob.perform_later(current_user)
         TransactionFetcherJob.set(wait: 1.minute).perform_later(current_user)
         TransactionFetcherJob.set(wait: 3.minutes).perform_later(current_user)
-        redirect_to new_preference_path
+        redirect_to @bridge, notice: 'Ton relevé bancaire a bien été connecté, ton compte est en cours de synchronisation !'
       end
     else
       2.times do
@@ -54,12 +54,18 @@ class BridgesController < ApplicationController
     @redirect_url = @bridge.add_item_url(current_user)
   end
 
+  def later
+    @user = current_user
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Bank Connection Skipped', nil, current_user)
+  end
+
   # GET /bridges/new
   def new
     @bridge = Bridge.new
     @user = current_user
     AnalyticService.new.identify(current_user,request)
-    AnalyticService.new.track('Account Verification Asked', nil, current_user)
+    AnalyticService.new.track('Bank Connection Asked', nil, current_user)
   end
 
   # GET /bridges/1/edit
@@ -73,8 +79,8 @@ class BridgesController < ApplicationController
     @bridge = Bridge.new(bridge_params)
     @user = current_user
 
-    redirect_url = @bridge.verify_bridge_url(@user)
-    AnalyticService.new.track('Account Verification Started', nil, current_user)
+    redirect_url = @bridge.add_item_url(@user)
+    AnalyticService.new.track('Bank Connection Started', nil, current_user)
     @bridge.save
 
     respond_to do |format|

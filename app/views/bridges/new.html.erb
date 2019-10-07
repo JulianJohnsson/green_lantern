@@ -1,31 +1,58 @@
 <div class="row">
-  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+  <div class="col-lg-10 col-md-12 ml-auto mr-auto">
     <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card-body">
             <h3><strong>
-              <small>Bienvenue à bord <%= current_user.name %> !</small>
-              <br>
-              Sécurise ton compte
+              Carbo a besoin de lire ton relevé bancaire pour suivre ton empreinte carbone
             </strong></h3>
-            <p>Difficile de déterminer ton empreinte carbone une fois pour toute, car tes choix quotidiens peuvent évoluer. </p>
-            <p>Carbo analyse tes dépenses régulièrement : sans effort, le calcul de ton impact est constamment à jour !</p>
-            <p>La protection de tes données est une priorité pour nous, c’est pourquoi Bankin’, notre partenaire bancaire va sécuriser ton compte à partir de ton email d’inscription.</p>
-          </div>
-          <div class="col-md-5 d-none d-md-block align-self-center">
-            <%= image_tag("onboarding_1.png", :class => 'img-fluid') %>
+            <p>Nous utilisons la technologie Bridge de Bankin’, agréée par l'ACPR (autorité administrative adossée à la Banque de France), encadrée par la directive européenne sur les services financiers (DSP2) et reconnue comme le spécialiste de la gestion financière digitale en Europe. </p>
+            <p>Cette technologie est utilisée aujourd’hui avec 300+ banques par plus de 10 millions d'utilisateurs. C’est gratuit, sûr et 100% sécurisé.</p>
+            <p><%= link_to "En savoir plus >", "/pages/security", :target => "_blank"  %></p>
+            <%= render 'form', bridge: @bridge %>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <%= render 'form', bridge: @bridge %>
+        <div class="col-md-5 d-none d-md-block align-self-center">
+          <div class="card-body security-details text-center">
+            <h5>Carbo est gratuit, sûr et sécurisé</h5>
+            <div class="row align-items-center">
+              <div class="col-3">
+                <%= image_tag "security_1_white.png", class: "img-fluid" %>
+              </div>
+              <div class="col-9 text-left">
+                Aucun accès à tes identifiants, CB ou autre moyen de paiement
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-3">
+                <%= image_tag "security_2_white.png", class: "img-fluid", :style => 'width: 80%;' %>
+              </div>
+              <div class="col-9 text-left">
+                Données stockées dans des serveurs protégés 24h/24
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-3">
+                <%= image_tag "security_3_white.png", class: "img-fluid" %>
+              </div>
+              <div class="col-9 text-left">
+                Utilisé régulièrement par de nombreuses banques
+                <br>
+                <%= image_tag "bank_3.png", class: "img-fluid bank" %>
+                <%= image_tag "bank_4.png", class: "img-fluid bank" %>
+                <%= image_tag "bank_6.png", class: "img-fluid bank" %>
+                <%= image_tag "bank_8.png", class: "img-fluid bank" %>
+                <%= image_tag "bank_10.png", class: "img-fluid bank" %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <ol class="onboarding-indicator">
+      <li class=""></li>
       <li class="active"></li>
-      <li class=""></li>
-      <li class=""></li>
       <li class=""></li>
     </ol>
   </div>

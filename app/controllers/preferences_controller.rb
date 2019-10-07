@@ -2,10 +2,13 @@ class PreferencesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @preference = Preference.new
-    @bridge = Bridge.find_by_user_id(current_user.id)
-    @user = current_user
-    render :layout => 'bridges'
+    if current_user.preferences == []
+      @preference = Preference.new
+      @user = current_user
+      render :layout => 'bridges'
+    else
+      redirect_to bridges_path
+    end
   end
 
   def create
@@ -17,7 +20,7 @@ class PreferencesController < ApplicationController
           format.html { redirect_to edit_user_registration_path, notice: 'Vos préférences ont bien été mises à jour' }
           format.json { render :show, status: :ok, location: @preference }
         else
-          format.html { redirect_to @bridge, notice: 'Merci ! Vos préférences ont bien été enregistrées' }
+          format.html { redirect_to bridges_path, notice: 'Merci ! Vos préférences ont bien été enregistrées' }
           format.json { render :show, status: :created, location: @preference }
         end
       else

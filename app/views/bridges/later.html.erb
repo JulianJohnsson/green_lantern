@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-7">
+            <h3><strong>
+              <small>🛎  Relévé bancaire non synchronisé</small>
+              <br>
+              Découvre Carbo avec ton avatar !
+            </strong></h3>
+            <p>Psss... pour une expérience optimale avec nous, tu peux à tout moment autoriser la synchronisation depuis ton espace Carbo.</p>
+            <p>En attendant, nous te proposons de découvrir l’application en te mettant dans la peau d’un sacré personnage...</p>
+            <div class="text-center">
+              <%= image_tag("trump.png", :class => 'img-fluid', :style => "width:70px;") %>
+            </div>
+          </div>
+          <div class="col-md-5 d-none d-md-block align-self-end">
+            <%= image_tag("onboarding_4.png", :class => 'img-fluid animation-top') %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <%= link_to("Accéder à l'application", '/track_trump', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') %>
+        </div>
+      </div>
+    </div>
+    <ol class="onboarding-indicator">
+      <li class=""></li>
+      <li class=""></li>
+      <li class="active"></li>
+    </ol>
+  </div>
+</div>

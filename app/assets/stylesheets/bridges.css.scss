@@ -29,7 +29,7 @@
 }
 
 .onboarding-page h3 {
-  text-transform: uppercase;
+  text-transform: none;
   color: $brand-primary;
 }
 
@@ -72,6 +72,31 @@
     margin-left: 4px;
     margin-top: -1px;
     background-color: $brand-primary;
+}
+
+.security-details {
+  background: $brand-info;
+  color: white;
+  height: 412px;
+  padding-top: 30px !important;
+  padding-bottom: 40px !important;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  h5 {
+    border: white 1px solid;
+    border-radius: 20px;
+    padding: 5px 2px;
+    margin-bottom: 40px;
+  }
+  .row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  }
+  .bank {
+    width: 25px;
+    opacity: 0.6;
+    margin-right: 5px;
+  }
 }
 
 .animation-top {

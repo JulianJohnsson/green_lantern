@@ -14,13 +14,14 @@ Rails.application.routes.draw do
   resources :users
 
   authenticated :user do
-    root 'bridges#index', as: :authenticated_root
+    root 'preferences#new', as: :authenticated_root
   end
 
   get 'track_trump' => 'users#track_trump'
 
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'
+  get '/later' => 'bridges#later'
   get '/waitlist' => 'users#waitlist'
   get '/dashboard' => 'transactions#dashboard'
   get '/categorize' => 'transactions#categorize'
