@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   def track_trump
     @user = current_user
     authorize @user
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Viewed Demo', nil, current_user)
+
     @categories = Category.all.parent_categories
     @transactions =
       {
