@@ -22,6 +22,9 @@ class UserPolicy
     @current_user.admin? or @current_user == @user
   end
 
+  def compare_trump_greta?
+    @current_user.admin? or @current_user == @user
+  end
 
   def update?
     @current_user.admin?

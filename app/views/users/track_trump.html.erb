@@ -28,7 +28,7 @@
               <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est 32% plus élevé que le mois dernier 😱 encore un effort !" %>
             </div>
           </div>
-          <%= link_to "Voir le détail", "", class: "btn btn-sm btn-outline-white btn-round" %>
+          <%= link_to "Voir le détail", "#details", class: "btn btn-sm btn-outline-white btn-round" %>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
               <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est 7% plus faible que l'année dernière au même stade 💪 continue comme ça !" %>
             </div>
           </div>
-          <%= link_to "Comparer aux membres", "/compare", class: "btn btn-sm btn-outline-white btn-round" %>
+          <%= link_to "Comparer aux membres", "/compare_trump_greta", class: "btn btn-sm btn-outline-white btn-round" %>
         </div>
       </div>
     </div>
@@ -149,7 +149,7 @@
     </div>
   </div>
 
-  <h2 class="description">
+  <h2 class="description" id="details">
     Détail de mon impact carbone
   </h2>
   <div class="row text-center">
@@ -204,9 +204,17 @@
     </div>
   </div>
 
-  <div class="row justify-content-center bottom-cta">
-    <div class="col-md-3 text-center">
-      <%= image_tag("comprendre_CTA.png", class: "img-fluid", style: "margin-bottom: -15px;") %>
-      <%= link_to "Comprendre mon impact", categories_path(month: "#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}"), class: "btn btn-lg btn-info btn-round" %>
+  <div class="row align-items-end">
+    <div class="col-md-6">
+      <h2 class="description">
+        A ton tour <%= current_user.name %> !
+      </h2>
+      <p>Toi aussi tu veux tout savoir sur ton impact et agir plus concrètement pour le climat ?</p>
+      <p>Laisse opérer la magie Carbo en synchronisant ton relevé bancaire.<strong> C’est gratuit, sûr et sécurisé.</strong></p>
+      <p><%= link_to "En savoir plus >", "/pages/security", :target => '_blank' %></p>
+    </div>
+    <div class="col-md-6 text-center">
+      <%= image_tag("illu1_projects3.png", class: "img-fluid illustration", style: "margin-bottom: -30px; width:50%") %>
+      <%= link_to "Connecter mon relevé", new_preference_path, class: "btn btn-lg btn-primary btn-round" %>
     </div>
   </div>

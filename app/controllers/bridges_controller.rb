@@ -33,7 +33,7 @@ class BridgesController < ApplicationController
       if cookies[:carbo_alpha] == "true"
         redirect_to new_bridge_path
       else
-        redirect_to controller: 'users', action: 'waitlist'
+        redirect_to action: 'later'
       end
     end
   end

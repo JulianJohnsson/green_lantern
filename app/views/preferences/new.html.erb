@@ -5,11 +5,13 @@
         <div class="row align-items-end">
           <div class="col-md-6">
             <h3><strong>
-              <small>Ton compte bancaire est synchronisé</small>
+              <small>Bienvenue à bord <%= current_user.name %> !</small>
               <br>
-              Améliore ton calcul
+              Commence par quelques informations de base
             </strong></h3>
-            <p>Dernière étape ! Réponds à trois petites questions pour permettre à Carbo d’enrichir l’analyse de tes dépenses et de comparer tes résultats avec ceux d’autres membres.</p>
+            <p>
+              Réponds simplement à ces 3 questions pour permettre à Carbo d’enrichir l’analyse de tes dépenses et de comparer tes résultats.
+            </p>
             <%= form_for @preference do |form| %>
             <div class="row justify-content-center">
               <div class="col-md-9">

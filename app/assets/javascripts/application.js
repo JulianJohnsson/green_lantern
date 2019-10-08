@@ -21,6 +21,7 @@
 //= require bootstrap-sprockets
 //= require chartkick
 //= require Chart.bundle
+//= require Chart.bundle.min
 //= require select2
 //= require_tree .
 

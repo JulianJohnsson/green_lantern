@@ -1,0 +1,80 @@
+<% content_for :title, "Comparer Donald & Greta" %>
+<h2 class="description" style="padding-top: 40px;">
+  <i class="material-icons">whatshot</i> Mon carbomètre
+</h2>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-5 text-center">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4>Moyenne de 9250 kgC02 / mois</h4>
+      </div>
+      <div class="card-body">
+        <div class="text-left mr-auto ml-auto">
+          <p>👉 C’est 15 fois plus que la moyenne des français</p>
+          <p>👉 C’est 20 fois plus que la moyenne des membres Carbo</p>
+          <p>👉 Pour atteindre l’objectif de l’accord de Paris, il te faudrait réduire ton empreinte de 83% environ. Au boulot !</p>
+        </div>
+        <%= link_to "Comparer aux autres membres", "#versus", class: "btn btn-round btn-outline-info" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <%= render 'thermometre' %>
+  </div>
+</div>
+<h2 class="description" style="padding-top: 40px;">
+  <i class="material-icons">star_border</i> Mon face à face
+</h2>
+<div class="row text-center" id="versus">
+  <div class="col-md-4 col-6">
+    <div class="card">
+      <div class="card-header card-header-violet">
+        <div class="img-title">
+          <%= image_tag "trump.png", class: "img-fluid" %>
+          <h4>
+            DONALD
+          </h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="number number-lg">
+          9250
+        </p>
+        <p class="tag-line">
+          <span class="tag tag-violet">
+            kgCO2 / mois en moyenne
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-4 d-none d-md-block'>
+    <%= render 'radar' %>
+  </div>
+  <div class="col-md-4 col-6">
+    <div class="card">
+      <div class="card-header card-header-orange">
+        <div class="img-title">
+          <%= image_tag "greta.png", class: "img-fluid" %>
+          <h4>
+            GRETA
+          </h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="number number-lg">
+          370
+        </p>
+        <p class="tag-line">
+          <span class="tag tag-orange">
+            kgCO2 / mois en moyenne
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 d-md-none">
+    <%= render 'radar' %>
+  </div>
+</div>
+

@@ -77,10 +77,31 @@ class UsersController < ApplicationController
           l(0.months.ago, format: '%B %y') => 92
         }
       }
-
   end
 
   def compare_trump_greta
+    @user = current_user
+    authorize @user
+
+    @trump = [3210,2370,2415,65,1190]
+    @greta = [150,430,2050,670,400]
+
+    @data = {
+      labels: ["🚘", "🏠", "💈", "🛍", "🍕"],
+      datasets: [
+        { label: 'Trump', data: @trump, borderColor: "#6C63FF" },
+        { label: 'Greta', data: @greta, borderColor: "#FF8550" }
+      ]
+    }
+
+    @options = {
+      scales: {
+        scaleLabel: {
+          fontSize: '20px'
+        }
+      }
+    }
+
   end
 
   def reduce_trump

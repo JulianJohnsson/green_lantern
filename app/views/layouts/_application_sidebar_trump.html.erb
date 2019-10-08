@@ -1,0 +1,68 @@
+<div class="sidebar d-none d-md-block">
+  <div class="logo">
+      <%= link_to(root_path, class: 'navbar-brand') do %>
+        <%= image_tag("Logo-Carbo-White", style: "width:55px;") %>
+      <% end %>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item <%= 'active' if current_page?('/track_trump') %>">
+        <%= link_to '/track_trump', class: 'nav-link' do %>
+          <i class="material-icons">dashboard</i>
+          <p>Suivre</p>
+        <% end %>
+      </li>
+      <li class="nav-item <%= 'active' if current_page?("/compare_trump_greta") %>">
+        <!-- accomodate empty beginning of month by displaying previous month -->
+        <%= link_to "/compare_trump_greta", class: 'nav-link'  do %>
+          <i class="material-icons">pie_chart</i>
+          <p>Comparer</p>
+        <% end %>
+      </li>
+      <li class="nav-item <%= 'active' if current_page?('/reduce_trump') %>">
+        <!-- accomodate empty beginning of month by displaying previous month -->
+        <%= link_to "", class: 'nav-link' do %>
+          <i class="material-icons">trending_down</i>
+          <p>Réduire</p>
+        <% end %>
+      </li>
+      <li class="nav-item <%= 'active' if current_page?("/subscription_trump") %>">
+        <%= link_to "", class: "nav-link" do %>
+          <i class="material-icons">account_balance_wallet</i>
+          <p>Compenser</p>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<nav class="navbar fixed-bottom d-md-none bottom-nav">
+  <div class="container text-center mr-auto ml-auto">
+    <ul class="nav">
+      <li class="nav-item <%= 'active' if current_page?('/track_trump') %>">
+        <%= link_to '/track_trump', class: 'nav-link' do %>
+          <i class="material-icons">dashboard</i>
+          <p>Suivre</p>
+        <% end %>
+      </li>
+      <li class="nav-item <%= 'active' if current_page?("/compare_trump_greta") %>">
+        <%= link_to "/compare_trump_greta", class: 'nav-link' do %>
+          <i class="material-icons">pie_chart</i>
+          <p>Comparer</p>
+        <% end %>
+      </li>
+      <li class="nav-item <%= 'active' if current_page?("/reduce_trump") %>">
+        <%= link_to "", class: 'nav-link' do %>
+          <i class="material-icons">trending_down</i>
+          <p>Réduire</p>
+        <% end %>
+      </li>
+      <li class="nav-item <%= 'active' if current_page?("/subscription_trump") %>">
+        <%= link_to "", class: "nav-link" do %>
+          <i class="material-icons">account_balance_wallet</i>
+          <p>Compenser</p>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

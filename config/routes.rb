@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   get 'track_trump' => 'users#track_trump'
+  get 'compare_trump_greta' => 'users#compare_trump_greta'
 
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'

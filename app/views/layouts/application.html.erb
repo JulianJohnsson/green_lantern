@@ -12,8 +12,12 @@
   </head>
   <body>
     <div class="wrapper">
-      <%= render '/layouts/application_sidebar' %>
-      <%= render 'layouts/push_bridge' if Bridge.find_by_user_id(current_user.id) == nil %>
+      <% if (Bridge.find_by_user_id(current_user.id) == nil || Bridge.find_by_user_id(current_user.id).bank_connected == false) %>
+        <%= render '/layouts/application_sidebar_trump' %>
+        <%= render 'layouts/push_bridge' %>
+      <% else %>
+        <%= render 'layouts/application_sidebar' %>
+      <% end %>
       <div class="main-panel">
         <%= render 'layouts/application_navbar' %>
         <div class="content">
