@@ -9,4 +9,30 @@
   </div>
 </div>
 <p style="margin-top:-10px;"><strong>Niveau gland</strong></p>
-<%= link_to "Devenir une jeune pousse", "", class: 'btn btn-sm btn-outline-primary btn-round' %>
+<%= link_to "Devenir une jeune pousse", "", class: 'btn btn-sm btn-outline-primary btn-round', "data-toggle" => "modal", "data-target" => "#soon" %>
+
+<!-- Modal -->
+<div class="modal fade" id="soon" tabindex="-1" role="dialog" aria-labelledby="soonModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="moreInfoModalLabel">Bientôt disponible</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= image_tag "gland.png", class: "img-fluid accuracy-level" %>
+        <p>
+          La précision de ton compte peut être améliorée en donnant plus d'informations sur tes dépenses et en précisant tes habitudes de consommation.
+        </p>
+        <p>
+          Nous travaillons sur une fonctionnalité pour t'accompagner et t'aider à améliorer ta précision qui sera bientôt disponible : jeune gland pour alors devenir baobab !
+        </p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Je ne veux plus être un gland", "mailto:team@hellocarbo.com", class: "btn btn-round btn-primary ml-auto mr-auto" %>
+      </div>
+    </div>
+  </div>
+</div>

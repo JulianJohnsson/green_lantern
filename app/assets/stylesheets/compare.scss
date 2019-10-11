@@ -1,0 +1,15 @@
+@import "material/scss/material-kit/variables";
+
+.category-resume {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  .col-6 {
+  border-bottom: 1px $brand-grey solid;
+  }
+  .text-right {
+    color: $brand-violet;
+  }
+  .text-left {
+    color: $brand-orange;
+  }
+}

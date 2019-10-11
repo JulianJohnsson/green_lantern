@@ -85,6 +85,10 @@
   box-shadow: none;
 }
 
+.card .card-header.card-header-violet-orange {
+  background: linear-gradient(90deg, $brand-violet 0%, $brand-orange 100%);
+}
+
 .card .card-title.emoji-title {
   font-size: 3em;
   margin-top: -15px;
