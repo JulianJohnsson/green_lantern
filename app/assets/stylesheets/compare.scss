@@ -13,3 +13,8 @@
     color: $brand-orange;
   }
 }
+
+.row.collapse.show {
+  display: flex;
+  margin-top: -40px;
+}

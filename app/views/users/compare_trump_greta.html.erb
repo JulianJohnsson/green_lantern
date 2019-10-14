@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="row align-items-center category-resume">
+        <div class="row align-items-center category-resume" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
           <div class="col-3 text-right">
             <p class="number number-md">
               <%= @trump[0] %>
@@ -104,6 +104,66 @@
             <p class="number number-md">
               <%= @greta[0] %>
             </p>
+          </div>
+        </div>
+        <div class="row collapse justify-content-center" id="collapse1">
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-violet">
+                Tes déplacements
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🛩
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Tes voyages en Air Force One ? C’est 70% de cette empreinte !
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🚔
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Ta Cadillac Presidential Limousine fait le reste, avec + 850 kgC02/mois
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-orange">
+                Ceux de Greta
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    ⛵
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Aaaah, cette petite traversée de l’Atlantique en voilier bas carbone
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🚅
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Son poste principal c’est le train, avec +10 kgC02 en moyenne !
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row align-items-center category-resume">

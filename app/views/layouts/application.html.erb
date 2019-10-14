@@ -18,7 +18,7 @@
       <% else %>
         <%= render 'layouts/application_sidebar' %>
       <% end %>
-      <div class="main-panel">
+      <div class="main-panel" style="<%= 'margin-top:60px' if (Bridge.find_by_user_id(current_user.id) == nil || Bridge.find_by_user_id(current_user.id).bank_connected == false) %>">
         <%= render 'layouts/application_navbar' %>
         <div class="content">
           <div class="container-fluid">
