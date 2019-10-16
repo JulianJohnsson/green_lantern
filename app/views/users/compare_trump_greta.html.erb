@@ -93,6 +93,7 @@
             <p class="number number-md">
               <%= @trump[0] %>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
           <div class="col-6 category-title">
             <p class="emoji">
@@ -102,8 +103,9 @@
           </div>
           <div class="col-3 text-left">
             <p class="number number-md">
-              <%= @greta[0] %>
+              <%= @greta[0] %><span class="winner">🎖</span>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
         </div>
         <div class="row collapse justify-content-center" id="collapse1">
@@ -166,11 +168,12 @@
             </div>
           </div>
         </div>
-        <div class="row align-items-center category-resume">
+        <div class="row align-items-center category-resume"  data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
           <div class="col-3 text-right">
             <p class="number number-md">
               <%= @trump[1] %>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
           <div class="col-6 category-title">
             <p class="emoji">
@@ -180,15 +183,77 @@
           </div>
           <div class="col-3 text-left">
             <p class="number number-md">
-              <%= @greta[1] %>
+              <%= @greta[1] %><span class="winner">🎖</span>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
         </div>
-        <div class="row align-items-center category-resume">
+        <div class="row collapse justify-content-center" id="collapse2">
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-violet">
+                Tes logements
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    ⚡
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      1100 kgC02 rien qu’en chauffage. Tu as plusieurs jacuzzis Donald, non ?
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🏩
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Les dodos à l’hôtel représentent 25% de ton impact lié au logement
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-orange">
+                Ceux de Greta
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    ⛵
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Dormir sur un bateau ? Pas toujours confort mais la planète lui dit merci !
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🌵
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      50% de son empreinte provient d’achats de Jardinage & Entretien
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center category-resume" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
           <div class="col-3 text-right">
             <p class="number number-md">
               <%= @trump[2] %>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
           <div class="col-6 category-title">
             <p class="emoji">
@@ -198,15 +263,77 @@
           </div>
           <div class="col-3 text-left">
             <p class="number number-md">
-              <%= @greta[2] %>
+              <%= @greta[2] %><span class="winner">🎖</span>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
         </div>
-        <div class="row align-items-center category-resume">
+        <div class="row collapse justify-content-center" id="collapse3">
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-violet">
+                Tes loisirs & services
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    ✂
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Le poste Coiffeur représente 20% de ton impact lié aux Services
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    📱
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Oooops...+320 kgC02 émis par tes dépenses en abonnement mobile
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-orange">
+                Ceux de Greta
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🎢
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      +90 kgC02 émis en moyenne par tes hobbies et divertissements
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    ❓
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Oooops...Carbo n’a trouvé aucune dépense de Scolarité / Crèches
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center category-resume" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
           <div class="col-3 text-right">
             <p class="number number-md">
-              <%= @trump[3] %>
+              <span class="winner">🎖</span><%= @trump[3] %>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
           <div class="col-6 category-title">
             <p class="emoji">
@@ -218,13 +345,75 @@
             <p class="number number-md">
               <%= @greta[3] %>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
         </div>
-        <div class="row align-items-center category-resume">
+        <div class="row collapse justify-content-center" id="collapse4">
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-violet">
+                Tes biens
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🎁
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      La moitié de ton empreinte d’achats de biens provient de...cadeaux !
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    📱
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      +20 kgC02 d’achats high tech en moyenne...un conseil, twitte ça !
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-orange">
+                Ceux de Greta
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    ⛵
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      La fabrication d’un voilier bas carbone émet beaucoup de C02
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    📚
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Tes 38 dépenses en librairie ont généré un impact de +45 kgC02
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center category-resume"  data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
           <div class="col-3 text-right">
             <p class="number number-md">
               <%= @trump[4] %>
             </p>
+            <i class="material-icons">add_circle_outline</i>
           </div>
           <div class="col-6 category-title">
             <p class="emoji">
@@ -234,8 +423,69 @@
           </div>
           <div class="col-3 text-left">
             <p class="number number-md">
-              <%= @greta[4] %>
+              <%= @greta[4] %><span class="winner">🎖</span>
             </p>
+            <i class="material-icons">add_circle_outline</i>
+          </div>
+        </div>
+        <div class="row collapse justify-content-center" id="collapse5">
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-violet">
+                Tes repas
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🍔
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Waw, 12 passages chez Five Guys ! Vas y au moins avec Barack, non ?
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🍩
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      +350 kgC02 rien qu’en dépenses Dunkin Donuts...qui l’eut crû ?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-5">
+            <div class="card">
+              <div class="card-header card-header-orange">
+                Ceux de Greta
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🥑
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      En étant vegan, tu réduis ton empreinte d’alimentation de 45%
+                    </p>
+                  </div>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-2 emoji text-right">
+                    🛒
+                  </div>
+                  <div class="col-10 text-left">
+                    <p>
+                      Ooops...sauf erreur, Carbo n’a pas trouvé de dépense Supermarché
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
