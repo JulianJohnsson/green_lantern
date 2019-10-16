@@ -4,7 +4,10 @@
   margin-top: 20px;
   margin-bottom: 40px;
   .col-6 {
-  border-bottom: 1px $brand-grey solid;
+    border-bottom: 1px $brand-grey solid;
+    span {
+      font-size: 0.8em;
+    }
   }
   .text-right {
     color: $brand-violet;
@@ -13,7 +16,7 @@
     color: $brand-orange;
   }
   .col-3 {
-    margin-bottom: -20px;
+    margin-bottom: -40px;
   }
   i {
     font-size: 2em;
