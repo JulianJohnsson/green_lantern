@@ -13,5 +13,8 @@ class ApplicationController < ActionController::Base
     if params[:alpha] == "1"
       cookies[:carbo_alpha] = true
     end
+    if params[:bridge] == "1"
+      cookies[:bridge] = true
+    end
   end
 end
