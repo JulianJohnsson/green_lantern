@@ -82,6 +82,18 @@
       </div>
     </div>
   </div>
+  <div class="row text-center">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4>Evolution de mon impact par mois</h4>
+          <%= area_chart @categories.map { |category|
+            { name: category.name, data: @transactions_history.parent_category_id(category.id).group_by_month(:date).sum(:carbone), dataset: {backgroundColor: category.color, borderColor: category.color}, color: category.color }
+            }, defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", stacked: true %>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row justify-content-center bottom-cta">
     <div class="col-md-3 text-center">
       <%= image_tag("reduire_CTA.png", class: "img-fluid") %>
