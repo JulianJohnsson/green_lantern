@@ -24,10 +24,14 @@ Rails.application.routes.draw do
   get '/account' => 'bridges#account'
   get '/later' => 'bridges#later'
   get '/waitlist' => 'users#waitlist'
+
   get '/dashboard' => 'transactions#dashboard'
   get '/categorize' => 'transactions#categorize'
+
   get '/track' => 'categories#track'
+  get '/compare_with' => 'categories#compare_with'
   get '/compare' => 'categories#compare'
+
   get '/faq' => 'high_voltage/pages#show', id: 'faq'
 
   require 'sidekiq/web'

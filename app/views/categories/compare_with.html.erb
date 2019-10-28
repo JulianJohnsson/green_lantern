@@ -1,0 +1,159 @@
+<% content_for :title, "Comparer" %>
+<h2 class="description" style="padding-top: 40px;">
+  <i class="material-icons">whatshot</i> Mon carbomètre
+</h2>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-5 text-center">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4>Moyenne de <%= number_with_precision(@carbone_total, precision: 0) %> kgC02 / mois</h4>
+      </div>
+      <div class="card-body">
+        <div class="text-left mr-auto ml-auto">
+          <p>👉 C’est <%= number_with_precision(100*(620 - @carbone_total) / 620, precision: 0) %>% de moins que la moyenne des français</p>
+          <p>👉 C’est <%= number_with_precision(100*(460 - @carbone_total) / 460, precision: 0) %>% de
+            <% if @carbone_total > 460 %>
+            plus
+            <% else %>
+            moins
+            <% end %>
+            que la moyenne des membres Carbo</p>
+          <p>👉 Pour atteindre l’objectif de l’accord de Paris, il te faudrait diviser ton empreinte par <%= number_with_precision(@carbone_total / 167, precision: 0) %> environ. Au boulot !</p>
+        </div>
+        <%= link_to "Comparer aux autres membres", "#versus", class: "btn btn-round btn-outline-info" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <%= render 'thermometre' %>
+  </div>
+</div>
+<h2 class="description" style="padding-top: 40px;">
+  <i class="material-icons">star_border</i> Mon face à face
+</h2>
+<div class="row text-center" id="versus">
+  <div class="col-md-4 col-6">
+    <div class="card">
+      <div class="card-header card-header-violet">
+        <div class="img-title">
+          <%= image_tag "avatar.png", class: "img-fluid" %>
+          <h4>
+            TOI
+          </h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="number number-lg">
+          <%= number_with_precision(@carbone_total, precision: 0) %>
+        </p>
+        <p class="tag-line">
+          <span class="tag tag-violet">
+            kgCO2 / mois en moyenne
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-4 d-none d-md-block'>
+    <%= render 'radar' %>
+  </div>
+  <div class="col-md-4 col-6">
+    <div class="card">
+      <div class="card-header card-header-orange">
+        <div class="img-title">
+          <%= image_tag "greta.png", class: "img-fluid" %>
+          <h4>
+            GRETA
+          </h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="number number-lg">
+          <%= @greta.inject(0){|sum,x| sum + x } %>
+        </p>
+        <p class="tag-line">
+          <span class="tag tag-orange">
+            kgCO2 / mois en moyenne
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 d-md-none">
+    <%= render 'radar' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center">
+    <div class="card">
+      <div class="card-header card-header-violet-orange">
+        <div class="emoji-title">
+          🥊
+          <h4>Résumé du match</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <% i = 0 %>
+        <% @carbone_by_parent_category.each do |c,v| %>
+          <div class="row align-items-center category-resume" data-toggle="modal" data-target="#soon" aria-expanded="false" aria-controls="modal">
+            <div class="col-3 text-right">
+              <p class="number number-md">
+                <% if v <= @greta[i] %>
+                  <span class="winner">🎖</span>
+                <% end %>
+                <%= number_with_precision(v, precision: 0) %>
+              </p>
+              <i class="material-icons">add_circle_outline</i>
+            </div>
+            <div class="col-6 category-title">
+              <p class="emoji">
+                <%= c.emoji %>
+              </p>
+              <p><%= c.name %><br>
+              <span class="text-primary">Voir le détail ></span></p>
+            </div>
+            <div class="col-3 text-left">
+              <p class="number number-md">
+                <%= @greta[i] %>
+                <% if v > @greta[i] %>
+                  <span class="winner">🎖</span>
+                <% end %>
+              </p>
+              <i class="material-icons">add_circle_outline</i>
+            </div>
+          </div>
+          <% i = i + 1 %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="soon" tabindex="-1" role="dialog" aria-labelledby="soonModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="moreInfoModalLabel">Bientôt disponible</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= image_tag "onboarding_3.png", class: "img-fluid", :style => "width: 50%;" %>
+        <p>
+          Nous sommes en train de bosser dur pour te fournir un résumé détaillé du match et des écarts les plus important entre ton adversaire et toi.
+        </p>
+        <p>
+          Si tu es particulièrement intéressé et / ou pressé de découvrir cette fonctionnalité, tu peux nous dire ce que tu en penses en nous écrivant
+        </p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Je veux voir plus de détail", "mailto:team@hellocarbo.com", class: "btn btn-round btn-primary ml-auto mr-auto" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

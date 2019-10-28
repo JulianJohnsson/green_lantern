@@ -33,7 +33,7 @@
             <tbody>
               <% @transactions.each do |transaction| %>
                 <tr>
-                  <%= form_with(model: transaction, local: true) do |form| %>
+                  <%= form_for(transaction, remote: true) do |form| %>
                     <td style="width:30%;">
                       <%= transaction.description %>
                     </td>

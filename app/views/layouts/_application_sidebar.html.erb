@@ -19,6 +19,12 @@
           <p>Comprendre</p>
         <% end %>
       </li>
+      <li class="nav-item <%= 'active' if current_page?('/compare_with') %>">
+        <%= link_to '/compare_with', class: 'nav-link' do %>
+          <i class="material-icons">people</i>
+          <p>Comparer</p>
+        <% end %>
+      </li>
       <li class="nav-item <%= 'active' if current_page?('/compare') %>">
         <!-- accomodate empty beginning of month by displaying previous month -->
         <%= link_to "/compare?month=#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}", class: 'nav-link' do %>
