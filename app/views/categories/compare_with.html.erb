@@ -10,8 +10,14 @@
       </div>
       <div class="card-body">
         <div class="text-left mr-auto ml-auto">
-          <p>👉 C’est <%= number_with_precision(100*(620 - @carbone_total) / 620, precision: 0) %>% de moins que la moyenne des français</p>
-          <p>👉 C’est <%= number_with_precision(100*(460 - @carbone_total) / 460, precision: 0) %>% de
+          <p>👉 C’est <%= number_with_precision(100*(620 - @carbone_total).abs / 620, precision: 0) %>% de
+            <% if @carbone_total > 620 %>
+            plus
+            <% else %>
+            moins
+            <% end %>
+            que la moyenne des français</p>
+          <p>👉 C’est <%= number_with_precision(100*(460 - @carbone_total).abs / 460, precision: 0) %>% de
             <% if @carbone_total > 460 %>
             plus
             <% else %>
