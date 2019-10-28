@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :preferences
   resources :subscriptions
   resources :projects
+  resources :matches
   namespace :admin do
       resources :users
       root to: "users#index"
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   get '/categorize' => 'transactions#categorize'
 
   get '/track' => 'categories#track'
-  get '/compare_with' => 'categories#compare_with'
+  get '/compare_with' => 'matches#index'
   get '/compare' => 'categories#compare'
 
   get '/faq' => 'high_voltage/pages#show', id: 'faq'

@@ -1,8 +1,24 @@
 <% content_for :title, "Comparer" %>
 <h2 class="description" style="padding-top: 40px;">
+  <span style="opacity:0.3;">🤖</span> Mon binôme
+</h2>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-6">
+    <p class="description">
+      Comparer ton impact, c’est cool et ça permet de mieux te situer et placer tes efforts. Alors, on fait ça avec qui?
+    </p>
+  </div>
+  <div class="col-md-6">
+    <%= render 'opponent_selector' %>
+  </div>
+</div>
+<h2 class="description" style="padding-top: 40px;">
   <i class="material-icons">whatshot</i> Mon carbomètre
 </h2>
 <div class="row justify-content-center align-items-center">
+  <div class="col-md-5">
+    <%= render 'thermometre' %>
+  </div>
   <div class="col-md-5 text-center">
     <div class="card">
       <div class="card-header card-header-info">
@@ -30,13 +46,13 @@
       </div>
     </div>
   </div>
-  <div class="col-md-5">
-    <%= render 'thermometre' %>
-  </div>
 </div>
 <h2 class="description" style="padding-top: 40px;">
   <i class="material-icons">star_border</i> Mon face à face
 </h2>
+<p class="description">
+  Les livres d’histoire en parleront peut être comme c’est le match du siècle : nous, on espère surtout que ça va t’aider à mieux situer ton impact et, à terme, prendre de meilleures décisions !
+</p>
 <div class="row text-center" id="versus">
   <div class="col-md-4 col-6">
     <div class="card">
@@ -67,15 +83,15 @@
     <div class="card">
       <div class="card-header card-header-orange">
         <div class="img-title">
-          <%= image_tag "greta.png", class: "img-fluid" %>
+          <%= image_tag @opponent.image, class: "img-fluid" %>
           <h4>
-            GRETA
+            <%= @opponent.name %>
           </h4>
         </div>
       </div>
       <div class="card-body">
         <p class="number number-lg">
-          <%= @greta.inject(0){|sum,x| sum + x } %>
+          <%= @opponent.data.inject(0){|sum,x| sum.to_i + x.to_i } %>
         </p>
         <p class="tag-line">
           <span class="tag tag-orange">
@@ -105,7 +121,7 @@
           <div class="row align-items-center category-resume" data-toggle="modal" data-target="#soon" aria-expanded="false" aria-controls="modal">
             <div class="col-3 text-right">
               <p class="number number-md">
-                <% if v <= @greta[i] %>
+                <% if v <= @opponent.data[i].to_i %>
                   <span class="winner">🎖</span>
                 <% end %>
                 <%= number_with_precision(v, precision: 0) %>
@@ -121,8 +137,8 @@
             </div>
             <div class="col-3 text-left">
               <p class="number number-md">
-                <%= @greta[i] %>
-                <% if v > @greta[i] %>
+                <%= @opponent.data[i] %>
+                <% if v > @opponent.data[i].to_i %>
                   <span class="winner">🎖</span>
                 <% end %>
               </p>

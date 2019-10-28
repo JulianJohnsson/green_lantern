@@ -147,6 +147,8 @@ h2.description {
     margin-top: 20px;
     margin-bottom: 20px;
     color: $brand-grey;
+    border-bottom: 1px $brand-grey solid;
+    line-height: 2em;
 }
 
 h2, h3, h4, h5 {

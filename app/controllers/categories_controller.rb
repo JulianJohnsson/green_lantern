@@ -72,29 +72,4 @@ class CategoriesController < ApplicationController
     @average_carbone = @categories.sort_by {|c| c.name}.map {|c| [c , Transaction.all.carbone_contribution.parent_category_id(c.id).month_ago(params[:month].to_i || 0).sum(:carbone) / Transaction.all.carbone_contribution.parent_category_id(c.id).month_ago(params[:month].to_i || 0).distinct.count(:user_id)]}
   end
 
-  def compare_with
-    @categories = Category.all.parent_categories
-    @transactions = current_user.transactions.recent.carbone_contribution
-    @carbone_by_parent_category = @categories.sort_by {|c| c.id}.map {|c| [c, @transactions.parent_category_id(c.id).sum(:carbone)]}
-    @carbone_total = 0
-    @carbone_by_parent_category.each do |c,v|
-      @carbone_total = @carbone_total + v
-    end
-
-    @greta = [35,93,142,83,61]
-    @data = {
-      labels: ["🚘", "🏠", "💈", "🛍", "🍕"],
-      datasets: [
-        { label: 'Toi', data: @carbone_by_parent_category.map { |c,v| v }, borderColor: "#6C63FF" },
-        { label: 'Greta', data: @greta, borderColor: "#FF8550" }
-      ]
-    }
-    @options = {
-      scales: {
-        scaleLabel: {
-          fontSize: '20px'
-        }
-      }
-    }
-  end
 end

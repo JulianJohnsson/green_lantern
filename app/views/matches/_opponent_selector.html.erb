@@ -1,0 +1,6 @@
+<div class="opponent-selector">
+  <%= form_tag(matches_path, method: :get) do %>
+    <%= select_tag :opponent,  options_from_collection_for_select(Match.all, "id", "name", params[:opponent].to_i), class: 'custom-select', :onchange => "this.form.submit();" %>
+  <% end %>
+</div>
+

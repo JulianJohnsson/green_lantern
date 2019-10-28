@@ -9,10 +9,13 @@
     <div class="col-md-4">
       <div class="card bg-info text-center carbone-count" data-toggle="popover" data-html="true" data-placement="bottom" title="" data-content="Il est calculé à partir de tes dépenses du mois, que nous comparons avec la même période sur le mois précédent pour anticiper son évolution.<br><a href='/pages/faq' target='_blank'>En savoir plus</a>" data-container="body" data-original-title="Ton impact du mois">
         <div class="card-header card-header-info">
-          <h4>
-            En
-            <%= l(5.days.ago, format: '%B') %>
-          </h4>
+          <div class="emoji-title">
+            💎
+            <h4>
+              En
+              <%= l(5.days.ago, format: '%B') %>
+            </h4>
+          </div>
         </div>
         <div class="card-body">
           <div class="row justify-content-center">
@@ -43,10 +46,13 @@
     <div class="col-md-4">
       <div class="card bg-dark text-center carbone-count" data-toggle="popover" data-html="true" data-placement="bottom" title="" data-content="Il est calculé à partir de tes dépenses de l'année en cours, que nous comparons avec la même période sur l'année précédente (si nous avons assez d'historique) pour anticiper son évolution.<br><a href='/pages/faq' target='_blank'>En savoir plus</a>" data-container="body" data-original-title="Ton impact sur l'année">
         <div class="card-header card-header-dark">
-          <h4>
-            En
-            <%= l(0.days.ago, format: '%Y') %>
-          </h4>
+          <div class="emoji-title">
+            💎
+            <h4>
+              En
+              <%= l(0.days.ago, format: '%Y') %>
+            </h4>
+          </div>
         </div>
         <div class="card-body">
           <div class="row justify-content-center">
@@ -70,16 +76,19 @@
               <% end %>
             </div>
           </div>
-          <%= link_to "Comparer aux membres", "/compare", class: "btn btn-sm btn-outline-white btn-round" %>
+          <%= link_to "Comparer aux membres", "/compare_with", class: "btn btn-sm btn-outline-white btn-round" %>
         </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="card text-center">
         <div class="card-header card-header-primary">
-          <h4>
-            Précision du compte
-          </h4>
+          <div class="emoji-title">
+            🎯
+            <h4>
+              Précision du compte
+            </h4>
+          </div>
         </div>
         <div class="card-body">
           <%= render 'accuracy' %>
