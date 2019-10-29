@@ -20,13 +20,8 @@ class MatchesController < ApplicationController
       @carbone_total = @carbone_total + v
     end
 
-    @data = {
-      labels: ["🚘", "🏠", "💈", "🛍", "🍕"],
-      datasets: [
-        { label: 'Toi', data: @carbone_by_parent_category.map { |c,v| v }, borderColor: "#6C63FF" },
-        { label: @opponent.name, data: @opponent.data, borderColor: "#FF8550" }
-      ]
-    }
+    @match_data = @opponent.get_match_data(current_user)
+
     @options = {
       legend: {
         display: false
@@ -34,8 +29,17 @@ class MatchesController < ApplicationController
       scale: {
         pointLabels: {
           fontSize: 28
+        },
+        gridLines: {
+          display: true,
+          color: 'rgba(0, 0, 0, 0.05)',
+          tickMarkLength: 10
+        },
+        ticks: {
+          maxTicksLimit: 5
         }
       }
+
     }
 
   end

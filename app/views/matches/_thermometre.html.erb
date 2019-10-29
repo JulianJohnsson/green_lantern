@@ -4,20 +4,33 @@
   <%= image_tag "thermometre_graduation.png", class: "thermometre-graduation" %>
   <div class="progress-container vertical">
     <div class="progress progress-line-primary">
-      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:<%= number_with_precision(@carbone_total / 10, precision: 0)  %>%;">
+      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:<%= [number_with_precision(@match_data[3] / 10, precision: 0) .to_i, 100].min  %>%;">
       </div>
     </div>
   </div>
-  <div class="badge-left" style="bottom:<%= number_with_precision(@carbone_total / 10, precision: 0)  %>%;">
+  <div class="badge-left" style="bottom:<%= [number_with_precision(@match_data[3] / 10, precision: 0) .to_i, 90].min %>%;">
     <div class="row align-items-center">
       <div class="col-7 text-right">
         <p><strong>
-          TOI<br>
-          <small><%= number_with_precision(@carbone_total, precision: 0) %></small>
+          TOI
+          <small><%= number_with_precision(@match_data[3], precision: 0) %></small>
         </strong></p>
       </div>
       <div class="col-5 text-left">
         <%= image_tag 'badge_avatar.png', class: 'img-fluid' %>
+      </div>
+    </div>
+  </div>
+  <div class="badge-left" style="bottom:<%= [number_with_precision(@match_data[4] / 10, precision: 0).to_i, 90].min  %>%;">
+    <div class="row align-items-center">
+      <div class="col-7 text-right">
+        <p><strong>
+          <%= @opponent.name %>
+          <small><%= number_with_precision(@match_data[4], precision: 0) %></small>
+        </strong></p>
+      </div>
+      <div class="col-5 text-left">
+        <%= image_tag @opponent.badge, class: 'img-fluid' %>
       </div>
     </div>
   </div>

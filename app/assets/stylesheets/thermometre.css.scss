@@ -44,6 +44,10 @@
   width: 200px;
   bottom: 0;
   left: -180px;
+  transition-property: bottom;
+  transition-duration: 2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 2s;
 }
 
 .thermometre-parent .badge-right {
