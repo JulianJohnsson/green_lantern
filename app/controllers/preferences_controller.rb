@@ -2,7 +2,9 @@ class PreferencesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    if current_user.preferences == []
+    if (cookies[:carbo_alpha] == nil && Bridge.find_by_user_id(current_user.id) == nil)
+      redirect_to '/waitlist'
+    elsif current_user.preferences == []
       @preference = Preference.new
       @user = current_user
       render :layout => 'bridges'

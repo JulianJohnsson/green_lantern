@@ -13,6 +13,7 @@ class MatchesController < ApplicationController
       @opponent = Match.first
       AnalyticService.new.track('Displayed Match', nil, current_user)
     end
+    AnalyticService.new.identify(current_user,request)
 
     @match_data = @opponent.get_match_data(current_user)
 
