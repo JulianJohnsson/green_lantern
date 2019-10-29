@@ -12,14 +12,6 @@ class MatchesController < ApplicationController
       @opponent = Match.first
     end
 
-    @categories = Category.all.parent_categories
-    @transactions = current_user.transactions.recent.carbone_contribution
-    @carbone_by_parent_category = @categories.sort_by {|c| c.id}.map {|c| [c, @transactions.parent_category_id(c.id).sum(:carbone)]}
-    @carbone_total = 0
-    @carbone_by_parent_category.each do |c,v|
-      @carbone_total = @carbone_total + v
-    end
-
     @match_data = @opponent.get_match_data(current_user)
 
     @options = {
