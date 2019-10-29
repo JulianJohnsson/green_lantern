@@ -8,8 +8,10 @@ class MatchesController < ApplicationController
   def index
     if params[:opponent]
       @opponent = Match.find(params[:opponent])
+      AnalyticService.new.track('Changed Match Opponent', nil, current_user)
     else
       @opponent = Match.first
+      AnalyticService.new.track('Displayed Match', nil, current_user)
     end
 
     @match_data = @opponent.get_match_data(current_user)
