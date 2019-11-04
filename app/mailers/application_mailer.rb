@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'contact.carbo2019@gmail.com'
+  default from: Rails.application.secrets.email_provider_username
   layout 'mailer'
 end
