@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  country: MyString
+  total: 9.99
+  detail: MyText
+  user_id: 1
+
+two:
+  country: MyString
+  total: 9.99
+  detail: MyText
+  user_id: 1

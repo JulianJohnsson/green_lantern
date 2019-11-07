@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="card-body">
+        <div class="row align-items-end">
+          <div class="col-md-6">
+            <h3><strong>
+              <small>Bienvenue à bord <%= current_user.name %> !</small>
+              <br>
+              Faisons une première estimation de ton impact carbone
+            </strong></h3>
+            <p>
+              Réponds à quelques questions pour commencer à personnaliser ton expérience Carbo. On commence par une facile 😉
+            </p>
+            <%= form_for @score do |form| %>
+            <div class="row justify-content-center">
+              <div class="col-md-9">
+                <div class="field">
+                  <%= form.hidden_field :user_id, :value => current_user.id %>
+                </div>
+                <div class="form-group">
+                  <%= form.label  "Dans quel pays se trouve ton logement principal ?" %>
+                  <%= form.select(:country_id, @countries.order(:id).map {|c| [c.name, c.id]}, :selected => 63, :class => "custom-select js-searchable") %>
+                </div>
+                <div class="actions">
+                  <%= form.submit 'Continuer', class: 'btn btn-primary btn-round' %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <%= image_tag("onboarding_3.png", :class => 'img-fluid d-none d-md-block') %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="onboarding-indicator">
+      <li class="active"></li>
+      <li class=""></li>
+      <li class=""></li>
+    </ol>
+  </div>
+</div>

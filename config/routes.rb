@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :projects
   resources :matches
+  resources :scores
   namespace :admin do
       resources :users
       root to: "users#index"
@@ -34,6 +35,9 @@ Rails.application.routes.draw do
   get '/compare' => 'categories#compare'
 
   get '/faq' => 'high_voltage/pages#show', id: 'faq'
+
+  get '/scores/:id/edit_transport' => 'scores#edit_transport'
+  get '/scores/:id/edit_plane' => 'scores#edit_plane'
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_102856) do
+ActiveRecord::Schema.define(version: 2019_11_06_171135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 2019_10_29_102856) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.decimal "total"
+    t.text "detail", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "matches", force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -84,6 +92,16 @@ ActiveRecord::Schema.define(version: 2019_10_29_102856) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "country_id"
+    t.decimal "total"
+    t.text "detail", default: [], array: true
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "main_transport_mode"
   end
 
   create_table "subscriptions", force: :cascade do |t|

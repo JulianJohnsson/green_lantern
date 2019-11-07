@@ -34,6 +34,15 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function(){
+  // Turn on js-selectable class so that it becomes SELCT 2 tag
+  $('select#score_country_id').select2({
+    allowClear: true,
+    width: 250,
+    theme: "bootstrap"
+  });
+});
+
 $(window).scroll(function() {
 if ($("#registration-navbar").offset().top > 80) {
     $('#custom-nav').addClass('affix');
