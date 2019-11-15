@@ -1,5 +1,5 @@
 class ScoresController < ApplicationController
-  before_action :set_score, only:[:edit_transport, :edit_plane, :edit_house, :edit_regime, :show, :update, :destroy]
+  before_action :set_score, only:[:edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy]
   before_action :authenticate_user!
 
   def new
