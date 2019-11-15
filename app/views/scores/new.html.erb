@@ -15,6 +15,7 @@
             <%= form_for @score do |form| %>
                 <div class="field">
                   <%= form.hidden_field :user_id, :value => current_user.id %>
+                  <%= form.hidden_field :kind, :value => :static %>
                 </div>
                 <div class="form-group">
                   <p>Dans quel pays se trouve ton logement principal ?</p>
