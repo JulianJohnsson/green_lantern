@@ -187,7 +187,7 @@ bridges.each do |bridge|
     if user.transactions.present?
       Score.create(user_id: bridge.user_id, kind: :dynamic, country_id: 63)
     else
-      Score.create(user_id: bridge.user_id, country_id: 63)
+      Score.create(user_id: bridge.user_id, kind: :static, country_id: 63)
     end
   end
 end
