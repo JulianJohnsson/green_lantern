@@ -62,10 +62,10 @@ class ScoresController < ApplicationController
       if @score.update(score_params)
         if request.referer.include? "/edit_transport"
           format.html { redirect_to "/scores/#{@score.id}/edit_plane", notice: 'Ton impact carbone a bien été mis à jour' }
-        elsif request.referer.include? "/edit_plane"
-          format.html { redirect_to "/scores/#{@score.id}/edit_plane2", notice: 'Ton impact carbone a bien été mis à jour' }
         elsif request.referer.include? "/edit_plane2"
           format.html { redirect_to "/scores/#{@score.id}/edit_house", notice: 'Ton impact carbone a bien été mis à jour' }
+        elsif request.referer.include? "/edit_plane"
+          format.html { redirect_to "/scores/#{@score.id}/edit_plane2", notice: 'Ton impact carbone a bien été mis à jour' }
         elsif request.referer.include? "/edit_house"
           format.html { redirect_to "/scores/#{@score.id}/edit_regime", notice: 'Ton impact carbone a bien été mis à jour' }
         elsif request.referer.include? "/edit_regime"
