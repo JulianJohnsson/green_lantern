@@ -4,9 +4,9 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
-    @user = current_user
-    @carbone_count = current_user.transactions.month_ago(1).sum(:carbone)
-    @average_price = 15 * current_user.transactions.six_month.sum(:carbone) / (6*750)
+    @score = current_user.scores.last
+    @carbone_count = @score.total*1000/12
+    @average_price = 15 * @carbone_count / 750
   end
 
   def show

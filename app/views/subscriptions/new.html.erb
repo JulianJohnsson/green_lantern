@@ -33,7 +33,7 @@
     <h5 class="text-info">
       kgC02 générés<br>
       <small>
-        en <%= l(1.month.ago, format: '%B %y') %>
+        en moyenne par mois
       </small>
     </h5>
   </div>
@@ -49,7 +49,7 @@
     <h5 class="text-primary">
       arbres à planter<br>
       <small>
-        pour absorber ton impact
+        chaque mois pour absorber ton impact
       </small>
     </h5>
   </div>
@@ -65,7 +65,7 @@
     <h5 class="text-warning">
       € à débourser<br>
       <small>
-        pour compenser ton impact
+        pour financer les projets qui vont absorber ton impact
       </small>
     </h5>
   </div>
@@ -85,24 +85,6 @@
     <p class="big">
       <strong>SEREIN :</strong> fixe toi-même le montant de ta compensation, quelque soit le calcul opéré par Carbo
     </p>
-  </div>
-  <div class="col-md-5 text-center">
-    <div class="card tip text-danger">
-      <div class="card-body">
-        <div class="card-title text-danger">
-          <i class="material-icons">wb_incandescent</i>
-        </div>
-        <p>
-          PSS...POUR COMPENSER TON IMPACT MOYEN SUR LES 6 DERNIERS MOIS, ABONNE TOI À HAUTEUR DE
-        </p>
-        <p class="number number-sm">
-          <strong>
-            <%= number_with_precision(@average_price, precision: 0) %>
-            € / MOIS
-          </strong>
-        </p>
-      </div>
-    </div>
   </div>
 </div>
 <div class="row justify-content-center text-center packs">
@@ -143,7 +125,7 @@
       Mon plafond mensuel :
     </p>
     <%= form_for @subscription do |form| %>
-    <%= form.hidden_field :user_id, :value => @user.id %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
     <%= form.hidden_field :plan, :value => 2 %>
     <div class="form-row justify-content-center align-items-center">
       <div class="form-group col-4">
@@ -191,7 +173,7 @@
       Mon abonnement fixe mensuel :
     </p>
     <%= form_for @subscription do |form| %>
-    <%= form.hidden_field :user_id, :value => @user.id %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
     <%= form.hidden_field :plan, :value => 2 %>
     <div class="form-row justify-content-center align-items-center">
       <div class="form-group col-4">

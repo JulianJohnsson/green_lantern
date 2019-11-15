@@ -101,6 +101,8 @@ class TransactionsController < ApplicationController
       },
       current_user
     )
+    @score = current_user.scores.last
+    @score.save
   end
 
   # DELETE /transactions/1

@@ -1,0 +1,31 @@
+<div class="row align-items-center">
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <h3><strong>
+          <small>Question 5 / 5</small>
+          <br>
+          Comment décrirais-tu ton régime alimentaire ?
+        </strong></h3>
+        <%= form_for @score do |form| %>
+          <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+            <%= form.collection_radio_buttons(:regime, Score.regimes, :first, :first) do |b| %>
+              <%= b.label(class: "btn btn-sm btn-outline-primary", :onchange => "this.form.submit();") { b.radio_button + b.text.humanize } %>
+            <% end %>
+          </div>
+          <div class="actions">
+            <%= form.submit 'Continuer', class: 'btn btn-primary btn-round' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <ol class="onboarding-indicator">
+      <li class="active"></li>
+      <li class=""></li>
+      <li class=""></li>
+    </ol>
+  </div>
+  <div class="col-md-3">
+    <%= render "score" %>
+  </div>
+</div>

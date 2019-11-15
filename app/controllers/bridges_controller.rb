@@ -6,6 +6,7 @@ class BridgesController < ApplicationController
   # GET /bridges.json
   def index
     @bridge = Bridge.find_by_user_id(current_user.id)
+    @score = Score.find_by_user_id(current_user.id)
     AnalyticService.new.identify(current_user,request)
     if @bridge
       if @bridge.bank_connected == true
@@ -26,15 +27,10 @@ class BridgesController < ApplicationController
         redirect_to @bridge, notice: 'Ton relevé bancaire a bien été connecté, ton compte est en cours de synchronisation !'
       end
     else
-      2.times do
-        cookies[:ajs_anonymous_id].slice!("\"")
-      end
-      Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
       if cookies[:carbo_alpha] == "true"
         redirect_to new_bridge_path
       else
-        #redirect_to action: 'later'
-        redirect_to '/waitlist'
+        redirect_to action: 'later'
       end
     end
   end

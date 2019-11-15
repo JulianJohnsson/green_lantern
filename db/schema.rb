@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_171135) do
+ActiveRecord::Schema.define(version: 2019_11_15_093853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 2019_11_06_171135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "house_size"
+    t.decimal "furniture"
+    t.decimal "clothes"
+    t.decimal "other_goods"
+    t.decimal "healthcare"
+    t.decimal "subscriptions"
+    t.decimal "other_services"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -102,6 +109,16 @@ ActiveRecord::Schema.define(version: 2019_11_06_171135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "main_transport_mode"
+    t.integer "long_flights"
+    t.integer "short_flights"
+    t.integer "house_size"
+    t.integer "regime"
+    t.integer "kind"
+    t.decimal "recent_total"
+    t.text "recent_detail", default: [], array: true
+    t.text "top_category", default: [], array: true
+    t.text "top_transaction", default: [], array: true
+    t.text "top_growth", default: [], array: true
   end
 
   create_table "subscriptions", force: :cascade do |t|

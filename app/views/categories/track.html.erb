@@ -1,200 +1,21 @@
-<% content_for :title, "Suivre" %>
+<% content_for :title, "Suivre mon impact" %>
   <small class="description">
-    <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") %>
+    <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") if @score.kind.to_sym == :dynamic %>
   </small>
-  <h2 class="description">
-    Mon impact carbone
-  </h2>
-  <div class="row justify-content-center track_1">
-    <div class="col-md-4">
-      <div class="card bg-info text-center carbone-count" data-toggle="popover" data-html="true" data-placement="bottom" title="" data-content="Il est calculé à partir de tes dépenses du mois, que nous comparons avec la même période sur le mois précédent pour anticiper son évolution.<br><a href='/pages/faq' target='_blank'>En savoir plus</a>" data-container="body" data-original-title="Ton impact du mois">
-        <div class="card-header card-header-info">
-          <div class="emoji-title">
-            💎
-            <h4>
-              En
-              <%= l(5.days.ago, format: '%B') %>
-            </h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row justify-content-center">
-            <div class="col-7 text-right">
-              <p class="number number-lg">
-                <%= number_with_precision(@current_month_count, precision: 0) %>
-              </p>
-            </div>
-            <div class="col-4 text-left" style="margin-left: -20px;">
-              <span style="opacity:0.5; font-weight:bold;">
-                kg CO2
-              </span><br>
-              <% if @last_month_count > 0 %>
-                <% if @current_month_count < @last_month_count %>
-                  <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus faible que le mois dernier 💪 continue comme ça !" %>
-                <% elsif @current_month_count > @last_month_count %>
-                  <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_month_count-@current_month_count)/@last_month_count, precision:0)}% plus élevé que le mois dernier 😱 encore un effort !" %>
-                <% else %>
-                  <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que le mois dernier, 🎯 bien visé !" %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <%= link_to "Voir le détail", "", class: "btn btn-sm btn-outline-white btn-round" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card bg-dark text-center carbone-count" data-toggle="popover" data-html="true" data-placement="bottom" title="" data-content="Il est calculé à partir de tes dépenses de l'année en cours, que nous comparons avec la même période sur l'année précédente (si nous avons assez d'historique) pour anticiper son évolution.<br><a href='/pages/faq' target='_blank'>En savoir plus</a>" data-container="body" data-original-title="Ton impact sur l'année">
-        <div class="card-header card-header-dark">
-          <div class="emoji-title">
-            💎
-            <h4>
-              En
-              <%= l(0.days.ago, format: '%Y') %>
-            </h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row justify-content-center">
-            <div class="col-7 text-right">
-              <p class="number number-lg">
-                <%= number_with_precision(@current_year_count/1000, precision: 1) %>
-              </p>
-            </div>
-            <div class="col-4 text-left" style="margin-left: -20px;">
-              <span style="opacity:0.5; font-weight:bold;">
-                T CO2
-              </span><br>
-              <% if @last_year_count > 0 %>
-                <% if @current_year_count < @last_year_count %>
-                  <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(100*(@last_year_count-@current_year_count)/@last_year_count, precision:0)}% plus faible que l'année dernière 💪 continue comme ça !" %>
-                <% elsif @current_year_count > @last_year_count %>
-                  <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est #{number_with_precision(-100*(@last_year_count-@current_year_count)/@last_year_count, precision:0)}% plus élevé que l'année dernière 😱 encore un effort !" %>
-                <% else %>
-                  <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:50%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est le même que l'année dernière, 🎯 bien visé !" %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-          <%= link_to "Comparer aux membres", "/compare_with", class: "btn btn-sm btn-outline-white btn-round" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card text-center">
-        <div class="card-header card-header-primary">
-          <div class="emoji-title">
-            🎯
-            <h4>
-              Précision du compte
-            </h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <%= render 'accuracy' %>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <h2 class="description">
-    Mes tendances sur les 30 derniers jours
-  </h2>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card text-center">
-        <div class="card-header card-header-info" style="background:<%= Category.find(@top_category.keys.first.parent_id).color %>">
-          <h4>
-            Ma grosse catégorie
-          </h4>
-        </div>
-        <div class="card-body">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-3 emoji text-right">
-              <%= @top_category.keys.first.emoji %>
-            </div>
-            <div class="col-7 text-left">
-              <p>
-                <strong><%= @top_category.keys.first.name %></strong> <br>
-                <%= number_with_precision(@top_category.values.first, precision: 0) %> kgCO2
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card text-center">
-        <div class="card-header card-header-info" style="background:<%= Category.find(@top_transaction.parent_category_id).color %>">
-          <h4>
-            Ma grosse dépense
-          </h4>
-        </div>
-        <div class="card-body">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-3 emoji text-right">
-              🙃
-            </div>
-            <div class="col-7 text-left">
-              <p>
-                <strong><%= @top_transaction.description %></strong> <br>
-                <%= number_with_precision(@top_transaction.carbone, precision: 0) %> kgCO2
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card text-center">
-        <div class="card-header card-header-info" style="background:<%= Category.find(@top_growth.keys.first.parent_id).color %>">
-          <h4>
-            Ma grosse augmentation
-          </h4>
-        </div>
-        <div class="card-body">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-3 emoji text-right">
-              <%= @top_growth.keys.first.emoji %>
-            </div>
-            <div class="col-8 text-left">
-              <p>
-                <strong><%= @top_growth.keys.first.name %></strong> <br>
-                +<%= number_with_precision(@top_growth.values.first, precision: 0) %> % en 1 mois
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 text-center">
-      <%= render 'analysis_carousel' %>
-    </div>
-  </div>
-
-  <h2 class="description">
-    Détail de mon impact carbone
+    👁‍ En un clin d'oeil
   </h2>
   <div class="row text-center">
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h4>Evolution de mon impact par mois</h4>
-          <%= area_chart @categories.map { |category|
-            { name: category.name, data: @transactions.parent_category_id(category.id).group_by_month(:date).sum(:carbone), dataset: {backgroundColor: category.color, borderColor: category.color}, color: category.color }
-            }, defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", stacked: true %>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h4>Répartition de mon impact par mois</h4>
-          <%= render 'month_nav' %>
+          <h4>Répartition de mon impact par catégorie</h4>
+          <%= render 'month_nav' if @score.kind.to_sym == :dynamic %>
           <div class="row">
             <div class="piechart-title text-center">
               <div>
-                <span class="number number-md"><%= number_with_precision(@carbone_total, precision: 0) %></span>
+                <span class="number number-md"><%= number_with_precision(@score.total*1000/12, precision: 0) %></span>
                 <br>kgCO2
               </div>
             </div>
@@ -202,7 +23,7 @@
               <%= image_tag("category_left.png", class: "img-fluid illustration") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
-              <%= pie_chart @carbone_by_parent_category_2.map { |c,v| [c.name,number_with_precision(v, precision: 0)] }, donut: true, legend: "none", suffix: " kgCO2" %>
+              <%= pie_chart @data, colors: @categories.map { |c| c.color}, round: 1, donut: true, legend: "none", suffix: " kgCO2" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
               <%= image_tag("category_right.png", class: "img-fluid illustration") %>
@@ -222,18 +43,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @carbone_by_parent_category_2.each do |c,v| %>
-                    <tr class="<%= "inactive" if v == 0 %>">
+                  <% i = 0 %>
+                  <% @categories.each do |c| %>
+                    <tr class="<%= "inactive" if @score.detail[i] == 0 %>">
                       <td class="text-right" style="width:8%;">
-                        <div class="category-pill ml-auto" style="background:<%= c.color unless v== 0 %><%= "grey" if v== 0 %>;"/>
+                        <div class="category-pill ml-auto" style="background:<%= c.color unless @score.detail[i]== 0 %><%= "grey" if @score.detail[i]== 0 %>;"/>
                       </td>
                       <td>
                         <%= c.name %>
                         <small>
                           <br />
-                          <% unless v == 0 %>
+                          <% unless @score.detail[i] == 0 %>
                             <%= link_to "/transactions?month=#{params[:month]}&parent_category=#{c.id}" do %>
-                              <%= @transactions_2.parent_category_id(c.id).count.to_s + " dépenses" %>
+                              <%= @transactions.parent_category_id(c.id).count.to_s + " dépenses" %>
                             <% end %>
                           <% else %>
                            pas de dépense
@@ -241,16 +63,16 @@
                         </small>
                       </td>
                       <td class="d-none d-md-table-cell">
-                        <%= number_with_precision(v, precision: 0).to_s %>
+                        <%= number_with_precision(@score.detail[i].to_f*1000/12, precision: 0).to_s %>
                       </td>
                       <td style="width:20%;">
-                        <%= number_with_precision(v*100 / @carbone_total, precision: 0).to_s + " %" %>
+                        <%= number_with_precision(@score.detail[i].to_f*100 / @score.total, precision: 0).to_s + " %" %>
                       </td>
                       <!-- <td>
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td> -->
                       <td class="text-left" style="width:8%;">
-                        <% unless v == 0 %>
+                        <% unless @score.detail[i] == 0 %>
                           <%= link_to "/categories/#{c.id}?month=#{params[:month]}", :month => (params[:month].to_i || 0)  do %>
                             <i class="material-icons" style="color:<%= c.color%>">more_vert</i>
                           <% end %>
@@ -259,6 +81,7 @@
                         <% end %>
                       </td>
                     </tr>
+                    <% i = i+1 %>
                   <% end %>
                 </tbody>
               </table>
@@ -269,9 +92,176 @@
     </div>
   </div>
 
+  <h2 class="description">
+    📢 Mes tendances récentes
+  </h2>
+  <% if @score.kind.to_sym == :dynamic %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-header card-header-danger">
+            <h4>
+              Ma grosse catégorie
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3 emoji text-right">
+                <%= Category.find(@score.top_category[0]).emoji %>
+              </div>
+              <div class="col-8 text-left">
+                <p>
+                  <strong><%= Category.find(@score.top_category[0]).name %></strong> <br>
+                  <%= number_with_precision(@score.top_category[1], precision: 0) %> kgCO2 en 1 mois
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-header card-header-rose">
+            <h4>
+              Ma grosse dépense
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3 emoji text-right">
+                🙃
+              </div>
+              <div class="col-7 text-left">
+                <p>
+                  <strong><%= @score.top_transaction[0] %></strong> <br>
+                  <%= number_with_precision(@score.top_transaction[1], precision: 0) %> kgCO2
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-header card-header-violet">
+            <h4>
+              Ma grosse augmentation
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3 emoji text-right">
+                <%= Category.find(@score.top_growth[0]).emoji %>
+              </div>
+              <div class="col-9 text-left">
+                <p>
+                  <strong><%= Category.find(@score.top_growth[0]).name %></strong> <br>
+                  +<%= number_with_precision(@score.top_growth[1], precision: 0) %> % en 1 mois
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <%= render 'analysis_carousel' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <div class="card">
+          <div class="card-body">
+            Active le mode dynamique en connectant ton relevé bancaire pour nous permettre d'analyser en détail ton empreinte carbone et t'aider à la réduire efficacement !
+            <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="description">
+    🤓 Pour aller plus loin
+  </h2>
+  <div class="row justify-content-center text-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-warning">
+          <div class="emoji-title">
+            💳
+            <h4>
+              Mes dernières dépenses
+            </h4>
+          </div>
+        </div>
+        <div class="card-body table-responsive">
+          <% if @score.kind.to_sym == :dynamic %>
+            <table class="table table-hover">
+              <tbody>
+                <% @transaction_list.each do |transaction| %>
+                  <tr>
+                    <td class="text-left">
+                      <%= Category.find(transaction.category_id).emoji %>
+                    </td>
+                    <td class="text-left" style="width:50%;"><%= truncate(transaction.description, :length => 33) %></td>
+                    <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
+                    <td class="text-right">
+                      <%= link_to edit_transaction_path(transaction) do %>
+                        <i class='material-icons text-warning' style="font-size:18px;">edit</i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-outline-warning btn-round" %>
+          <% else %>
+            Tu peux suivre l'impact détaillé de tes dépenses en synchronisant ton relevé bancaire, génial non ?
+            <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-center">
+        <div class="card-header card-header-primary">
+          <div class="emoji-title">
+            🎯
+            <h4>
+              Précision du compte
+            </h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <%= render 'accuracy' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-info">
+          <div class="emoji-title">
+            📈
+            <h4>Evolution de mon impact carbone</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <% if @score.kind.to_sym == :dynamic %>
+            <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+          <% else %>
+            Tu peux suivre l'évolution de ton impact dans le temps en synchronisant ton relevé bancaire, on s'y met ?
+            <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row justify-content-center bottom-cta">
     <div class="col-md-3 text-center">
-      <%= image_tag("comprendre_CTA.png", class: "img-fluid", style: "margin-bottom: -15px;") %>
-      <%= link_to "Comprendre mon impact", categories_path(month: "#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}"), class: "btn btn-lg btn-info btn-round" %>
+      <%= image_tag("comparer_CTA.png", class: "img-fluid", style: "margin-bottom: -15px;") %>
+      <%= link_to "Comparer mon impact", '/compare_with', class: "btn btn-lg btn-primary btn-round" %>
     </div>
   </div>

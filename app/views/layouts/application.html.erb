@@ -12,19 +12,13 @@
   </head>
   <body>
     <div class="wrapper">
-      <% if ( Bridge.find_by_user_id(current_user.id) == nil || Bridge.find_by_user_id(current_user.id).bank_connected != true) %>
-        <%= render '/layouts/application_sidebar_trump' %>
-        <%= render 'layouts/push_bridge' %>
-      <% else %>
-        <%= render 'layouts/application_sidebar' %>
-      <% end %>
-      <div class="main-panel" style="<%= 'margin-top:60px' if ( Bridge.find_by_user_id(current_user.id) == nil || Bridge.find_by_user_id(current_user.id).bank_connected != true) %>">
+      <%= render 'layouts/application_sidebar' %>
+      <div class="main-panel">
         <%= render 'layouts/application_navbar' %>
         <div class="content">
           <div class="container-fluid">
             <%= render 'layouts/messages' %>
             <%= yield %>
-
           </div>
         </div>
         <%= render 'layouts/footer' %>

@@ -2,6 +2,10 @@ class PreferencesController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    2.times do
+        cookies[:ajs_anonymous_id].slice!("\"")
+    end
+    Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
     if (cookies[:carbo_alpha] == nil && Bridge.find_by_user_id(current_user.id) == nil)
       redirect_to '/waitlist'
     elsif current_user.preferences == []

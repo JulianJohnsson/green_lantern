@@ -31,6 +31,7 @@ class MatchesController < ApplicationController
           tickMarkLength: 10
         },
         ticks: {
+          suggestedMin: 0,
           maxTicksLimit: 5
         }
       }

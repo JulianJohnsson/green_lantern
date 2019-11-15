@@ -18,9 +18,12 @@ class Match < ApplicationRecord
   end
 
   def get_user_data(user)
-    categories = Category.all.parent_categories
-    transactions = user.transactions.recent.carbone_contribution
-    raw_user_data = categories.sort_by {|c| c.id}.map {|c| [c, transactions.parent_category_id(c.id).sum(:carbone)]}
+    score = user.scores.last
+    categories = Category.all.parent_categories.sort_by {|c| c.id}
+    raw_user_data = []
+    for i in 0..4
+      raw_user_data = raw_user_data << [categories[i], score.detail[i].to_f*1000/12]
+    end
     raw_user_data
   end
 

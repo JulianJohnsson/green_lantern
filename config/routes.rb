@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users
 
   authenticated :user do
-    root 'preferences#new', as: :authenticated_root
+    root 'scores#new', as: :authenticated_root
   end
 
   get 'track_trump' => 'users#track_trump'
@@ -38,6 +38,9 @@ Rails.application.routes.draw do
 
   get '/scores/:id/edit_transport' => 'scores#edit_transport'
   get '/scores/:id/edit_plane' => 'scores#edit_plane'
+  get '/scores/:id/edit_plane2' => 'scores#edit_plane2'
+  get '/scores/:id/edit_house' => 'scores#edit_house'
+  get '/scores/:id/edit_regime' => 'scores#edit_regime'
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

@@ -7,7 +7,11 @@
     </div>
     <div class="col-6 text-center mt-auto mb-auto">
       <h4>
-        <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
+        <% if params[:month].present? %>
+          <%= l(params[:month].to_i.months.ago, format: '%B %y') %>
+        <% else %>
+          Moyenne par mois
+        <% end %>
       </h4>
     </div>
     <div class="col-3 text-left mt-auto mb-auto">
