@@ -183,7 +183,11 @@ end
 bridges = Bridge.where("bank_connected = true")
 bridges.each do |bridge|
   user = User.find(bridge.user_id)
-  if user.scores == []
-    Score.create(user_id: bridge.user_id, kind: :dynamic, country_id: 63)
+  if user.scores == [] &&
+    if user.transactions.present?
+      Score.create(user_id: bridge.user_id, kind: :dynamic, country_id: 63)
+    else
+      Score.create(user_id: bridge.user_id, country_id: 63)
+    end
   end
 end
