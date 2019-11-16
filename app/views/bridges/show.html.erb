@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <%= link_to("Accéder à l'application", '/dashboard', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
+          <%= link_to("Accéder à l'application", '/track', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
           <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
         </div>
       </div>
