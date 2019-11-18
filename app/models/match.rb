@@ -1,5 +1,7 @@
 class Match < ApplicationRecord
 
+  after_create :notify_user
+
   scope :user_matches, -> (int) {where("user_id IS NULL OR user_id = ?", int)}
 
   def get_match_data(user)
@@ -36,6 +38,12 @@ class Match < ApplicationRecord
       opponent_data = raw_opponent_data.map { |c,v| v }
     end
     opponent_data
+  end
+
+  def notify_user
+    if self.user_id != nil
+      UserMailer.new_match_ready(self).deliver_later
+    end
   end
 
 end

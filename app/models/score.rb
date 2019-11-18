@@ -3,6 +3,8 @@ class Score < ApplicationRecord
   belongs_to :country
 
   before_create :set_default
+  before_create :set_match
+
   before_save :calculate_score
 
   enum main_transport_mode: [:voiture_classique, :voiture_électrique, :moto_ou_scooter, :transports_en_commun, :vélo_ou_marche]
@@ -101,5 +103,13 @@ class Score < ApplicationRecord
     growth_by_category = Category.all.map{|c| [c.id, 100*(transactions.recent.category_id(c.id).sum(:carbone) - transactions.where("date > ? AND date <= ?", 2.months.ago, 1.month.ago).category_id(c.id).sum(:carbone)) / transactions.where("date > ? AND date <= ?", 2.months.ago, 1.month.ago).category_id(c.id).sum(:carbone)]}.to_h
     top_growth = [growth_by_category.key(growth_by_category.values.reject(&:nan?).reject(&:infinite?).max), growth_by_category.values.reject(&:nan?).reject(&:infinite?).max ]
     self.top_growth = top_growth
+  end
+
+  def set_match
+    #créer le match + notifier le parrain que son adversaire est prêt
+    if self.user.invitation_accepted_at != nil
+      Match.create(name: User.find(self.user.invited_by_id).name, user_id: self.user.id, opponent_id: self.user.invited_by_id, badge: 'badge_avatar.png', image: 'avatar.png')
+      Match.create(name: self.user.name, user_id: self.user.invited_by_id, opponent_id: self.user.id, badge: 'badge_avatar.png', image: 'avatar.png')
+    end
   end
 end

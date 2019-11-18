@@ -9,23 +9,33 @@ class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
   after_create_commit :notify_signup
+  after_update :notify_invited_signup
 
   def set_default_role
     self.role ||= :user
   end
 
   def notify_signup
-    AnalyticService.new.track('Signed Up', nil, self)
-    UserMailer.welcome_email(self).deliver_later
+    if self.invitation_created_at == nil
+      AnalyticService.new.track('Signed Up', nil, self)
+      UserMailer.welcome_email(self).deliver_later
+    end
+  end
+
+  def notify_invited_signup
+    if self.invitation_created_at != nil && self.invitation_accepted_at != nil
+      AnalyticService.new.track('Signed Up', nil, self)
+      UserMailer.welcome_email(self).deliver_later
+    end
   end
 
   def self.new_with_session(params, session)
-  super.tap do |user|
-    if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-      user.email = data["email"] if user.email.blank?
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
     end
   end
-end
 
   def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

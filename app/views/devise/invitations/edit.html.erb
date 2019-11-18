@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-4 col-md-3 d-none d-md-block mt-auto mb-auto text-center">
+    <h4>Tu veux maitriser ton impact carbone ?<br /><span class="text-primary" style="font-weight:bold;">Découvre Carbo</span> maintenant !</h4>
+    <div class="signup" style="padding-top:30px;">
+      <%= image_tag "sign_up.png", class: "img-fluid" %>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+    <div class="card" style="z-index:100000;">
+      <div class="card-header card-header-dark text-center">
+        <h3 class="card-title">Créer mon compte</h3>
+      </div>
+      <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+        <div class="authform">
+          <div class="card-body">
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :invitation_token, readonly: true %>
+            <div class="form-group bmd-form-group">
+              <%= f.label :prénom, class: 'bmd-label-floating' %>
+              <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= f.label :email, class: 'bmd-label-floating' %>
+              <%= f.email_field :email, class: 'form-control' %>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= f.label :mot_de_passe, class: 'bmd-label-floating' %>
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= f.submit "Je crée mon compte", :class => 'btn btn-primary btn-lg btn-round mr-auto ml-auto'%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <p class="text-center">
+        déjà utilisateur Carbo ?
+        <strong><%= link_to 'Me connecter', new_user_session_path %></strong>
+      </p>
+    </div>
+  </div>
+</div>
