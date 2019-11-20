@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :transactions
   has_many :preferences
-  has_many :subscriptions
+  #has_many :subscriptions
   has_many :scores
 
   accepts_nested_attributes_for :preferences
@@ -9,7 +9,7 @@ class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
   after_create_commit :notify_signup
-  after_update :notify_invited_signup
+  after_update :notify_invited_signup, if: :saved_change_to_invitation_accepted_at?
 
   def set_default_role
     self.role ||= :user
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def notify_invited_signup
-    if self.invitation_created_at != nil && self.invitation_accepted_at != nil
+    if self.invitation_created_at != nil
       AnalyticService.new.track('Signed Up', nil, self)
       UserMailer.welcome_email(self).deliver_later
     end
@@ -38,13 +38,17 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.email = auth.info.email
-    user.provider = auth.provider
-    user.uid = auth.uid
-    user.password = Devise.friendly_token[0,20]
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.password = Devise.friendly_token[0,20]
+    end
   end
-end
+
+  def subscribed?
+    stripe_subscription_id?
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

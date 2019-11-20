@@ -46,6 +46,7 @@ gem 'chartjs-ror'
 gem 'groupdate'
 gem 'select2-rails'
 gem 'rollbar'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

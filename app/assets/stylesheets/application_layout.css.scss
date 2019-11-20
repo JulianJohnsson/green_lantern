@@ -149,6 +149,7 @@ h2.description {
     color: $brand-grey;
     border-bottom: 1px $brand-grey solid;
     line-height: 2em;
+    font-size: 1.8em;
 }
 
 h2, h3, h4, h5 {
@@ -159,6 +160,11 @@ h2, h3, h4, h5 {
 .btn {
     text-transform: none;
     font-weight: bold;
+}
+
+.btn-orange {
+    color: white;
+    background-color: $brand-orange;
 }
 
 .btn.btn-outline-rose {

@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   get '/scores/:id/edit_house' => 'scores#edit_house'
   get '/scores/:id/edit_regime' => 'scores#edit_regime'
 
+  get '/subscriptions/show' => 'subscriptions#show'
+  delete '/subscriptions' => 'subscriptions#destroy'
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 

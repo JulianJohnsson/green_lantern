@@ -7,11 +7,9 @@
     </h3>
     <%= image_tag("subscription_show.png", class: "img-fluid", :style => "width:50%;") %>
     <p>
-      Tout va si vite aujourd’hui...tu as cliqué sans le vouloir ? Trop tard, nous venons de prélever 990 € sur ton compte bancaire pour planter une première forêt 🤣
+      Tu retrouveras très prochainement dans cette rubrique les informations concernant ton abonnemenet et l'actualité des projets que tu soutiens.
     </p>
-    <p>
-      Plus sérieusement, compenser ton impact avec Carbo semble t’intéresser, nous en sommes désormais alertés et ravis ! On finalise actuellement les partenariats et la mise en place d’un module de paiement, tu seras le premier informé du lancement.
-    </p>
-    <%= link_to "Revenir au dashboard", '/dashboard', class: "btn btn-lg btn-primary btn-round" %>
+    <%= link_to "Revenir au dashboard", '/track', class: "btn btn-primary btn-round" %>
+    <%= link_to("Arrêter mon abonnement", '/subscriptions', :data => { :confirm => "Es-tu sûr?" }, :method => :delete, :class => "btn btn-danger-outline btn-round") %>
   </div>
 </div>

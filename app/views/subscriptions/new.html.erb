@@ -1,195 +1,28 @@
-<% content_for :title, "Compenser mon impact" %>
-<div class="row align-items-end">
-  <div class="col-md-8">
-    <h2 class="description">
-      Quoi ?
-    </h2>
-    <p class="big">
-      Carbo te propose un abonnement mensuel qui compense la part d’empreinte carbone que tu n’as pas pu réduire, en finançant des projets de protection et de renouvellement des forêts.
-    </p>
-    <p class="big">
-      Nous opérons une sélection drastique pour retenir les projets qui séquestent efficacement et durablement les émissions de CO2.
-    </p>
-  </div>
-  <div class="col-md-4 text-center">
-    <%= image_tag("projects_CTA.png", class: "img-fluid illustration", style: "margin-bottom: -15px; width:80%") %>
-    <%= link_to "Découvrir les projets", projects_path, class: "btn btn-lg btn-rose btn-round" %>
-  </div>
-</div>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card text-center">
+      <h1 class="card-title">Subscribe</h1>
+      <hr />
+      <p>Chosen plan: <strong><%= params[:plan] %>
+      <hr/>
+      <div class="card-body">
+        <%= form_tag subscriptions_path, id: "payment-form" do |form| %>
+          <div class="field">
+            <label for="card-element" class="label">Enter credit or debit card</label>
 
-<h2 class="description">
-  Combien ?
-</h2>
-<div class="row justify-content-around text-center">
-  <div class="col-md-3">
-    <div class="stat stat-info">
-      <div class="emoji" style="transform: translate(0,-10px);">
-        💨
-      </div>
-      <p class="number number-md">
-        <%= number_with_precision(@carbone_count, precision: 0) %>
-      </p>
-    </div>
-    <h5 class="text-info">
-      kgC02 générés<br>
-      <small>
-        en moyenne par mois
-      </small>
-    </h5>
-  </div>
-  <div class="col-md-3">
-    <div class="stat stat-primary">
-      <div class="emoji" style="transform: translate(0,-10px);">
-        🌳
-      </div>
-      <p class="number number-md">
-        <%= number_with_precision(0.5 + @carbone_count / (750/5), precision: 0) %>
-      </p>
-    </div>
-    <h5 class="text-primary">
-      arbres à planter<br>
-      <small>
-        chaque mois pour absorber ton impact
-      </small>
-    </h5>
-  </div>
-  <div class="col-md-3">
-    <div class="stat stat-warning">
-      <div class="emoji" style="transform: translate(0,-10px);">
-        💸
-      </div>
-      <p class="number number-md">
-        <%= number_with_precision(@carbone_count / (750/15), precision: 0) %>
-      </p>
-    </div>
-    <h5 class="text-warning">
-      € à débourser<br>
-      <small>
-        pour financer les projets qui vont absorber ton impact
-      </small>
-    </h5>
-  </div>
-</div>
+            <div id="card-element" class="MyCardElement">
+              <!-- A Stripe element will be intserted here !-->
+            </div>
 
-<h2 class="description" id="anchor">
-  Comment ?
-</h2>
-<div class="row align-items-center">
-  <div class="col-md-7">
-    <p class="big">
-      Choisis l’abonnement mensuel qui te ressemble !
-    </p>
-    <p class="big">
-      <strong>DYNAMIQUE :</strong> laisse opérer la magie Carbo pour compenser la totalité de tes émissions dans la limite du plafond mensuel que tu définis.
-    </p>
-    <p class="big">
-      <strong>SEREIN :</strong> fixe toi-même le montant de ta compensation, quelque soit le calcul opéré par Carbo
-    </p>
-  </div>
-</div>
-<div class="row justify-content-center text-center packs">
-  <div class="col-md-5">
-    <%= image_tag("illu_pack1.png", class: "img-fluid") %>
-    <div class="card">
-      <div class="card-header card-header-rose">
-        CARBO DYNAMIQUE
-      </div>
-      <div class="card-body text-left">
-        <div class="row align-items-center">
-          <div class="col-2">
-            ✅
+            <div id="card-errors" role="alert"></div>
+
+            <%= hidden_field_tag :plan_id, Rails.application.credentials[:stripe][Rails.env.to_sym][:static_plan] %>
+            <%= hidden_field_tag :quantity, params[:quantity] %>
+
+            <button class="btn btn-round btn-primary">Activer mon forfait</button>
           </div>
-          <div class="col-10">
-            Je laisse Carbo compenser 100% de mon impact
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-2">
-            ✅
-          </div>
-          <div class="col-10">
-            Je définis mon plafond et peux à tout moment le modifier
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-2">
-            ✅
-          </div>
-          <div class="col-10">
-            Je peux à tout moment modifier, suspendre, ou supprimer mon abonnement
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
-    <p class="big">
-      Mon plafond mensuel :
-    </p>
-    <%= form_for @subscription do |form| %>
-    <%= form.hidden_field :user_id, :value => current_user.id %>
-    <%= form.hidden_field :plan, :value => 2 %>
-    <div class="form-row justify-content-center align-items-center">
-      <div class="form-group col-4">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="material-icons">euro</i>
-            </span>
-          </div>
-          <%= form.number_field :price, class: 'form-control big-input-rose', :value => number_with_precision(2*@average_price, precision: 0) %>
-        </div>
-      </div>
-      <div class="col-5 actions">
-        <%= form.submit 'Compenser', class: 'btn btn-rose btn-round' %>
-      </div>
-    </div>
-    <% end %>
-  </div>
-  <div class="col-md-5">
-    <%= image_tag("illu_pack2.png", class: "img-fluid") %>
-    <div class="card">
-      <div class="card-header card-header-info">
-        CARBO SEREIN
-      </div>
-      <div class="card-body text-left">
-        <div class="row align-items-center">
-          <div class="col-2">
-            ✅
-          </div>
-          <div class="col-10">
-            Je fixe mon abonnement mensuel, indépendamment du calcul Carbo
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-2">
-            ✅
-          </div>
-          <div class="col-10">
-            Je peux à tout moment modifier, suspendre, ou supprimer mon abonnement
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="big">
-      Mon abonnement fixe mensuel :
-    </p>
-    <%= form_for @subscription do |form| %>
-    <%= form.hidden_field :user_id, :value => current_user.id %>
-    <%= form.hidden_field :plan, :value => 2 %>
-    <div class="form-row justify-content-center align-items-center">
-      <div class="form-group col-4">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="material-icons">euro</i>
-            </span>
-          </div>
-          <%= form.number_field :price, class: 'form-control big-input-info', :value => number_with_precision(@average_price, precision: 0) %>
-        </div>
-      </div>
-      <div class="col-5 actions">
-        <%= form.submit 'Compenser', class: 'btn btn-info btn-round' %>
-      </div>
-    </div>
-    <% end %>
   </div>
 </div>

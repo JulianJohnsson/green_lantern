@@ -1,0 +1,212 @@
+<% content_for :title, "Compenser mon impact" %>
+<h2 class="description text-center">
+  Pourquoi ?
+</h2>
+<p class="text-center">
+  Pourquoi compenser ? Parce qu’en habitant en France, tu n’as aucune chance d’annuler 100% de ton impact.
+  <br>
+  Le reste, Carbo te permet de le neutraliser en finançant des projets à l’aide d’un simple abonnement mensuel.
+</p>
+<div class="row justify-content-center text-center">
+  <div class="col-md-3 col-4">
+    <div class="stat stat-info">
+      <div class="emoji" style="transform: translate(0,-10px);">
+        💨
+      </div>
+      <p class="number number-md">
+        <%= number_with_precision(@carbone_count, precision: 0) %>
+      </p>
+    </div>
+    <h5 class="text-info">
+      kgC02 générés<br>
+      <small>
+        en moyenne par mois
+      </small>
+    </h5>
+  </div>
+  <div class="col-md-3 col-4">
+    <div class="stat stat-primary">
+      <div class="emoji" style="transform: translate(0,-10px);">
+        🌳
+      </div>
+      <p class="number number-md">
+        <%= number_with_precision(0.5 + @carbone_count / (750/5), precision: 0) %>
+      </p>
+    </div>
+    <h5 class="text-primary">
+      arbres à planter<br>
+      <small>
+        chaque mois pour absorber ton impact
+      </small>
+    </h5>
+  </div>
+  <div class="col-md-3 col-4">
+    <div class="stat stat-warning">
+      <div class="emoji" style="transform: translate(0,-10px);">
+        💸
+      </div>
+      <p class="number number-md">
+        <%= number_with_precision(@carbone_count * 0.02, precision: 0) %>
+      </p>
+    </div>
+    <h5 class="text-warning">
+      € à débourser<br>
+      <small>
+        pour financer les projets qui vont absorber ton impact
+      </small>
+    </h5>
+  </div>
+</div>
+
+<h2 class="description text-center" id="anchor">
+  Combien ?
+</h2>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <p class="text-center">
+      Choisis l’abonnement qui te ressemble et laisse-toi guider, on s’occupe (presque) de tout !
+    </p>
+  </div>
+</div>
+<div class="row justify-content-center text-center packs">
+  <div class="col-md-4">
+    <%= image_tag("Bonsai_dark.png", class: "img-fluid illu") %>
+    <div class="card">
+      <div class="card-header card-header-rose">
+        <h4>Forfait Bonsaï</h4>
+        <p><%= number_with_precision(@carbone_count * 0.02, precision: 0) %> € / mois</p>
+      </div>
+      <div class="card-body text-left">
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            💎
+          </div>
+          <div class="col-10">
+            Compenser <strong>100%</strong> de mon impact
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            🚗
+          </div>
+          <div class="col-10">
+            Retirer chaque mois de la route l’équivalent de
+            <strong>
+              <%= number_with_precision(@carbone_count * 0.01, precision: 0) %> voitures
+            </strong>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid' %>
+          </div>
+          <div class="col-10">
+            Simple et logique, c’est le choix privilégié des membres Carbo
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= link_to 'Compenser', new_subscription_path(quantity: number_with_precision(@carbone_count, precision: 0)), class: 'btn btn-rose btn-round mr-auto ml-auto' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag("Cocotier_dark.png", class: "img-fluid illu") %>
+    <div class="card">
+      <div class="card-header card-header-orange">
+        <h4>Forfait Cocotier</h4>
+        <p><%= number_with_precision(@carbone_count * 0.04, precision: 0) %> € / mois</p>
+      </div>
+      <div class="card-body text-left">
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            💎
+          </div>
+          <div class="col-10">
+            Compenser <strong>200%</strong> de mon impact
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            🚗
+          </div>
+          <div class="col-10">
+            Retirer chaque mois de la route l’équivalent de
+            <strong>
+              <%= number_with_precision(@carbone_count * 0.02, precision: 0) %> voitures
+            </strong>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid w-100' %>
+          </div>
+          <div class="col-10">
+            Le choix de ceux qui veulent aussi compenser leurs actions passées
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= link_to 'Compenser', new_subscription_path(quantity: number_with_precision(@carbone_count*2, precision: 0)), class: 'btn btn-orange btn-round mr-auto ml-auto' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag("Pousse_dark.png", class: "img-fluid illu") %>
+    <div class="card">
+      <div class="card-header card-header-warning">
+        <h4>Forfait Bambou</h4>
+        <p>Montant au choix</p>
+      </div>
+      <div class="card-body text-left">
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            💎
+          </div>
+          <div class="col-10">
+            Compenser comme je l'entends
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid' %>
+          </div>
+          <div class="col-10">
+            Minimum requis de <strong>4€ / mois</strong>
+          </div>
+        </div>
+        <%= form_tag(new_subscription_path, method: :get) do %>
+          <div class="form-row justify-content-center align-items-center">
+            <div class="form-group col-5 bmd-form-group is-filled">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">euro</i>
+                  </span>
+                </div>
+                <%= number_field_tag :price, 4, class: 'form-control big-input-info' %>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= submit_tag 'Compenser', class: 'btn btn-warning btn-round mr-auto ml-auto' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="description text-center" style="margin-top:-80px;">
+    Comment ?
+</h2>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-8">
+    <p>
+      Ta contribution, comme celles de tous nos membres, est entre de bonnes mains. La recherche de projets fiables et rentables est une obsession chez Carbo : on opère une sélection drastique pour retenir des projets labellisés qui absorbent (ou évitent) efficacement et durablement les émissions de CO2.
+    </p>
+  </div>
+  <div class='col-md-4 text-center'>
+    <%= image_tag("projects_CTA.png", class: "img-fluid illustration", style: "margin-bottom: -15px; width:60%") %>
+    <%= link_to "Découvrir les projets", projects_path, class: "btn btn-lg btn-outline-primary btn-round" %>
+  </div>
+</div>

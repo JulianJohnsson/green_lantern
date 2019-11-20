@@ -1,13 +1,16 @@
 @import "material/scss/material-kit/variables";
 
 .stat {
-  border-radius: 100px;
-  width: 100px;
-  height: 100px;
+  border-radius: 120px;
+  width: 120px;
+  height: 120px;
   color: white;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
+  .number-md {
+    line-height: 1.5em;
+  }
 }
 
 .stat-info {
@@ -30,15 +33,19 @@
 
 .packs {
   .card {
-    min-height: 240px;
+
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
   }
   .card-header {
     font-weight: bold;
+    h4 {
+      color: $brand-info;
+    }
   }
   .card-body {
+    font-size: 12px;
     padding-top: 2em;
     padding-left: 1em;
     padding-right: 1em;
@@ -46,10 +53,16 @@
     .row {
       margin-bottom: 1em;
     }
+    .emoji {
+      font-size: 1.8em;
+    }
+    .bmd-form-group {
+      padding-top: 0;
+    }
   }
-  img {
+  .illu {
   height: 20%;
-  margin-bottom: -45px;
+  margin-bottom: -35px;
   }
 }
 
@@ -74,4 +87,30 @@
   font-size: 2em;
   line-height: 2em !important;
   color: $brand-info;
+}
+
+.MyCardElement {
+  height: 40px;
+  padding: 10px 12px;
+  width: 100%;
+  color: #32325d;
+  background-color: #ECF0EF;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.MyCardElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.MyCardElement--invalid {
+  border-color: #fa755a;
+}
+
+.MyCardElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }
