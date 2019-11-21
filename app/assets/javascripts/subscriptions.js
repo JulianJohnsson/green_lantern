@@ -13,12 +13,12 @@ $(document).ready(function(){
     base: {
       color: "#32325d",
       fontWeight: 500,
-      fontFamily: "Inter UI, Open Sans, Segoe UI, sans-serif",
-      fontSize: "16px",
+      fontFamily: "Quicksand, Open Sans, Segoe UI, sans-serif",
+      fontSize: "14px",
       fontSmoothing: "antialiased",
 
       "::placeholder": {
-        color: "#CFD7DF"
+        color: "rgba(0, 0, 0, 0.22)"
       }
     },
     invalid: {

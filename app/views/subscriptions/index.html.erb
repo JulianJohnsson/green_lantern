@@ -106,7 +106,7 @@
         </div>
       </div>
       <div class="card-footer text-center">
-        <%= link_to 'Compenser', new_subscription_path(quantity: number_with_precision(@carbone_count, precision: 0)), class: 'btn btn-rose btn-round mr-auto ml-auto' %>
+        <%= link_to 'Compenser', new_subscription_path(quantity: number_with_precision(@carbone_count, precision: 0), plan: 'bonsai'), class: 'btn btn-rose btn-round mr-auto ml-auto' %>
       </div>
     </div>
   </div>
@@ -147,7 +147,7 @@
         </div>
       </div>
       <div class="card-footer text-center">
-        <%= link_to 'Compenser', new_subscription_path(quantity: number_with_precision(@carbone_count*2, precision: 0)), class: 'btn btn-orange btn-round mr-auto ml-auto' %>
+        <%= link_to 'Compenser', new_subscription_path(quantity: number_with_precision(@carbone_count*2, precision: 0), plan: 'cocotier'), class: 'btn btn-orange btn-round mr-auto ml-auto' %>
       </div>
     </div>
   </div>
@@ -185,6 +185,7 @@
                   </span>
                 </div>
                 <%= number_field_tag :price, 4, class: 'form-control big-input-info' %>
+                <%= hidden_field_tag :plan, 'bambou' %>
               </div>
             </div>
           </div>

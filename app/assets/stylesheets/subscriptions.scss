@@ -95,10 +95,10 @@
   width: 100%;
   color: #32325d;
   background-color: #ECF0EF;
-  border: 1px solid transparent;
+  border: 1px solid $brand-primary;
   border-radius: 4px;
 
-  box-shadow: 0 1px 3px 0 #e6ebf1;
+  box-shadow: 0 1px 3px 0 $brand-light-cyan;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
 }
@@ -113,4 +113,30 @@
 
 .MyCardElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.payment-card {
+  label {
+    color: #3C4858;
+  }
+  i {
+    font-size: 16px;
+    margin-right: 3px;
+  }
+}
+
+#cgv {
+  text-align: left;
+  margin-top: 15px;
+}
+
+.payment-detail-card {
+  small.description {
+    color: $brand-grey;
+    font-size: 0.6em;
+    font-weight: bold;
+  }
+  h5 {
+    margin-bottom: 0px;
+  }
 }

@@ -1,14 +1,49 @@
+<% content_for :title, "Confirmer mon forfait" %>
 <div class="row justify-content-center">
-  <div class="col-6">
-    <div class="card text-center">
-      <h1 class="card-title">Subscribe</h1>
-      <hr />
-      <p>Chosen plan: <strong><%= params[:plan] %>
-      <hr/>
+  <div class="col-md-6 col-lg-5">
+    <div class="card payment-detail-card">
+      <div class="card-header card-header-<%= @color %> text-center">
+        <%= image_tag @image, class: 'img-fluid', :style => 'height: 80px;' %>
+      </div>
+      <div class="card-body">
+        <h5 class="text-<%= @color %>">
+          <small class="description">
+            MON FORFAIT<br>
+          </small>
+          FORFAIT <%= params[:plan].upcase %>
+        </h5>
+        <p>
+          Je compense <%= number_with_precision(@carbone_count*12*100 / (@score.total*1000), precision: 0) %>% de mon impact
+        </p>
+        <h5 class="text-<%= @color %>">
+          <small class="description">
+            MON IMPACT<br>
+          </small>
+        </h5>
+        <p>
+          Je retire chaque mois de la route l’équivalent de <%= number_with_precision(@price/2, precision:0) %> voitures
+        </p>
+        <h5 class="text-<%= @color %>">
+          <small class="description">
+            MON PAIEMENT<br>
+          </small>
+          TOTAL <%= number_with_precision(@price, precision: 2) %>€ TTC / mois
+        </h5>
+      </div>
+      <div class="card-footer">
+        <strong>
+          <%= link_to "Changer de forfait >", subscriptions_path %>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-5">
+    <div class="card text-center payment-card">
+      <h4 class="card-title">Entre tes informations de paiement</h4>
       <div class="card-body">
         <%= form_tag subscriptions_path, id: "payment-form" do |form| %>
-          <div class="field">
-            <label for="card-element" class="label">Enter credit or debit card</label>
+          <div class="field text-left">
+            <label for="card-element" class="">Paiement par carte de crédit ou de débit</label>
 
             <div id="card-element" class="MyCardElement">
               <!-- A Stripe element will be intserted here !-->
@@ -18,9 +53,14 @@
 
             <%= hidden_field_tag :plan_id, Rails.application.credentials[:stripe][Rails.env.to_sym][:static_plan] %>
             <%= hidden_field_tag :quantity, params[:quantity] %>
-
-            <button class="btn btn-round btn-primary">Activer mon forfait</button>
           </div>
+          <p id="cgv">
+            En activant mon forfait, j'accepte les conditions générales de vente de carbo.
+          </p>
+          <button class="btn btn-lg btn-round btn-primary">Activer mon forfait</button>
+          <p class="description">
+            <small><i class="material-icons" style="vertical-align:middle;">lock</i>Paiements sécurisés et réalisés avec Stripe</small>
+          </p>
         <% end %>
       </div>
     </div>
