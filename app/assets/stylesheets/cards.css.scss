@@ -140,6 +140,19 @@
   border-color: $brand-rose !important;
 }
 
+.card.border-danger {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-danger !important;
+}
+
+.card.border-violet {
+  border: 1px;
+  border-style: solid;
+  border-color: $brand-violet !important;
+}
+
+
 .table {
   margin-top: 1em;
 }
@@ -212,4 +225,8 @@
 .tag-orange {
   background-color: #ffe7dc;
   color: $brand-orange;
+}
+
+.card .card-footer {
+  display: block;
 }
