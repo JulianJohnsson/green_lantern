@@ -42,7 +42,7 @@
             <% if user_signed_in? %>
               <%= link_to 'Profil', edit_user_registration_path, class: 'dropdown-item' %>
               <% if current_user.scores.last.kind.to_sym == :static %>
-                <%= link_to 'Calcul carbone', edit_score_path(@score), class: 'dropdown-item' %>
+                <%= link_to 'Calcul carbone', edit_score_path(current_user.scores.last), class: 'dropdown-item' %>
               <% else %>
                 <%= link_to 'Comptes synchronisés', user_path(current_user), class: 'dropdown-item' %>
               <% end %>
