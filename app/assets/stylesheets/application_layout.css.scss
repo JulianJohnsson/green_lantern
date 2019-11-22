@@ -207,3 +207,7 @@ footer .copyright {
 footer .material-icons {
   color: $brand-primary;
 }
+
+input.form-control {
+    max-width: 250px;
+}

@@ -11,6 +11,9 @@ class Score < ApplicationRecord
   enum regime: [:végétalien, :végétarien, :flexitarien, :moyen, :viandard]
   enum kind: [:static, :dynamic]
 
+  enum energy: [:je_ne_sais_pas, :électricité, :gaz]
+  enum enr: [:inconnu, :partiellement_renouvelable, :fortement_renouvelable]
+
   def set_default
     country = Country.find(self.country_id)
     self.detail = country.detail
@@ -22,14 +25,20 @@ class Score < ApplicationRecord
 
   def calculate_score
     case self.kind.to_sym when :static
-      if self.main_transport_mode_changed? || self.long_flights_changed? || self.short_flights_changed?
+      if self.main_transport_mode_changed? || self.long_flights_changed? || self.short_flights_changed? || self.week_basic_car_changed? || self.week_electric_car_changed? || self.week_moto_changed? || self.week_public_trans_changed?
         self.set_transport_score
       end
-      if self.house_size_changed?
+      if self.house_size_changed? || self.energy_changed? || self.enr_changed?
         self.set_house_score
       end
-      if self.regime_changed?
+      if self.regime_changed? || self.redmeat_changed? || self.poultry_changed? || self.dairy_changed?
         self.set_food_score
+      end
+      if self.services_health_changed? || self.services_plans_changed? || self.services_others_changed?
+        self.set_services_score
+      end
+      if self.goods_furnitures_changed? || self.goods_clothes_changed? || self.goods_others_changed?
+        self.set_goods_score
       end
     when :dynamic
       categories = Category.all.parent_categories
@@ -54,39 +63,67 @@ class Score < ApplicationRecord
 
   def set_transport_score
     base = Country.find(country_id).detail[0].to_f
-    case self.main_transport_mode.to_sym when :voiture_classique
-      modifier = 0
-    when :voiture_électrique
-      modifier = -0.7
-    when :moto_ou_scooter
-      modifier = -0.5
-    when :transports_en_commun
-      modifier = -0.62
-    when :vélo_ou_marche
-      modifier = -0.95
+    if self.week_basic_car == nil && self.week_electric_car == nil && self.week_moto == nil && self.week_public_trans == nil
+      case self.main_transport_mode.to_sym when :voiture_classique
+        modifier = 0
+      when :voiture_électrique
+        modifier = -0.7
+      when :moto_ou_scooter
+        modifier = -0.5
+      when :transports_en_commun
+        modifier = -0.62
+      when :vélo_ou_marche
+        modifier = -0.95
+      end
+      self.detail[0] = base * (1 + modifier) + 1.37*(self.long_flights || 0) + 0.34*(self.short_flights || 0)
+    else
+      self.detail[0] = base * ((self.week_basic_car || 0) + (self.week_electric_car || 0) * (1-0.7) + (self.week_moto || 0) * (1-0.5) + (self.week_public_trans || 0) * (1-0.62)) / 90 + 1.37*(self.long_flights || 0) + 0.34*(self.short_flights || 0)
     end
-    self.detail[0] = base * (1 + modifier) + 1.37*(self.long_flights || 0) + 0.34*(self.short_flights || 0)
   end
 
   def set_house_score
     base = Country.find(country_id).detail[1].to_f
-    self.detail[1] = base * self.house_size / Country.find(country_id).house_size.to_f
+    case self.energy.to_sym when :électricité
+      energy_modifier = -14.00/100
+    when :gaz
+      energy_modifier = 33.60/100
+    end
+    case self.enr.to_sym when :partiellement_renouvelable
+      enr_modifier = -16.80/100
+    when :fortement_renouvelable
+      enr_modifier = -50.40/100
+    end
+    self.detail[1] = base * self.house_size / Country.find(country_id).house_size.to_f * (1+ (energy_modifier||0) + (enr_modifier||0))
   end
 
   def set_food_score
     base = Country.find(country_id).detail[4].to_f
-    case self.regime.to_sym when :moyen
-      modifier = 0
-    when :végétalien
-      modifier = -0.463
-    when :végétarien
-      modifier = -0.3955
-    when :flexitarien
-      modifier = -0.2553
-    when :viandard
-      modifier = 0.5093
+    if self.redmeat == nil && self.poultry == nil && self.dairy == nil
+      case self.regime.to_sym when :moyen
+        modifier = 0
+      when :végétalien
+        modifier = -0.463
+      when :végétarien
+        modifier = -0.3955
+      when :flexitarien
+        modifier = -0.2553
+      when :viandard
+        modifier = 0.5093
+      end
+      self.detail[4] = base * (1 + modifier)
+    else
+      self.detail[4] = base + ((self.redmeat || 0) - 3) * 0.14 + ((self.poultry || 0) - 4) * 0.053 + ((self.dairy || 0) - 4) * 0.017
     end
-    self.detail[4] = base * (1 + modifier)
+  end
+
+  def set_goods_score
+    country = Country.find(country_id)
+    self.detail[3] = country.detail[3].to_f * (1 + ((self.goods_furnitures - country.furniture) + (self.goods_clothes - country.clothes) + (self.goods_others - country.other_goods)) / (country.furniture+country.clothes+country.other_goods))
+  end
+
+  def set_services_score
+    country = Country.find(country_id)
+    self.detail[2] = country.detail[2].to_f * (1 + ((self.services_health - country.healthcare) + (self.services_plans - country.subscriptions) + (self.services_others - country.other_services)) / (country.healthcare+country.subscriptions+country.other_services))
   end
 
   def calculate_trends

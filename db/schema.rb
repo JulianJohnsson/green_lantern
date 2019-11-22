@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_19_164704) do
+ActiveRecord::Schema.define(version: 2019_11_21_155906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,21 @@ ActiveRecord::Schema.define(version: 2019_11_19_164704) do
     t.text "top_category", default: [], array: true
     t.text "top_transaction", default: [], array: true
     t.text "top_growth", default: [], array: true
+    t.integer "week_basic_car"
+    t.integer "week_electric_car"
+    t.integer "week_moto"
+    t.integer "week_public_trans"
+    t.integer "energy"
+    t.integer "enr"
+    t.integer "redmeat"
+    t.integer "poultry"
+    t.integer "dairy"
+    t.decimal "goods_furnitures"
+    t.decimal "goods_clothes"
+    t.decimal "goods_others"
+    t.decimal "services_health"
+    t.decimal "services_plans"
+    t.decimal "services_others"
   end
 
   create_table "subscriptions", force: :cascade do |t|
