@@ -3,10 +3,12 @@ class ScoresController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    2.times do
-      cookies[:ajs_anonymous_id].slice!("\"")
+    if cookies[:ajs_anonymous_id].present?
+      2.times do
+        cookies[:ajs_anonymous_id].slice!("\"")
+      end
+      Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
     end
-    Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
 
     if (cookies[:carbo_alpha] == nil && Bridge.find_by_user_id(current_user.id) == nil)
       redirect_to '/waitlist'

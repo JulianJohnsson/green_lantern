@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :transactions
   resources :bridges
   resources :comments
-  resources :preferences
   resources :subscriptions
   resources :projects
   resources :matches

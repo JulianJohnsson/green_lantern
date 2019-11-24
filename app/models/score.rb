@@ -31,7 +31,7 @@ class Score < ApplicationRecord
       if self.house_size_changed? || self.energy_changed? || self.enr_changed?
         self.set_house_score
       end
-      if self.regime_changed? || self.redmeat_changed? || self.poultry_changed? || self.dairy_changed?
+      if self.regime_changed? || self.redmeat_changed? || self.poultry_changed? || self.dairy_changed?
         self.set_food_score
       end
       if self.services_health_changed? || self.services_plans_changed? || self.services_others_changed?

@@ -53,6 +53,7 @@ class SubscriptionsController < ApplicationController
               end
 
     subscription = customer.subscriptions.create(plan: plan.id, quantity: params[:quantity].to_i)
+    AnalyticService.new.track('Subscription Paid', nil, current_user)
 
     options = {
       stripe_id: customer.id,
@@ -68,8 +69,6 @@ class SubscriptionsController < ApplicationController
     ) if params[:user][:card_last4]
 
     current_user.update(options)
-
-    AnalyticService.new.track('Subscription Paid', nil, current_user)
 
     redirect_to '/subscriptions/show', notice: "Your subscription was setup successfully!"
   end

@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @preference = current_user.preferences.last || Preference.new
     render :layout => 'application'
   end
 
