@@ -45,7 +45,7 @@ class CategoriesController < ApplicationController
 
   def compare
     @categories = Category.all.parent_categories
-    @preference = current_user.preferences.last
+    @score = current_user.scores.last
     @carbone_count = current_user.transactions.month_ago(params[:month].to_i || 0).sum(:carbone)
     @carbone_average = Transaction.all.carbone_contribution.month_ago(params[:month].to_i || 0).sum(:carbone) / Transaction.all.carbone_contribution.month_ago(params[:month].to_i || 0).distinct.count(:user_id)
     @my_carbone =  @categories.sort_by {|c| c.name}.map {|c| [c , current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(params[:month].to_i || 0).sum(:carbone)]}
