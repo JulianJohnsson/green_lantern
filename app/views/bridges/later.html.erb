@@ -1,32 +1,30 @@
 <div class="row">
-  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+  <div class="col-lg-10 col-md-12 ml-auto mr-auto">
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col-md-7">
             <h3><strong>
-              <small>🛎  Relévé bancaire non synchronisé</small>
+              <small>✅ Bien noté <%= current_user.name %>, on verra plus tard</small>
               <br>
-              Découvre Carbo en version statique !
+              Voici ce qu'on va pouvoir faire ensemble
             </strong></h3>
-            <p>Psss... pour une expérience optimale avec nous, tu peux à tout moment autoriser la synchronisation depuis ton espace Carbo.</p>
+            <ol class="numbered-list">
+              <li><strong>Suivre</strong> ton impact carbone facilement</li>
+              <li>Le <strong>comparer</strong> avec d’autres profils</li>
+              <li>Le <strong>réduire</strong> avec des recommendations adaptées</li>
+              <li><strong>Compenser</strong> le reste en soutenant des super projets !</li>
+            </ol>
+            <p class="description">Psss... pour une expérience optimale avec nous, tu peux à tout moment autoriser la synchronisation de ton relevé bancaire depuis ton espace.</p>
             <div class="text-center">
-              <%= image_tag("trump.png", :class => 'img-fluid', :style => "width:70px;") %>
+              <%= link_to("Passer à l'action", '/track', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') %>
             </div>
           </div>
           <div class="col-md-5 d-none d-md-block align-self-end">
             <%= image_tag("onboarding_4.png", :class => 'img-fluid animation-top') %>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <%= link_to("Accéder à l'application", '/track', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') %>
-        </div>
       </div>
     </div>
-    <ol class="onboarding-indicator">
-      <li class=""></li>
-      <li class=""></li>
-      <li class="active"></li>
-    </ol>
   </div>
 </div>

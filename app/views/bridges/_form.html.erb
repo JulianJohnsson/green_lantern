@@ -16,7 +16,7 @@
   </div>
 
   <div class="actions text-center">
-    <%= form.submit "Autoriser l’application Carbo via Bridge", :class => 'btn btn-primary btn-round' %>
+    <%= form.submit "Activer le mode dynamique", :class => 'btn btn-primary btn-round' %>
     <%= link_to "Plus tard", '/later', class: 'btn btn-outline-primary btn-round' unless cookies[:bridge] == "true" %>
   </div>
 <% end %>

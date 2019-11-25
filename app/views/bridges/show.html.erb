@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-9 col-md-12 ml-auto mr-auto">
+  <div class="col-lg-10 col-md-12 ml-auto mr-auto">
     <div class="card">
       <div class="card-body">
         <div class="row">
@@ -12,27 +12,22 @@
             <p>
               Le supercalculateur Carbo est en train de faire son oeuvre. Quand notre belle montgolfière aura pleinement pris son envol, il ne te restera plus qu’à accéder à ton espace pour :
             </p>
-            <p>
-              👉 <strong>Suivre</strong> ton empreinte carbone et ses dernières tendances<br>
-              👉 <strong>Comparer</strong> à d’autres membres ou profils marquants<br>
-              👉 <strong>Réduire</strong> avec des recommendations adaptées à ton profil<br>
-              👉 <strong>Compenser</strong> le reste en soutenant notre sélection de projets
-            </p>
+            <ol class="numbered-list">
+              <li><strong>Suivre</strong> ton impact carbone facilement</li>
+              <li>Le <strong>comparer</strong> avec d’autres profils</li>
+              <li>Le <strong>réduire</strong> avec des recommendations adaptées</li>
+              <li><strong>Compenser</strong> le reste en soutenant des super projets !</li>
+            </ol>
+            <div class="text-center">
+              <%= link_to("Passer à l'action", '/track', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
+              <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
+            </div>
           </div>
           <div class="col-md-5 d-none d-md-block align-self-end">
             <%= image_tag("onboarding_4.png", :class => 'img-fluid animation-top') %>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <%= link_to("Accéder à l'application", '/track', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
-          <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
-        </div>
       </div>
     </div>
-    <ol class="onboarding-indicator">
-      <li class=""></li>
-      <li class=""></li>
-      <li class="active"></li>
-    </ol>
   </div>
 </div>

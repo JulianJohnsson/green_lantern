@@ -1,14 +1,20 @@
 <div class="row">
-  <div class="col-lg-10 col-md-12 ml-auto mr-auto">
+  <div class="col-lg-11 col-md-12 ml-auto mr-auto">
     <div class="card">
       <div class="row">
         <div class="col-md-7">
           <div class="card-body">
             <h3><strong>
-              Carbo a besoin de lire ton relevé bancaire pour suivre ton empreinte carbone
+              <small>Merci <%= current_user.name %>, on se connait déjà un peu mieux</small>
+              <br>
+              Active le mode dynamique pour suivre ton impact dans le temps
             </strong></h3>
-            <p>Nous utilisons la technologie Bridge de Bankin’, agréée par l'ACPR (autorité administrative adossée à la Banque de France), encadrée par la directive européenne sur les services financiers (DSP2) et reconnue comme le spécialiste de la gestion financière digitale en Europe. </p>
-            <p>Cette technologie est utilisée aujourd’hui avec 300+ banques par plus de 10 millions d'utilisateurs. C’est gratuit, sûr et 100% sécurisé.</p>
+            <p>
+              Tes choix quotidiens évoluent. Avec le mode dynamique de Carbo, ton calcul est automatique et constamment à jour !
+            </p>
+            <p>
+              Pour l’activer, Carbo analyse ton relevé bancaire grâce à la technologie Bridge de Bankin’, agréée par l'ACPR (autorité administrative adossée à la Banque de France), encadrée par la directive européenne sur les services financiers (DSP2) et reconnue comme le spécialiste de la finance digitale en Europe.
+            </p>
             <p><%= link_to "En savoir plus >", "/pages/security", :target => "_blank"  %></p>
             <%= render 'form', bridge: @bridge %>
           </div>
@@ -50,10 +56,5 @@
         </div>
       </div>
     </div>
-    <ol class="onboarding-indicator">
-      <li class=""></li>
-      <li class="active"></li>
-      <li class=""></li>
-    </ol>
   </div>
 </div>

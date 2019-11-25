@@ -83,15 +83,19 @@ class Score < ApplicationRecord
 
   def set_house_score
     base = Country.find(country_id).detail[1].to_f
-    case self.energy.to_sym when :électricité
-      energy_modifier = -14.00/100
-    when :gaz
-      energy_modifier = 33.60/100
+    if self.energy.present?
+      case self.energy.to_sym when :électricité
+        energy_modifier = -14.00/100
+      when :gaz
+        energy_modifier = 33.60/100
+      end
     end
-    case self.enr.to_sym when :partiellement_renouvelable
-      enr_modifier = -16.80/100
-    when :fortement_renouvelable
-      enr_modifier = -50.40/100
+    if self.enr.present?
+      case self.enr.to_sym when :partiellement_renouvelable
+        enr_modifier = -16.80/100
+      when :fortement_renouvelable
+        enr_modifier = -50.40/100
+      end
     end
     self.detail[1] = base * self.house_size / Country.find(country_id).house_size.to_f * (1+ (energy_modifier||0) + (enr_modifier||0))
   end

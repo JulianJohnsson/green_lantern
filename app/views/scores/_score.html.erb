@@ -1,18 +1,14 @@
-<div class="card bg-info text-center carbone-count">
-  <h4>Empreinte Carbo</h4>
-  <div class="card-body">
-
-    <p class="number number-lg">
-      <%= number_with_precision(@score.total * 1000 / 12, precision: 0) %>
-    </p>
-    <span style="opacity:0.5; font-weight:bold;">
-      kg CO2 / mois
-    </span>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-body">
+<div class="card-body carbone-count text-white">
+  <div class="globe">
+    <div class="text-container">
+      <h4 class= "text-info"><small>MON IMPACT</small></h4>
+        <p class="number number-lg">
+          <%= number_with_precision(@score.total * 1000 / 12, precision: 0) %>
+        </p>
+        <span style="opacity:0.5; font-weight:bold;">
+          kg CO2 / mois
+        </span>
+      </div>
+    </div>
     <%= bar_chart  [["🚘",@score.detail[0].to_f * 1000 / 12], ["🏠",@score.detail[1].to_f * 1000 / 12], ["💈",@score.detail[2].to_f * 1000 / 12], ["🛍",@score.detail[3].to_f * 1000 / 12], ["🍕",@score.detail[4].to_f * 1000 / 12]], defer: true, height: "200px" %>
-  </div>
 </div>

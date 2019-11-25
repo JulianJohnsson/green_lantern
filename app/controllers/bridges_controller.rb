@@ -39,6 +39,7 @@ class BridgesController < ApplicationController
   # GET /bridges/1.json
   def show
     @user = current_user
+    @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
   end
 
@@ -53,6 +54,7 @@ class BridgesController < ApplicationController
 
   def later
     @user = current_user
+    @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
     AnalyticService.new.track('Bank Connection Skipped', nil, current_user)
   end
@@ -61,6 +63,7 @@ class BridgesController < ApplicationController
   def new
     @bridge = Bridge.new
     @user = current_user
+    @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
     AnalyticService.new.track('Bank Connection Asked', nil, current_user)
   end

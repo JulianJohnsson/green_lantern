@@ -2,8 +2,10 @@
 
 .onboarding-page {
   background-image: url("bg_3.png");
+  background-size:cover;
   background-position: right 0% top 0%;
   font-family: Quicksand;
+  padding-top: 120px;
 }
 
 .onboarding-page .form-group label {
@@ -35,48 +37,14 @@
 
 .onboarding-page h3 small {
   text-transform: none;
-  color: #828282;
+  font-family: Quicksand;
+  color: $brand-grey;
   font-weight: bold;
   font-size: 65%;
 }
 
-.onboarding-indicator {
-  position: absolute;
-  right: 0;
-  /* bottom: 10px; */
-  left: 0;
-  z-index: 15;
-  display: flex;
-  justify-content: center;
-  padding-left: 0;
-  margin-right: 15%;
-  margin-left: 15%;
-  list-style: none;
-}
-
-.onboarding-indicator li {
-    position: relative;
-    flex: 0 1 auto;
-    width: 10px;
-    height: 10px;
-    margin-right: 6px;
-    margin-left: 6px;
-    /* text-indent: -999px; */
-    background-color: $brand-grey;
-    border-radius: 100px;
-}
-
-.onboarding-indicator li.active {
-    width: 12px;
-    height: 12px;
-    margin-right: 4px;
-    margin-left: 4px;
-    margin-top: -1px;
-    background-color: $brand-primary;
-}
-
 .security-details {
-  background: $brand-info;
+  background: $brand-dark-blue;
   color: white;
   height: 412px;
   padding-top: 30px !important;
@@ -101,10 +69,10 @@
 }
 
 .animation-top {
-  -webkit-transition: 4s ease-in-out;
-  -moz-transition: 4s ease-in-out;
-  -o-transition: 4s ease-in-out;
-  transition: 4s ease-in-out;
+  -webkit-transition: 6s ease-in-out;
+  -moz-transition: 6s ease-in-out;
+  -o-transition: 6s ease-in-out;
+  transition: 6s ease-in-out;
 }
 
 html:hover .animation-top {
@@ -117,6 +85,117 @@ html:hover .animation-top {
 
 .btn-group .btn {
   white-space: normal;
-  width: 150px;
+  width: 80px;
+  padding: 7px;
 
+}
+
+.score-preview {
+  background: $brand-dark-blue;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  .text-container {
+    padding-top: 10px;
+  }
+  small {
+    color: $brand-dark-blue;
+    font-weight: bold;
+    line-height: 3em;
+  }
+  .number-lg {
+    line-height: 0.4em;
+  }
+}
+
+.globe {
+  background-image: url("globe.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: left 50% top 0%;
+  min-height: 160px;
+}
+
+input[type=number] {
+  float: left;
+  width: 70px;
+  height: 45px;
+  padding: 0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: $brand-dark-blue;
+  border: 2px $brand-dark-blue solid;
+  background: none;
+  outline: none;
+
+}
+
+span.spinner {
+  display: inline-flex;
+  height: 45px;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+span.spinner > .sub,
+span.spinner > .add {
+  float: left;
+  display: block;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-family: Lato;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 40px;
+  color: $brand-dark-blue;
+  border: 2px $brand-dark-blue solid;
+  border-right: 0;
+  border-radius: 6px 0 0 6px;
+  cursor: pointer;
+  transition: 0.1s linear;
+  -o-transition: 0.1s linear;
+  -ms-transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+}
+
+span.spinner > .add {
+  top: 0;
+  border: 2px $brand-dark-blue solid;
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+}
+
+span.spinner > .sub:hover,
+span.spinner > .add:hover {
+  background: $brand-primary;
+  color: white;
+}
+ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+ -webkit-appearance: none;
+}
+
+.numbered-list {
+  list-style: none;
+}
+
+.numbered-list li {
+  counter-increment: my-awesome-counter;
+  font-size: 1.3em;
+  font-family: Maven Pro;
+  line-height: 2.2em;
+}
+
+.numbered-list li::before {
+  content: counter(my-awesome-counter);
+  position: absolute;
+  left: 15px;
+  color: $brand-grey;
+  font-family: Baloo;
+  font-size: 2em;
+  transform: rotate(-10deg);
 }

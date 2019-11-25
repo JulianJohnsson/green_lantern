@@ -1,0 +1,51 @@
+@import "material/scss/material-kit/variables";
+
+.stepbar-container{
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  left: 27%;
+  margin-top: -30px;
+}
+
+.stepbar {
+    list-style: none;
+    li {
+      float: left;
+      width: 12%;
+      position: relative;
+      text-align: center;
+      .bulle {
+          width: 35px;
+          height: 35px;
+          border: 1px solid $brand-grey;
+          margin: 0 auto 10px auto;
+          border-radius: 50%;
+          line-height: 32px;
+          background: white;
+          color: #bebebe;
+          text-align: center;
+          font-weight: bold;
+          padding-left: 4px;
+        }
+    }
+    li:after{
+      content: '';
+      position: absolute;
+      width:100%;
+      height: 3px;
+      background: $brand-grey;
+      top: 15px;
+      left: -50%;
+      z-index: -1;
+    }
+    li:first-child:after{
+        content: none;
+    }
+    li.active .bulle {
+        border-color: $brand-primary;
+    }
+    li.active + li:after{
+        background: $brand-primary;
+    }
+}

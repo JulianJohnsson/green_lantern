@@ -3,7 +3,7 @@
     <h4>ALIMENTATION</h4>
   </div>
   <div class="card-body">
-    <% if @score != nil %>
+    <% if @score.regime != nil %>
       <% if @score.regime.to_sym == :végétarien %>
         <p class="emoji">🥑</p>
         <h5>Deviens Végétalien</h5>

@@ -1,30 +1,31 @@
-<div class="row align-items-center">
-  <div class="col-md-9">
+<div class="row align-items-center justify-content-center">
+  <div class="col-lg-10 col-md-12">
     <div class="card">
-      <div class="card-body">
-        <%= form_for @score do |form| %>
-          <h3><strong>
-            <small>Question 4 / 6</small></strong>
-           </h3>
-          <div class="form-group bmd-form-group">
-            <h4><strong>
-              Combien de vols moyen courrier effectues-tu par an (moins de 3h) ?
-            </strong></h4>
-            <%= form.number_field :short_flights, class: "form-control", :placeholder => "Entre un nombre de vols aller-retour" %>
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card-body">
+            <h3><strong>
+              <small>Question 4 / 6</small>
+              <br>
+             Combien de vols moyen courrier effectues-tu par an (moins de 3h) ?
+            </strong></h3>
+            <%= form_for @score do |form| %>
+              <div class="form-group bmd-form-group text-center">
+                <%= form.number_field :short_flights, :value => 0, :min => 0, :max => 100, class: "form-control" %>
+                <small class="form-text text-muted">Indique un nombre de vols aller-retour.</small>
+              </div>
+              <div class="actions text-center">
+                <%= form.submit 'Continuer', class: 'btn btn-primary btn-round' %>
+              </div>
+              <%= image_tag "short_flights.png", class: "img-fluid w-50", :style => "margin-left:auto;margin-right:auto;display:block;" %>
+            <% end %>
           </div>
-          <div class="actions">
-            <%= form.submit 'Continuer', class: 'btn btn-primary btn-round' %>
-          </div>
-        <% end %>
+        </div>
+        <div class="col-md-5 score-preview text-center">
+          <%= render "score" %>
+        </div>
       </div>
     </div>
-    <ol class="onboarding-indicator">
-      <li class="active"></li>
-      <li class=""></li>
-      <li class=""></li>
-    </ol>
-  </div>
-  <div class="col-md-3">
-    <%= render "score" %>
   </div>
 </div>
+<%= render 'number_spinner' %>
