@@ -5,9 +5,11 @@ class Match < ApplicationRecord
   scope :user_matches, -> (int) {where("user_id IS NULL OR user_id = ?", int)}
 
   def get_match_data(user)
-    raw_user_data = self.get_user_data(user)
+    user_data = self.get_user_data(user)
+
+    raw_user_data = user_data[1]
+    user_total = user_data[0]
     opponent_data = self.get_opponent_data
-    user_total = raw_user_data.map { |c,v| v }.inject(0){|sum,x| sum.to_i + x.to_i }
     opponent_total = opponent_data.inject(0){|sum,x| sum.to_i + x.to_i }
     chart_data = {
       labels: raw_user_data.map { |c,v| c.emoji },
@@ -22,11 +24,12 @@ class Match < ApplicationRecord
   def get_user_data(user)
     score = user.scores.last
     categories = Category.all.parent_categories.sort_by {|c| c.id}
+    raw_user_total = score.total.to_f*1000/12
     raw_user_data = []
     for i in 0..4
       raw_user_data = raw_user_data << [categories[i], score.detail[i].to_f*1000/12]
     end
-    raw_user_data
+    return raw_user_total, raw_user_data
   end
 
   def get_opponent_data
