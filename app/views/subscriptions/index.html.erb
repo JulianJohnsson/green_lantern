@@ -1,6 +1,6 @@
 <% content_for :title, "Compenser mon impact" %>
 <h2 class="description text-center">
-  🤔 Pourquoi ?
+  <span style="opacity:0.3;">🤔</span> Pourquoi ?
 </h2>
 <p class="text-center">
   Pourquoi compenser ? Parce qu’en habitant en France, tu n’as aucune chance d’annuler 100% de ton impact.
@@ -59,7 +59,7 @@
 </div>
 
 <h2 class="description text-center" id="anchor">
-  🧮 Combien ?
+  <span style="opacity:0.3;">🧮</span> Combien ?
 </h2>
 <div class="row justify-content-center">
   <div class="col-md-8">
@@ -176,18 +176,9 @@
           </div>
         </div>
         <%= form_tag(new_subscription_path, method: :get) do %>
-          <div class="form-row justify-content-center align-items-center">
-            <div class="form-group col-5 bmd-form-group is-filled">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">euro</i>
-                  </span>
-                </div>
-                <%= number_field_tag :price, 4, class: 'form-control big-input-info' %>
-                <%= hidden_field_tag :plan, 'bambou' %>
-              </div>
-            </div>
+          <div class="form-group bmd-form-group text-center">
+            <%= number_field_tag :price, 4, :min => 4, :max => 1000, class: 'form-control big-input-info' %>
+            <%= hidden_field_tag :plan, 'bambou' %>
           </div>
       </div>
       <div class="card-footer text-center">
@@ -198,7 +189,7 @@
   </div>
 </div>
 <h2 class="description text-center" style="margin-top:-80px;">
-    💡 Comment ?
+    <span style="opacity:0.3;">💡</span> Comment ?
 </h2>
 <div class="row justify-content-center align-items-center">
   <div class="col-md-8">
@@ -211,4 +202,4 @@
     <%= link_to "Découvrir les projets", projects_path, class: "btn btn-lg btn-outline-primary btn-round" %>
   </div>
 </div>
-<%= render '/scores/number_spinner' %>
+<%= render '/scores/currency_spinner' %>

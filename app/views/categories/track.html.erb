@@ -3,8 +3,8 @@
     <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") if @score.kind.to_sym == :dynamic %>
   </small>
 
-  <h2 class="description">
-    👁‍ En un clin d'oeil
+  <h2 class="description text-center">
+    <span style="opacity:0.3;">👁‍</span> En un clin d'oeil
   </h2>
   <div class="row text-center">
     <div class="col-md-12">
@@ -92,8 +92,8 @@
     </div>
   </div>
 
-  <h2 class="description">
-    📢 Mes tendances récentes
+  <h2 class="description text-center">
+    <span style="opacity:0.3;">📢</span> Mes tendances récentes
   </h2>
   <% if @score.kind.to_sym == :dynamic %>
     <div class="row">
@@ -182,8 +182,8 @@
     </div>
   <% end %>
 
-  <h2 class="description">
-    🤓 Pour aller plus loin
+  <h2 class="description text-center">
+    <span style="opacity:0.3;">🤓</span> Pour aller plus loin
   </h2>
   <div class="row justify-content-center text-center">
     <div class="col-md-6">

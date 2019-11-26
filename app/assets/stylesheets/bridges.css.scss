@@ -116,7 +116,7 @@ html:hover .animation-top {
   min-height: 160px;
 }
 
-input[type=number] {
+span.spinner input[type=number] {
   float: left;
   width: 70px;
   height: 45px;
@@ -139,6 +139,15 @@ span.spinner {
   -moz-user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+}
+
+span.spinner > .input-group-text {
+  float: left;
+  display: block;
+  border: 2px $brand-dark-blue solid;
+  border-right: 0;
+  width: 20px;
+  background: $brand-grey;
 }
 
 span.spinner > .sub,
