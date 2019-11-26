@@ -191,3 +191,15 @@ bridges.each do |bridge|
     end
   end
 end
+
+users = User.where("onboarded IS NULL")
+users.each do |user|
+  if user.scores.present? && user.scores.last.kind.to_sym == :dynamic && user.scores.last.total > 0
+    user.onboarded = true
+  elsif user.scores.present? && user.scores.last.kind.to_sym == :static && user.scores.last.regime.present?
+    user.onboarded = true
+  else
+    user.onboarded = false
+  end
+  user.save
+end

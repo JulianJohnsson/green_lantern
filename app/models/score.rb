@@ -4,8 +4,8 @@ class Score < ApplicationRecord
 
   before_create :set_default
   before_create :set_match
-
   before_save :calculate_score
+  after_update :update_onboarding, if: :saved_change_to_regime? || :saved_change_to_kind?
 
   enum main_transport_mode: [:voiture_classique, :voiture_électrique, :moto_ou_scooter, :transports_en_commun, :vélo_ou_marche]
   enum regime: [:végétalien, :végétarien, :flexitarien, :moyen, :viandard]
@@ -152,5 +152,17 @@ class Score < ApplicationRecord
       Match.create(name: User.find(self.user.invited_by_id).name, user_id: self.user.id, opponent_id: self.user.invited_by_id, badge: 'badge_avatar.png', image: 'avatar.png')
       Match.create(name: self.user.name, user_id: self.user.invited_by_id, opponent_id: self.user.id, badge: 'badge_avatar.png', image: 'avatar.png')
     end
+  end
+
+  def update_onboarding
+    user = self.user
+    if self.last.kind.to_sym == :dynamic && self.total > 0
+      user.onboarded = true
+    elsif self.last.kind.to_sym == :static && self.regime.present?
+      user.onboarded = true
+    else
+      user.onboarded = false
+    end
+    user.save
   end
 end

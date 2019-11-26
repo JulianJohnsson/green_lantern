@@ -1,0 +1,18 @@
+<%= link_to '/track' do %>
+  <div class="card">
+    <div class="card-header card-header-info">
+      <h4>MON IMPACT</h4>
+      <p class="number number-lg">
+        <%= number_with_precision(@carbone, precision: 0) %>
+      </p>
+      <div class="subtitle">
+        <span>KGCO2 PAR MOIS</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Les émissions de 3 Twingo roulant non stop durant un mois, ou le poids de 9 crocodiles 🐊
+      </p>
+    </div>
+  </div>
+<% end %>

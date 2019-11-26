@@ -28,8 +28,8 @@
           <% end %>
         });
         <% if user_signed_in? %>
-            analytics.identify(<%= current_user.id %>);
-          <% end %>
+          <% AnalyticService.new.identify(current_user,request) %>
+        <% end %>
       }
     }
   ();

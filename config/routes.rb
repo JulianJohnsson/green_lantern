@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get '/later' => 'bridges#later'
   get '/waitlist' => 'users#waitlist'
 
-  get '/dashboard' => 'transactions#dashboard'
+  get '/dashboard' => 'dashboards#index'
   get '/categorize' => 'transactions#categorize'
 
   get '/track' => 'categories#track'

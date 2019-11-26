@@ -7,6 +7,8 @@ class User < ApplicationRecord
   after_create_commit :notify_signup
   after_update :notify_invited_signup, if: :saved_change_to_invitation_accepted_at?
 
+  scope :onboarded, -> { where("onboarded = true") }
+
   def set_default_role
     self.role ||= :user
   end

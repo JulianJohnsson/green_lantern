@@ -1,0 +1,20 @@
+<%= link_to '/compare_with' do %>
+  <div class="card">
+    <div class="card-header card-header-primary">
+      <h4>MOYENNE DES MEMBRES</h4>
+      <p class="number number-lg">
+        <%= number_with_precision(@average, precision: 0) %>
+      </p>
+      <div class="subtitle">
+        <span>TU FAIS <%= number_with_precision((@carbone-@average)/@average*100, precision: 0) %>% DE PLUS </span>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        La bonne nouvelle ? Ça reste
+        <strong><%= number_with_precision(3370.0/@carbone, precision: 0) %>
+        fois moins</strong> que l'inimitable Donald Trump 🇺🇸
+      </p>
+    </div>
+  </div>
+<% end %>
