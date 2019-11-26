@@ -33,9 +33,11 @@ class CategoriesController < ApplicationController
       params[:month] = 1
     end
 
-    @transactions = current_user.transactions.carbone_contribution.month_ago(params[:month].to_i || 0)
-    @score.detail = @categories.sort_by {|c| c.id}.map {|c| @transactions.parent_category_id(c.id).sum(:carbone)*12/1000}
-    @score.total = @score.detail.inject(0){|sum,x| sum.to_f + x.to_f }
+    if @score.kind.to_sym == :dynamic
+      @transactions = current_user.transactions.carbone_contribution.month_ago(params[:month].to_i || 0)
+      @score.detail = @categories.sort_by {|c| c.id}.map {|c| @transactions.parent_category_id(c.id).sum(:carbone)*12/1000}
+      @score.total = @score.detail.inject(0){|sum,x| sum.to_f + x.to_f }
+    end
 
     @data = []
     for i in 0..4

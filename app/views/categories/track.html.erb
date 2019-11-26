@@ -55,7 +55,7 @@
                           <br />
                           <% unless @score.detail[i] == 0 %>
                             <%= link_to "/transactions?month=#{params[:month]}&parent_category=#{c.id}" do %>
-                              <%= @transactions.parent_category_id(c.id).count.to_s + " dépenses" %>
+                              <%= @transactions.parent_category_id(c.id).count.to_s + " dépenses" if @score.kind.to_sym == :dynamic %>
                             <% end %>
                           <% else %>
                            pas de dépense
