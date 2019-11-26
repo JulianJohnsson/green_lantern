@@ -41,7 +41,7 @@ class Score < ApplicationRecord
         self.set_goods_score
       end
     when :dynamic
-      categories = Category.all.parent_categories
+      categories = Category.all.parent_categories.sort_by {|c| c.id}
       user = self.user
       first_transaction_date = user.transactions.order(date: :asc).first.date
       days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min

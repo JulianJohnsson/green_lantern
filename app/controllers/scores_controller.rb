@@ -2,6 +2,31 @@ class ScoresController < ApplicationController
   before_action :set_score, only:[:edit, :edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy]
   before_action :authenticate_user!
 
+  def onboarding
+    if (cookies[:carbo_alpha] == nil && Bridge.find_by_user_id(current_user.id) == nil)
+      redirect_to '/waitlist'
+    else
+      if current_user.scores == []
+      redirect_to action: 'new'
+      else
+        @score = current_user.scores.last
+        if @score.regime.present? || @score.kind.to_sym == :dynamic
+          redirect_to bridges_path
+        elsif @score.house_size.present?
+          redirect_to action: 'edit_regime'
+        elsif @score.short_flights.present?
+          redirect_to action: 'edit_house'
+        elsif @score.long_flights.present?
+          redirect_to action: 'edit_plane2'
+        elsif @score.main_transport_mode.present?
+          redirect_to action: 'edit_plane'
+        else
+          redirect_to action: 'edit_transport'
+        end
+      end
+    end
+  end
+
   def new
     if cookies[:ajs_anonymous_id].present?
       2.times do
@@ -9,17 +34,10 @@ class ScoresController < ApplicationController
       end
       Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
     end
-
-    if (cookies[:carbo_alpha] == nil && Bridge.find_by_user_id(current_user.id) == nil)
-      redirect_to '/waitlist'
-    elsif current_user.scores == []
-      @score = Score.new
-      @countries = Country.all
-      AnalyticService.new.track('Onboarding started', nil, current_user)
-      render :layout => 'bridges'
-    else
-      redirect_to bridges_path
-    end
+    @score = Score.new
+    @countries = Country.all
+    AnalyticService.new.track('Onboarding started', nil, current_user)
+    render :layout => 'bridges'
   end
 
   def create

@@ -27,13 +27,15 @@ class CategoriesController < ApplicationController
     @bridge = Bridge.find_by_user_id(current_user.id)
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last
-    @transactions = current_user.transactions.carbone_contribution.recent
-    @transaction_list = @transactions.order(date: :desc).first(6)
-    if params[:month].present?
-      @transactions = current_user.transactions.carbone_contribution.month_ago(params[:month].to_i)
-      @score.detail = @categories.sort_by {|c| c.id}.map {|c| @transactions.parent_category_id(c.id).sum(:carbone)*12/1000}
-      @score.total = @score.detail.inject(0){|sum,x| sum.to_f + x.to_f }
+    @transaction_list = current_user.transactions.carbone_contribution.recent.order(date: :desc).first(6)
+
+    if (Date.today - Date.today.beginning_of_month).to_i < 5 && params[:month] == nil
+      params[:month] = 1
     end
+
+    @transactions = current_user.transactions.carbone_contribution.month_ago(params[:month].to_i || 0)
+    @score.detail = @categories.sort_by {|c| c.id}.map {|c| @transactions.parent_category_id(c.id).sum(:carbone)*12/1000}
+    @score.total = @score.detail.inject(0){|sum,x| sum.to_f + x.to_f }
 
     @data = []
     for i in 0..4

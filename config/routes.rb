@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :users
 
   authenticated :user do
-    root 'scores#new', as: :authenticated_root
+    root 'scores#onboarding', as: :authenticated_root
   end
 
   get 'track_trump' => 'users#track_trump'
