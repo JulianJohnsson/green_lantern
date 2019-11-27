@@ -37,7 +37,7 @@ class Match < ApplicationRecord
       opponent_data = self.data
     else
       opponent = User.find(self.opponent_id)
-      raw_opponent_data = self.get_user_data(opponent)
+      raw_opponent_data = self.get_user_data(opponent)[1]
       opponent_data = raw_opponent_data.map { |c,v| v }
     end
     opponent_data
