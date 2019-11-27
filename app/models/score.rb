@@ -156,9 +156,9 @@ class Score < ApplicationRecord
 
   def update_onboarding
     user = self.user
-    if self.last.kind.to_sym == :dynamic && self.total > 0
+    if self.kind.to_sym == :dynamic && self.total > 0
       user.onboarded = true
-    elsif self.last.kind.to_sym == :static && self.regime.present?
+    elsif self.kind.to_sym == :static && self.regime.present?
       user.onboarded = true
     else
       user.onboarded = false
