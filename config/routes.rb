@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :users
 
   authenticated :user do
-    root 'scores#onboarding', as: :authenticated_root
+    root 'dashboards#index', as: :authenticated_root
   end
 
   get 'track_trump' => 'users#track_trump'
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get '/compare' => 'categories#compare'
 
   get '/faq' => 'high_voltage/pages#show', id: 'faq'
+
+  get '/onboarding' => 'scores#onboarding'
 
   get '/scores/:id/edit_transport' => 'scores#edit_transport'
   get '/scores/:id/edit_plane' => 'scores#edit_plane'

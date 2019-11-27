@@ -11,7 +11,22 @@
     </div>
     <div class="card-body">
       <p class="description">
-        Les émissions de 3 Twingo roulant non stop durant un mois, ou le poids de 9 crocodiles 🐊
+        <% case @rand when 0 %>
+          L'équivalent de la fabrication de
+          <%=  number_with_precision(@carbone / 15, precision: 0) %>
+          jeans 👖
+        <% when 1 %>
+          Soit
+          <%= number_with_precision(@carbone / 0.202, precision: 0) %>
+          km en trotinette électrique 🛴
+        <% when 2 %>
+          l'empreinte de
+          <%= number_with_precision(@carbone / 5, precision: 0) %>
+          burgers bien gras 🍔
+        <% end %>
+        , ou le poids de
+        <%=  number_with_precision(@carbone / 180, precision: 1) %>
+        hippopotames nains 🦛
       </p>
     </div>
   </div>

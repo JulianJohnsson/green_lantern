@@ -19,7 +19,7 @@
               <li><strong>Compenser</strong> le reste en soutenant des super projets !</li>
             </ol>
             <div class="text-center">
-              <%= link_to("Passer à l'action", '/track', :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
+              <%= link_to("Passer à l'action", root_path, :class => 'btn btn-primary btn-round ml-auto mr-auto', :style => 'margin-top:20px;') unless Transaction.find_by_user_id(@user.id).nil? %>
               <%= link_to("Rafraichir", "", :class => 'btn btn-primary btn-round') if Transaction.find_by_user_id(@user.id).nil? %>
             </div>
           </div>
