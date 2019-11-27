@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   after_action :verify_authorized
 
   def waitlist
-    render :layout => 'bridges'
+    render :layout => 'devise'
     @user = current_user
     authorize @user
     AnalyticService.new.identify(current_user,request)

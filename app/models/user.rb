@@ -8,6 +8,7 @@ class User < ApplicationRecord
   after_update :notify_invited_signup, if: :saved_change_to_invitation_accepted_at?
 
   scope :onboarded, -> { where("onboarded = true") }
+  scope :subscribed, -> { where("stripe_subscription_id IS NOT NULL") }
 
   def set_default_role
     self.role ||= :user

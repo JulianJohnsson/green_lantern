@@ -27,6 +27,11 @@
     h4 {
       font-size: 1em;
     }
+    .big {
+      font-size: 1.3em;
+      font-weight: bold;
+      width: 80%;
+    }
     .subtitle {
       margin-bottom: -20px;
       span {
@@ -41,6 +46,12 @@
   }
   .card-header-primary .subtitle span {
     background-color: darken($brand-primary, 10%);
+  }
+  .card-header-danger .subtitle span {
+    background-color: darken($brand-danger, 10%);
+  }
+  .card-header-warning .subtitle span {
+    background-color: darken($brand-warning, 10%);
   }
 
   .card-body {

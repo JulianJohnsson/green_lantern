@@ -6,7 +6,13 @@
         <%= number_with_precision(@average, precision: 0) %>
       </p>
       <div class="subtitle">
-        <span>TU FAIS <%= number_with_precision((@carbone-@average)/@average*100, precision: 0) %>% DE PLUS </span>
+        <span>
+          <% if @carbone >= @average %>
+            TU FAIS <%= number_with_precision((@carbone-@average)/@average*100, precision: 0) %>% DE PLUS
+          <% else %>
+            TU FAIS <%= number_with_precision(-1*(@carbone-@average)/@average*100, precision: 0) %>% DE MOINS
+          <% end %>
+        </span>
       </div>
     </div>
     <div class="card-body">

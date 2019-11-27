@@ -13,6 +13,13 @@ class DashboardsController < ApplicationController
     @carbone = @score.total * 1000/12
     @average = total / count * 1000/12
 
+    @users = User.all.subscribed
+    sum = 0
+    @users.each do |user|
+      sum = sum + user.scores.last.total
+    end
+    @cars = ((sum+12*6)*1000/12*0.01).to_i
+
   end
 
 end
