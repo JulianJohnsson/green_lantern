@@ -6,6 +6,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
   after_create_commit :notify_signup
   after_update :notify_invited_signup, if: :saved_change_to_invitation_accepted_at?
+  after_update :notify_subscription, if: :saved_change_to_stripe_subscription_id?
 
   scope :onboarded, -> { where("onboarded = true") }
   scope :subscribed, -> { where("stripe_subscription_id IS NOT NULL") }
@@ -25,6 +26,36 @@ class User < ApplicationRecord
     if self.invitation_created_at != nil
       AnalyticService.new.track('Signed Up', nil, self)
       UserMailer.welcome_email(self).deliver_later
+    end
+  end
+
+  def notify_subscription
+    if self.stripe_subscription_id.present?
+      AnalyticService.new.track('Subscription Paid', nil, self)
+
+      variable = Mailjet::Send.create(messages: [{
+        'From'=> {
+          'Email'=> "emmanuel@hellocarbo.com",
+          'Name'=> "Emmanuel de Carbo"
+        },
+        'To'=> [
+          {
+            'Email'=> self.email,
+            'Name'=> self.name
+          }
+        ],
+        'TemplateID'=> 1110052,
+        'TemplateLanguage'=> true,
+        'Subject'=> "Ton forfait est désormais actif !",
+        'Variables'=> {
+          "name" => self.name,
+          "subscribed" => true,
+          "user_plan" => self.subscription_plan,
+          "user_carbon_share" => (self.subscription_price/0.02).to_i,
+          "user_price" => self.subscription_price
+        }
+      }])
+      p variable.attributes['Messages']
     end
   end
 

@@ -53,12 +53,14 @@ class SubscriptionsController < ApplicationController
               end
 
     subscription = customer.subscriptions.create(plan: plan.id, quantity: params[:quantity].to_i)
-    AnalyticService.new.track('Subscription Paid', nil, current_user)
 
     options = {
       stripe_id: customer.id,
       stripe_subscription_id: subscription.id,
-      subscribed: true
+      subscribed: true,
+      subscription_plan: params[:plan],
+      subscription_price: params[:quantity].to_i * 0.02,
+      subscription_started_at: DateTime.now.to_date
     }
 
     options.merge!(
@@ -74,6 +76,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    Stripe.api_key = Rails.application.credentials[:stripe][Rails.env.to_sym][:private_key]
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     customer.subscriptions.retrieve(current_user.stripe_subscription_id).delete
     current_user.update(stripe_subscription_id: nil)

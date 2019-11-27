@@ -53,6 +53,7 @@
 
             <%= hidden_field_tag :plan_id, Rails.application.credentials[:stripe][Rails.env.to_sym][:static_plan] %>
             <%= hidden_field_tag :quantity, params[:quantity] %>
+            <%= hidden_field_tag :plan, params[:plan] %>
           </div>
           <p id="cgv">
             En activant mon forfait, j'accepte les conditions générales de vente de carbo.
