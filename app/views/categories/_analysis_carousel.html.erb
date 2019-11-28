@@ -6,11 +6,16 @@
           <div class="row justify-content-center">
             <div class="col-md-9">
               <div class="card-title emoji">
-                🎈
+                <%= @top_category_advice[0] %>
               </div>
-              <div class="blockquote">
-                <p>
-                  Attention à tes dépenses en Trotinettes ! Pour te donner une idée, +25 kgC02 suffirait à gonfler 382 ballons...
+              <div>
+                <p class="big">
+                  <%= current_user.name %>
+                  , le carbone de tes dernières dépenses en
+                  <%= Category.find(@score.top_category[0]).name %>
+                  <%= @top_category_advice[2] %>
+                  <%= (@score.top_category[1].to_f / @top_category_advice[1]).round(0) %>
+                  <%= @top_category_advice[3] %> !
                 </p>
               </div>
             </div>
@@ -20,25 +25,11 @@
           <div class="row justify-content-center">
             <div class="col-md-9">
               <div class="card-title emoji">
-                🎈
+                <%= @top_transaction_advice[0] %>
               </div>
-              <div class="blockquote">
-                <p>
-                  Attention à tes dépenses en Trotinettes ! Pour te donner une idée, +25 kgC02 suffirait à gonfler 382 ballons...
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row justify-content-center">
-            <div class="col-md-9">
-              <div class="card-title emoji">
-                🎈
-              </div>
-              <div class="blockquote">
-                <p>
-                  Attention à tes dépenses en Trotinettes ! Pour te donner une idée, +25 kgC02 suffirait à gonfler 382 ballons...
+              <div>
+                <p class="big">
+                  <%= @top_transaction_advice[1] %>
                 </p>
               </div>
             </div>

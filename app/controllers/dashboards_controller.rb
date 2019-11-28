@@ -41,7 +41,7 @@ class DashboardsController < ApplicationController
         @reduction << ['Logement', Category.find_by_name("Logement").emoji, "Choisir un contrat 100% énergies renouvelables", carbon_reduction, cost_reduction]
         i = i + 1
       end
-      if Score.regimes[@score.regime] > 1
+      if (Score.regimes[@score.regime] || 0) > 1
         case Score.regimes[@score.regime] when 2
           reduction_coeff = 0.15
           regime_title = "végétarien"

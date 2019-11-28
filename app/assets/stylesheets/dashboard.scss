@@ -47,8 +47,8 @@
   .card-header-primary .subtitle span {
     background-color: darken($brand-primary, 10%);
   }
-  .card-header-danger .subtitle span {
-    background-color: darken($brand-danger, 10%);
+  .card-header-rose .subtitle span {
+    background-color: darken($brand-rose, 10%);
   }
   .card-header-warning .subtitle span {
     background-color: darken($brand-warning, 10%);
@@ -67,4 +67,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+.carousel-item .big {
+  font-size: 18px;
+
 }
