@@ -44,7 +44,11 @@
             moins
             <% end %>
             que la moyenne des membres Carbo</p>
-          <p>👉 Pour atteindre l’objectif de l’accord de Paris, il te faudrait diviser ton empreinte par <%= number_with_precision(@match_data[3] / 167, precision: 0) %> environ. Au boulot !</p>
+          <% if @match_data[3] > 165 %>
+            <p>👉 Pour atteindre l’objectif de l’accord de Paris, il te faudrait diviser ton empreinte par <%= number_with_precision(@match_data[3] / 167, precision: 0) %> environ. Au boulot !</p>
+          <% else %>
+            <p>Bravo <%= current_user.name %>! Avec ton train de vie actuel, tu respectes déjà la contrainte fixée par l'accord de Paris. Un vrai exemple pour nous tous !</p>
+          <% end %>
         </div>
         <%= link_to "En savoir plus", "#versus", class: "btn btn-round btn-outline-info" %>
       </div>

@@ -1,7 +1,9 @@
 .thermometre-parent {
   position: relative;
   top: 0;
-  left: 20%;
+  left: 0%;
+  width: 70%;
+  transform: translate(50%, 0);
   .progress-line, .progress-bar {
     border-radius: 20px;
   }
