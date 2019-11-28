@@ -7,7 +7,7 @@ class DashboardsController < ApplicationController
     else
       # SUIVRE
       @score = current_user.scores.last
-      @rand = rand(2)
+      @rand = rand(3)
 
       # COMPARER
       total = 0
@@ -41,19 +41,22 @@ class DashboardsController < ApplicationController
         @reduction << ['Logement', Category.find_by_name("Logement").emoji, "Choisir un contrat 100% énergies renouvelables", carbon_reduction, cost_reduction]
         i = i + 1
       end
-      if @score.regime.to_i > 1
-        case @score.regime when 2
+      if Score.regimes[@score.regime] > 1
+        case Score.regimes[@score.regime] when 2
           reduction_coeff = 0.15
+          regime_title = "végétarien"
         when 3
           reduction_coeff = 0.17
+          regime_title = "flexitarien"
         when 4
           reduction_coeff = 0.28
+          regime_title = "moins carné"
         end
         carbon_reduction = @score.detail[4].to_f * reduction_coeff * 1000/12
-        @reduction << ['Alimentation', Category.find_by_name("Alimentation").emoji, "Passer à un nouveau régime #{Score.regimes[@score.regime+1].to_sym.humanize}", carbon_reduction, 0]
+        @reduction << ['Alimentation', Category.find_by_name("Alimentation").emoji, "Passer à un nouveau régime #{regime_title}", carbon_reduction, 0]
         i = i + 1
       end
-      @rand_2 = rand(i-1)
+      @rand_2 = rand(i)
       @reduction_advice = @reduction[@rand_2]
 
       # COMPENSER

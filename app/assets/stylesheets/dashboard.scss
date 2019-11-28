@@ -58,3 +58,13 @@
     padding-top: 30px;
   }
 }
+
+.img-container {
+  position: relative;
+  a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

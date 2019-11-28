@@ -122,12 +122,12 @@ class Score < ApplicationRecord
 
   def set_goods_score
     country = Country.find(country_id)
-    self.detail[3] = country.detail[3].to_f * (1 + ((self.goods_furnitures - country.furniture) + (self.goods_clothes - country.clothes) + (self.goods_others - country.other_goods)) / (country.furniture+country.clothes+country.other_goods))
+    self.detail[3] = country.detail[3].to_f * (1 + (((self.goods_furnitures || country.furniture) - country.furniture) + ((self.goods_clothes || country.clothes) - country.clothes) + ((self.goods_others || country.other_goods) - country.other_goods)) / (country.furniture+country.clothes+country.other_goods))
   end
 
   def set_services_score
     country = Country.find(country_id)
-    self.detail[2] = country.detail[2].to_f * (1 + ((self.services_health - country.healthcare) + (self.services_plans - country.subscriptions) + (self.services_others - country.other_services)) / (country.healthcare+country.subscriptions+country.other_services))
+    self.detail[2] = country.detail[2].to_f * (1 + (((self.services_health || country.healthcare) - country.healthcare) + ((self.services_plans || country.subscriptions) - country.subscriptions) + ((self.services_others || country.other_services) - country.other_services)) / (country.healthcare+country.subscriptions+country.other_services))
   end
 
   def calculate_trends

@@ -1,0 +1,87 @@
+<% if @score.kind.to_sym == :dynamic %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-header card-header-danger">
+            <h4>
+              Ma grosse catégorie
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3 emoji text-right">
+                <%= Category.find(@score.top_category[0]).emoji %>
+              </div>
+              <div class="col-8 text-left">
+                <p>
+                  <strong><%= Category.find(@score.top_category[0]).name %></strong> <br>
+                  <%= number_with_precision(@score.top_category[1], precision: 0) %> kgCO2 en 1 mois
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-header card-header-rose">
+            <h4>
+              Ma grosse dépense
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3 emoji text-right">
+                🙃
+              </div>
+              <div class="col-7 text-left">
+                <p>
+                  <strong><%= @score.top_transaction[0] %></strong> <br>
+                  <%= number_with_precision(@score.top_transaction[1], precision: 0) %> kgCO2
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-header card-header-violet">
+            <h4>
+              Ma grosse augmentation
+            </h4>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-3 emoji text-right">
+                <%= Category.find(@score.top_growth[0]).emoji %>
+              </div>
+              <div class="col-9 text-left">
+                <p>
+                  <strong><%= Category.find(@score.top_growth[0]).name %></strong> <br>
+                  +<%= number_with_precision(@score.top_growth[1], precision: 0) %> % en 1 mois
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <%= render 'analysis_carousel' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row justify-content-center">
+      <div class="col-md-12 text-center">
+        <p class="big description">
+          Carbo peut analyser tes dépenses pour suivre ton impact dans le temps et identifier tes grandes tendances, typiquement là où ton impact augmente. Pour cela, il te suffit d’activer le mode dynamique de Carbo.
+        </p>
+        <div class="img-container">
+          <%= image_tag 'suivre_tendances_static.png', class: 'img-fluid' %>
+          <%= link_to 'Activer le mode dynamique', '/onboarding', class: 'btn btn-round btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end %>

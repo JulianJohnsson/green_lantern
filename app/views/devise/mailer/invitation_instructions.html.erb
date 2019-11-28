@@ -1,7 +1,7 @@
-<h1><%= User.find(@resource.invited_by_id).name %> t'invite à comparer votre empreinte carbone sur Carbo !</h1>
+<h1><%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %> t'invite à comparer votre empreinte carbone sur Carbo !</h1>
 <p>Bonjour <%= @resource.email %>,</p>
 <p>
-  <%= User.find(@resource.invited_by_id).name %> s'est inscrit sur Carbo pour suivre, comparer, réduire et compenser son empreinte carbone facilement.
+  <%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %> s'est inscrit sur Carbo pour suivre, comparer, réduire et compenser son empreinte carbone facilement.
 </p>
 <p>
    En acceptant cette invitation, tu pourras t'inscrire à ton tour et comparer ton empreinte carbone avec la sienne en moins de 10 minutes.
@@ -10,5 +10,3 @@
 <p>À très vite 👋</p>
 <p>Emmanuel<br>
 Cofondateur de Carbo</p>
-<hr>
-<p>Psss…ce message n'est pas envoyé par un robot, réponds moi si tu veux en parler 😀</p>

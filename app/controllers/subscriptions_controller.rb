@@ -72,7 +72,7 @@ class SubscriptionsController < ApplicationController
 
     current_user.update(options)
 
-    redirect_to '/subscriptions/show', notice: "Your subscription was setup successfully!"
+    redirect_to '/subscriptions/show', notice: "Ton abonnement a bien été activé, tu vas recevoir une facture par email d’ici quelques minutes"
   end
 
   def destroy
@@ -84,7 +84,7 @@ class SubscriptionsController < ApplicationController
 
     AnalyticService.new.track('Subscription Cancelled', nil, current_user)
 
-    redirect_to root_path, notice: "Your subscription has been cancelled."
+    redirect_to root_path, notice: "Ton abonnement a bien été arrêté"
   end
 
 end

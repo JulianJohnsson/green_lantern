@@ -1,0 +1,63 @@
+<div class="row justify-content-center text-center">
+  <% if @score.kind.to_sym == :dynamic %>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-warning">
+          <div class="emoji-title">
+            💳
+            <h4>
+              Mes dernières dépenses
+            </h4>
+          </div>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-hover">
+            <tbody>
+              <% @transaction_list.each do |transaction| %>
+                <tr>
+                  <td class="text-left">
+                    <%= Category.find(transaction.category_id).emoji %>
+                  </td>
+                  <td class="text-left" style="width:50%;"><%= truncate(transaction.description, :length => 33) %></td>
+                  <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
+                  <td class="text-right">
+                    <%= link_to edit_transaction_path(transaction) do %>
+                      <i class='material-icons text-warning' style="font-size:18px;">edit</i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-outline-warning btn-round" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <%= render 'badge' %>
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-info">
+          <div class="emoji-title">
+            📈
+            <h4>Evolution de mon impact carbone</h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="col-md-12 text-center">
+      <p class="big description">
+        Pour ceux qui veulent tout savoir sur tout : suivre tes dernières dépenses, améliorer ton calcul d’impact, analyser ton historique...et devenir un Captain Carbo ! Active le mode dynamique, c’est 100% gratuit !
+      </p>
+      <div class="img-container">
+        <%= image_tag 'suivre_detail_static.png', class: 'img-fluid' %>
+        <%= link_to 'Activer le mode dynamique', '/onboarding', class: 'btn btn-round btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

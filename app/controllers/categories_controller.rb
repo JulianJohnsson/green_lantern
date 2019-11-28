@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
     @bridge = Bridge.find_by_user_id(current_user.id)
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last
-    @transaction_list = current_user.transactions.carbone_contribution.recent.order(date: :desc).first(6)
+    @transaction_list = current_user.transactions.carbone_contribution.recent.order(date: :desc).first(5)
 
     if (Date.today - Date.today.beginning_of_month).to_i < 5 && params[:month] == nil
       params[:month] = 1
@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
 
     @data = []
     for i in 0..4
-      @data = @data << [@categories[i].name, @score.detail[i].to_f*1000/12]
+      @data = @data << [@categories[i].name, (@score.detail[i].to_f*1000/12).round(2)]
     end
 
     AnalyticService.new.identify(current_user,request)

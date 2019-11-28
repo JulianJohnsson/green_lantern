@@ -17,16 +17,17 @@
               <div>
                 <span class="number number-md"><%= number_with_precision(@score.total*1000/12, precision: 0) %></span>
                 <br>kgCO2
+                <%= "/ mois" if @score.kind.to_sym == :static %>
               </div>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
-              <%= image_tag("category_left.png", class: "img-fluid illustration") %>
+              <%= image_tag("group_left.png", class: "img-fluid") %>
             </div>
             <div class="col-md-4 mt-auto mb-auto">
               <%= pie_chart @data, colors: @categories.map { |c| c.color}, round: 1, donut: true, legend: "none", suffix: " kgCO2" %>
             </div>
             <div class="col-md-4 mt-auto mb-auto d-none d-md-block">
-              <%= image_tag("category_right.png", class: "img-fluid illustration") %>
+              <%= image_tag("group_right.png", class: "img-fluid") %>
             </div>
           </div>
           <div class="row">
@@ -72,12 +73,16 @@
                         <span class="badge badge-pill badge-danger">Basse</span>
                       </td> -->
                       <td class="text-left" style="width:8%;">
-                        <% unless @score.detail[i] == 0 %>
+                        <% unless @score.kind.to_sym == :static || @score.detail[i] == 0 %>
                           <%= link_to "/categories/#{c.id}?month=#{params[:month]}", :month => (params[:month].to_i || 0)  do %>
                             <i class="material-icons" style="color:<%= c.color%>">more_vert</i>
                           <% end %>
                         <% else %>
-                          <i class="material-icons">more_vert</i>
+                          <% if @score.kind.to_sym == :static %>
+                            <i class="material-icons" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Active le mode dynamique pour suivre l'évolution de ton impact dans chaque catégorie">more_vert</i>
+                          <% else %>
+                            <i class="material-icons">more_vert</i>
+                          <% end %>
                         <% end %>
                       </td>
                     </tr>
@@ -88,6 +93,9 @@
             </div>
           </div>
         </div>
+        <div class="card-footer">
+          Psss..accéde au détail de 50+ catégories de dépenses en <%= link_to 'activant le mode dynamique ici', '/onboarding' %>
+        </div>
       </div>
     </div>
   </div>
@@ -95,169 +103,12 @@
   <h2 class="description text-center">
     <span style="opacity:0.3;">📢</span> Mes tendances récentes
   </h2>
-  <% if @score.kind.to_sym == :dynamic %>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card text-center">
-          <div class="card-header card-header-danger">
-            <h4>
-              Ma grosse catégorie
-            </h4>
-          </div>
-          <div class="card-body">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-3 emoji text-right">
-                <%= Category.find(@score.top_category[0]).emoji %>
-              </div>
-              <div class="col-8 text-left">
-                <p>
-                  <strong><%= Category.find(@score.top_category[0]).name %></strong> <br>
-                  <%= number_with_precision(@score.top_category[1], precision: 0) %> kgCO2 en 1 mois
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card text-center">
-          <div class="card-header card-header-rose">
-            <h4>
-              Ma grosse dépense
-            </h4>
-          </div>
-          <div class="card-body">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-3 emoji text-right">
-                🙃
-              </div>
-              <div class="col-7 text-left">
-                <p>
-                  <strong><%= @score.top_transaction[0] %></strong> <br>
-                  <%= number_with_precision(@score.top_transaction[1], precision: 0) %> kgCO2
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card text-center">
-          <div class="card-header card-header-violet">
-            <h4>
-              Ma grosse augmentation
-            </h4>
-          </div>
-          <div class="card-body">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-3 emoji text-right">
-                <%= Category.find(@score.top_growth[0]).emoji %>
-              </div>
-              <div class="col-9 text-left">
-                <p>
-                  <strong><%= Category.find(@score.top_growth[0]).name %></strong> <br>
-                  +<%= number_with_precision(@score.top_growth[1], precision: 0) %> % en 1 mois
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
-        <%= render 'analysis_carousel' %>
-      </div>
-    </div>
-  <% else %>
-    <div class="row justify-content-center">
-      <div class="col-md-8 text-center">
-        <div class="card">
-          <div class="card-body">
-            Active le mode dynamique en connectant ton relevé bancaire pour nous permettre d'analyser en détail ton empreinte carbone et t'aider à la réduire efficacement !
-            <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <%= render 'trends' %>
 
   <h2 class="description text-center">
     <span style="opacity:0.3;">🤓</span> Pour aller plus loin
   </h2>
-  <div class="row justify-content-center text-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header card-header-warning">
-          <div class="emoji-title">
-            💳
-            <h4>
-              Mes dernières dépenses
-            </h4>
-          </div>
-        </div>
-        <div class="card-body table-responsive">
-          <% if @score.kind.to_sym == :dynamic %>
-            <table class="table table-hover">
-              <tbody>
-                <% @transaction_list.each do |transaction| %>
-                  <tr>
-                    <td class="text-left">
-                      <%= Category.find(transaction.category_id).emoji %>
-                    </td>
-                    <td class="text-left" style="width:50%;"><%= truncate(transaction.description, :length => 33) %></td>
-                    <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kg</td>
-                    <td class="text-right">
-                      <%= link_to edit_transaction_path(transaction) do %>
-                        <i class='material-icons text-warning' style="font-size:18px;">edit</i>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-            <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-outline-warning btn-round" %>
-          <% else %>
-            Tu peux suivre l'impact détaillé de tes dépenses en synchronisant ton relevé bancaire, génial non ?
-            <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card text-center">
-        <div class="card-header card-header-primary">
-          <div class="emoji-title">
-            🎯
-            <h4>
-              Précision du compte
-            </h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <%= render 'accuracy' %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header card-header-info">
-          <div class="emoji-title">
-            📈
-            <h4>Evolution de mon impact carbone</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <% if @score.kind.to_sym == :dynamic %>
-            <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
-          <% else %>
-            Tu peux suivre l'évolution de ton impact dans le temps en synchronisant ton relevé bancaire, on s'y met ?
-            <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'details' %>
 
   <div class="row justify-content-center bottom-cta">
     <div class="col-md-3 text-center">

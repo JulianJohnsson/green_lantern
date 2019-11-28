@@ -1,15 +1,25 @@
-<% content_for :title, "Compenser mon impact" %>
+<% content_for :title, "Et il vécut neutre en carbone." %>
 <div class="row text-center justify-content-center">
-  <div class="col-md-8">
-    <h3>
-      Merci <%= current_user.name %> !<br>
-      <small>et bravo pour ton engagement</small>
-    </h3>
-    <%= image_tag("subscription_show.png", class: "img-fluid", :style => "width:50%;") %>
-    <p>
-      Tu retrouveras très prochainement dans cette rubrique les informations concernant ton abonnemenet et l'actualité des projets que tu soutiens.
+  <div class="col-md-10">
+    <div class="card">
+      <div class="card-title">
+        <%= image_tag("subscription_show.png", class: "img-fluid", :style => "width:75%;") %>
+        <h4>
+          Bravo pour ton engagement <%= current_user.name %>, <br>tu compenses désormais ton impact carbone 🎉
+        </h4>
+      </div>
+      <div class="card-body">
+        <p>
+          Carbo n’est rien sans toi, et nous sommes fiers de te compter parmi nos premiers abonnés. La communauté doit encore grossir pour que notre impact commun devienne significatif. Soutiens Carbo en partageant ton enthousiasme !
+        </p>
+      </div>
+      <div class="card-footer">
+        <%= link_to "Revenir au dashboard", root_path, class: "btn btn-danger btn-round" %>
+      </div>
+    </div>
+    <p class="description">
+      Tu retrouveras très prochainement dans cette rubrique les informations concernant ton abonnement et l'actualité des projets que tu soutiens.
     </p>
-    <%= link_to "Revenir au dashboard", '/track', class: "btn btn-primary btn-round" %>
     <%= link_to("Arrêter mon abonnement", '/subscriptions', :data => { :confirm => "Es-tu sûr?" }, :method => :delete, :class => "btn btn-danger-outline btn-round") %>
   </div>
 </div>

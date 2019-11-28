@@ -32,30 +32,7 @@ class User < ApplicationRecord
   def notify_subscription
     if self.stripe_subscription_id.present?
       AnalyticService.new.track('Subscription Paid', nil, self)
-
-      variable = Mailjet::Send.create(messages: [{
-        'From'=> {
-          'Email'=> "emmanuel@hellocarbo.com",
-          'Name'=> "Emmanuel de Carbo"
-        },
-        'To'=> [
-          {
-            'Email'=> self.email,
-            'Name'=> self.name
-          }
-        ],
-        'TemplateID'=> 1110052,
-        'TemplateLanguage'=> true,
-        'Subject'=> "Ton forfait est désormais actif !",
-        'Variables'=> {
-          "name" => self.name,
-          "subscribed" => true,
-          "user_plan" => self.subscription_plan,
-          "user_carbon_share" => (self.subscription_price/0.02).to_i,
-          "user_price" => self.subscription_price
-        }
-      }])
-      p variable.attributes['Messages']
+      SubscriptionActivationJob.perform_later(self)
     end
   end
 
