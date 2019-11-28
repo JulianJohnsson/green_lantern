@@ -6,6 +6,15 @@
   <h2 class="description text-center">
     <span style="opacity:0.3;">👁‍</span> En un clin d'oeil
   </h2>
+  <% if @score.kind.to_sym == :dynamic %>
+    <p class="description text-center">
+      Prends un peu de temps ici pour bien comprendre la répartition de ton empreinte carbone mensuelle sur tes principaux postes de consommation : transport, logement, alimentation, biens et services.
+    </p>
+  <% else %>
+    <p class="description text-center">
+      Tu peux à tout moment <%= link_to 'modifier ton estimation ici', edit_score_path(current_user.scores.last) %> pour gagner en précision ou intégrer un changement dans ton mode de vie !
+    </p>
+  <% end %>
   <div class="row text-center">
     <div class="col-md-12">
       <div class="card">
