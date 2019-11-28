@@ -3,7 +3,7 @@
   <span style="opacity:0.3;">🤔</span> Pourquoi ?
 </h2>
 <p class="text-center">
-  Pourquoi compenser ? Parce qu’en habitant en France, tu n’as aucune chance d’annuler 100% de ton impact.
+  Pourquoi compenser ? Parce qu’en habitant en <%= Country.find(@score.country_id).name %>, tu n’as aucune chance d’annuler 100% de ton impact.
   <br>
   Le reste, Carbo te permet de le neutraliser en finançant des projets à l’aide d’un simple abonnement mensuel.
 </p>
@@ -62,9 +62,9 @@
   <span style="opacity:0.3;">🧮</span> Combien ?
 </h2>
 <div class="row justify-content-center">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <p class="text-center">
-      Choisis l’abonnement qui te ressemble et laisse-toi guider, on s’occupe (presque) de tout !
+      Choisis l’abonnement qui te ressemble et laisse-toi guider, on s’occupe (presque) de tout !<br> Chez Carbo on est super flex : tu peux évidemment et à tout moment modifier, suspendre ou mettre un terme à ta compensation.
     </p>
   </div>
 </div>
@@ -73,8 +73,8 @@
     <%= image_tag("Bonsai_dark.png", class: "img-fluid illu") %>
     <div class="card">
       <div class="card-header card-header-rose">
-        <h4>Forfait Bonsaï</h4>
-        <p><%= number_with_precision(@carbone_count * 0.02, precision: 0) %> € / mois</p>
+        <h3>Forfait Bonsaï</h3>
+        <p class="big"><%= number_with_precision(@carbone_count * 0.02, precision: 0) %> € / mois</p>
       </div>
       <div class="card-body text-left">
         <div class="row align-items-center">
@@ -114,8 +114,8 @@
     <%= image_tag("Cocotier_dark.png", class: "img-fluid illu") %>
     <div class="card">
       <div class="card-header card-header-orange">
-        <h4>Forfait Cocotier</h4>
-        <p><%= number_with_precision(@carbone_count * 0.04, precision: 0) %> € / mois</p>
+        <h3>Forfait Cocotier</h3>
+        <p class="big"><%= number_with_precision(@carbone_count * 0.04, precision: 0) %> € / mois</p>
       </div>
       <div class="card-body text-left">
         <div class="row align-items-center">
@@ -155,8 +155,8 @@
     <%= image_tag("Pousse_dark.png", class: "img-fluid illu") %>
     <div class="card">
       <div class="card-header card-header-warning">
-        <h4>Forfait Bambou</h4>
-        <p>Montant au choix</p>
+        <h3>Forfait Bambou</h3>
+        <p class="big">Montant au choix</p>
       </div>
       <div class="card-body text-left">
         <div class="row align-items-center">
@@ -172,12 +172,12 @@
             <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid' %>
           </div>
           <div class="col-10">
-            Minimum requis de <strong>4€ / mois</strong>
+            Minimum requis de <strong>3€ / mois</strong>
           </div>
         </div>
         <%= form_tag(new_subscription_path, method: :get) do %>
           <div class="form-group bmd-form-group text-center">
-            <%= number_field_tag :price, 4, :min => 4, :max => 1000, class: 'form-control big-input-info' %>
+            <%= number_field_tag :price, 3, :min => 3, :max => 1000, class: 'form-control big-input-info' %>
             <%= hidden_field_tag :plan, 'bambou' %>
           </div>
       </div>
@@ -199,7 +199,7 @@
   </div>
   <div class='col-md-4 text-center'>
     <%= image_tag("projects_CTA.png", class: "img-fluid illustration", style: "margin-bottom: -15px; width:60%") %>
-    <%= link_to "Découvrir les projets", projects_path, class: "btn btn-lg btn-outline-primary btn-round" %>
+    <%= link_to "Découvrir les projets", projects_path, class: "btn btn-primary btn-round" %>
   </div>
 </div>
 <%= render '/scores/currency_spinner' %>

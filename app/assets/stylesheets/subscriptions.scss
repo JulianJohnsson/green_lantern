@@ -40,8 +40,12 @@
   }
   .card-header {
     font-weight: bold;
-    h4 {
+    h3 {
       color: $brand-info;
+      font-size: 1.6em;
+    }
+    .big {
+    font-size: 1.3em;
     }
   }
   .card-body {
@@ -146,12 +150,12 @@ span.currency-spinner input[type=number] {
   width: 55px;
   height: 35px;
   padding: 0;
-  font-size: 1.2em;
+  font-size: 1.5em;
   text-transform: uppercase;
   text-align: center;
   color: $brand-dark-blue;
   border: 2px $brand-dark-blue solid;
-  border-left: 1px $brand-dark-blue solid;
+  border-right: 1px $brand-dark-blue solid;
   background: none;
   outline: none;
 
@@ -172,7 +176,7 @@ span.currency-spinner > .input-group-text {
   display: block;
   line-height: 1em;
   border: 2px $brand-dark-blue solid;
-  border-right: 0;
+  border-left: 0;
   width: 25px;
   background: $brand-grey;
 }

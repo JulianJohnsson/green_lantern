@@ -6,8 +6,8 @@ var el = $(this);
 
 // add elements
 el.wrap('<span class="currency-spinner"></span>');
-el.before('<span class="sub">-</span><span class="input-group-text">€</span>');
-el.after('<span class="add">+</span>');
+el.before('<span class="sub">-</span>');
+el.after('<span class="input-group-text">€</span><span class="add">+</span>');
 
 // substract
 el.parent().on('click', '.sub', function () {
