@@ -4,7 +4,8 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: '🎉  Bienvenue dans la communauté Carbo ! 🎉 ')
   end
 
-  def new_match_ready(match)
+  def new_match_ready(match_id)
+    match = Match.find(match_id)
     @user = User.find(match.user_id)
     @opponent = User.find(match.opponent_id)
     @match = match

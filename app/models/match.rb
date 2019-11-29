@@ -45,7 +45,7 @@ class Match < ApplicationRecord
 
   def notify_user
     if self.user_id != nil
-      UserMailer.new_match_ready(self).deliver_later
+      UserMailer.new_match_ready(self.id).deliver_later
     end
   end
 

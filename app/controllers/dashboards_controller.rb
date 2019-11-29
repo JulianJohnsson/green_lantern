@@ -27,7 +27,7 @@ class DashboardsController < ApplicationController
       # REDUIRE
       @reduction = []
       i = 0
-      if @score.main_transport_mode.to_sym == :voiture_classique || (@score.week_basic_car || 0) > 10
+      if (@score.main_transport_mode||"").to_sym == :voiture_classique || (@score.week_basic_car || 0) > 10
         category = Category.find_by_name('Carburant')
         month_car_carbon = Country.find(@score.country_id).detail[0].to_f * (@score.week_basic_car || 90) / 90 *1000/12
         month_car_cost = month_car_carbon * category.coeff
