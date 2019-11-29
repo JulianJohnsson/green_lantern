@@ -5,6 +5,9 @@ class DashboardsController < ApplicationController
     if current_user.onboarded != true
       redirect_to '/onboarding'
     else
+      if @bridge.present? && @bridge.bank_connected == true
+        TransactionFetcherJob.perform_later(current_user)
+      end
       # SUIVRE
       @score = current_user.scores.last
       @rand = rand(3)

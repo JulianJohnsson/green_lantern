@@ -19,13 +19,19 @@ class User < ApplicationRecord
     if self.invitation_created_at == nil
       AnalyticService.new.track('Signed Up', nil, self)
       UserMailer.welcome_email(self).deliver_later
+      DriftOnboardingJob.set(wait: 1.day).perform_later(self)
+    else
+      AnalyticService.new.track('Invitation sent', nil, self)
     end
   end
 
   def notify_invited_signup
     if self.invitation_created_at != nil
       AnalyticService.new.track('Signed Up', nil, self)
+      AnalyticService.new.track('Invitation accepted', nil, self)
+
       UserMailer.welcome_email(self).deliver_later
+      DriftOnboardingJob.set(wait: 1.day).perform_later(self)
     end
   end
 

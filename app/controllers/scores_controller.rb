@@ -45,7 +45,7 @@ class ScoresController < ApplicationController
     respond_to do |format|
       if @score.save
         AnalyticService.new.track('Country set', nil, current_user)
-        format.html { redirect_to "/scores/#{@score.id}/edit_transport", notice: 'Ton impact carbone a été initialisé à partir des données moyennes de ton pays, répond à quelques questions pour le personnaliser !' }
+        format.html { redirect_to "/scores/#{@score.id}/edit_transport", notice: 'Ton impact carbone a été initialisé, répond à quelques questions pour le personnaliser !' }
         format.json { render :show, status: :ok, location: @score }
       else
         format.html { render :new }
@@ -88,19 +88,19 @@ class ScoresController < ApplicationController
       if @score.update(score_params)
         if request.referer.include? "/edit_transport"
           AnalyticService.new.track('Transport set', nil, current_user)
-          format.html { redirect_to "/scores/#{@score.id}/edit_plane", notice: 'Ton impact carbone a bien été mis à jour' }
+          format.html { redirect_to "/scores/#{@score.id}/edit_plane" }
         elsif request.referer.include? "/edit_plane2"
           AnalyticService.new.track('Short flights set', nil, current_user)
-          format.html { redirect_to "/scores/#{@score.id}/edit_house", notice: 'Ton impact carbone a bien été mis à jour' }
+          format.html { redirect_to "/scores/#{@score.id}/edit_house" }
         elsif request.referer.include? "/edit_plane"
           AnalyticService.new.track('Long flights set', nil, current_user)
-          format.html { redirect_to "/scores/#{@score.id}/edit_plane2", notice: 'Ton impact carbone a bien été mis à jour' }
+          format.html { redirect_to "/scores/#{@score.id}/edit_plane2" }
         elsif request.referer.include? "/edit_house"
           AnalyticService.new.track('House set', nil, current_user)
-          format.html { redirect_to "/scores/#{@score.id}/edit_regime", notice: 'Ton impact carbone a bien été mis à jour' }
+          format.html { redirect_to "/scores/#{@score.id}/edit_regime" }
         elsif request.referer.include? "/edit_regime"
           AnalyticService.new.track('Regime set', nil, current_user)
-          format.html { redirect_to bridges_path, notice: 'Ton impact carbone a bien été mis à jour' }
+          format.html { redirect_to bridges_path }
         else
           AnalyticService.new.track('Score details updated', nil, current_user)
           format.html { redirect_to '/track', notice: 'Ton impact carbone a bien été mis à jour' }

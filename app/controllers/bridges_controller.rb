@@ -41,6 +41,10 @@ class BridgesController < ApplicationController
     @user = current_user
     @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
+    if current_user.onboarded != true
+      current_user.onboarded = true
+      current_user.save
+    end
   end
 
   # GET /account
@@ -57,6 +61,10 @@ class BridgesController < ApplicationController
     @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
     AnalyticService.new.track('Bank Connection Skipped', nil, current_user)
+    if current_user.onboarded != true
+      current_user.onboarded = true
+      current_user.save
+    end
   end
 
   # GET /bridges/new
