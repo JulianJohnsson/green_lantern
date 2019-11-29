@@ -18,9 +18,8 @@
           <p>Comparer</p>
         <% end %>
       </li>
-      <li class="nav-item <%= 'active' if current_page?('/compare') %>">
-        <!-- accomodate empty beginning of month by displaying previous month -->
-        <%= link_to "/compare?month=#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}", class: 'nav-link' do %>
+      <li class="nav-item <%= 'active' if current_page?('/reduce') %>">
+        <%= link_to "/reduce", class: 'nav-link' do %>
           <i class="material-icons">trending_down</i>
           <p>Réduire</p>
         <% end %>
@@ -45,15 +44,14 @@
         <% end %>
       </li>
       <li class="nav-item <%= 'active' if current_page?(categories_path) %>">
-        <!-- accomodate empty beginning of month by displaying previous month -->
         <%= link_to '/compare_with', class: 'nav-link' do %>
           <i class="material-icons">people</i>
           <p>Comparer</p>
         <% end %>
       </li>
-      <li class="nav-item <%= 'active' if current_page?('/compare') %>">
+      <li class="nav-item <%= 'active' if current_page?('/reducecompare') %>">
         <!-- accomodate empty beginning of month by displaying previous month -->
-        <%= link_to "/compare?month=#{1 if (Date.today - Date.today.beginning_of_month).to_i < 5}", class: 'nav-link' do %>
+        <%= link_to "/reduce", class: 'nav-link' do %>
           <i class="material-icons">trending_down</i>
           <p>Réduire</p>
         <% end %>
