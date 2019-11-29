@@ -25,12 +25,12 @@ class DashboardsController < ApplicationController
       # REDUIRE
       @reduction = []
       i = 0
-      if @score.main_transport_mode == :voiture_classique || (@score.week_basic_car || 0) > 10
+      if @score.main_transport_mode.to_sym == :voiture_classique || (@score.week_basic_car || 0) > 10
         category = Category.find_by_name('Carburant')
         month_car_carbon = Country.find(@score.country_id).detail[0].to_f * (@score.week_basic_car || 90) / 90 *1000/12
         month_car_cost = month_car_carbon * category.coeff
         reduction_coeff = 0.4
-        @reduction << ['Transport', Category.find_by_name("Transport").emoji, "Investir dans un véhicule plus propre", month_car_carbon*reduction_coeff, month_car_cost*reduction_coeff]
+        @reduction << ['Transports', Category.find_by_name("Transports").emoji, "Investir dans un véhicule plus propre", month_car_carbon*reduction_coeff, month_car_cost*reduction_coeff]
         i = i + 1
       end
       if @score.enr == nil || @score.enr.to_sym == :inconnu || @score.enr.to_sym == :partiellement_renouvelable

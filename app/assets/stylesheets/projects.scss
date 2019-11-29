@@ -4,6 +4,7 @@
   .card-body {
     padding-right: 0;
     padding-bottom: 0;
+    font-size: 0.9em;
   }
   .card-title {
     border-bottom: 1px solid $brand-grey;
@@ -17,10 +18,12 @@
   }
   .card-footer {
     border-top: 1px solid $brand-grey;
+    padding-left: 0;
+    padding-right: 0;
   }
   img {
     margin-top: -0.9375rem;
-    height: 240px;
+    min-height: 300px;
   }
 }
 

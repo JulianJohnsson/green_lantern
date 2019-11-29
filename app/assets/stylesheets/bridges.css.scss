@@ -15,9 +15,10 @@
 
 @media screen and (max-width: 768px) {
   .onboarding-page {
-    height: auto;
-    min-height: 100vh;
-    padding-top: 60px;
+    .stepbar-container {
+      width: 100%;
+      left: 0;
+    }
   }
 }
 

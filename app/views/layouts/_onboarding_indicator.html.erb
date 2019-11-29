@@ -3,8 +3,8 @@
       <ul class="stepbar">
         <li class="<%= "active" if @score.country_id.present? %>"><div class="bulle">📍</div></li>
         <li class="<%= "active" if @score.main_transport_mode.present? %>"><div class="bulle">🚗</div></li>
-        <li class="<%= "active" if @score.long_flights.present? %>"><div class="bulle">✈</div></li>
-        <li class="<%= "active" if @score.short_flights.present? %>"><div class="bulle">🛩</div></li>
+        <li class="<%= "active" if @score.long_flights.present? %>"><div class="bulle">🛩</div></li>
+        <li class="<%= "active" if @score.short_flights.present? %>"><div class="bulle">🚁</div></li>
         <li class="<%= "active" if @score.house_size.present? %>"><div class="bulle">🏠</div></li>
         <li class="<%= "active" if @score.regime.present? %>"><div class="bulle">🥙</div></li>
         <li class="<%= "active" if Bridge.find_by_user_id(current_user.id).present? %>"><div class="bulle">🚀</div></li>

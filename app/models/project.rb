@@ -1,3 +1,3 @@
 class Project < ApplicationRecord
-  enum kind: ["Secret", "🌳 Protection", "🌳 Reforestation"]
+  enum kind: ["❔ Secret", "🌳 Protection", "🌳 Reforestation", "🌬 Parc éolien", "🔥 Alimentation saine"]
 end

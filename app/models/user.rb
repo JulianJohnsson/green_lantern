@@ -18,8 +18,8 @@ class User < ApplicationRecord
   def notify_signup
     if self.invitation_created_at == nil
       AnalyticService.new.track('Signed Up', nil, self)
-      UserMailer.welcome_email(self).deliver_later
-      DriftOnboardingJob.set(wait: 1.day).perform_later(self)
+      SignupJob.perform_later(self)
+      DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
     else
       AnalyticService.new.track('Invitation sent', nil, self)
     end
@@ -30,8 +30,8 @@ class User < ApplicationRecord
       AnalyticService.new.track('Signed Up', nil, self)
       AnalyticService.new.track('Invitation accepted', nil, self)
 
-      UserMailer.welcome_email(self).deliver_later
-      DriftOnboardingJob.set(wait: 1.day).perform_later(self)
+      SignupJob.perform_later(self)
+      DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
     end
   end
 

@@ -1,8 +1,8 @@
-class DriftOnboardingJob < ApplicationJob
+class SignupJob < ApplicationJob
   queue_as :default
 
   def perform(user)
-    if user.onboarded != true
+    begin
       variable = Mailjet::Send.create(messages: [{
           'From'=> {
             'Email'=> "emmanuel@hellocarbo.com",
@@ -14,14 +14,17 @@ class DriftOnboardingJob < ApplicationJob
               'Name'=> user.name
             }
           ],
-          'TemplateID'=> 1111273,
+          'TemplateID'=> 1112599,
           'TemplateLanguage'=> true,
-          'Subject'=> "Finalise ton parcours Carbo ici",
+          'Subject'=> "Bienvenue dans la communauté Carbo 🎉",
           'Variables'=> {
             "name" => user.name
           }
-        }])
-        p variable.attributes['Messages']
+      }])
+      p variable.attributes['Messages']
+
+      rescue Net::HTTPRetriableError => e
+      puts e.message
     end
   end
 
