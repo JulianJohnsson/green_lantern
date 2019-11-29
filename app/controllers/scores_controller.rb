@@ -3,9 +3,7 @@ class ScoresController < ApplicationController
   before_action :authenticate_user!
 
   def onboarding
-    if (cookies[:carbo_alpha] == nil && Bridge.find_by_user_id(current_user.id) == nil)
-      redirect_to '/waitlist'
-    else
+
       if current_user.scores == []
       redirect_to action: 'new'
       else
@@ -24,7 +22,7 @@ class ScoresController < ApplicationController
           redirect_to action: 'edit_transport'
         end
       end
-    end
+
   end
 
   def new

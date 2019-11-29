@@ -27,11 +27,7 @@ class BridgesController < ApplicationController
         redirect_to @bridge, notice: 'Ton relevé bancaire a bien été connecté, ton compte est en cours de synchronisation !'
       end
     else
-      if cookies[:carbo_alpha] == "true"
-        redirect_to new_bridge_path
-      else
-        redirect_to action: 'later'
-      end
+      redirect_to new_bridge_path
     end
   end
 
