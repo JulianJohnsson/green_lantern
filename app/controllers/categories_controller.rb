@@ -71,13 +71,22 @@ class CategoriesController < ApplicationController
     AnalyticService.new.identify(current_user,request)
   end
 
-  def compare
-    @categories = Category.all.parent_categories
+  def reduce
+    @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last
-    @carbone_count = current_user.transactions.month_ago(params[:month].to_i || 0).sum(:carbone)
-    @carbone_average = Transaction.all.carbone_contribution.month_ago(params[:month].to_i || 0).sum(:carbone) / Transaction.all.carbone_contribution.month_ago(params[:month].to_i || 0).distinct.count(:user_id)
-    @my_carbone =  @categories.sort_by {|c| c.name}.map {|c| [c , current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(params[:month].to_i || 0).sum(:carbone)]}
-    @average_carbone = @categories.sort_by {|c| c.name}.map {|c| [c , Transaction.all.carbone_contribution.parent_category_id(c.id).month_ago(params[:month].to_i || 0).sum(:carbone) / Transaction.all.carbone_contribution.parent_category_id(c.id).month_ago(params[:month].to_i || 0).distinct.count(:user_id)]}
+
+    @my_carbone = []
+    @average_carbone = []
+    for i in 0..4
+      @my_carbone = @my_carbone << [@categories[i], (@score.detail[i].to_f*1000/12).round(2)]
+      total = 0
+      count = 0
+      User.all.onboarded.each do |user|
+        total = total + user.scores.last.detail[i].to_f
+        count = count + 1
+      end
+      @average_carbone = @average_carbone << [@categories[i], (total/ count*1000/12).round(2)]
+    end
   end
 
 end

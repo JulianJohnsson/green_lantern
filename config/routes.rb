@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get '/track' => 'categories#track'
   get '/compare_with' => 'matches#index'
-  get '/compare' => 'categories#compare'
+  get '/reduce' => 'categories#reduce'
 
   get '/faq' => 'high_voltage/pages#show', id: 'faq'
 
