@@ -8,18 +8,18 @@ class ScoresController < ApplicationController
       redirect_to action: 'new'
       else
         @score = current_user.scores.last
-        if @score.regime.present? || @score.kind.to_sym == :dynamic
+        if @score.regime.present?
           redirect_to bridges_path
         elsif @score.house_size.present?
-          redirect_to action: 'edit_regime'
+          redirect_to "/scores/#{@score.id}/edit_regime"
         elsif @score.short_flights.present?
-          redirect_to action: 'edit_house'
+          redirect_to "/scores/#{@score.id}/edit_house"
         elsif @score.long_flights.present?
-          redirect_to action: 'edit_plane2'
+          redirect_to "/scores/#{@score.id}/edit_plane2"
         elsif @score.main_transport_mode.present?
-          redirect_to action: 'edit_plane'
+          redirect_to "/scores/#{@score.id}/edit_plane"
         else
-          redirect_to action: 'edit_transport'
+          redirect_to "/scores/#{@score.id}/edit_transport"
         end
       end
 

@@ -4,6 +4,8 @@ class DashboardsController < ApplicationController
   def index
     if current_user.onboarded != true
       redirect_to '/onboarding'
+    elsif current_user.onboarded == true && current_user.scores.last.main_transport_mode == nil
+      redirect_to '/onboarding'
     else
       if @bridge.present? && @bridge.bank_connected == true
         TransactionFetcherJob.perform_later(current_user)
