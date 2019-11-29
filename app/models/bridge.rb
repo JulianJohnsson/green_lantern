@@ -171,7 +171,7 @@ class Bridge < ApplicationRecord
   end
 
   def set_credential
-    if self.id < 107
+    if Bridge.all.last.id < 107
       client = Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]
       secret = Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]
     else
