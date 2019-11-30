@@ -2,39 +2,43 @@
   <div class="card-body">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row justify-content-center">
-            <div class="col-md-9">
-              <div class="card-title emoji">
-                <%= @top_category_advice[0] %>
-              </div>
-              <div>
-                <p class="big">
-                  <%= current_user.name %>
-                  , le carbone de tes dernières dépenses en
-                  <%= Category.find(@score.top_category[0]).name %>
-                  <%= @top_category_advice[2] %>
-                  <%= (@score.top_category[1].to_f / @top_category_advice[1]).round(0) %>
-                  <%= @top_category_advice[3] %> !
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row justify-content-center">
-            <div class="col-md-9">
-              <div class="card-title emoji">
-                <%= @top_transaction_advice[0] %>
-              </div>
-              <div>
-                <p class="big">
-                  <%= @top_transaction_advice[1] %>
-                </p>
+        <% if @top_category_advice.present? %>
+          <div class="carousel-item active">
+            <div class="row justify-content-center">
+              <div class="col-md-9">
+                <div class="card-title emoji">
+                  <%= @top_category_advice[0] %>
+                </div>
+                <div>
+                  <p class="big">
+                    <%= current_user.name %>
+                    , le carbone de tes dernières dépenses en
+                    <%= Category.find(@score.top_category[0]).name %>
+                    <%= @top_category_advice[2] %>
+                    <%= (@score.top_category[1].to_f / @top_category_advice[1]).round(0) %>
+                    <%= @top_category_advice[3] %> !
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
+        <% if @top_transaction_advice.present? %>
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-md-9">
+                <div class="card-title emoji">
+                  <%= @top_transaction_advice[0] %>
+                </div>
+                <div>
+                  <p class="big">
+                    <%= @top_transaction_advice[1] %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <i class="material-icons">arrow_back</i>
