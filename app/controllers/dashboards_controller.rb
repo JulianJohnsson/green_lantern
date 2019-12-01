@@ -7,7 +7,7 @@ class DashboardsController < ApplicationController
     elsif current_user.onboarded == true && current_user.scores.last.main_transport_mode == nil
       redirect_to '/onboarding'
     else
-      if @bridge.present? && @bridge.bank_connected == true
+      if Bridge.find_by_user_id(current_user.id).present? && Bridge.find_by_user_id(current_user.id).bank_connected == true
         TransactionFetcherJob.perform_later(current_user)
       end
       # SUIVRE
@@ -61,8 +61,11 @@ class DashboardsController < ApplicationController
         @reduction << ['Alimentation', Category.find_by_name("Alimentation").emoji, "Passer à un nouveau régime #{regime_title}", carbon_reduction, 0]
         i = i + 1
       end
-      @rand_2 = rand(i)
-      @reduction_advice = @reduction[@rand_2]
+      if i > 0
+        @reduction_advice = @reduction[rand(i)]
+      else
+        @reduction_advice = ['Analyse en cours', '🤔', "Tu fais beaucoup de choses biens pour la planète", "??", 0]
+      end
 
       # COMPENSER
       @users = User.all.subscribed

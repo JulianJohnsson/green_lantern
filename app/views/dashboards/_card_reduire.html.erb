@@ -10,12 +10,18 @@
       </div>
     </div>
     <div class="card-body">
-      <p class="description">
-        Et tu pourrais économiser
-        <%= number_with_precision(@reduction_advice[4]*12, precision:0) %>
-        €/an ! <br>
-        <strong class="text-primary">Découvre toutes tes astuces ici</strong>
-      </p>
+      <% if @reduction_advice[0] == 'Analyse en cours' %>
+        <p>
+          On cherche où tu peux encore t'améliorer, on te prévient dès qu'on a trouvé !
+        </p>
+      <% else %>
+        <p class="description">
+          Et tu pourrais économiser
+          <%= number_with_precision(@reduction_advice[4]*12, precision:0) %>
+          €/an ! <br>
+          <strong class="text-primary">Découvre toutes tes astuces ici</strong>
+        </p>
+      <% end %>
     </div>
   </div>
 <% end %>
