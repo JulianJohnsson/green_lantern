@@ -52,7 +52,7 @@
             </h4>
           </div>
           <div class="card-body">
-            <% if @score.top_growth.present? %>
+            <% if @score.top_growth.present? && @score.top_growth[0].present? %>
               <div class="row justify-content-center align-items-center">
                 <div class="col-3 emoji text-right">
                   <%= Category.find(@score.top_growth[0]).emoji %>
