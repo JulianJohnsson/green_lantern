@@ -52,17 +52,19 @@
             </h4>
           </div>
           <div class="card-body">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-3 emoji text-right">
-                <%= Category.find(@score.top_growth[0]).emoji %>
+            <% if @score.top_growth.present? %>
+              <div class="row justify-content-center align-items-center">
+                <div class="col-3 emoji text-right">
+                  <%= Category.find(@score.top_growth[0]).emoji %>
+                </div>
+                <div class="col-9 text-left">
+                  <p>
+                    <strong><%= Category.find(@score.top_growth[0]).name %></strong> <br>
+                    +<%= number_with_precision(@score.top_growth[1], precision: 0) %> % en 1 mois
+                  </p>
+                </div>
               </div>
-              <div class="col-9 text-left">
-                <p>
-                  <strong><%= Category.find(@score.top_growth[0]).name %></strong> <br>
-                  +<%= number_with_precision(@score.top_growth[1], precision: 0) %> % en 1 mois
-                </p>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>

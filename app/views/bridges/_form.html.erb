@@ -16,7 +16,7 @@
   </div>
 
   <div class="actions text-center">
-    <%= form.submit "Activer le mode dynamique", :class => 'btn btn-primary btn-round' %>
+    <%= form.submit "Activer le mode dynamique", :class => 'btn btn-primary btn-round', :data => { :confirm => "Tu vas être redirigé vers le site sécurisé de notre partenaire Bridge pour synchroniser ton relevé bancaire." } %>
     <%= link_to "Plus tard", '/later', class: 'btn btn-outline-primary btn-round' unless cookies[:bridge] == "true" %>
   </div>
 <% end %>

@@ -31,6 +31,7 @@ class ScoresController < ApplicationController
         cookies[:ajs_anonymous_id].slice!("\"")
       end
       Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
+      Analytics.identify(user_id: cookies[:ajs_anonymous_id])
     end
     @score = Score.new
     @countries = Country.all
