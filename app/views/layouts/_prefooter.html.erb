@@ -32,13 +32,13 @@
         <h5>Explorer</h5>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <%= link_to "Comment ça marche ?", "/pages/about#section3" %>
-          </li>
-          <li class="nav-item">
             <%= link_to "Notre mission", page_path('mission') %>
           </li>
           <li class="nav-item">
-            <%= link_to "Questions fréquentes", page_path('faq') %>
+            <%= link_to "Les projets soutenus", new_project_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sécurité de tes données", page_path('security') %>
           </li>
         </ul>
       </div>
@@ -57,7 +57,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Qui sommes-nous ?", '/pages/mission#anchor' %>
+            <%= link_to "Questions fréquentes", page_path('faq') %>
           </li>
           <li class="nav-item">
             <%= link_to "Suivre notre développement", 'https://trello.com/b/ikSl3Q07', :target => "_blank" %>
