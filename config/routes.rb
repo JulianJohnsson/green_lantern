@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get '/track' => 'categories#track'
   get '/compare_with' => 'matches#index'
   get '/reduce' => 'categories#reduce'
+  get '/compare', to: redirect('/reduce', status: 301)
 
   get '/faq' => 'high_voltage/pages#show', id: 'faq'
 
