@@ -48,9 +48,9 @@ class AnalyticService
 
   def track(event,properties,user)
     Analytics.track(
-      user_id: "#{user.id}",
       event: event,
-      properties: properties
+      properties: properties,
+      user_id: "#{user.id if user.present?}"
     )
   end
 end

@@ -69,10 +69,10 @@ class GiftsController < ApplicationController
   def submit
     Stripe.api_key = Rails.application.credentials[:stripe][Rails.env.to_sym][:private_key]
     token = params[:stripeToken]
-    customer = if current_user.stripe_id?
+    customer = if current_user && current_user.stripe_id?
                 Stripe::Customer.retrieve(current_user.stripe_id)
                else
-                Stripe::Customer.create(email: current_user.email, source: token)
+                Stripe::Customer.create(email: @gift.author_email, source: token)
               end
     charge = Stripe::Charge.create({
       amount: (@gift.price*100).to_i,
@@ -94,7 +94,7 @@ class GiftsController < ApplicationController
     # set status failed and an error message
     @gift.status = :payment_failed
     @gift.save
-    render :checkout, danger: "Ton paiement a échoué"
+    redirect_to :checkout, danger: "Ton paiement a échoué"
   end
 
   def show
