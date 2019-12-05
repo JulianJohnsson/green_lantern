@@ -19,7 +19,7 @@
  *= require application_layout.css.scss
  *= require cards.css.scss
  *= require home.css.scss.erb
- *= require mission.css.scss
+ *= require mission.css.scss.erb
  *= require messages.css.scss
  *= require registration.css.scss.erb
  *= require bridges.css.scss.erb
@@ -27,7 +27,7 @@
  *= require compare.scss
  *= require transactions.scss
  *= require subscriptions.scss
- *= require projects.scss
+ *= require projects.scss.erb
  *= require faq.css.scss
  *= require thermometre.css.scss
  *= require stepbar.css.scss
