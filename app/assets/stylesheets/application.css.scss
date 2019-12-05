@@ -18,11 +18,11 @@
  *= require sidebar.css.scss
  *= require application_layout.css.scss
  *= require cards.css.scss
- *= require home.css.scss
+ *= require home.css.scss.erb
  *= require mission.css.scss
  *= require messages.css.scss
- *= require registration.css.scss
- *= require bridges.css.scss
+ *= require registration.css.scss.erb
+ *= require bridges.css.scss.erb
  *= require categories.scss
  *= require compare.scss
  *= require transactions.scss
