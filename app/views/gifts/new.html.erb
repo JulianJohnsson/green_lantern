@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-lg-10 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card-body">
+            <h3><strong>
+              <small>3 minutes pour offrir Carbo</small>
+              <br>
+              Dans quel pays habite la personne ?
+            </strong></h3>
+            <p>
+              Cette information nous permet d'estimer l'empreinte carbone du destinataire
+            </p>
+            <%= form_for @gift do |form| %>
+                <div class="field">
+                  <%= form.hidden_field :author_email, :value => current_user.email if current_user %>
+                </div>
+                <div class="form-group">
+                  <%= form.select(:country_id, @countries.order(:id).map {|c| [c.name, c.id]}, :selected => 63, :class => "custom-select js-searchable") %>
+                </div>
+                <div class="actions text-center">
+                  <%= form.submit 'Estimer son impact carbone', class: 'btn btn-primary btn-round' %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-5 text-center align-self-center">
+          <div class="card-body right-block text-center">
+            <%= image_tag("location.png", :class => 'img-fluid') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

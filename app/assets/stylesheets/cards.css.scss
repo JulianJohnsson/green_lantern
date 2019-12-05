@@ -4,6 +4,10 @@
 .card {
   color: inherit;
   border-radius: 12px !important;
+  box-shadow: -10px 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.main-panel .card {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -15,7 +19,7 @@
   font-family: Maven Pro;
 }
 
-.main-panel .card .card-header {
+.main-panel .card .card-header, .ecommerce .card .card-header {
   border-radius: 12px 12px 0px 0px;
   padding: 0.5rem 15px;
   margin-left: 0px;
@@ -27,11 +31,11 @@
   background: linear-gradient(60deg, lighten($brand-dark-blue, 10%), $brand-dark-blue);
 }
 
-.main-panel .card.bg-dark {
+.main-panel .card.bg-dark, .ecommerce .card.bg-dark {
   background: $brand-dark-blue;
 }
 
-.main-panel .card.bg-dark .card-header.card-header-dark {
+.main-panel .card.bg-dark .card-header.card-header-dark, .ecommerce .card.bg-dark .card-header.card-header-dark {
   background: $brand-dark-blue;
   border-bottom: 1px solid white;
 }
@@ -41,47 +45,47 @@
   background: $brand-info;
 }
 
-.main-panel .card.bg-info .card-header.card-header-info {
+.main-panel .card.bg-info .card-header.card-header-info, .ecommerce .card.bg-info .card-header.card-header-info {
   border-bottom: 1px solid white;
 }
 
-.main-panel .card .card-header.card-header-info {
+.main-panel .card .card-header.card-header-info, .ecommerce .card .card-header.card-header-info {
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-primary {
+.main-panel .card .card-header.card-header-primary, .ecommerce .card .card-header.card-header-primary {
   /* background: linear-gradient(60deg, lighten($brand-primary, 10%), $brand-primary); */
   background: $brand-primary;
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-warning {
+.main-panel .card .card-header.card-header-warning, .ecommerce .card .card-header.card-header-warning {
   /* background: linear-gradient(60deg, lighten($brand-warning, 10%), $brand-warning); */
   background: $brand-warning;
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-success {
+.main-panel .card .card-header.card-header-success, .ecommerce .card .card-header.card-header-success {
   background: $brand-success;
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-danger {
+.main-panel .card .card-header.card-header-danger, .ecommerce .card .card-header.card-header-danger {
   background: $brand-danger;
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-rose {
+.main-panel .card .card-header.card-header-rose, .ecommerce .card .card-header.card-header-rose {
   background: $brand-rose;
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-violet {
+.main-panel .card .card-header.card-header-violet, .ecommerce.card .card-header.card-header-violet {
   background: $brand-violet;
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-orange {
+.main-panel .card .card-header.card-header-orange, .ecommerce .card .card-header.card-header-orange {
   background: $brand-orange;
   box-shadow: none;
 }

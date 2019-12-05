@@ -1,0 +1,12 @@
+@import "material/scss/material-kit/variables";
+
+.right-block {
+  background: $brand-dark-blue;
+  color: white;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 40px !important;
+  img {
+    width: 80%;
+  }
+}

@@ -50,4 +50,9 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
+  resources :gifts
+  get '/gifts/:id/choose_formula' => 'gifts#choose_formula'
+  get '/gifts/:id/checkout' => 'gifts#checkout'
+  post 'gifts/:id/submit' => 'gifts#submit'
+
 end

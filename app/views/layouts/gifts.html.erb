@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= content_for?(:title) ? yield(:title) : "Carbo" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "L’impact de tes choix quotidiens. Carbo, l'application qui calcule automatiquement le poids carbone de toutes tes dépenses bancaires." %>">
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Material+Icons|Baloo|Maven+Pro:400,700,900|Quicksand:400,700&display=swap" %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application', 'https://js.stripe.com/v3/', 'data-turbolinks-track': 'reload' %>
+    <%= tag :meta, name: "stripe-key", content: Rails.application.credentials[:stripe][Rails.env.to_sym][:public_key] %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render 'layouts/mini_navigation' %>
+    <div class="onboarding-page">
+      <div class="container">
+        <%= render 'layouts/messages' %>
+        <%= render 'layouts/ecommerce_indicator' %>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render 'layouts/footer' %>
+    <%= render 'layouts/messenger' %>
+  </body>
+  <%= render 'layouts/analytics' %>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+    $('.alert').fadeOut();
+    }, 2000);
+  })
+  </script>
+</html>

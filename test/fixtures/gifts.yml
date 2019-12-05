@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author_email: MyString
+  recipient_email: MyString
+  quantity: 1
+  price: 9.99
+  status: 1
+
+two:
+  author_email: MyString
+  recipient_email: MyString
+  quantity: 1
+  price: 9.99
+  status: 1

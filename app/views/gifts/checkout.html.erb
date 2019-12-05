@@ -1,0 +1,70 @@
+<div class="row justify-content-center ecommerce">
+  <div class="col-md-6 col-lg-5">
+    <div class="card payment-detail-card">
+      <div class="card-header card-header-<%= @color %> text-center">
+        <%= image_tag @image, class: 'img-fluid', :style => 'height: 80px;' %>
+      </div>
+      <div class="card-body">
+        <h5 class="text-<%= @color %>">
+          <small class="description">
+            MON FORFAIT<br>
+          </small>
+          FORFAIT <%= @gift.formula.upcase %>
+        </h5>
+        <p>
+          Je compense <%= number_with_precision(@carbone_count, precision: 0) %>kgCO2 pour <%= @gift.recipient_name %>
+        </p>
+        <h5 class="text-<%= @color %>">
+          <small class="description">
+            MON IMPACT<br>
+          </small>
+        </h5>
+        <p>
+          Je retire chaque mois de la route l’équivalent de <%= number_with_precision(@price/2, precision:0) %> voitures
+        </p>
+        <h5 class="text-<%= @color %>">
+          <small class="description">
+            MON PAIEMENT<br>
+          </small>
+          TOTAL <%= number_with_precision(@price, precision: 2) %>€ TTC
+        </h5>
+      </div>
+      <div class="card-footer">
+        <strong>
+          <%= link_to "Changer de formule >", "/gifts/#{@gift.id}/choose_formula" %>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-5">
+    <div class="card text-center payment-card">
+      <div class="card-title">
+        <h4 class="card-title">Entre tes informations de paiement</h4>
+      </div>
+      <div class="card-body">
+
+        <%= form_tag "/gifts/#{@gift.id}/submit", id: "payment-form" do |form| %>
+          <div class="field text-left">
+            <label for="card-element" class="">Paiement par carte de crédit ou de débit</label>
+
+            <div id="card-element" class="MyCardElement">
+              <!-- A Stripe element will be intserted here !-->
+            </div>
+
+            <div id="card-errors" role="alert"></div>
+
+            <%= hidden_field_tag :price, @gift.price %>
+
+          </div>
+          <p id="cgv">
+            En validant mon paiement, j'accepte les conditions générales de vente de carbo.
+          </p>
+          <button class="btn btn-lg btn-round btn-primary">Valider mon paiement</button>
+          <p class="description">
+            <small><i class="material-icons" style="vertical-align:middle;">lock</i>Paiements sécurisés et réalisés avec Stripe</small>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

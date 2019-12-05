@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3><strong>
+              <small>3 minutes pour offrir Carbo</small>
+              <br>
+              Sur quelle durée souhaites-tu compenser son impact ?
+            </strong></h3>
+            <div class="row justify-content-center text-center packs ecommerce">
+              <div class="col-md-4">
+                <%= image_tag("Bonsai_dark.png", class: "img-fluid illu") %>
+                <div class="card">
+                  <div class="card-header card-header-rose">
+                    <h3>1 mois</h3>
+                    <p class="big"><%= number_with_precision(@month_value * 0.02, precision: 0) %> €</p>
+                  </div>
+                  <div class="card-body">
+                    Je compense <%= @month_value %> KGCO2, soit 100% de son impact pendant 1 mois environ*
+                  </div>
+                  <div class="card-footer text-center">
+                    <%= form_for @gift do |form| %>
+                      <div class="field">
+                        <%= form.hidden_field :quantity, :value => @month_value %>
+                        <%= form.hidden_field :formula, :value => 'bonsai' %>
+                      </div>
+                      <div class="actions text-center">
+                        <%= form.submit 'Choisir', class: 'btn btn-rose btn-round mr-auto ml-auto' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <%= image_tag("Cocotier_dark.png", class: "img-fluid illu") %>
+                <div class="card">
+                  <div class="card-header card-header-orange">
+                    <h3>3 mois</h3>
+                    <p class="big"><%= number_with_precision(@month_value * 0.02 * 3, precision: 0) %> €</p>
+                  </div>
+                  <div class="card-body">
+                    Je compense <%= @month_value * 3 %> KGCO2, soit 100% de son impact pendant 3 mois environ*
+                  </div>
+                  <div class="card-footer text-center">
+                    <%= form_for @gift do |form| %>
+                      <div class="field">
+                        <%= form.hidden_field :quantity, :value => @month_value*3 %>
+                        <%= form.hidden_field :formula, :value => 'cocotier' %>
+                      </div>
+                      <div class="actions text-center">
+                        <%= form.submit 'Choisir', class: 'btn btn-orange btn-round mr-auto ml-auto' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <%= image_tag("Pousse_dark.png", class: "img-fluid illu") %>
+                <div class="card">
+                  <div class="card-header card-header-warning">
+                    <h3>Montant au choix</h3>
+                  </div>
+                  <div class="card-body text-left">
+                    <%= form_for @gift do |form| %>
+                      <div class="form-group bmd-form-group text-center">
+                        <%= form.number_field :price, :value => (@month_value * 0.02).to_i, :min => (@month_value * 0.02).to_i, :max => 1000, class: 'form-control big-input-info' %>
+                        <%= form.hidden_field :formula, :value => 'bambou' %>
+                      </div>
+                  </div>
+                  <div class="card-footer text-center">
+                    <%= form.submit 'Choisir', class: 'btn btn-warning btn-round mr-auto ml-auto' %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="small text-center" style="margin-top:-80px;">
+              * En s'inscrivant sur carbo le destinataire va pouvoir préciser son impact et le réduire. La durée est indicative : ton cadeau a de grandes chances du durer plus longtemps s'il suit nos conseils !
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center align-self-center">
+          <div class="card-body right-block text-center h-100">
+            <h5>
+              Offre bien plus que de la compensation carbone
+            </h5>
+            <%= image_tag("gift_2.png", :class => 'img-fluid w-50') %>
+            <p>
+              Des projets de compensation impactant et pérennes, sélectionnés par nos soins
+            </p>
+            <p>
+              Calcul, analyse détaillée et suivi de son empreinte carbone sur l'appli Carbo
+            </p>
+            <p>
+              Conseils personnalisés pour la réduire, et faire durer ton cadeau encore plus longtemps 😉
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render '/scores/currency_spinner' %>
