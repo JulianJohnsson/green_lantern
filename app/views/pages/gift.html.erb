@@ -4,15 +4,15 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 mt-auto mb-auto">
-        <span class="badge badge-pill badge-primary d-none d-md-inline">Beta</span>
-        <h1>Et ils vécurent neutres en carbone</h1>
+        <span class="badge badge-pill badge-primary d-none d-md-inline">🎅 Offre limitée</span>
+        <h1>Offrir une vie neutre en carbone</h1>
         <h4 class="description">
-          Calcule, réduis et compense l’impact de tes choix quotidiens avec Carbo.
+          Compense l’impact d’un proche en finançant des projets contre le changement climatique
         </h4>
-        <%= link_to "Découvrir Carbo", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
+        <%= link_to "Offrir Carbo", new_gift_path, class: "btn btn-lg btn-round btn-primary" %>
       </div>
       <div class="col-md-6 d-none d-md-block">
-        <%= image_tag("phone_section1.png", class: "img-fluid") %>
+        <%= image_tag("phone_section1_gift.png", class: "img-fluid") %>
       </div>
     </div>
   </div>
@@ -21,9 +21,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 ml-auto mr-auto text-center">
-        <h2>Ton allié contre le changement climatique</h2>
+        <h2>Bye bye les cadeaux inutiles.</h2>
         <h4 class="description">
-          En plus de réduire, réutiliser ou recycler tes consommations, utilise dès aujourd’hui Carbo pour neutraliser totalement ton impact sur la planète. Voici comment ça marche :
+          Tic tac, l’échéance approche. Tu as 3 min et tu cherches un cadeau utile et original ? Offre un abonnement Carbo de la durée de ton choix pour compenser l’impact carbone d’un proche !
         </h4>
       </div>
     </div>
@@ -40,12 +40,12 @@
               </div>
               <div class="col-8">
                 <h4>
-                  Calcule l’impact de ton quotidien
+                  Estime son impact en 12 secondes
                 </h4>
               </div>
             </div>
             <p class="description">
-              Estime en un éclair ton empreinte avec le calculateur Carbo propulsé par l’ADEME et la Commission Européenne
+              Carbo en déduit une empreinte carbone moyenne pour ton proche
             </p>
           </div>
         </div>
@@ -62,18 +62,18 @@
               </div>
               <div class="col-8">
                 <h4>
-                  Réduis ton empreinte
+                  Compense son empreinte carbone
                 </h4>
               </div>
             </div>
             <p class="description">
-              Apprends des profils vertueux, compare toi et prends de meilleures décisions pour maîtriser ton impact
+              Choisis la durée durant laquelle tu souhaites compenser son impact
             </p>
           </div>
         </div>
       </div>
       <div class="col-md-4 text-center">
-        <%= image_tag("illu3_section3.png", class: "img-fluid") %>
+        <%= image_tag("illu3_section3_gift.png", class: "img-fluid") %>
         <div class="card">
           <div class="card-body">
             <div class="row">
@@ -84,106 +84,53 @@
               </div>
               <div class="col-8">
                 <h4>
-                  Compense ton impact
+                  Personnalise ton cadeau
                 </h4>
               </div>
             </div>
             <p class="description">
-              Soutiens des projets vraiment efficaces contre le changement climatique avec un simple abonnement mensuel
+              Joins l’utile à l’agréable en ajoutant ta petite touche perso avant de l’envoyer
             </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="page-header home-section home-section2">
-  <div class="container">
-    <div class="row justify-content-end">
-      <div class="col-md-4 d-none d-md-block">
-        <div class="phone-parent">
-          <%= image_tag("phone_section2.png", class: "img-fluid phone") %>
-          <%= image_tag("phone_section2.gif", class: "img-fluid gif") %>
-        </div>
-      </div>
-      <div class="col-md-7 mt-auto mb-auto">
-        <h2>Mesure et suis ton impact carbone en un clin d’oeil</h2>
-        <div class="row align-items-center">
-          <div class="col-2">
-            <%= image_tag("illu1_section2.png", class: "img-fluid illu_section2") %>
-          </div>
-          <div class="col-10">
-            <p class="description">
-              Tes choix quotidiens évoluent. Avec notre mode de calcul dynamique, tu peux estimer l’empreinte carbone de tes dépenses. C’est gratuit, automatique, plus précis et constamment à jour.
-            </p>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-2">
-            <%= image_tag("illu2_section2.png", class: "img-fluid illu_section2") %>
-          </div>
-          <div class="col-10">
-            <p class="description">
-              Pour cela, on analyse ton relevé bancaire grâce à la technologie Bridge de notre partenaire Bankin’, agréée par l'ACPR (autorité adossée à la Banque de France) et encadrée par la directive EU sur les services financiers.
-            </p>
-          </div>
-        </div>
-        <div class="text-center">
-          <%= link_to "Carbo est gratuit et sécurisé", "/pages/security", class: 'btn btn-round btn-rose' %>
-        </div>
-        <div class="row align-items-center justify-content-end">
-          <div class="col-4">
-            <%= image_tag("logo_ademe.png", class: "img-fluid") %>
-          </div>
-          <div class="col-4">
-            <%= image_tag("logo2_section2.png", class: "img-fluid") %>
-          </div>
-          <div class="col-4">
-            <%= image_tag("logo_commission_europeenne.png", class: "img-fluid") %>
-          </div>
-        </div>
-      </div>
+    <div class="text-center">
+      <%= link_to "Offrir Carbo", new_gift_path, class: "btn btn-lg btn-round btn-danger" %>
     </div>
   </div>
 </div>
 <div class="page-header home-section home-section4">
   <div class="container">
     <div class="row">
-      <div class="col-md-5 offset-md-2 mt-auto mb-auto">
-        <h2>Réduis ton empreinte autant que possible</h2>
+      <div class="col-md-4 offset-md-1 mt-auto mb-auto">
+        <h2>Un cadeau pour tous les budgets</h2>
         <p class="description">
-          Carbo utilise le meilleur du design et de la technologie pour t’aider à comprendre l’impact de tes choix quotidiens, avec des données ludiques, instantanées et constamment à jour.
+          Si ton proche a un profil similaire à la majorité des membres Carbo, compenser 1 mois de son impact carbone devrait coûter 12€ ou moins.
         </p>
-        <p class="description">
-          Apprends des profils vertueux, compare tes choix, découvre des recommandations personnalisées et prends de meilleures décisions pour réduire ton empreinte.
-        </p>
-        <%= link_to "Créer mon compte gratuitement", new_user_registration_path, class: "btn btn-lg btn-round btn-primary" %>
+        <%= link_to "choisir une formule", new_gift_path, class: "btn btn-lg btn-round btn-primary" %>
       </div>
-      <div class="col-md-5 d-none d-md-block">
-        <%= image_tag("phone_section4.png", class: "img-fluid") %>
+      <div class="col-md-7 d-none d-md-block">
+        <%= image_tag("gift_section4.png", class: "img-fluid") %>
       </div>
     </div>
   </div>
 </div>
 <div class="page-header home-section home-section5">
   <div class="container-fluid">
-    <div class="row align-items-center justify-content-end">
-      <div class="col-md-3 d-none d-md-block">
-        <%= image_tag("phone_section5.png", class: "img-fluid") %>
+    <div class="row align-items-center">
+      <div class="col-md-7 d-none d-md-block">
+        <%= image_tag("gift_section5.png", class: "img-fluid", :style => "margin-left:-35px;") %>
       </div>
-      <div class="col-md-7">
-        <h2>Compense ton impact avec<br> un simple abonnement</h2>
-        <div class="row">
-          <div class="col-md-7">
-            <p class="description mobile-contrast">
-              Sauf à vivre en ermite, il te sera très difficile de réduire totalement ton impact. Pour compenser, Carbo te propose un forfait mensuel permettant de soutenir des projets efficaces et durables dans la lutte contre le changement climatique.
-            </p>
-            <%= link_to "Plus d'informations sur les projets", new_project_path, class: "btn btn-info btn-round" %>
-          </div>
-          <div class="col-md-5 col-6 mr-auto ml-auto">
-            <%= image_tag("illu_section5.png", class: "img-fluid") %>
-          </div>
-        </div>
+      <div class="col-md-4">
+        <h2>Des projets qui changent des vies</h2>
+        <p class="description mobile-contrast">
+          Oui, les projets supportés par la communauté Carbo font plus que lutter contre le changement climatique : ils changent des vies !
+        </p>
+        <p class="description mobile-contrast">
+          Et pas besoin de nous croire sur parole : l’abonnement Carbo inclut pour ton proche un suivi régulier de l’évolution des projets financés.
+        </p>
+        <%= link_to "Plus d'informations sur les projets", new_project_path, class: "btn btn-info btn-round" %>
       </div>
     </div>
   </div>
