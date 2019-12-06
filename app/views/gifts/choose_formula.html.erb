@@ -14,16 +14,16 @@
                 <%= image_tag("Bonsai_dark.png", class: "img-fluid illu") %>
                 <div class="card">
                   <div class="card-header card-header-rose">
-                    <h3>1 mois</h3>
-                    <p class="big"><%= number_with_precision(@month_value * 0.02, precision: 0) %> €</p>
+                    <h3>2 mois</h3>
+                    <p class="big"><%= number_with_precision(@month_value * 2 * 0.02, precision: 0) %> €</p>
                   </div>
                   <div class="card-body">
-                    Je compense <%= @month_value %> KGCO2, soit 100% de son impact pendant 1 mois environ*
+                    Je compense <%= @month_value * 2 %> KGCO2, soit 100% de son impact pendant 2 mois environ*
                   </div>
                   <div class="card-footer text-center">
                     <%= form_for @gift do |form| %>
                       <div class="field">
-                        <%= form.hidden_field :quantity, :value => @month_value %>
+                        <%= form.hidden_field :quantity, :value => @month_value*2 %>
                         <%= form.hidden_field :formula, :value => 'bonsai' %>
                       </div>
                       <div class="actions text-center">
@@ -37,16 +37,16 @@
                 <%= image_tag("Cocotier_dark.png", class: "img-fluid illu") %>
                 <div class="card">
                   <div class="card-header card-header-orange">
-                    <h3>3 mois</h3>
-                    <p class="big"><%= number_with_precision(@month_value * 0.02 * 3, precision: 0) %> €</p>
+                    <h3>4 mois</h3>
+                    <p class="big"><%= number_with_precision(@month_value * 0.02 * 4, precision: 0) %> €</p>
                   </div>
                   <div class="card-body">
-                    Je compense <%= @month_value * 3 %> KGCO2, soit 100% de son impact pendant 3 mois environ*
+                    Je compense <%= @month_value * 4 %> KGCO2, soit 100% de son impact pendant 3 mois environ*
                   </div>
                   <div class="card-footer text-center">
                     <%= form_for @gift do |form| %>
                       <div class="field">
-                        <%= form.hidden_field :quantity, :value => @month_value*3 %>
+                        <%= form.hidden_field :quantity, :value => @month_value*4 %>
                         <%= form.hidden_field :formula, :value => 'cocotier' %>
                       </div>
                       <div class="actions text-center">
@@ -84,7 +84,7 @@
         <div class="col-md-4 text-center">
           <div class="card-body right-block text-center h-100">
             <h5>
-              Offrir bien plus que de la compensation carbone
+              Offrir bien plus qu'une compensation carbone
             </h5>
             <%= image_tag("gift_2.png", :class => 'img-fluid') %>
             <div class="row align-items-center">
@@ -113,7 +113,7 @@
               </div>
               <div class="col-10">
                 <p class="text-left">
-                  Conseils personnalisés pour la réduire, et faire durer ton cadeau plus longtemps 😉
+                  Conseils personnalisés pour réduire son impact, et faire durer ton cadeau plus longtemps 😉
                 </p>
               </div>
             </div>

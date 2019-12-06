@@ -15,14 +15,18 @@
         <p>
           Notre communauté doit encore grossir pour que notre impact devienne significatif. Tu veux nous soutenir ? Partage Carbo à quelqu’un de ton entourage (sauf <%= @gift.recipient_name %>, hein 🤐)
         </p>
-        <%= link_to "Partage la bonne parole par email", 'mailto:?&subject=Fais%20comme%20moi,%20agis%20pour%20le%20climat%20avec%20Carbo%20!&body=Hey%20!%0D%0A%0D%0AJ%E2%80%99ai%20d%C3%A9couvert%20Carbo,%20un%20outil%20g%C3%A9nial%20pour%20r%C3%A9duire%20et%20compenser%20ton%20impact%20carbone%20!%0D%0AJe%20me%20suis%20dit%20que%20%C3%A7a%20pourrait%20t%E2%80%99int%C3%A9resser,%20voici%20le%20lien%20:%0D%0A%0D%0Ahttps://www.hellocarbo.com/%0D%0A%0D%0A%E2%9C%8C', class: 'btn btn-sm btn-outline-warning btn-round', target: '_blank' %>
+        <%= link_to "Partage par email", 'mailto:?&subject=Fais%20comme%20moi,%20agis%20pour%20le%20climat%20avec%20Carbo%20!&body=Hey%20!%0D%0A%0D%0AJ%E2%80%99ai%20d%C3%A9couvert%20Carbo,%20un%20outil%20g%C3%A9nial%20pour%20r%C3%A9duire%20et%20compenser%20ton%20impact%20carbone%20!%0D%0AJe%20me%20suis%20dit%20que%20%C3%A7a%20pourrait%20t%E2%80%99int%C3%A9resser,%20voici%20le%20lien%20:%0D%0A%0D%0Ahttps://www.hellocarbo.com/%0D%0A%0D%0A%E2%9C%8C', class: 'btn btn-sm btn-outline-violet btn-round', target: '_blank' %>
         <%= link_to "Evangélise sur facebook", 'https://www.facebook.com/sharer/sharer.php?u=https://www.hellocarbo.com%3Futm_source%3Dfacebook%26utm_medium%3Dreferal', class: 'btn btn-sm btn-outline-info btn-round', target: '_blank' %><br>
         <%= link_to "Influence sur LinkedIn", 'https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.hellocarbo.com%3Futm_source%3Dlinkedin%26utm_medium%3Dreferal', class: 'btn btn-sm btn-outline-primary btn-round', target: '_blank' %>
         <%= link_to "Gazouille sur twitter", 'https://twitter.com/share?text=Fais comme moi: mesure, réduis et compense ton empreinte carbone sur &url=https%3A%2F%2Fwww.hellocarbo.com%3Futm_source%3Dtwitter%26utm_medium%3Dreferal', class: 'btn btn-sm btn-outline-rose btn-round', target: '_blank' %>
         <%= link_to "Partage sur whatsapp", "whatsapp://send?text=Fais comme moi: mesure, réduis et compense ton empreinte carbone sur &url=https%3A%2F%2Fwww.hellocarbo.com%3Futm_source%3Dwhatsapp%26utm_medium%3Dreferal", class: 'btn btn-sm btn-outline-danger btn-round', target: '_blank' %>
       </div>
       <div class="card-footer">
-        <%= link_to "Revenir à l'accueil", root_path  %>
+        <% unless current_user %>
+          <%= link_to "Créer mon compte gratuitement", '/users/sign_up'  %>
+        <% else %>
+          <%= link_to "Revenir à mon dashboard", root_path  %>
+        <% end %>
       </div>
     </div>
   </div>
