@@ -15,13 +15,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <%= f.label :ton_prénom %>
-                    <%= f.text_field :author_name, :autofocus => true, class: 'form-control' %>
+                    <%= f.text_field :author_name, :autofocus => true, class: 'form-control', :required => true %>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <%= f.label :ton_email %>
-                    <%= f.email_field :author_email, class: 'form-control' %>
+                    <%= f.email_field :author_email, class: 'form-control', :required => true %>
                   </div>
                 </div>
               </div>
@@ -29,20 +29,20 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <%= f.label :le_prénom_du_destinataire %>
-                    <%= f.text_field :recipient_name, class: 'form-control' %>
+                    <%= f.text_field :recipient_name, class: 'form-control', :required => true %>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <%= f.label :le_mail_du_destinataire %>
-                    <%= f.text_field :recipient_email, class: 'form-control' %>
+                    <%= f.text_field :recipient_email, class: 'form-control', :required => true %>
                     <small class="form-text text-muted">🚨 nécessaire pour profiter de son cadeau</small>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <%= f.label "Le message (qui change tout)" %>
-                    <%= f.text_area :invitation_text, class: 'form-control' %>
+                    <%= f.text_area :invitation_text, class: 'form-control', :required => true %>
                   </div>
                 </div>
               </div>
