@@ -29,7 +29,7 @@
                       </small>
                     </h5>
                     <p>
-                      Je retire de la route l’équivalent de <%= number_with_precision(@carbone_count/200, precision:0) %> voitures pendant <%= number_with_precision(@carbone_count/Country.find(@gift.country_id).total*12/1000, precision:0) %> mois.
+                      Je retire de la route l’équivalent de <%= [number_with_precision(@carbone_count/200, precision:0).to_i,1].max %> voitures pendant <%= [number_with_precision(@carbone_count/Country.find(@gift.country_id).total*12/1000, precision:0).to_i,1].max %> mois.
                     </p>
                     <h5 class="text-<%= @color %>">
                       <small class="description">

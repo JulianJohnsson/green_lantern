@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :transactions
-  has_many :scores
-  has_one :bridge
+  has_many :transactions, dependent: :destroy
+  has_many :scores, dependent: :destroy
+  has_one :bridge, dependent: :destroy
 
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
