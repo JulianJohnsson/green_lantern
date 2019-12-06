@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                   <h4>Dans quel pays se trouve ton logement principal ?</h4>
-                  <%= form.select(:country_id, @countries.order(:id).map {|c| [c.name, c.id]}, :selected => 63, :class => "custom-select js-searchable") %>
+                  <%= form.select(:country_id, @countries.order(:id).map {|c| [c.name, c.id]}, :selected => 63, :class => "custom-select js-searchable", :onchange => "this.form.submit();") %>
                 </div>
                 <div class="actions text-center">
                   <%= form.submit 'Estimer mon impact carbone', class: 'btn btn-primary btn-round' %>

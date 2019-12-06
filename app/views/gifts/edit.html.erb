@@ -7,7 +7,7 @@
             <h3><strong>
               <small>3 minutes pour offrir Carbo</small>
               <br>
-              Très bon choix! Une petite touche perso?
+              On ajoute une petite touche perso ?
             </strong></h3>
 
             <%= form_for @gift do |f| %>
@@ -53,13 +53,21 @@
         </div>
         <div class="col-md-5 text-center">
           <div class="card-body right-block text-center h-100">
-            <%= image_tag("gift_3.png", :class => 'img-fluid') %>
-            <p>
-              Après paiement, tu recevras une carte cadeau personalisée à envoyer ou imprimer.
-            </p>
+            <div class="mt-auto mb-auto">
+              <%= image_tag("gift_3.png", :class => 'img-fluid', :style => "margin-top: 30px;") %>
+              <p>
+                Après confirmation de ton paiement, tu recevras un email incluant ton message personnalisé prêt-à-envoyer. Ça ressemblera à ça
+              </p>
+              <%= link_to "Voir un aperçu", "#img-id", class: 'btn btn-sm btn-outline-white btn-round' %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= link_to "#_", class: 'overlay', :id => 'img-id' do %>
+  <%= image_tag "gift_preview.png" %>
+<% end %>
+

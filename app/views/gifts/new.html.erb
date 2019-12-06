@@ -10,14 +10,15 @@
               Dans quel pays habite la personne ?
             </strong></h3>
             <p>
-              Cette information nous permet d'estimer l'empreinte carbone du destinataire
+              Cette information nous permet d'estimer son empreinte carbone.
             </p>
             <%= form_for @gift do |form| %>
                 <div class="field">
                   <%= form.hidden_field :author_email, :value => current_user.email if current_user %>
+                  <%= form.hidden_field :author_name, :value => current_user.name if current_user %>
                 </div>
                 <div class="form-group">
-                  <%= form.select(:country_id, @countries.order(:id).map {|c| [c.name, c.id]}, :selected => 63, :class => "custom-select js-searchable") %>
+                  <%= form.select(:country_id, @countries.order(:id).map {|c| [c.name, c.id]}, :selected => 63, :class => "custom-select js-searchable", :onchange => "this.form.submit();") %>
                 </div>
                 <div class="actions text-center">
                   <%= form.submit 'Estimer son impact carbone', class: 'btn btn-primary btn-round' %>

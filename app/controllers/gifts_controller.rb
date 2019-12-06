@@ -11,7 +11,7 @@ class GiftsController < ApplicationController
     respond_to do |format|
       if @gift.save
         AnalyticService.new.track('Gift Country set', nil, current_user)
-        format.html { redirect_to "/gifts/#{@gift.id}/choose_formula", notice: 'Impact carbone moyen estimé, choisi une durée de compensation !' }
+        format.html { redirect_to "/gifts/#{@gift.id}/choose_formula" }
         format.json { render :show, status: :ok, location: @gift }
       else
         format.html { render :new }
@@ -89,12 +89,12 @@ class GiftsController < ApplicationController
       GiftPaymentJob.perform_later(@gift)
       redirect_to @gift, notice: "Ton paiement a bien été accepté, tu vas recevoir une facture par email d’ici quelques minutes"
     end
-  rescue Stripe::StripeError => e
+  rescue Stripe::StripeError || Stripe::CardError => e
     # If a Stripe error is raised from the API,
     # set status failed and an error message
     @gift.status = :payment_failed
     @gift.save
-    redirect_to :checkout, danger: "Ton paiement a échoué"
+    redirect_to "/gifts/#{@gift.id}/checkout", danger: "Ton paiement a échoué"
   end
 
   def show

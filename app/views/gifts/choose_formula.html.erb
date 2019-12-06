@@ -7,7 +7,7 @@
             <h3><strong>
               <small>3 minutes pour offrir Carbo</small>
               <br>
-              Sur quelle durée souhaites-tu compenser son impact ?
+              Combien souhaites-tu compenser pour cette personne ?
             </strong></h3>
             <div class="row justify-content-center text-center packs ecommerce">
               <div class="col-md-4">
@@ -65,7 +65,7 @@
                   <div class="card-body text-left">
                     <%= form_for @gift do |form| %>
                       <div class="form-group bmd-form-group text-center">
-                        <%= form.number_field :price, :value => (@month_value * 0.02).to_i, :min => (@month_value * 0.02).to_i, :max => 1000, class: 'form-control big-input-info' %>
+                        <%= form.number_field :price, :value => 5, :min => 5, :max => 1000, class: 'form-control big-input-info' %>
                         <%= form.hidden_field :formula, :value => 'bambou' %>
                       </div>
                   </div>
@@ -76,26 +76,47 @@
                 </div>
               </div>
             </div>
-            <p class="small text-center" style="margin-top:-80px;">
+            <p class="description text-center" style="font-size:12px;margin-top:-80px;">
               * En s'inscrivant sur carbo le destinataire va pouvoir préciser son impact et le réduire. La durée est indicative : ton cadeau a de grandes chances du durer plus longtemps s'il suit nos conseils !
             </p>
           </div>
         </div>
-        <div class="col-md-4 text-center align-self-center">
+        <div class="col-md-4 text-center">
           <div class="card-body right-block text-center h-100">
             <h5>
-              Offre bien plus que de la compensation carbone
+              Offrir bien plus que de la compensation carbone
             </h5>
-            <%= image_tag("gift_2.png", :class => 'img-fluid w-50') %>
-            <p>
-              Des projets de compensation impactant et pérennes, sélectionnés par nos soins
-            </p>
-            <p>
-              Calcul, analyse détaillée et suivi de son empreinte carbone sur l'appli Carbo
-            </p>
-            <p>
-              Conseils personnalisés pour la réduire, et faire durer ton cadeau encore plus longtemps 😉
-            </p>
+            <%= image_tag("gift_2.png", :class => 'img-fluid') %>
+            <div class="row align-items-center">
+              <div class="col-2 emoji">
+                🔎
+              </div>
+              <div class="col-10">
+                <p class="text-left">
+                  Des projets de compensation efficaces et pérennes, sélectionnés par nos soins
+                </p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-2 emoji">
+                📉
+              </div>
+              <div class="col-10">
+                <p class="text-left">
+                  Calcul, analyse détaillée et suivi de son empreinte carbone sur l'appli Carbo
+                </p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-2 emoji">
+                💡
+              </div>
+              <div class="col-10">
+                <p class="text-left">
+                  Conseils personnalisés pour la réduire, et faire durer ton cadeau plus longtemps 😉
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

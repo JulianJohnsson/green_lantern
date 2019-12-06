@@ -1,10 +1,42 @@
 
   <div class="stepbar-container">
       <ul class="stepbar ecommerce">
-        <li class=""><div class="bulle">📍</div></li>
-        <li class=""><div class="bulle">🎁</div></li>
-        <li class=""><div class="bulle">💝</div></li>
-        <li class=""><div class="bulle">💳</div></li>
+        <li class="<%= "active" if @gift && @gift.country_id.present? %>">
+          <% if @gift && @gift.country_id.present? %>
+            <%= link_to '/gifts/new' do %>
+              <div class="bulle">📍</div>
+            <% end %>
+          <% else %>
+            <div class="bulle">📍</div>
+          <% end %>
+        </li>
+        <li class="<%= "active" if @gift && @gift.formula.present? %>">
+          <% if @gift && @gift.formula.present? %>
+            <%= link_to "/gifts/#{@gift.id}/choose_formula" do %>
+              <div class="bulle">🎁</div>
+            <% end %>
+          <% else %>
+            <div class="bulle">🎁</div>
+          <% end %>
+        </li>
+        <li class="<%= "active" if @gift && @gift.recipient_email.present? %>">
+          <% if @gift && @gift.formula.present? %>
+            <%= link_to "/gifts/#{@gift.id}/edit" do %>
+              <div class="bulle">💝</div>
+            <% end %>
+          <% else %>
+            <div class="bulle">💝</div>
+          <% end %>
+        </li>
+        <li class="<%= "active" if @gift && @gift.charge_id.present? %>">
+          <% if @gift && @gift.formula.present? %>
+            <%= link_to "/gifts/#{@gift.id}/checkout" do %>
+              <div class="bulle">💳</div>
+            <% end %>
+          <% else %>
+            <div class="bulle">💳</div>
+          <% end %>
+        </li>
         <li class=""><div class="bulle">🚀</div></li>
       </ul>
   </div>
