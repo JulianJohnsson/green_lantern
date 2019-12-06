@@ -15,7 +15,7 @@ class GiftPaymentJob < ApplicationJob
         ],
         'TemplateID'=> 1118319,
         'TemplateLanguage'=> true,
-        'Subject'=> "Mon meilleur cadeau est pour toi :gem:",
+        'Subject'=> "Mon meilleur cadeau est pour toi 💎",
         'Variables'=> {
           "gift_name" => gift.recipient_name,
           "name" => gift.author_name,
