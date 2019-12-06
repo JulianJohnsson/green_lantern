@@ -38,3 +38,16 @@
   display: flex;
   margin-top: -40px;
 }
+
+.push-invitation {
+  background: $brand-light-cyan;
+  border-radius: 12px;
+  box-shadow: -10px 5px 30px rgba(0, 0, 0, 0.1);
+  .emoji {
+    opacity: 0.6;
+  }
+  p {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}

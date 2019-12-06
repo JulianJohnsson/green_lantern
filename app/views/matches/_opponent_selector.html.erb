@@ -1,5 +1,6 @@
 <div class="opponent-selector">
   <%= form_tag(matches_path, method: :get) do %>
+    <p class="small">Choisis quelqu'un avec qui te comparer</p>
     <%= select_tag :opponent,  options_from_collection_for_select(Match.user_matches(current_user).sort_by {|m| m.id}, "id", "name", params[:opponent].to_i), class: 'custom-select', :onchange => "this.form.submit();" %>
   <% end %>
 </div>

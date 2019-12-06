@@ -1,15 +1,17 @@
-<div class="row">
-  <div class="col-lg-5 col-md-3 d-none d-md-block mt-auto mb-auto text-center">
-    <h4>Invite ton entourage pour comparer vos empreintes carbones en quelques minutes !</h4>
-    <p>Tu seras prévenu par email dès que son profil est prêt pour votre match.</p>
+<h3 class="text-center w-50 ml-auto mr-auto" style="margin-bottom:30px;">Invite ton entourage pour comparer vos empreintes carbones en quelques minutes !</h3>
+<div class="row align-items-center justify-content-center">
+  <div class="col-lg-5 col-md-3 d-none d-md-block mt-auto mb-auto">
+    <p class="big">1. On envoie une invitation à l'adresse email que tu indiques</p>
+    <p class="big">2. Ton invité s'inscrit sur Carbo et estime son empreinte carbone</p>
+    <p class="big">3. Quand il a terminé, tu es prévenu par mail pour découvrir le résultat du match !</p>
     <div class="signup">
-      <%= image_tag "invitation.png", class: "img-fluid", style: ""%>
+
     </div>
   </div>
   <div class="col-lg-5 col-md-6">
     <div class="card">
       <div class="card-header card-header-dark text-center">
-        <h3 class="card-title">Inviter un utilisateur par email</h3>
+        <h4 class="card-title">Inviter un utilisateur par email</h4>
       </div>
       <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
         <div class="authform">
@@ -22,11 +24,16 @@
               </div>
             <% end %>
           </div>
-          <div class="card-footer">
+          <div class="card-footer text-center">
             <%= f.submit "Envoyer l'invitation", :class => 'btn btn-primary btn-lg btn-round mr-auto ml-auto'%>
           </div>
         </div>
       <% end %>
     </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-3">
+    <%= image_tag "invitation.png", class: "img-fluid ml-auto mr-auto"%>
   </div>
 </div>
