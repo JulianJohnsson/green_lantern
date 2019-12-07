@@ -93,9 +93,9 @@ class Reduction < ApplicationRecord
             color = 'danger'
           when 12
             color = "rose"
-          when 23
-            color = "violet"
           when 24
+            color = "violet"
+          when 25
             color = "warning"
           when 70
             color = "primary"
