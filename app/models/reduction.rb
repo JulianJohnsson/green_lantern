@@ -71,8 +71,21 @@ class Reduction < ApplicationRecord
       t = transactions.category_id(c.id)
       first_transaction_date = t.order(date: :asc).first.date
       days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
-
-
+      category_count = t.carbone_contribution.sum(:carbone)
+      all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
+      average_category_count = all_transactions.sum(:carbone) / all_transactions.count(:user_id)
+      if category_count > 1.3 *  average_category_count
+        red = Reduction.new
+        red.category_id = c.id
+        red.parent_category_id = c.parent_category_id
+        red.title =  "Passer à un nouveau régime #{regime_title}"
+        red.month_carbone =  carbon_reduction
+        red.month_cost = 0
+        red.image = "reduction_regime.png"
+        red.user_id = user.id
+        red.save
+      end
+    end
   end
 
 end
