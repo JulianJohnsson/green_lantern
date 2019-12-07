@@ -16,7 +16,7 @@
             <p>
               <% case i %>
               <% when 0 %>
-                À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / average_carbone[i][1], precision: 0) %>% moins carbonés que les autres membres
+                À ce stade, tes déplacements sont <%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>% moins carbonés que les autres membres
               <% when 1 %>
                 Home sweet home ! Ton logement engendre <%= number_with_precision(100*(@average_carbone[i][1] - @my_carbone[i][1]) / @average_carbone[i][1], precision: 0) %>% moins de C02 que la moyenne
               <% when 2 %>
