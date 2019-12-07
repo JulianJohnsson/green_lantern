@@ -25,6 +25,7 @@ class DashboardsController < ApplicationController
       @average = total / count * 1000/12
 
       # REDUIRE
+
       @reduction = []
       i = 0
       if (@score.main_transport_mode||"").to_sym == :voiture_classique || (@score.week_basic_car || 0) > 10

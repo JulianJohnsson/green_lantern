@@ -6,6 +6,7 @@ class Score < ApplicationRecord
   before_create :set_match
   before_save :calculate_score
   after_update :update_onboarding, if: :saved_change_to_regime? || :saved_change_to_kind?
+  after_commit :refresh_reductions, if: :saved_change_to_detail?
 
   enum main_transport_mode: [:voiture_classique, :voiture_électrique, :moto_ou_scooter, :transports_en_commun, :vélo_ou_marche]
   enum regime: [:végétalien, :végétarien, :flexitarien, :moyen, :viandard]
@@ -164,5 +165,9 @@ class Score < ApplicationRecord
       user.onboarded = false
     end
     user.save
+  end
+
+  def refresh_reductions
+    ReductionGeneratorJob.perform_later(self.user)
   end
 end

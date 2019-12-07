@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
   has_many :scores, dependent: :destroy
+  has_many :reductions, dependent: :destroy
   has_one :bridge, dependent: :destroy
 
   enum role: [:user, :vip, :admin]

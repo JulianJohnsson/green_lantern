@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <%= f.label :le_prénom_du_destinataire %>
-                    <%= f.text_field :recipient_name, class: 'form-control', :required => true %>
+                    <%= f.text_field :recipient_name, class: 'form-control' %>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -42,7 +42,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <%= f.label "Le message (qui change tout)" %>
-                    <%= f.text_area :invitation_text, class: 'form-control', :required => true %>
+                    <%= f.text_area :invitation_text, class: 'form-control', :required => true, :value => "Je t'offre une vie neutre en carbone, j'espère que ça te plaira !" %>
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
             <div class="mt-auto mb-auto">
               <%= image_tag("gift_3.png", :class => 'img-fluid', :style => "margin-top: 30px;") %>
               <p>
-                Après confirmation de ton paiement, tu recevras un email incluant ton message personnalisé prêt-à-envoyer. Ça ressemblera à ça
+                Tu recevras un email incluant ton message personnalisé prêt-à-envoyer. Ça ressemblera à ça
               </p>
               <%= link_to "Voir un aperçu", "#img-id", class: 'btn btn-sm btn-outline-white btn-round' %>
             </div>

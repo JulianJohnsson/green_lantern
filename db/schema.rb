@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_102657) do
+ActiveRecord::Schema.define(version: 2019_12_06_233128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,18 @@ ActiveRecord::Schema.define(version: 2019_12_05_102657) do
     t.string "url"
     t.string "image"
     t.text "why"
+  end
+
+  create_table "reductions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "category_id"
+    t.integer "parent_category_id"
+    t.string "title"
+    t.decimal "month_carbone"
+    t.decimal "month_cost"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "scores", force: :cascade do |t|

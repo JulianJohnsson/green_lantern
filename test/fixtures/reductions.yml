@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  category_id: 1
+  parent_category_id: 1
+  title: MyString
+  month_carbone: 9.99
+  month_cost: 9.99
+  image: MyString
+
+two:
+  user_id: 1
+  category_id: 1
+  parent_category_id: 1
+  title: MyString
+  month_carbone: 9.99
+  month_cost: 9.99
+  image: MyString
