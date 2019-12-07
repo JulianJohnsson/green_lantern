@@ -91,14 +91,17 @@ class Reduction < ApplicationRecord
           red.user_id = user.id
           case c.parent_id when 1
             color = 'danger'
+            self.image = "reduction_voiture.png"
           when 12
             color = "rose"
+            self.image = "reduction_logement.png"
           when 24
             color = "violet"
           when 25
             color = "warning"
           when 70
             color = "primary"
+            self.image = "reduction_regime.png"
           end
           red.color = color
           red.save
