@@ -15,6 +15,7 @@ class Reduction < ApplicationRecord
       self.month_cost = month_car_cost*reduction_coeff
       self.image = "reduction_voiture.png"
       self.user_id = user.id
+      self.color = "danger"
       self.save
     end
   end
@@ -36,6 +37,7 @@ class Reduction < ApplicationRecord
       self.month_cost = cost_reduction
       self.image = "reduction_logement.png"
       self.user_id = user.id
+      self.color = "rose"
       self.save
     end
   end
@@ -61,29 +63,46 @@ class Reduction < ApplicationRecord
       self.month_cost = 0
       self.image = "reduction_regime.png"
       self.user_id = user.id
+      self.color = "primary"
       self.save
     end
   end
 
   def self.average(user)
     transactions = user.transactions
-    Categories.each do |c|
+    Category.all.each do |c|
       t = transactions.category_id(c.id)
-      first_transaction_date = t.order(date: :asc).first.date
-      days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
-      category_count = t.carbone_contribution.sum(:carbone)
-      all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
-      average_category_count = all_transactions.sum(:carbone) / all_transactions.count(:user_id)
-      if category_count > 1.3 *  average_category_count
-        red = Reduction.new
-        red.category_id = c.id
-        red.parent_category_id = c.parent_category_id
-        red.title =  "Passer à un nouveau régime #{regime_title}"
-        red.month_carbone =  carbon_reduction
-        red.month_cost = 0
-        red.image = "reduction_regime.png"
-        red.user_id = user.id
-        red.save
+      if t.present?
+        first_transaction_date = t.order(date: :asc).first.date
+        days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
+        category_count = t.carbone_contribution.sum(:carbone) * 30 / days
+        all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
+        average_category_count = all_transactions.sum(:carbone) / all_transactions.distinct.count(:user_id)  * 30 / days
+        if category_count > 1.5 *  average_category_count
+          red = user.reductions.where("category_id = ?", c.id).last
+          unless red.present?
+            red = Reduction.new
+          end
+          red.category_id = c.id
+          red.parent_category_id = c.parent_id
+          red.title = "Tu dépenses plus que la moyenne en #{c.name}"
+          red.month_carbone =  category_count - average_category_count
+          red.month_cost = 0
+          red.user_id = user.id
+          case c.parent_id when 1
+            color = 'danger'
+          when 12
+            color = "rose"
+          when 23
+            color = "violet"
+          when 24
+            color = "warning"
+          when 70
+            color = "primary"
+          end
+          red.color = color
+          red.save
+        end
       end
     end
   end

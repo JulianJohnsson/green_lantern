@@ -1,0 +1,35 @@
+<div class="card payment-detail-card">
+  <div class="card-header card-header-<%= reduction.color %>">
+    <%= image_tag (reduction.image||"illu1_projects3.png"), class: 'img-fluid' %>
+    <div class="subtitle">
+      <span><%= Category.find(reduction.parent_category_id).name.upcase %></span>
+    </div>
+  </div>
+  <div class="card-body text-left">
+    <h5>
+      <small class="description">
+        PRIORITÉ<br>
+      </small>
+      <%= reduction.title %>
+    </h5>
+    <h5 class="text-<%= reduction.color %>">
+      <small class="description">
+        CARBONE ÉVITÉ<br>
+      </small>
+      - <%= number_with_precision(reduction.month_carbone, precision:0) %> KGCO2 / MOIS
+    </h5>
+    <h5>
+      <small class="description">
+        ÉCONOMIES GÉNÉRÉES<br>
+      </small>
+    </h5>
+    <p>
+      - <%= number_with_precision(reduction.month_cost, precision: 0) %>€ / mois
+    </p>
+  </div>
+  <div class="card-footer">
+    <strong>
+      <%= link_to "Ne plus voir ce conseil", "", class: 'text-warning' %>
+    </strong>
+  </div>
+</div>

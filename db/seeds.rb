@@ -203,3 +203,11 @@ users.each do |user|
   end
   user.save
 end
+
+users = User.all
+users.each do |user|
+  if user.scores.present? && user.scores.last.detail.present? && user.reductions == []
+    user.scores.last.refresh_reductions
+  end
+end
+

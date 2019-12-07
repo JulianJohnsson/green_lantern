@@ -23,6 +23,10 @@ class ReductionGeneratorJob < ApplicationJob
       Reduction.new.regime(user)
     end
 
+    if user.scores.last.kind.to_sym == :dynamic
+      Reduction.average(user)
+    end
+
   end
 
 end

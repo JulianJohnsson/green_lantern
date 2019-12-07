@@ -32,26 +32,6 @@
       font-weight: bold;
       width: 80%;
     }
-    .subtitle {
-      margin-bottom: -20px;
-      span {
-        border-radius: 50px;
-        padding: 3px 10px 3px 10px;
-      }
-    }
-  }
-
-  .card-header-info .subtitle span {
-    background-color: darken($brand-info, 10%);
-  }
-  .card-header-primary .subtitle span {
-    background-color: darken($brand-primary, 10%);
-  }
-  .card-header-rose .subtitle span {
-    background-color: darken($brand-rose, 10%);
-  }
-  .card-header-warning .subtitle span {
-    background-color: darken($brand-warning, 10%);
   }
 
   .card-body {
@@ -72,4 +52,34 @@
 .carousel-item .big {
   font-size: 18px;
 
+}
+
+.card .card-header .subtitle {
+  margin-bottom: -20px;
+  span {
+    border-radius: 50px;
+    padding: 3px 10px 3px 10px;
+  }
+}
+.card .card-header-info .subtitle span {
+  background-color: darken($brand-info, 10%);
+}
+.card .card-header-primary .subtitle span {
+  background-color: darken($brand-primary, 10%);
+}
+.card .card-header-rose .subtitle span {
+  background-color: darken($brand-rose, 10%);
+}
+.card .card-header-warning .subtitle span {
+  background-color: darken($brand-warning, 10%);
+}
+.card .card-header-danger .subtitle span {
+  background-color: darken($brand-danger, 10%);
+}
+.card .card-header-violet .subtitle span {
+  background-color: darken($brand-violet, 10%);
+}
+
+.card .card-header img {
+  max-height: 96px;
 }

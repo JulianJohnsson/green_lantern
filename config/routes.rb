@@ -55,4 +55,6 @@ Rails.application.routes.draw do
   get '/gifts/:id/checkout' => 'gifts#checkout'
   post 'gifts/:id/submit' => 'gifts#submit'
 
+  resources :reductions
+
 end
