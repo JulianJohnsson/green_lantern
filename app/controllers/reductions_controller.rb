@@ -7,6 +7,7 @@ class ReductionsController < ApplicationController
 
   def index
     @reductions = current_user.reductions.order("month_carbone desc").first(3)
+    @tips = Tip.all
 
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last

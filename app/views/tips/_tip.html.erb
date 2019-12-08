@@ -1,0 +1,12 @@
+<div class="card bg-info text-white">
+  <%= image_tag (tip.image||"illu1_projects3.png"), class: 'card-img' %>
+  <div class="card-img-overlay">
+    <h5 class="card-title">
+      <%= tip.title %>
+    </h5>
+    <p class="card-text">
+      <%= tip.description %>
+    </p>
+    <%= link_to 'En savoir plus', tip.url, class: 'btn btn-round btn-outline-white btn-sm' %>
+  </div>
+</div>

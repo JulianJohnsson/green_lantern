@@ -10,7 +10,7 @@ class Reduction < ApplicationRecord
       reduction_coeff = 0.4
       self.category_id = category.id
       self.parent_category_id = category.parent_id
-      self.title = "Investir dans un véhicule moins consommateur en carburant"
+      self.title = "Investir dans un véhicule consommant moins de carburant"
       self.month_carbone =  month_car_carbon*reduction_coeff
       self.month_cost = month_car_cost*reduction_coeff
       self.image = "reduction_voiture.png"

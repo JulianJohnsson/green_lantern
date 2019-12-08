@@ -27,22 +27,11 @@
 
   <h2 class="description text-center"><i class="material-icons">file_copy</i> POUR ALLER PLUS LOIN</h2>
   <div class="row text-center justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-title">
-          Bientôt disponible
-        </div>
-        <div class="card-body">
-          <p>
-            Tu retrouveras dans cette rubrique des conseils, des produits et des services pour t'aider à atteindre tes objectifs de réduction.
-          </p>
-          <p>
-            Tu as plein d'idées et tu veux nous suggérer des contenus pour cette rubrique ? Ecris-nous !
-          </p>
-          <%= link_to "Proposer des conseils", 'mailto:team@hellocarbo.com', class: 'btn btn-round btn-primary' %>
-        </div>
+    <% @tips.each do |tip| %>
+      <div class="col-md-4">
+        <%= render tip %>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <p class="description text-center">
