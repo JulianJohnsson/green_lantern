@@ -1,6 +1,8 @@
 class Reduction < ApplicationRecord
   belongs_to :user
 
+  scope :visible, -> {where("hidden = FALSE OR hidden IS NULL")}
+
   def carburant(user)
     score = user.scores.last
     if (score.main_transport_mode||"").to_sym == :voiture_classique || (score.week_basic_car || 0) > 10

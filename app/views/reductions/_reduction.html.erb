@@ -17,6 +17,7 @@
         CARBONE ÉVITÉ<br>
       </small>
       - <%= number_with_precision(reduction.month_carbone, precision:0) %> KGCO2 / MOIS
+      (-<%= number_with_precision(reduction.month_carbone/(@score.total*10/12), precision:0) %>%)
     </h5>
     <h5>
       <small class="description">
@@ -24,12 +25,19 @@
       </small>
     </h5>
     <p>
-      - <%= number_with_precision(reduction.month_cost, precision: 0) %>€ / mois
+      <% if reduction.month_cost > 0 %>
+        - <%= number_with_precision(reduction.month_cost, precision: 0) %>€ / mois
+      <% else %>
+        - <%= number_with_precision(reduction.month_carbone*0.02, precision: 1) %>€ sur mon forfait Carbo
+      <% end %>
     </p>
   </div>
   <div class="card-footer">
     <strong>
-      <%= link_to "Ne plus voir ce conseil", "", class: 'text-warning' %>
+      <%= form_for reduction do |f| %>
+        <%= f.hidden_field :hidden, :value => true %>
+        <%= f.submit "Ne plus voir ce conseil", class: 'btn btn-link text-warning' %>
+      <% end %>
     </strong>
   </div>
 </div>
