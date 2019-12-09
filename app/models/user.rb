@@ -24,6 +24,7 @@ class User < ApplicationRecord
       UserMailer.welcome_email(self).deliver_later
       DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
     else
+      AnalyticService.new.identify(self, nil)
       AnalyticService.new.track('Invitation sent', nil, self)
     end
   end
