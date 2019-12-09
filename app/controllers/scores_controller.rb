@@ -30,9 +30,10 @@ class ScoresController < ApplicationController
       2.times do
         cookies[:ajs_anonymous_id].slice!("\"")
       end
-      Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
       Analytics.identify(user_id: cookies[:ajs_anonymous_id])
+      Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
     end
+    AnalyticService.new.identify(current_user,request)
     @score = Score.new
     @countries = Country.all
     AnalyticService.new.track('Onboarding started', nil, current_user)
