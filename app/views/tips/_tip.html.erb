@@ -7,6 +7,8 @@
     <p class="card-text">
       <%= tip.description %>
     </p>
-    <%= link_to 'En savoir plus', tip.url, class: 'btn btn-round btn-outline-white btn-sm' %>
+    <div class= "card-footer">
+      <%= link_to 'En savoir plus', tip.url, class: 'btn btn-round btn-outline-white btn-sm', :target => "_blank" %>
+    </div>
   </div>
 </div>

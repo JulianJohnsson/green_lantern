@@ -19,6 +19,10 @@ class Reduction < ApplicationRecord
       self.user_id = user.id
       self.color = "danger"
       self.save
+    else
+      self.month_carbone = 0
+      self.hidden = true
+      self.save
     end
   end
 
@@ -40,6 +44,10 @@ class Reduction < ApplicationRecord
       self.image = "reduction_logement.png"
       self.user_id = user.id
       self.color = "rose"
+      self.save
+    else
+      self.month_carbone = 0
+      self.hidden = true
       self.save
     end
   end
@@ -66,6 +74,10 @@ class Reduction < ApplicationRecord
       self.image = "reduction_regime.png"
       self.user_id = user.id
       self.color = "primary"
+      self.save
+    else
+      self.month_carbone = 0
+      self.hidden = true
       self.save
     end
   end
