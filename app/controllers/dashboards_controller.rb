@@ -10,6 +10,12 @@ class DashboardsController < ApplicationController
       if Bridge.find_by_user_id(current_user.id).present? && Bridge.find_by_user_id(current_user.id).bank_connected == true && 1.day.ago > Bridge.find_by_user_id(current_user.id).last_sync_at
         TransactionFetcherJob.perform_later(current_user)
       end
+
+      if cookies[:_ga].present? && current_user.gaid == nil
+         cookies[:_ga].slice!(0,6)
+         current_user.gaid = cookies[:_ga]
+         current_user.save
+      end
       # SUIVRE
       @score = current_user.scores.last
       @rand = rand(3)

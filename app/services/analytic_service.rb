@@ -50,7 +50,14 @@ class AnalyticService
     Analytics.track(
       event: event,
       properties: properties,
-      user_id: "#{user.id if user.present?}"
+      user_id: "#{user.id if user.present?}",
+      context: {
+        integrations: {
+         'Google Analytics' => {
+           clientId: "#{user.gaid if user.present?}"
+         }
+        }
+      }
     )
   end
 end

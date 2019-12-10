@@ -38,6 +38,10 @@
             </div>
           </div>
           <div class="card-footer text-center">
+            <% if cookies[:_ga].present? %>
+              <% cookies[:_ga].slice!(0,6) %>
+              <%= f.hidden_field :gaid, :value => cookies[:_ga] %>
+            <% end %>
             <%= f.submit "Je crée mon compte", :class => 'btn btn-primary btn-lg btn-round mr-auto ml-auto'%>
           </div>
         </div>
