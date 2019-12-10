@@ -128,7 +128,7 @@ class Score < ApplicationRecord
 
   def set_services_score
     country = Country.find(country_id)
-    self.detail[2] = country.detail[2].to_f * (1 + (((self.services_health || country.healthcare) - country.healthcare) + ((self.services_plans || country.subscriptions) - country.subscriptions) + ((self.services_others || country.other_services) - country.other_services)) / (country.healthcare+country.subscriptions+country.other_services))
+    self.detail[2] = country.detail[2].to_f * (1 + (((self.services_health || country.healthcare) - country.healthcare) + ((self.services_plans || country.subscriptions) - country.subscriptions) + ((self.services_others || country.other_services) - country.other_services)) / (country.healthcare + country.subscriptions + country.other_services))
   end
 
   def calculate_trends
