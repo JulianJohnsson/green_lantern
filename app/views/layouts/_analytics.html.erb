@@ -24,11 +24,19 @@
         analytics.load("<%= Rails.application.credentials[:segment][Rails.env.to_sym][:write_key] %>");
         analytics.page({
           <% if user_signed_in? %>
-            user_id: <%= current_user.id %>
+            userId: <%= current_user.id %>
+          <% else %>
+            userId: "<%= cookies[:ajs_anonymous_id] %>"
           <% end %>
         });
         <% if user_signed_in? %>
           <% AnalyticService.new.identify(current_user,request) %>
+        <% end %>
+        <% if current_page?('/scores/new') %>
+          analytics.alias({
+            user_id: <%= current_user.id %>,
+            previous_id: "<%= cookies[:ajs_anonymous_id] %>"
+          });
         <% end %>
       }
     }

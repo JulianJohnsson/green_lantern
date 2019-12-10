@@ -2,6 +2,7 @@ class SignupJob < ApplicationJob
   queue_as :default
 
   def perform(user)
+    AnalyticService.new.track('Signed Up', nil, user)
     begin
       variable = Mailjet::Send.create(messages: [{
           'From'=> {

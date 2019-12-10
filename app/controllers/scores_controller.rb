@@ -30,7 +30,7 @@ class ScoresController < ApplicationController
       2.times do
         cookies[:ajs_anonymous_id].slice!("\"")
       end
-      Analytics.identify(user_id: cookies[:ajs_anonymous_id])
+      #Analytics.identify(user_id: cookies[:ajs_anonymous_id])
       Analytics.alias(previous_id: cookies[:ajs_anonymous_id], user_id: current_user.id)
     end
     AnalyticService.new.identify(current_user,request)
