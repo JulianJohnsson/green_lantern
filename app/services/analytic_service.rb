@@ -22,7 +22,12 @@ class AnalyticService
         },
         context: {
           ip: "#{request.remote_ip}",
-          referer: "#{request.referer}"
+          referer: "#{request.referer}",
+          integrations: {
+           'Google Analytics' => {
+             clientId: "#{user.gaid if user.gaid.present?}"
+           }
+          }
         }
       )
     else
@@ -40,7 +45,12 @@ class AnalyticService
         },
         context: {
           ip: "#{request.remote_ip}",
-          referer: "#{request.referer}"
+          referer: "#{request.referer}",
+          integrations: {
+           'Google Analytics' => {
+             clientId: "#{user.gaid if user.gaid.present?}"
+           }
+          }
         }
       )
     end
@@ -54,7 +64,7 @@ class AnalyticService
       context: {
         integrations: {
          'Google Analytics' => {
-           clientId: "#{user.gaid if user.present?}"
+           clientId: "#{user.gaid if user.gaid.present?}"
          }
         }
       }
