@@ -20,7 +20,7 @@ class SignupJob < ApplicationJob
             'TemplateLanguage'=> true,
             'Subject'=> "Bienvenue dans la communauté Carbo 🎉",
             'Variables'=> {
-              "name" => user.name
+              "name" => (user.name||"")
             }
         }])
         p variable.attributes['Messages']
