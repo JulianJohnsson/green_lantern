@@ -16,7 +16,7 @@ class BridgesController < ApplicationController
       end
       if params[:item_id] == nil
         AnalyticService.new.track('Account Verified', nil, current_user)
-        redirect_to later: 'account', notice: "Ton email a bien été vérifié mais ton compte n'est pas connecté!"
+        redirect_to action: 'later', notice: "Ton email a bien été vérifié mais ton compte n'est pas connecté!"
       else
         AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
