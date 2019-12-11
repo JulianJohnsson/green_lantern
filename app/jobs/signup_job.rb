@@ -13,7 +13,7 @@ class SignupJob < ApplicationJob
             'To'=> [
               {
                 'Email'=> user.email,
-                'Name'=> user.name
+                'Name'=> (user.name||"")
               }
             ],
             'TemplateID'=> 1112599,

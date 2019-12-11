@@ -24,8 +24,8 @@ class AnalyticService
           ip: "#{request.remote_ip}",
           referer: "#{request.referer}",
           integrations: {
-           'Google Analytics' => {
-             clientId: "#{user.gaid if user.gaid.present?}"
+           "Google Analytics" => {
+             clientId: user.gaid
            }
           }
         }
@@ -48,7 +48,7 @@ class AnalyticService
           referer: "#{request.referer}",
           integrations: {
            'Google Analytics' => {
-             clientId: "#{user.gaid if user.gaid.present?}"
+             clientId: user.gaid
            }
           }
         }
@@ -64,7 +64,7 @@ class AnalyticService
       context: {
         integrations: {
          'Google Analytics' => {
-           clientId: "#{user.gaid if user.gaid.present?}"
+           clientId: user.gaid
          }
         }
       }
