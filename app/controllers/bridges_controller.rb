@@ -45,12 +45,16 @@ class BridgesController < ApplicationController
 
   # GET /account
   def account
-    @user = current_user
-    @score = current_user.scores.last
-    AnalyticService.new.identify(current_user,request)
-    AnalyticService.new.track('Bank Connection Started', nil, current_user)
     @bridge = Bridge.find_by_user_id(current_user.id)
-    @redirect_url = @bridge.add_item_url(current_user)
+    if @bridge
+      @user = current_user
+      @score = current_user.scores.last
+      AnalyticService.new.identify(current_user,request)
+      AnalyticService.new.track('Bank Connection Started', nil, current_user)
+      @redirect_url = @bridge.add_item_url(current_user)
+    else
+      redirect_to new_bridge_path
+    end
   end
 
   def later
