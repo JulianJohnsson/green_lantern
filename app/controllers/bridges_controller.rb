@@ -70,11 +70,16 @@ class BridgesController < ApplicationController
 
   # GET /bridges/new
   def new
-    @bridge = Bridge.new
-    @user = current_user
-    @score = current_user.scores.last
-    AnalyticService.new.identify(current_user,request)
-    AnalyticService.new.track('Bank Connection Asked', nil, current_user)
+    @bridge = Bridge.find_by_user_id(current_user.id)
+    if @bridge
+      redirect_to '/account'
+    else
+      @bridge = Bridge.new
+      @user = current_user
+      @score = current_user.scores.last
+      AnalyticService.new.identify(current_user,request)
+      AnalyticService.new.track('Bank Connection Asked', nil, current_user)
+    end
   end
 
   # GET /bridges/1/edit
