@@ -9,10 +9,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+
+    begin
+      utm = cookies[:utm]
+      if utm
+        resource.utm_params = utm
+        resource.save
+      end
+    rescue => exc
+      Rails.logger.error "Error reading utm cookie due to #{exc}"
+    end
+  end
 
   # GET /resource/edit
   def edit
@@ -50,12 +59,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :city, :birthdate, :gaid])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :city, :birthdate, :gaid, :utm_params])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :city, :birthdate, preferences_attributes: [:id, :user_id, :city, :regime, :energy_contract, :gaid]])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :city, :birthdate, :gaid, :utm_params, preferences_attributes: [:id, :user_id, :city, :regime, :energy_contract]])
   end
 
   # The path used after sign up.

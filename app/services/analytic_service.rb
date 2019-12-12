@@ -57,6 +57,14 @@ class AnalyticService
   end
 
   def track(event,properties,user)
+    if user.utm_params.present?
+      utm = eval(user.utm_params)
+      campaign = {
+        name: utm[:utm_campaign],
+        source: utm[:utm_source],
+        medium: utm[:utm_medium]
+      }
+    end
     Analytics.track(
       event: event,
       properties: properties,
@@ -66,7 +74,8 @@ class AnalyticService
          'Google Analytics' => {
            clientId: user.gaid
          }
-        }
+        },
+        campaign: campaign||{}
       }
     )
   end
