@@ -72,7 +72,7 @@ class AnalyticService
       context: {
         integrations: {
          'Google Analytics' => {
-           clientId: user.gaid
+           clientId: user.gaid if user.present?
          }
         },
         campaign: campaign||{}
