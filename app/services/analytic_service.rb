@@ -57,7 +57,7 @@ class AnalyticService
   end
 
   def track(event,properties,user)
-    if user.utm_params.present?
+    if user.present? && user.utm_params.present?
       utm = eval(user.utm_params)
       campaign = {
         name: utm[:utm_campaign],
