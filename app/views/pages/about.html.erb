@@ -103,7 +103,9 @@
       <div class="col-md-4 d-none d-md-block">
         <div class="phone-parent">
           <%= image_tag("phone_section2.png", class: "img-fluid phone", :loading => "lazy") %>
-          <%= image_tag("phone_section2.gif", class: "img-fluid gif", :loading => "lazy") %>
+          <video class="img-fluid gif" autoplay loop muted playsinline loading="lazy">
+            <source src="<%= asset_path("phone_section2.mp4") %>" type="video/mp4">
+          </video>
         </div>
       </div>
       <div class="col-md-7 mt-auto mb-auto">
