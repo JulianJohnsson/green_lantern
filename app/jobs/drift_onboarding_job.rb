@@ -2,7 +2,7 @@ class DriftOnboardingJob < ApplicationJob
   queue_as :default
 
   def perform(user)
-    if user.onboarded != true
+    if user.present? && user.onboarded != true
       variable = Mailjet::Send.create(messages: [{
           'From'=> {
             'Email'=> "emmanuel@hellocarbo.com",
