@@ -21,8 +21,8 @@ class AnalyticService
           user_big_category_carbon: "#{ score.top_category[1].to_i if score.present? && score.top_category.present? }"
         },
         context: {
-          ip: "#{request.remote_ip}",
-          referer: "#{request.referer}",
+          ip: "#{request.remote_ip if request.present?}",
+          referer: "#{request.referer if request.present?}",
           integrations: {
            "Google Analytics" => {
              clientId: "#{user.gaid if user.present?}"
@@ -44,8 +44,8 @@ class AnalyticService
           user_price: "#{ (score.total*1000/12 * 0.02).to_i if score.present? }"
         },
         context: {
-          ip: "#{request.remote_ip}",
-          referer: "#{request.referer}",
+          ip: "#{request.remote_ip if request.present?}",
+          referer: "#{request.referer if request.present?}",
           integrations: {
            'Google Analytics' => {
              clientId: "#{user.gaid if user.present?}"

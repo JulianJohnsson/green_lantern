@@ -26,6 +26,22 @@ class ScoresController < ApplicationController
   end
 
   def new
+    #SET TRACKING SOURCE IF NOT DONE ON SIGNUP (Google or FB signup)
+    begin
+      if cookies[:_ga].present? && current_user.gaid == nil
+         cookies[:_ga].slice!(0,6)
+         current_user.gaid = cookies[:_ga]
+         current_user.save
+      end
+      utm = cookies[:utm]
+      if utm
+        current_user.utm_params = utm
+        current_user.save
+      end
+    rescue => exc
+      Rails.logger.error "Error reading utm cookie due to #{exc}"
+    end
+
     if cookies[:ajs_anonymous_id].present?
       2.times do
         cookies[:ajs_anonymous_id].slice!("\"")
