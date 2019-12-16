@@ -45,7 +45,11 @@ class CategoriesController < ApplicationController
     end
 
     if @score.kind.to_sym == :dynamic
-      case Category.find(Category.find(@score.top_category[0]).parent_id).name when 'Transports'
+      category = Category.find(@score.top_category[0])
+      unless category.parent_id == 0
+        category = Category.find(category.parent_id)
+      end
+      case category.name when 'Transports'
         @top_category_advice = ['⛵', 150, "c'est l'équivalent du poids de", 'petits voiliers']
       when 'Alimentation'
         @top_category_advice = ['🐮', 750, 'pèsent aussi lourd que', 'vaches limousines']
