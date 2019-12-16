@@ -1,5 +1,23 @@
 <% content_for :title, "Mon dashboard" %>
 
+<% if current_user.role.to_sym == :admin || current_user.role.to_sym == :vip %>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="row justify-content-center align-items-center push-invitation" style="margin-top:20px;">
+        <div class="col-1 emoji">
+          💝
+        </div>
+        <div class="col-lg-7 col-md-6 col-11">
+          <p>Merci de prendre le temps de tester Carbo ! Pour nous aider à construire le meilleur produit, peux-tu prendre 2 minutes pour nous donner ton avis ?</p>
+        </div>
+        <div class="col-lg-4 col-md-5 text-center">
+          <%= link_to 'Je donne mon avis', "https://hello-carbo.typeform.com/to/MPISXj?email=#{current_user.email}", class: "btn btn-sm btn-round btn-outline-primary", :target => "_blank" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="dashboard-wrapper text-center">
   <div class="row justify-content-between">
     <div class="col-md-5">
