@@ -4,6 +4,13 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: '🎉  Bienvenue dans la communauté Carbo ! 🎉 ')
   end
 
+  def weekly_score_update(user)
+    @user = user
+    @score = user.transactions.week.carbone_contribution.sum(:carbone).round(0)
+    @last_score = user.transactions.previous_week.carbone_contribution.sum(:carbone).round(0)
+    mail(to: @user.email, subject: "Tu as généré #{@score} kg de CO2 cette semaine")
+  end
+
   def new_match_ready(match_id)
     match = Match.find(match_id)
     @user = User.find(match.user_id)

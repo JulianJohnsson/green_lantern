@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   delete '/subscriptions' => 'subscriptions#destroy'
 
   require 'sidekiq/web'
+  require 'sidekiq-scheduler/web'
   mount Sidekiq::Web => '/sidekiq'
 
   resources :gifts

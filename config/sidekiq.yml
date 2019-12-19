@@ -1,0 +1,9 @@
+:schedule:
+  BridgeJob:
+    cron: '0 5 * * Mon'
+    queue: default
+    enabled: true
+  WeeklyScoreUpdateJob:
+    cron: '0 6 * * Mon'
+    queue: default
+    enabled: true

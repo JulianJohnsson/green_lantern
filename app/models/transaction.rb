@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
 
   before_save :calculate_carbone
 
+  scope :week, -> {where("date > ?", 1.week.ago)}
+  scope :previous_week, -> {where("date >= ? AND date < ?", 2.weeks.ago, 1.week.ago)}
   scope :recent, -> {where("date > ?", 1.month.ago)}
   scope :six_month, -> {where("date > ?", 6.months.ago)}
   scope :year, -> {where("date > ?", 1.year.ago)}

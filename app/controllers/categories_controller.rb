@@ -45,54 +45,11 @@ class CategoriesController < ApplicationController
     end
 
     if @score.kind.to_sym == :dynamic
-      category = Category.find(@score.top_category[0])
-      unless category.parent_id == 0
-        category = Category.find(category.parent_id)
-      end
-      case category.name when 'Transports'
-        @top_category_advice = ['⛵', 150, "c'est l'équivalent du poids de", 'petits voiliers']
-      when 'Alimentation'
-        @top_category_advice = ['🐮', 750, 'pèsent aussi lourd que', 'vaches limousines']
-      when 'Logement'
-        @top_category_advice = ['🐊', 400, 'pèsent aussi lourd que', 'crocodiles adultes']
-      when 'Biens de consommation'
-        @top_category_advice = ['👖', 15, "c'est autant que la fabrication de", 'jeans délavés']
-      when 'Loisirs & Services'
-        @top_category_advice = ['🦓', 300, 'pèsent aussi lourd que', 'zèbres']
-      end
-      rand = rand(5)
-      case rand when 0
-        @top_transaction_advice = ['🥖', "Cette dernière grosse dépense, c'est autant d'émissions que la production de #{(@score.top_transaction[1].to_f/0.38).to_f.round(0)} baguettes"]
-      when 1
-        @top_transaction_advice = ['🖥', "Cette dernière grosse dépense génère autant de C02 que la fabrication de #{(@score.top_transaction[1].to_f/568).to_f.round(0)} écrans plats"]
-      when 2
-        @top_transaction_advice = ['🛀', "Si tu prenais #{(@score.top_transaction[1].to_f/0.7).to_f.round(0)} bains chauds...ça générerait autant de carbone que ta dernière grosse dépense !"]
-      when 3
-        @top_transaction_advice = ['🛋', "Cette dernière grosse dépense, c'est autant de carbone que la fabrication de #{(@score.top_transaction[1].to_f/204).to_f.round(0)} canapés convertible !"]
-      when 4
-        @top_transaction_advice = ['🛴', "Cette dernière grosse dépense, c'est autant de carbone généré par une balade de #{(@score.top_transaction[1].to_f/0.202).to_f.round(0)} km en trotinette électrique"]
-      end
+      @top_category_advice = Category.top_category_advice(@score)
+      @top_transaction_advice = Category.top_transaction_advice(@score)
     end
 
     AnalyticService.new.identify(current_user,request)
-  end
-
-  def reduce
-    @categories = Category.all.parent_categories.sort_by {|c| c.id}
-    @score = current_user.scores.last
-
-    @my_carbone = []
-    @average_carbone = []
-    for i in 0..4
-      @my_carbone = @my_carbone << [@categories[i], (@score.detail[i].to_f*1000/12).round(2)]
-      total = 0
-      count = 0
-      User.all.onboarded.each do |user|
-        total = total + user.scores.last.detail[i].to_f
-        count = count + 1
-      end
-      @average_carbone = @average_carbone << [@categories[i], (total/ count*1000/12).round(2)]
-    end
   end
 
 end
