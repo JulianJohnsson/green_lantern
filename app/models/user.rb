@@ -22,6 +22,7 @@ class User < ApplicationRecord
       SignupJob.set(wait: 1.minute).perform_later(self)
       #UserMailer.welcome_email(self).deliver_later
       DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
+      SurveyOptinJob.set(wait: 2.days).perform_later(self)
     else
       AnalyticService.new.identify(self, nil)
       AnalyticService.new.track('Invitation sent', nil, self)
@@ -36,6 +37,7 @@ class User < ApplicationRecord
       SignupJob.perform_later(self)
       #UserMailer.welcome_email(self).deliver_later
       DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
+      SurveyOptinJob.set(wait: 2.days).perform_later(self)
     end
   end
 
