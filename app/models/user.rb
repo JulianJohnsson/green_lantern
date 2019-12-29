@@ -3,10 +3,13 @@ class User < ApplicationRecord
   has_many :scores, dependent: :destroy
   has_many :reductions, dependent: :destroy
   has_one :bridge, dependent: :destroy
+  has_one :notification_preference, dependent: :destroy
 
   enum role: [:user, :vip, :admin]
+
   after_initialize :set_default_role, :if => :new_record?
   after_create_commit :notify_signup
+  after_create :create_notification_preference
   after_update :notify_invited_signup, if: :saved_change_to_invitation_accepted_at?
   after_update :notify_subscription, if: :saved_change_to_stripe_subscription_id?
 

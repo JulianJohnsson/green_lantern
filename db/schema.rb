@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_173647) do
+ActiveRecord::Schema.define(version: 2019_12_29_161817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(version: 2019_12_11_173647) do
     t.integer "user_id"
     t.integer "opponent_id"
     t.string "badge"
+  end
+
+  create_table "notification_preferences", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "weekly_score_update", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "preferences", force: :cascade do |t|

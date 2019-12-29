@@ -49,6 +49,7 @@ gem 'select2-rails'
 gem 'rollbar'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mailjet'
+gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

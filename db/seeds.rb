@@ -209,5 +209,8 @@ users.each do |user|
   if user.scores.present? && user.scores.last.detail.present? && user.reductions == []
     user.scores.last.refresh_reductions
   end
+  unless user.notification_preference.present?
+    user.create_notification_preference
+  end
 end
 

@@ -58,4 +58,6 @@ Rails.application.routes.draw do
 
   resources :reductions
 
+  get "/blog", to: redirect("https://www.hellocarbo.com/blog/", status: 301)
+
 end

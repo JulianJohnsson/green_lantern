@@ -7,7 +7,7 @@ class DashboardsController < ApplicationController
     elsif current_user.onboarded == true && current_user.scores.last.main_transport_mode == nil
       redirect_to '/onboarding'
     else
-      if Bridge.find_by_user_id(current_user.id).present? && Bridge.find_by_user_id(current_user.id).bank_connected == true && 1.day.ago > Bridge.find_by_user_id(current_user.id).last_sync_at
+      if Bridge.find_by_user_id(current_user.id).present? && Bridge.find_by_user_id(current_user.id).last_sync_at.present? && 1.day.ago > Bridge.find_by_user_id(current_user.id).last_sync_at
         TransactionFetcherJob.perform_later(current_user)
       end
 
