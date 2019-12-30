@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_onboarding
 
   def index
     if current_user.onboarded != true

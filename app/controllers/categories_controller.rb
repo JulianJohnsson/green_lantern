@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_onboarding
 
   def index
     @categories = Category.all.parent_categories

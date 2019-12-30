@@ -52,4 +52,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_onboarding
+    if current_user.scores.last == nil
+      redirect_to '/onboarding'
+    end
+  end
+
 end

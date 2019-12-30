@@ -1,5 +1,6 @@
 class ReductionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_onboarding
 
   def new
     @reduction = Reduction.new

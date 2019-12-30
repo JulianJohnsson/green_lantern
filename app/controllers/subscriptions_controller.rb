@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
   layout "stripe"
   before_action :authenticate_user!
+  before_action :check_onboarding
 
   def index
     @score = current_user.scores.last
