@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def enrich_utm
     source = URI.parse(request.referer).host
-    unless  source == Rails.application.secrets.domain_name || params[:utm_source].present?
+    unless source == Rails.application.secrets.domain_name || params[:utm_source].present? || source == nil
       case when source.include?("google")
         params[:utm_source] = 'google'
         if request.referer.include? "gclid="
