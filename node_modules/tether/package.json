@@ -1,0 +1,70 @@
+{
+  "name": "tether",
+  "version": "2.0.0-beta.5",
+  "description": "A client-side library to make absolutely positioned elements attach to elements in the page efficiently.",
+  "authors": [
+    "Zack Bloom <zackbloom@gmail.com>",
+    "Adam Schwartz <adam.flynn.schwartz@gmail.com>"
+  ],
+  "maintainers": [
+    "Nicholas Hwang <nick.joosung.hwang@gmail.com>",
+    "Trevor Burnham <trevorburnham@gmail.com>"
+  ],
+  "scripts": {
+    "build": "yarn clean && rollup -c",
+    "changelog": "github_changelog_generator -u shipshapecode -p tether --since-tag v1.4.7",
+    "clean": "rimraf dist",
+    "cy:open": "./node_modules/.bin/cypress open",
+    "cy:run": "./node_modules/.bin/cypress run",
+    "lint:js": "eslint . --ext js",
+    "start": "yarn watch",
+    "start-test-server": "http-server -p 9002",
+    "test": "yarn lint:js && yarn test:ci",
+    "test:ci": "yarn test:unit:ci && yarn test:cy:ci",
+    "test:cy:ci": "yarn build && start-server-and-test start-test-server http://localhost:9002 cy:run",
+    "test:cy:watch": "yarn build && start-server-and-test start-test-server http://localhost:9002 cy:open",
+    "test:unit:ci": "jest --coverage",
+    "test:unit:watch": "jest --watch",
+    "watch": "yarn clean && rollup -c --environment DEVELOPMENT --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HubSpot/tether.git"
+  },
+  "license": "MIT",
+  "main": "dist/js/tether.js",
+  "module": "dist/js/tether.esm.js",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "autoprefixer": "^9.7.3",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-rewire": "^1.2.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "chai": "^4.2.0",
+    "cssnano": "^4.1.10",
+    "cypress": "^3.7.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-ship-shape": "^0.7.1",
+    "http-server": "^0.11.1",
+    "jest": "^24.9.0",
+    "jest-expect-message": "^1.0.2",
+    "jest-transform-css": "^2.0.0",
+    "mutationobserver-shim": "^0.3.3",
+    "postcss": "^7.0.23",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.27.8",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-browsersync": "^1.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-filesize": "^6.2.0",
+    "rollup-plugin-license": "^0.12.1",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-visualizer": "^3.3.0",
+    "sinon": "^7.4.2",
+    "start-server-and-test": "^1.10.2"
+  }
+}

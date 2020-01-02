@@ -50,6 +50,9 @@ gem 'rollbar'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mailjet'
 gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
+gem 'abraham'
+gem 'rails-i18n', '~> 5.1'
+gem 'devise-i18n'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

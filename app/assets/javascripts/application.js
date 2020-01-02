@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require abraham
 //= require jquery3
 //= require popper
 //= require material/moment.min
@@ -24,6 +25,7 @@
 //= require Chart.bundle.min
 //= require select2
 //= require_tree .
+
 
 $(document).ready(function(){
   // Turn on js-selectable class so that it becomes SELCT 2 tag
@@ -50,6 +52,12 @@ $(document).ready(function(){
     width: 250,
     theme: "bootstrap"
   });
+});
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $('.alert').fadeOut();
+    }, 3000);
 });
 
 $(window).scroll(function() {

@@ -1,0 +1,28 @@
+@import "material/scss/material-kit/variables";
+
+.theme-dark.shepherd-element {
+    background: $brand-violet;
+}
+
+.theme-dark.shepherd-element.shepherd-has-title .shepherd-content .shepherd-header {
+    background: $brand-violet;
+}
+
+.theme-dark.shepherd-element.shepherd-element-attached-middle.shepherd-element-attached-left .shepherd-arrow, .theme-dark.shepherd-element.shepherd-pinned-right .shepherd-arrow {
+    border-right-color: $brand-violet;
+}
+
+.theme-dark.shepherd-element.shepherd-element-attached-middle.shepherd-element-attached-right .shepherd-arrow, .theme-dark.shepherd-element.shepherd-pinned-left .shepherd-arrow {
+    border-left-color: $brand-violet;
+}
+
+.shepherd-button {
+    background: #f1f2f3;
+    color: rgba(0, 0, 0, 0.75);
+  }
+
+.shepherd-button.shepherd-button-secondary {
+  background: transparent;
+  border: 1px solid #f1f2f3;
+  color: #f1f2f3;
+}
