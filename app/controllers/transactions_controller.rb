@@ -80,7 +80,7 @@ class TransactionsController < ApplicationController
       if @transaction.update(transaction_params)
         if params[:transaction][:previous_category] == "115"
           format.html { redirect_to '/categorize', notice: 'La dépense a bien été catégorisée, et son poids carbone a été calculé.' }
-          format.json { render :show, status: :ok, location: @transaction, notice: 'La dépense a bien été catégorisée, et son poids carbone a été calculé.' }
+          format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
         elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"
           format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
           format.json { render :show, status: :ok, location: @transaction }
@@ -123,6 +123,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id, :carbone, :parent_category_id, :updated_by_user)
+      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id, :carbone, :parent_category_id, :updated_by_user, :previous_category)
     end
 end

@@ -51,6 +51,7 @@ class Score < ApplicationRecord
         self.detail[i] = user.transactions.carbone_contribution.parent_category_id(categories[i].id).year.sum(:carbone) * 365 / (days*1000)
         self.recent_detail[i] = user.transactions.carbone_contribution.parent_category_id(categories[i].id).recent.sum(:carbone) * 12 / 1000
       end
+      # à mettre en asynchrone dans un job
       self.calculate_trends
     end
     self.sum_categories

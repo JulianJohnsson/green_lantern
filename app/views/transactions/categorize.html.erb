@@ -32,8 +32,7 @@
             </thead>
             <tbody>
               <% @transactions.each do |transaction| %>
-                <tr>
-                  <%= form_for(transaction, remote: true) do |form| %>
+                <tr id="transaction_<%= transaction.id %>">
                     <td style="width:30%;">
                       <%= transaction.description %>
                     </td>
@@ -44,19 +43,20 @@
                       <%= transaction.date %>
                     </td>
                     <td>
-                      <%= form.hidden_field :previous_category, :value => 115 %>
-                      <%= form.hidden_field :updated_by_user, :value => true %>
-                      <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
+                      <%= form_for(transaction, remote: true) do |form| %>
+                        <%= form.hidden_field :previous_category, :value => 115 %>
+                        <%= form.hidden_field :updated_by_user, :value => true %>
+                        <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.id]}, :include_blank => "Choisir une catégorie", :class => "custom-select js-searchable", :onchange => "this.form.submit();") %>
+                      <% end %>
                     </td>
                     <td style="width:12%;">
-                      <%= button_tag class: 'btn btn-fab btn-sm btn-outline-primary', "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => "", "data-container" => "body", "data-original-title" => "Mettre à jour la catégorie" do %>
-                        <i class="material-icons">done</i>
-                      <% end %>
-                      <%= link_to '', class: 'btn btn-fab btn-sm btn-outline-danger', "data-toggle" => "modal", "data-target" => "#commentModal" do %>
-                        <i class="material-icons">warning</i>
-                      <% end %>
+                      <span data-toggle="modal" data-target="#commentModal_<%= transaction.id %>">
+                        <a class='btn btn-fab btn-sm btn-outline-danger' data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Signaler un problème sur la dépense">
+                          <i class="material-icons">warning</i>
+                        </a>
+                      </span>
                       <!-- Modal -->
-                      <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                      <div class="modal fade" id="commentModal_<%= transaction.id %>" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -84,7 +84,6 @@
                         </div>
                       </div>
                     </td>
-                  <% end %>
                 </tr>
               <% end %>
             </tbody>

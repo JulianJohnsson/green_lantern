@@ -1,0 +1,28 @@
+---
+ko:
+  administrate:
+    actions:
+      confirm: 괜찮습니까?
+      destroy: 삭제
+      edit: 편집
+      edit_resource: 편집 %{name}
+      show_resource: 보여주기 %{name}
+      new_resource: 새로운 %{name}
+      back: 뒤로
+    controller:
+      create:
+        success: "%{resource} 가 성공적으로 생성되었습니다."
+      destroy:
+        success: "%{resource} 가 성공적으로 삭제되었습니다."
+      update:
+        success: "%{resource} 가 성공적으로 갱신되었습니다."
+    fields:
+      has_many:
+        more: "%{total_count} 개 중에서 %{count} 개"
+        none: 없음
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      clear: 검색 초기화
+      label: "%{resource} 검색"

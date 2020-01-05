@@ -1,0 +1,19 @@
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/bin/ruby -I /Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200106-22125-tltlig.rb extconf.rb
+creating Makefile
+
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 byebug.bundle ./.gem.20200106-22125-uh0wq9/byebug

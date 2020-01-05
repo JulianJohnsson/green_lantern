@@ -25,7 +25,7 @@
 
   <div class="field text-center">
     <h4><small>Catégorie : </small></h4>
-    <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
+    <%= form.select(:category_id, Category.all.order(:id).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
   </div>
 
   <div class="actions">

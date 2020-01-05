@@ -1,0 +1,29 @@
+# encoding: UTF-8
+---
+pt-BR:
+  administrate:
+    actions:
+      confirm: Você tem certeza?
+      destroy: Deletar
+      edit: Editar
+      edit_resource: Editar %{name}
+      show_resource: Visualizar %{name}
+      new_resource: Criar %{name}
+      back: Voltar
+    controller:
+      create:
+        success: "%{resource} foi criado com sucesso."
+      destroy:
+        success: "%{resource} foi deletado com sucesso."
+      update:
+        success: "%{resource} foi atualizado com sucesso."
+    fields:
+      has_many:
+        more: "Exibindo %{count} de %{total_count}"
+        none: Nenhum
+    form:
+      error: error
+      errors: "%{pluralized_errors} prohibited this %{resource_name} from being saved:"
+    search:
+      clear: Limpar pesquisa
+      label: Pesquisa %{resource}
