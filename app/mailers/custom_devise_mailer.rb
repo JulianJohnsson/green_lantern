@@ -1,4 +1,6 @@
 class CustomDeviseMailer < Devise::Mailer
+  default from: "Julien de Carbo <#{Rails.application.secrets.email_provider_username}>"
+
   protected
 
   def subject_for(key)
