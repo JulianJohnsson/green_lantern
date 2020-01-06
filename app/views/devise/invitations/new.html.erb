@@ -17,12 +17,17 @@
         <div class="authform">
           <div class="card-body">
             <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form-group bmd-form-group">
+              <%= f.label :prénom, class: 'bmd-label-floating' %>
+              <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+            </div>
             <% resource.class.invite_key_fields.each do |field| -%>
               <div class="form-group bmd-form-group">
                 <%= f.label field, class: 'bmd-label-floating' %>
-                <%= f.email_field field, :autofocus => true, class: 'form-control' %>
+                <%= f.email_field field, class: 'form-control' %>
               </div>
             <% end %>
+
           </div>
           <div class="card-footer text-center">
             <%= f.submit "Envoyer l'invitation", :class => 'btn btn-primary btn-lg btn-round mr-auto ml-auto'%>

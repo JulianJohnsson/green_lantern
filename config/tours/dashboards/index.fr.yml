@@ -1,7 +1,7 @@
 intro:
   steps:
     1:
-      text: "Bienvenue sur ton dashboard. C'est ici que tu retrouves le résumé des informations concernant ton impact carbone. On fait une petite visite guidée ?"
+      text: "Bienvenue sur ton dashboard. C'est ici que tu retrouves le résumé des informations sur ton impact carbone. On fait une petite visite guidée ?"
     2:
       title: "SUIVRE"
       text: "Visualise en 1 clin d'oeil ton impact carbone moyen : c'est la quantité de CO2 que tu émets en 1 mois. Tu peux suivre son évolution dans le temps et accéder à plus de détails dans la rubrique Suivre (en cliquant sur ce bloc ou dans le menu)."
@@ -25,4 +25,14 @@ intro:
       text: "Ce que tu n'arrives pas encore à réduire, tu peux le compenser pour assumer ta responsabilité. Découvre et suis les projets (régulièrement mis à jour) permettant d'absorber ton carbone et passe à l'action dans la rubrique Compenser (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#compenser"
+        placement: "left"
+    6:
+      text: "Retrouve ton dashboard en un éclair en cliquant ici."
+      attachTo:
+        element: ".navbar-brand"
+        placement: "right"
+    7:
+      text: "Clique ici pour accéder à ton profil ou modifier tes paramètres."
+      attachTo:
+        element: ".navbar-nav"
         placement: "left"
