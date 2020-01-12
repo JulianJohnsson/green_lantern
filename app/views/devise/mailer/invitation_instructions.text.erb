@@ -10,5 +10,5 @@ Son message est clair : <%= User.find(@resource.invited_by_id).name || User.find
 <%= link_to "RELEVER LE DÉFI DE #{User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email}", accept_invitation_url(@resource, invitation_token: @token, utm_source: 'invitation_email', utm_medium: 'email'), class: "btn btn-round btn-primary" %>
 
 À très vite ✌
-Emmanuel
+Julien
 Cofondateur de Carbo
