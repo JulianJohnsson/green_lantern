@@ -1,4 +1,4 @@
-<%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %> t'invite à comparer votre empreinte carbone sur Carbo !
+Viens comparer ton empreinte carbone avec <%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %>
 
 Bonjour <%= @resource.name || @resource.email %> 👋,
 

@@ -1,4 +1,4 @@
-<h1><%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %> t'invite à comparer votre empreinte carbone sur Carbo !</h1>
+<h1>Viens comparer ton impact carbone avec <%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %></h1>
 <p>Bonjour <%= @resource.name || @resource.email %> 👋,</p>
 <p>
   <%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %> utilise <%= link_to "Carbo", accept_invitation_url(@resource, invitation_token: @token, utm_source: 'invitation_email', utm_medium: 'email') %> pour mieux comprendre, réduire et compenser son empreinte carbone.
@@ -6,7 +6,7 @@
 <p>
    Son message est clair : <%= User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email %> pense faire mieux que toi ! Heureusement, 5 petites minutes te suffiront à rejoindre gratuitement la communauté Carbo et lui montrer qui est le meilleur ✊ Mais, au fait...es-tu le meilleur ?
 </p>
-<%= link_to "RELEVER LE DÉFI DE #{User.find(@resource.invited_by_id).name || User.find(@resource.invited_by_id).email}", accept_invitation_url(@resource, invitation_token: @token, utm_source: 'invitation_email', utm_medium: 'email'), class: "btn btn-round btn-primary" %>
+<%= link_to "RELEVER SON DÉFI", accept_invitation_url(@resource, invitation_token: @token, utm_source: 'invitation_email', utm_medium: 'email'), class: "btn btn-round btn-primary" %>
 <p>À très vite ✌</p>
 <p>Julien<br>
 Cofondateur de Carbo</p>
