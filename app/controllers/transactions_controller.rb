@@ -76,6 +76,7 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1
   # PATCH/PUT /transactions/1.json
   def update
+    @transactions = current_user.transactions.category_id(115).order(date: :desc)
     respond_to do |format|
       if @transaction.update(transaction_params)
         if params[:transaction][:previous_category] == "115"

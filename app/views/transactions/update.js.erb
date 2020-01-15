@@ -3,3 +3,7 @@ $("#flash-messages").html('<%= j render "layouts/messages" %>');
 setTimeout(function(){
   $('.alert').fadeOut();
 }, 3000);
+
+$("h3").text("<%= @transactions.count %> dépenses à catégoriser");
+$("span.notification").text("<%= @transactions.count %>");
+$(".progress-bar").css("width", "<%= 100*(1 - (@transactions.count).to_f / current_user.transactions.carbone_contribution.count.to_f) %>%");
