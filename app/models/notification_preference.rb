@@ -1,7 +1,7 @@
 class NotificationPreference < ApplicationRecord
   belongs_to :user
 
-  before_destroy :remove_from_mailjet
+  #before_destroy :remove_from_mailjet
   require 'cgi'
 
   def remove_from_mailjet
