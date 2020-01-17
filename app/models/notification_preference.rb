@@ -7,8 +7,8 @@ class NotificationPreference < ApplicationRecord
   def remove_from_mailjet
     require 'mailjet'
     Mailjet.configure do |config|
-      config.api_key = bd281c4033c04da70d582e5512b7c1e7
-      config.secret_key = 5ac2629d42ccc1fea72c0c102f170f5f
+      config.api_key = 'bd281c4033c04da70d582e5512b7c1e7'
+      config.secret_key = '5ac2629d42ccc1fea72c0c102f170f5f'
     end
     begin
       variable = Mailjet::Contact.find(CGI.escape(self.user.email))
