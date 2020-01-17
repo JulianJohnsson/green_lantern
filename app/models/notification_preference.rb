@@ -21,7 +21,7 @@ class NotificationPreference < ApplicationRecord
     begin
       response = RestClient::Request.execute(method: :delete,
         url: "https://api.mailjet.com/v4/contacts/#{id}",
-        headers: {'user' => "#{Rails.application.credentials[:mailjet][:api_key]}:#{Rails.application.credentials[:mailjet][:api_secret]}"}
+        headers: {'user' => "bd281c4033c04da70d582e5512b7c1e7:5ac2629d42ccc1fea72c0c102f170f5f"}
       )
       rescue Net::HTTPRetriableError => e
       puts e.message
