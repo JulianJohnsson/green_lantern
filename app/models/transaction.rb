@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
 
   before_save :calculate_carbone
 
+  after_update :update_similar_transactions
+
   scope :week, -> {where("date > ?", 1.week.ago)}
   scope :previous_week, -> {where("date >= ? AND date < ?", 2.weeks.ago, 1.week.ago)}
   scope :recent, -> {where("date > ?", 1.month.ago)}
@@ -31,6 +33,19 @@ class Transaction < ApplicationRecord
       @category = Category.find(@category.parent_id)
     end
     self.parent_category_id = @category.id
+  end
+
+  def update_similar_transactions
+    if self.updated_by_user == true
+      transactions = self.user.transactions
+      to_update = transactions.where("raw_description = ? AND updated_by_user IS NOT TRUE", self.raw_description)
+      to_update.each do |t|
+        t.previous_category = t.category_id
+        t.category_id = self.category_id
+        t.updated_by_similar = true
+        t.save
+      end
+    end
   end
 
 end
