@@ -1,9 +1,9 @@
 :schedule:
   BridgeJob:
-    cron: '0 6 * * Sun'
+    cron: '0 6 * * Tue'
     queue: default
     enabled: true
   WeeklyScoreUpdateJob:
-    cron: '0 15 * * Sun'
+    cron: '0 15 * * Tue'
     queue: default
     enabled: true
