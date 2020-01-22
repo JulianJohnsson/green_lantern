@@ -16,7 +16,9 @@ class WeeklyScoreUpdateJob < ApplicationJob
       if @user.transactions.week.carbone_contribution.present? && @user.notification_preference.weekly_score_update == true
         @score = @user.transactions.week.carbone_contribution.sum(:carbone).round(0)
         @last_score = @user.transactions.previous_week.carbone_contribution.sum(:carbone).round(0)
-        if @score > @last_score
+        if @last_score = 0
+          @variation = "#{(@score - @last_score).to_i} kgCO2 de plus"
+        elsif @score > @last_score
           @variation = "#{(100*(@score - @last_score) / @last_score).to_i}% de plus"
         else
           @variation = "#{(-100*(@score - @last_score) / @last_score).to_i}% de moins"
