@@ -24,7 +24,7 @@ class WeeklyScoreUpdateJob < ApplicationJob
 
         case when @score > 150
           @equivalent = "La fabrication de #{(score / 15).round(0)}jeans 👖"
-        when score > 30
+        when @score > 30
           @equivalent = "#{(@score / 5).round(0)}burgers bien gras 🍔"
         else
           @equivalent = "#{(@score / 0.202).round(0)}km en trotinette électrique 🛴"

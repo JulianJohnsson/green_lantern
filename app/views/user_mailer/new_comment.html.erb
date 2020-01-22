@@ -8,7 +8,7 @@
   Carbone : <%= @transaction.carbone %>
 </p>
 <p>
-  Catégorie : <%= Category.find_by_external_id(@transaction.category_id).name %>
+  Catégorie : <%= Category.find(@transaction.category_id).name %>
 </p>
 <p>
   Commentaire : <%= @comment.description %>
