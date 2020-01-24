@@ -84,10 +84,10 @@ class TransactionsController < ApplicationController
           format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
         elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"
           format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
-          format.json { render :show, status: :ok, location: @transaction }
+          format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
         else
           format.html { redirect_to transactions_path(:month => params[:transaction][:month]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
-          format.json { render :show, status: :ok, location: @transaction }
+          format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
         end
       else
         format.html { render :edit }

@@ -212,5 +212,8 @@ users.each do |user|
   unless user.notification_preference.present?
     user.create_notification_preference
   end
+  if user.scores.present? && user.scores.last.regime.present? && user.user_modifiers == []
+    UserModifier.food(user)
+  end
 end
 

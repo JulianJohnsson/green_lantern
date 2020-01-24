@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category_id: 1
+  user_id: 1
+  carbone_modifier: 9.99
+
+two:
+  category_id: 1
+  user_id: 1
+  carbone_modifier: 9.99
