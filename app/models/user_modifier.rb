@@ -21,7 +21,7 @@ class UserModifier < ApplicationRecord
     end
     categories = [70,72,73,75]
     categories.each do |cat|
-      unless user.user_modifiers.find_by_category_id(cat).present? && user.user_modifiers.find_by_category_id(cat).carbone_modifier == modifier
+      unless user.user_modifiers.find_by_category_id(cat) != [] && user.user_modifiers.find_by_category_id(cat).last.carbone_modifier == modifier
         mod = UserModifier.new
         mod.category_id = cat
         mod.user_id = user.id
