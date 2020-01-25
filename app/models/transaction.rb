@@ -41,7 +41,7 @@ class Transaction < ApplicationRecord
   def update_similar_transactions
     if self.updated_by_user == true
       transactions = self.user.transactions
-      to_update = transactions.where("raw_description = ? AND updated_by_user IS NOT TRUE", self.raw_description)
+      to_update = transactions.where("description = ? AND updated_by_user IS NOT TRUE", self.description)
       to_update.each do |t|
         t.previous_category = t.category_id
         t.category_id = self.category_id
@@ -60,10 +60,12 @@ class Transaction < ApplicationRecord
 
   def refine_category
     if self.category_id == 115
-      transactions = self.user.transactions.where("raw_description = ? AND updated_by_user IS TRUE", self.raw_description)
+      transactions = self.user.transactions.where("description = ? AND updated_by_user IS TRUE", self.description)
       if transactions.present?
         self.category_id = transactions.last.category_id
         self.updated_by_similar = true
+      elsif Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).present?
+        self.suggested_category_id = Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).last.category_id
       end
     end
   end
