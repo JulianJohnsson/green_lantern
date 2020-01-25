@@ -25,10 +25,14 @@ class Transaction < ApplicationRecord
 
   def calculate_carbone
     @category = Category.find(category_id)
-    modifier = self.user.user_modifiers.find_by_category_id(category_id).carbone_modifier
+    if self.user.user_modifiers.find_by_category_id(category_id).present?
+      modifier = self.user.user_modifiers.find_by_category_id(category_id).carbone_modifier
+    else
+      modifier = 0
+    end
     self.carbone = 0
     unless @category.coeff == nil
-      self.carbone = self.amount * -1 * @category.coeff * (1 + (modifier || 0))
+      self.carbone = self.amount * -1 * @category.coeff * (1 + modifier)
     end
     until @category.parent_id == 0
       @category = Category.find(@category.parent_id)
