@@ -2,6 +2,8 @@ class UserModifier < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  scope :category_id, -> (category_id) {where("category_id = ?", category_id)}
+
   def self.food(user)
     score = user.scores.last
     if score.redmeat == nil && score.poultry == nil && score.dairy == nil
@@ -21,7 +23,7 @@ class UserModifier < ApplicationRecord
     end
     categories = [70,72,73,75]
     categories.each do |cat|
-      unless user.user_modifiers.find_by_category_id(cat) != [] && user.user_modifiers.find_by_category_id(cat).last.carbone_modifier == modifier
+      if user.user_modifiers.category_id(cat) == [] || user.user_modifiers.category_id(cat).last.carbone_modifier.round(2) != modifier.round(2)
         mod = UserModifier.new
         mod.category_id = cat
         mod.user_id = user.id
