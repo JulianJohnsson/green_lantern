@@ -5,7 +5,7 @@
       <%= image_tag("illu1_section3.png", class: "img-fluid", style: "margin-bottom: -48px; width:30%") %>
       <div class="card">
         <div class="card-title">
-          <h3>
+          <h3 id="count">
             <%= @transactions.count %> dépenses à catégoriser
           </h3>
         </div>
@@ -71,6 +71,7 @@
                                   <%= form_for @comment do |form| %>
                                     <div class="field">
                                       <%= form.hidden_field :transaction_id, :value => transaction.id %>
+                                      <%= form.hidden_field :author, :value => transaction.user.id %>
                                       <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true %>
                                     </div>
                                     <div class="actions">

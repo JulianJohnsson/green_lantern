@@ -27,8 +27,4 @@
     <h4><small>Catégorie : </small></h4>
     <%= form.select(:category_id, Category.all.order(:id).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
   </div>
-
-  <div class="actions">
-    <%= form.submit 'Mettre à jour la catégorie', class: 'btn btn-primary' %>
-  </div>
 <% end %>

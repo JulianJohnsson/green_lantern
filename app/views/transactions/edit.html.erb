@@ -17,7 +17,9 @@
           </h4>
           <h4>
             <small>Coût carbone : </small>
-            <%= @transaction.carbone %> kg
+            <span id="carbone">
+              <%= number_with_precision(@transaction.carbone, precision: 1) %> kgCO2
+            </span>
           </h4>
           <div class="row">
             <div class="col-md-12">
@@ -55,6 +57,7 @@
             <%= form_for @comment do |form| %>
               <div class="field">
                 <%= form.hidden_field :transaction_id, :value => @transaction.id %>
+                <%= form.hidden_field :author, :value => @transaction.user.id %>
               </div>
               <div class="field">
                 <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true, :style => "color:white;" %>

@@ -24,6 +24,7 @@ class Transaction < ApplicationRecord
   scope :carbone_contribution, -> {where "carbone > 0"}
 
   def calculate_carbone
+    self.refine_category
     @category = Category.find(category_id)
     unless self.user.user_modifiers.category_id(category_id) == []
       modifier = self.user.user_modifiers.category_id(category_id).last.carbone_modifier
@@ -34,10 +35,7 @@ class Transaction < ApplicationRecord
     unless @category.coeff == nil
       self.carbone = self.amount * -1 * @category.coeff * (1 + modifier)
     end
-    until @category.parent_id == 0
-      @category = Category.find(@category.parent_id)
-    end
-    self.parent_category_id = @category.id
+    self.set_parent_category
   end
 
   def update_similar_transactions
@@ -49,6 +47,23 @@ class Transaction < ApplicationRecord
         t.category_id = self.category_id
         t.updated_by_similar = true
         t.save
+      end
+    end
+  end
+
+  def set_parent_category
+    until @category.parent_id == 0
+      @category = Category.find(@category.parent_id)
+    end
+    self.parent_category_id = @category.id
+  end
+
+  def refine_category
+    if self.category_id == 115
+      transactions = self.user.transactions.where("raw_description = ? AND updated_by_user IS TRUE", self.raw_description)
+      if transactions.present?
+        self.category_id = transactions.last.category_id
+        self.updated_by_similar = true
       end
     end
   end

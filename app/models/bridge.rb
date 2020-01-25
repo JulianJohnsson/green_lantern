@@ -56,7 +56,7 @@ class Bridge < ApplicationRecord
         @transaction.raw_description = transaction['raw_description']
         @transaction.amount = transaction['amount']
         @transaction.date = transaction['date']
-        @transaction.category_id = BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).category_id unless @transaction.updated_by_user == true
+        @transaction.category_id = BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).category_id unless (@transaction.updated_by_user == true || @transaction.updated_by_similar == true)
         @transaction.user_id = user.id
         @transaction.save
     end
