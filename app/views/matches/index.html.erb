@@ -138,27 +138,27 @@
         <% i = 0 %>
         <% @match_data[1].each do |c,v| %>
           <div class="row align-items-center category-resume" data-toggle="modal" data-target="#soon" aria-expanded="false" aria-controls="modal">
-            <div class="col-3 text-right">
+            <div class="col-4 col-md-3 text-right">
               <p class="number number-md">
                 <% if v <= @match_data[2][i].to_i %>
-                  <span class="winner">🎖</span>
+                  <span class="winner d-none d-md-flex">🎖</span>
                 <% end %>
                 <%= number_with_precision(v, precision: 0) %>
               </p>
               <i class="material-icons">add_circle_outline</i>
             </div>
-            <div class="col-6 category-title">
+            <div class="col-4 col-md-6 category-title">
               <p class="emoji">
                 <%= c.emoji %>
               </p>
               <p><%= c.name %><br>
               <span class="text-primary">Voir le détail ></span></p>
             </div>
-            <div class="col-3 text-left">
+            <div class="col-4 col-md-3 text-left">
               <p class="number number-md">
                 <%= number_with_precision(@match_data[2][i], precision:0) %>
                 <% if v > @match_data[2][i].to_i %>
-                  <span class="winner">🎖</span>
+                  <span class="winner d-none d-md-flex">🎖</span>
                 <% end %>
               </p>
               <i class="material-icons">add_circle_outline</i>
