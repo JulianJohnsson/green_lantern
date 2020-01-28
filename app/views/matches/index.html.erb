@@ -141,7 +141,7 @@
             <div class="col-4 col-md-3 text-right">
               <p class="number number-md">
                 <% if v <= @match_data[2][i].to_i %>
-                  <span class="winner d-none d-md-flex">🎖</span>
+                  <span class="winner d-none d-md-inline">🎖</span>
                 <% end %>
                 <%= number_with_precision(v, precision: 0) %>
               </p>
@@ -158,7 +158,7 @@
               <p class="number number-md">
                 <%= number_with_precision(@match_data[2][i], precision:0) %>
                 <% if v > @match_data[2][i].to_i %>
-                  <span class="winner d-none d-md-flex">🎖</span>
+                  <span class="winner d-none d-md-inline">🎖</span>
                 <% end %>
               </p>
               <i class="material-icons">add_circle_outline</i>
