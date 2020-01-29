@@ -13,7 +13,7 @@
   <%= transaction.date %>
 </td>
 <td>
-  <%= link_to edit_transaction_path(transaction, :month => params[:month], :category => ('115' if current_page?('/categorize') || params[:category])) do %>
+  <%= link_to edit_transaction_path(transaction, :month => params[:month], :category => transaction.category_id) do %>
     <i class="material-icons">more_vert</i>
   <% end %>
 </td>

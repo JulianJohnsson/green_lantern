@@ -26,7 +26,7 @@
           </table>
         </div>
         <div class="card-footer">
-          <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-primary btn-link" do %>
+          <%= link_to params[:category].present? ? "/categories/#{Category.find(params[:category]).parent_id}?month=#{params[:month]}" : "/track", class: "btn btn-primary btn-link" do %>
             <i class="material-icons">arrow_back</i>
             Retour
           <% end %>

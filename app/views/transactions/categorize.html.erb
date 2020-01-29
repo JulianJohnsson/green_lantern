@@ -11,11 +11,11 @@
         </div>
         <div class="card-body table-responsive">
           <div class="row justify-content-center">
-            <div class="col-4">
+            <div class="col-md-4">
               <p class="description">
                 niveau de précision actuel
               <div class="progress progress-line-primary">
-                <div class="progress-bar progress-bar-primary" role="progress-bar" style="width:<%= 100*(1 - @transactions.count.to_f / current_user.transactions.carbone_contribution.count.to_f) %>%;">
+                <div class="progress-bar progress-bar-primary" role="progress-bar" style="width:<%= (100*(1 - @transactions.count.to_f / current_user.transactions.carbone_contribution.count.to_f)).to_i %>%;">
                 </div>
               </div>
             </div>

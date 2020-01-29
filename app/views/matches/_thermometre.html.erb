@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <div class="badge-left" style="bottom:<%= [number_with_precision(@match_data[3] / 10, precision: 0) .to_i, 90].min %>%;">
+  <div class="badge-left" id="toi" style="bottom:<%= [number_with_precision(@match_data[3] / 10, precision: 0) .to_i, 90].min %>%;">
     <div class="row align-items-center">
       <div class="col-7 text-right">
         <p><strong>
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <div class="badge-left" style="bottom:<%= [number_with_precision(@match_data[4] / 10, precision: 0).to_i, 90].min  %>%;">
+  <div class="badge-left" id="opponent" style="bottom:<%= [number_with_precision(@match_data[4] / 10, precision: 0).to_i, 90].min  %>%;">
     <div class="row align-items-center">
       <div class="col-7 text-right">
         <p><strong>
