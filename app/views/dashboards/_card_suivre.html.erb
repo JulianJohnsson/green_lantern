@@ -6,7 +6,7 @@
         <%= number_with_precision(@carbone, precision: 0) %>
         <% if @score.kind.to_sym == :dynamic %>
           <% if @score.recent_total < @score.total %>
-            <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est baisse 💪 continue comme ça !" %>
+            <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone est en baisse 💪 continue comme ça !" %>
           <% elsif @score.recent_total > @score.total %>
             <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "Ton impact carbone en hausse 😱 encore un effort !" %>
           <% else %>

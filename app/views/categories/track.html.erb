@@ -56,7 +56,7 @@
                   <% @categories.each do |c| %>
                     <tr class="<%= "inactive" if @score.detail[i] == 0 %>">
                       <td class="text-right" style="width:8%;">
-                        <div class="category-pill ml-auto" style="background:<%= c.color unless @score.detail[i]== 0 %><%= "grey" if @score.detail[i]== 0 %>;"/>
+                        <div class="category-pill ml-auto" style="cursor: pointer; background:<%= c.color unless @score.detail[i]== 0 %><%= "grey" if @score.detail[i]== 0 %>;" onclick='window.location="/categories/<%=c.id%>?month=<%=params[:month]%>";'/>
                       </td>
                       <td>
                         <%= c.name %>
