@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     root 'dashboards#index', as: :authenticated_root
   end
 
-  get 'track_trump' => 'users#track_trump'
-  get 'compare_trump_greta' => 'users#compare_trump_greta'
+  devise_scope :user do
+    root to: "users/sessions#new"
+  end
 
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'
@@ -57,7 +58,5 @@ Rails.application.routes.draw do
   post 'gifts/:id/submit' => 'gifts#submit'
 
   resources :reductions
-
-  get "/blog", to: redirect("https://www.hellocarbo.com/blog/", status: 301)
 
 end
