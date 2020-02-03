@@ -46,7 +46,8 @@
                       <%= form_for(transaction, remote: true) do |form| %>
                         <%= form.hidden_field :previous_category, :value => 115 %>
                         <%= form.hidden_field :updated_by_user, :value => true %>
-                        <%= form.select(:category_id, Category.where("parent_id != 0").order(:parent_id, :name).map {|c| [c.name, c.id]}, :include_blank => "Choisir une catégorie", :class => "custom-select js-searchable", :onchange => "this.form.submit();") %>
+
+                        <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, :include_blank => "Choisir une catégorie") %>
                       <% end %>
                     </td>
                     <td style="width:12%;">

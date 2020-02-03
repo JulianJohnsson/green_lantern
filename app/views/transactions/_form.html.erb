@@ -25,6 +25,6 @@
 
   <div class="field text-center">
     <h4><small>Catégorie : </small></h4>
-    <%= form.select(:category_id, Category.all.order(:id).map {|c| [c.name, c.id]}, :selected => transaction.category_id, :class => "custom-select js-searchable") %>
+    <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name) %>
   </div>
 <% end %>
