@@ -32,4 +32,31 @@ class UserModifier < ApplicationRecord
       end
     end
   end
+
+  def self.house(user)
+    score = user.scores.last
+    modifier = 0
+    if score.energy.present?
+      case when :électricité
+        modifier = -0.14
+      when :gaz
+        modifier = 0.336
+      end
+    end
+    if score.enr.present?
+      case when :partiellement_renouvelable
+        modifier = modifier - 0.168
+      when :fortement_renouvelable
+        modifier = modifier - 0.504
+      end
+    end
+    cat = 17
+    if user.user_modifiers.category_id(cat) == [] || user.user_modifiers.category_id(cat).last.carbone_modifier.round(2) != modifier.round(2)
+      mod = UserModifier.new
+      mod.category_id = cat
+      mod.user_id = user.id
+      mod.carbone_modifier = modifier
+      mod.save
+    end
+  end
 end

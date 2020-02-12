@@ -123,6 +123,7 @@ class ScoresController < ApplicationController
         else
           AnalyticService.new.track('Score details updated', nil, current_user)
           UserModifier.food(@score.user)
+          UserModifier.house(@score.user)
           format.html { redirect_to '/track', notice: 'Ton impact carbone a bien été mis à jour' }
         end
         format.json { render :show, status: :ok, location: @score }

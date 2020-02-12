@@ -215,5 +215,8 @@ users.each do |user|
   if user.scores.present? && user.scores.last.regime.present? && user.user_modifiers == []
     UserModifier.food(user)
   end
+  if user.scores.present? && user.scores.last.energy.present?
+    UserModifier.house(user)
+  end
 end
 
