@@ -1,13 +1,16 @@
-<% content_for :title, "Dépenses détaillées" %>
+<% content_for :title, "Dépenses à catégoriser" %>
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
       <%= image_tag("illu1_section3.png", class: "img-fluid", style: "margin-bottom: -48px; width:30%") %>
       <div class="card">
         <div class="card-title">
-          <h3 id="count">
-            <%= @transactions.count %> dépenses à catégoriser
-          </h3>
+          <h4 id="count">
+            <%= @categorize.count %> dépenses à catégoriser
+            <% if @suggested.count > 0 %>
+              , <%= @suggested.count %> suggestions à valider
+            <% end %>
+          </h4>
         </div>
         <div class="card-body table-responsive">
           <div class="row justify-content-center">
@@ -24,8 +27,8 @@
             <thead>
               <tr>
                 <th>Description</th>
-                <th>Montant</th>
-                <th>Date</th>
+                <th class="d-none d-md-table-cell">Montant</th>
+                <th class="d-none d-md-table-cell">Date</th>
                 <th>Catégorie</th>
                 <th />
               </tr>
@@ -36,10 +39,10 @@
                     <td style="width:30%;">
                       <%= transaction.description %>
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                       <%= number_with_precision(transaction.amount * -1, precision: 2).to_s + " €" %>
                     </td>
-                    <td>
+                    <td class="d-none d-md-table-cell">
                       <%= transaction.date %>
                     </td>
                     <td>

@@ -19,6 +19,10 @@ class TransactionsController < ApplicationController
   def categorize
     @comment = Comment.new
     @transactions = current_user.transactions.category_id(115).order(date: :desc)
+
+    @categorize = @transactions.where("suggested_category_id IS NULL")
+    @suggested = @transactions.where("suggested_category_id IS NOT NULL")
+
   end
 
   def dashboard
