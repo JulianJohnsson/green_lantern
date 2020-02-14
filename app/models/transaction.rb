@@ -72,7 +72,7 @@ class Transaction < ApplicationRecord
   end
 
   def check_potential_modifiers
-    if UserModifier.all.category_id(self.category_id).present? && selef.user.user_modifiers.category_id(self.category_id) == []
+    if UserModifier.all.category_id(self.category_id).present? && self.user.user_modifiers.category_id(self.category_id) == []
 
     end
   end
