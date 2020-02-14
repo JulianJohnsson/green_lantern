@@ -82,62 +82,68 @@
         </div>
         <div class="card-footer text-center">
           <div class="actions text-center">
-            <%= link_to 'Continuer', "#biens", class: 'btn btn-outline-info btn-round' %>
+            <% if @score.kind.to_sym == :static %>
+              <%= link_to 'Continuer', "#biens", class: 'btn btn-outline-info btn-round' %>
+            <% elsif @score.kind.to_sym == :dynamic %>
+              <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-info btn-round' %>
+            <% end %>
           </div>
         </div>
       </div>
-      <h3 class="text-warning" id="biens"><span class="number">4.</span> Mes biens de consommation</h3>
-      <div class="card border-warning">
-        <div class="card-body">
-          <h4>Quel budget mensuel consacres-tu ...</h4>
-          <div class="form-group bmd-form-group">
-            <%= form.label :au_mobilier_et_appareils_ménagers_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :goods_furnitures, class: "form-control" %>
-            <span class="bmd-help"></span>
+      <% if @score.kind.to_sym == :static %>
+        <h3 class="text-warning" id="biens"><span class="number">4.</span> Mes biens de consommation</h3>
+        <div class="card border-warning">
+          <div class="card-body">
+            <h4>Quel budget mensuel consacres-tu ...</h4>
+            <div class="form-group bmd-form-group">
+              <%= form.label :au_mobilier_et_appareils_ménagers_?, class: 'bmd-label-floating' %>
+              <%= form.number_field :goods_furnitures, class: "form-control" %>
+              <span class="bmd-help"></span>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= form.label :aux_vêtements_et_chaussures_?, class: 'bmd-label-floating' %>
+              <%= form.number_field :goods_clothes, class: "form-control" %>
+              <span class="bmd-help"></span>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= form.label :aux_autres_biens_de_consommation_?, class: 'bmd-label-floating' %>
+              <%= form.number_field :goods_others, class: "form-control" %>
+              <span class="bmd-help"></span>
+            </div>
           </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :aux_vêtements_et_chaussures_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :goods_clothes, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :aux_autres_biens_de_consommation_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :goods_others, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-        </div>
-        <div class="card-footer text-center">
-          <div class="actions text-center">
-            <%= link_to 'Continuer', "#services", class: 'btn btn-outline-info btn-round' %>
-          </div>
-        </div>
-      </div>
-      <h3 class="text-violet" id="services"><span class="number">5.</span> Ma consommation de services</h3>
-      <div class="card border-violet">
-        <div class="card-body">
-          <h4>Quel budget mensuel consacres-tu ...</h4>
-          <div class="form-group bmd-form-group">
-            <%= form.label :pour_ta_santé_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :services_health, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label "Pour tes abonnements ?", class: 'bmd-label-floating' %>
-            <%= form.number_field :services_plans, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label "Pour d'autres services ?", class: 'bmd-label-floating' %>
-            <%= form.number_field :services_others, class: "form-control" %>
-            <span class="bmd-help"></span>
+          <div class="card-footer text-center">
+            <div class="actions text-center">
+              <%= link_to 'Continuer', "#services", class: 'btn btn-outline-info btn-round' %>
+            </div>
           </div>
         </div>
-        <div class="card-footer text-center">
-          <div class="actions text-center">
-            <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-info btn-round' %>
+        <h3 class="text-violet" id="services"><span class="number">5.</span> Ma consommation de services</h3>
+        <div class="card border-violet">
+          <div class="card-body">
+            <h4>Quel budget mensuel consacres-tu ...</h4>
+            <div class="form-group bmd-form-group">
+              <%= form.label :pour_ta_santé_?, class: 'bmd-label-floating' %>
+              <%= form.number_field :services_health, class: "form-control" %>
+              <span class="bmd-help"></span>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= form.label "Pour tes abonnements ?", class: 'bmd-label-floating' %>
+              <%= form.number_field :services_plans, class: "form-control" %>
+              <span class="bmd-help"></span>
+            </div>
+            <div class="form-group bmd-form-group">
+              <%= form.label "Pour d'autres services ?", class: 'bmd-label-floating' %>
+              <%= form.number_field :services_others, class: "form-control" %>
+              <span class="bmd-help"></span>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <div class="actions text-center">
+              <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-info btn-round' %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

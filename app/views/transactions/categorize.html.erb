@@ -47,7 +47,7 @@
                         <%= form.hidden_field :previous_category, :value => 115 %>
                         <%= form.hidden_field :updated_by_user, :value => true %>
 
-                        <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, :include_blank => "Choisir une catégorie") %>
+                        <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, :include_blank => "Choisir une catégorie", :selected => transaction.suggested_category_id) %>
                       <% end %>
                     </td>
                     <td style="width:12%;">

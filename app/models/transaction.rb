@@ -6,6 +6,7 @@ class Transaction < ApplicationRecord
   before_save :calculate_carbone
 
   after_update :update_similar_transactions
+  after_save :check_potential_modifiers
 
   scope :week, -> {where("date > ?", 1.week.ago)}
   scope :previous_week, -> {where("date >= ? AND date < ?", 2.weeks.ago, 1.week.ago)}
@@ -67,6 +68,12 @@ class Transaction < ApplicationRecord
       elsif Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).present?
         self.suggested_category_id = Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).last.category_id
       end
+    end
+  end
+
+  def check_potential_modifiers
+    if UserModifier.all.category_id(self.category_id).present? && selef.user.user_modifiers.category_id(self.category_id) == []
+
     end
   end
 
