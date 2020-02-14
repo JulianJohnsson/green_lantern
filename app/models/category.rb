@@ -5,7 +5,7 @@ class Category < ApplicationRecord
 
   after_update :update_transactions, if: :saved_change_to_coeff?
 
-  scope :root_categories, -> {where("id IN (1,12,25,25,70,136)")}
+  scope :root_categories, -> {where("id IN (1,12,24,25,70,136)")}
   scope :parent_categories, -> {where("parent_id=0 AND coeff>0")}
   scope :sub_categories, -> (int) {where("parent_id = ?", int)}
 
