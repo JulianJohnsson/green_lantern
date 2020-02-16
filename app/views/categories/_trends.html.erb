@@ -71,7 +71,7 @@
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        <%= render 'analysis_carousel' if @top_category_advice.present? || @top_transaction_advice.present? %>
+        <%= render 'analysis_carousel' if @score.top_category.present? %>
       </div>
     </div>
   <% else %>

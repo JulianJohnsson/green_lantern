@@ -220,3 +220,25 @@ users.each do |user|
   end
 end
 
+equivalent_list = [
+  ["petits voiliers", "⛵", 0, 150],
+  ["vaches limousines", "🐮", 0, 750],
+  ["crocodiles adultes", "🐊", 0, 400],
+  ["jeans délavés", "👖", 1, 15],
+  ["zèbres", "🦓", 0, 300],
+  ["baguettes", "🥖", 1, 0.38],
+  ["écrans plats", "🖥", 1, 568],
+  ["bains chauds", "🛀", 3, 0.7],
+  ["canapés convertibles", "🛋", 1, 204],
+  ["trotinette électrique", "🛴", 2, 0.202],
+  ["croissants", "🥐", 1, 0.143],
+  ["porcelets", "🐖", 0, 1.5],
+  ["appareils photo numériques", "📷", 1, 128],
+  ["hélicoptère", "🚁", 2, 45]
+]
+
+if Equivalent.count == 0
+  equivalent_list.each do |name,emoji,kind,carbone_min|
+    Equivalent.create(name: name, emoji: emoji, kind: kind, carbone_min: carbone_min)
+  end
+end

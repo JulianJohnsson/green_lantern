@@ -38,16 +38,17 @@ class CategoriesController < ApplicationController
       @transactions = current_user.transactions.carbone_contribution.month_ago(params[:month].to_i || 0)
       @score.detail = @categories.sort_by {|c| c.id}.map {|c| @transactions.parent_category_id(c.id).sum(:carbone)*12/1000}
       @score.total = @score.detail.inject(0){|sum,x| sum.to_f + x.to_f }
+
+      a1 = Equivalent.random("Tes dépenses en #{Category.find(@score.top_category[0]).name.downcase }", @score.top_category[1])
+      a2 = Equivalent.random("Ta dernière grosse dépense", @score.top_transaction[1])
+      a3 = Equivalent.random("L'augmentation de tes dépenses en #{Category.find(@score.top_growth[0]).name.downcase }", @score.top_growth[2])
+      @analysis = [a1,a2,a3]
+
     end
 
     @data = []
     for i in 0..4
       @data = @data << [@categories[i].name, (@score.detail[i].to_f*1000/12).round(2)]
-    end
-
-    if @score.kind.to_sym == :dynamic
-      @top_category_advice = Category.top_category_advice(@score)
-      @top_transaction_advice = Category.top_transaction_advice(@score)
     end
 
     AnalyticService.new.identify(current_user,request)

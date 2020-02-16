@@ -144,7 +144,7 @@ class Score < ApplicationRecord
     end
 
     growth_by_category = Category.all.map{|c| [c.id, 100*(transactions.recent.category_id(c.id).sum(:carbone) - transactions.where("date > ? AND date <= ?", 2.months.ago, 1.month.ago).category_id(c.id).sum(:carbone)) / transactions.where("date > ? AND date <= ?", 2.months.ago, 1.month.ago).category_id(c.id).sum(:carbone)]}.to_h
-    top_growth = [growth_by_category.key(growth_by_category.values.reject(&:nan?).reject(&:infinite?).max), growth_by_category.values.reject(&:nan?).reject(&:infinite?).max ]
+    top_growth = [growth_by_category.key(growth_by_category.values.reject(&:nan?).reject(&:infinite?).max), growth_by_category.values.reject(&:nan?).reject(&:infinite?).max, (transactions.recent.category_id(growth_by_category.key(growth_by_category.values.reject(&:nan?).reject(&:infinite?).max)).sum(:carbone) - transactions.where("date > ? AND date <= ?", 2.months.ago, 1.month.ago).category_id(growth_by_category.key(growth_by_category.values.reject(&:nan?).reject(&:infinite?).max)).sum(:carbone)) ]
     self.top_growth = top_growth
   end
 

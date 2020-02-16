@@ -10,20 +10,23 @@ class Category < ApplicationRecord
   scope :sub_categories, -> (int) {where("parent_id = ?", int)}
 
   def self.top_category_advice(score)
-    category = Category.find(score.top_category[0])
-    unless category.parent_id == 0
-      category = Category.find(category.parent_id)
-    end
-    case category.name when 'Transports'
-      top_category_advice = ['⛵', 150, "c'est l'équivalent du poids de", 'petits voiliers']
-    when 'Alimentation'
-      top_category_advice = ['🐮', 750, 'pèsent aussi lourd que', 'vaches limousines']
-    when 'Logement'
-      top_category_advice = ['🐊', 400, 'pèsent aussi lourd que', 'crocodiles adultes']
-    when 'Biens de consommation'
-      top_category_advice = ['👖', 15, "c'est autant que la fabrication de", 'jeans délavés']
-    when 'Loisirs & Services'
-      top_category_advice = ['🦓', 300, 'pèsent aussi lourd que', 'zèbres']
+    top_category_advice_array = ["","","","",""]
+    top_category_advice_array[1] = ['⛵', 150, "c'est l'équivalent du poids de", 'petits voiliers']
+    top_category_advice_array[4] = ['🐮', 750, 'pèsent aussi lourd que', 'vaches limousines']
+    top_category_advice_array[3] = ['🐊', 450, 'pèsent aussi lourd que', 'crocodiles adultes']
+    top_category_advice_array[0] = ['👖', 15, "c'est autant que la fabrication de", 'jeans délavés']
+    top_category_advice_array[2] = ['🦓', 300, 'pèsent aussi lourd que', 'zèbres']
+
+    case when score.top_category[1].to_f < 150
+      top_category_advice = top_category_advice_array[0]
+    when score.top_category[1].to_f < 300
+      top_category_advice = top_category_advice_array[rand(2)]
+    when score.top_category[1].to_f < 450
+      top_category_advice = top_category_advice_array[rand(3)]
+    when score.top_category[1].to_f < 750
+      top_category_advice = top_category_advice_array[rand(4)]
+    when score.top_category[1].to_f >= 750
+      top_category_advice = top_category_advice_array[rand(5)]
     end
     top_category_advice
   end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  carbone_min: 1
+  carbone_max: 1
+  emoji: MyString
+  kind: 1
+
+two:
+  name: MyString
+  carbone_min: 1
+  carbone_max: 1
+  emoji: MyString
+  kind: 1
