@@ -37,14 +37,14 @@ class UserModifier < ApplicationRecord
     score = user.scores.last
     modifier = 0
     if score.energy.present?
-      case when :électricité
+      case score.energy.to_sym when :électricité
         modifier = -0.14
       when :gaz
         modifier = 0.336
       end
     end
     if score.enr.present?
-      case when :partiellement_renouvelable
+      case score.enr.to_sym when :partiellement_renouvelable
         modifier = modifier - 0.168
       when :fortement_renouvelable
         modifier = modifier - 0.504

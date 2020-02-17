@@ -81,11 +81,13 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1.json
   def update
     @transactions = current_user.transactions.category_id(115).order(date: :desc)
+    @categorize = @transactions.where("suggested_category_id IS NULL")
+    @suggested = @transactions.where("suggested_category_id IS NOT NULL")
     respond_to do |format|
       if @transaction.update(transaction_params)
         if params[:transaction][:previous_category] == "115"
           format.html { redirect_to '/categorize', notice: 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
-          format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
+          format.js { flash.now[:notice] = 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
         elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"
           format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
           format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
