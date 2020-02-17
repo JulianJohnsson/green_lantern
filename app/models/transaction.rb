@@ -6,7 +6,6 @@ class Transaction < ApplicationRecord
   before_save :calculate_carbone
 
   after_update :update_similar_transactions
-  after_save :check_potential_modifiers
 
   scope :week, -> {where("date > ?", 1.week.ago)}
   scope :previous_week, -> {where("date >= ? AND date < ?", 2.weeks.ago, 1.week.ago)}
@@ -73,7 +72,9 @@ class Transaction < ApplicationRecord
 
   def check_potential_modifiers
     if UserModifier.all.category_id(self.category_id).present? && self.user.user_modifiers.category_id(self.category_id) == []
-
+      true
+    else
+      false
     end
   end
 

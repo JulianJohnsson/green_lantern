@@ -20,6 +20,11 @@ class SubscriptionActivationJob < ApplicationJob
             'Name'=> (user.name||"")
           }
         ],
+        'Bcc'=> [
+          {
+            'Email'=> "hellocarbo.com+1297d75cff@invite.trustpilot.com"
+          }
+        ],
         'TemplateID'=> 1110052,
         'TemplateLanguage'=> true,
         'Subject'=> "Ton forfait est désormais actif !",

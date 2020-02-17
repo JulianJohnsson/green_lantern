@@ -27,6 +27,23 @@
             </div>
           </div>
         </div>
+        <% if @transaction.check_potential_modifiers == true %>
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+              <div class="row justify-content-center align-items-center push-invitation" style="margin-top:20px;">
+                <div class="col-md-1 emoji text-center">
+                  🎯
+                </div>
+                <div class="col-lg-7 col-md-6 col-11">
+                  <p>Précise ton mode de consommation en répondant à quelques questions pour améliorer la précision de ton calcul carbone pour cette catégorie de dépenses</p>
+                </div>
+                <div class="col-lg-4 col-md-5 text-center">
+                  <%= link_to "J'améliore mon calcul", edit_score_path(current_user.scores.last), class: "btn btn-sm btn-round btn-outline-primary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
         <div class="card-footer">
           <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-primary btn-link" do %>
             <i class="material-icons">arrow_back</i>

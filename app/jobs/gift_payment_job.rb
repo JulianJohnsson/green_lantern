@@ -20,6 +20,11 @@ class GiftPaymentJob < ApplicationJob
             'Name'=> (gift.author_name||"")
           }
         ],
+        'Bcc'=> [
+          {
+            'Email'=> "hellocarbo.com+1297d75cff@invite.trustpilot.com"
+          }
+        ],
         'TemplateID'=> 1118319,
         'TemplateLanguage'=> true,
         'Subject'=> "Mon meilleur cadeau est pour toi 💎",
