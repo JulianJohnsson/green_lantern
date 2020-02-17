@@ -25,8 +25,10 @@ class DashboardsController < ApplicationController
       total = 0
       count = 0
       User.all.onboarded.each do |user|
-        total = total + user.scores.last.total
-        count = count + 1
+        if user.scores.last.kind.to_sym == :dynamic
+          total = total + user.scores.last.total
+          count = count + 1
+        end
       end
       @carbone = @score.total * 1000/12
       @average = total / count * 1000/12
