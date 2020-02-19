@@ -20,37 +20,13 @@ class ApplicationController < ActionController::Base
   end
 
   def utm
-    enrich_utm if request.referer.present?
     {
-      :utm_source => (params[:utm_source]||""),
-      :utm_campaign => (params[:utm_campaign]||""),
-      :utm_medium => (params[:utm_medium]||""),
-      :utm_term => (params[:utm_term]||""),
-      :utm_content => (params[:utm_content]||"")
+      :utm_source => (cookies[:utm_source]||""),
+      :utm_campaign => (cookies[:utm_campaign]||""),
+      :utm_medium => (cookies[:utm_medium]||""),
+      :utm_term => (cookies[:utm_term]||""),
+      :utm_content => (cookies[:utm_content]||"")
     }
-  end
-
-  def enrich_utm
-    source = URI.parse(request.referer).host
-    unless source == Rails.application.secrets.domain_name || params[:utm_source].present? || source == nil || source.include?("hellocarbo.com")
-      case when source.include?("google")
-        params[:utm_source] = 'google'
-        if request.referer.include? "gclid="
-          params[:utm_medium] = 'paid'
-        else
-          params[:utm_medium] = 'organic'
-        end
-      when source.include?("ecosia")
-        params[:utm_source] = source
-        params[:utm_medium] = 'organic'
-      when source.include?("bing")
-        params[:utm_source] = 'bing'
-        params[:utm_medium] = 'organic'
-      else
-        params[:utm_source] = source
-        params[:utm_medium] = "referral"
-      end
-    end
   end
 
   def check_onboarding
