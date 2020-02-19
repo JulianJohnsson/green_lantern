@@ -36,9 +36,9 @@
             user_id: "<%= cookies[:ajs_anonymous_id] %>"
           <% end %>
         });
-        <% if user_signed_in? %>
-          <% AnalyticService.new.identify(current_user,request) %>
-        <% end %>
+        analytics.identify(<%= current_user.id %>, {
+          email: "<%= current_user.email %>"
+        });
         <% if current_page?('/scores/new') %>
           analytics.alias({
             user_id: <%= current_user.id %>,
