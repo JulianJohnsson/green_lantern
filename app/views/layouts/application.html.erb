@@ -10,7 +10,8 @@
     <%= javascript_include_tag 'application', 'https://js.stripe.com/v3/' %>
     <%= csrf_meta_tags %>
     <%= tag :meta, name: "stripe-key", content: Rails.application.credentials[:stripe][Rails.env.to_sym][:public_key] %>
-  </head>
+  <link rel="manifest" href="/manifest.json" />
+<meta name="apple-mobile-web-app-capable" content="yes"></head>
   <body>
     <div class="wrapper">
       <%= render 'layouts/application_sidebar' %>

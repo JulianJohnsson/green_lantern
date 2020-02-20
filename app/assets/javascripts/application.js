@@ -95,3 +95,4 @@ if ($("#registration-navbar").offset().top > 80) {
 */
 
 
+//= require serviceworker-companion

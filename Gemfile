@@ -53,6 +53,7 @@ gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'abraham'
 gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
+gem "serviceworker-rails"
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
