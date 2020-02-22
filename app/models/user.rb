@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :reductions, dependent: :destroy
   has_one :bridge, dependent: :destroy
   has_one :notification_preference, dependent: :destroy
+  has_one :notification_datum, dependent: :destroy
   has_many :user_modifiers, dependent: :destroy
 
   enum role: [:user, :vip, :admin]

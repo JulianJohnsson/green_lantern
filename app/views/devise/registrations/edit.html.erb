@@ -81,5 +81,10 @@
   <p>On sera un peu triste mais ça passera, promis</p>
   <%= button_to "Supprimer mon compte", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger btn-round' %>
 </div>
+<% if current_user.role.to_sym == :admin %>
+  <button type="button" class="btn btn-default" onclick="sendPush()">
+    Envoyer une notification test
+  </button>
+<% end %>
 
 

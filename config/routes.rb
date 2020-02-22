@@ -59,4 +59,6 @@ Rails.application.routes.draw do
 
   resources :reductions
 
+  post '/sendkeys' => 'notifications#sendPush'
+
 end

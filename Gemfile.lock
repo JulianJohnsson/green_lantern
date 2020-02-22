@@ -145,6 +145,7 @@ GEM
       activesupport (>= 4.2)
     hashie (3.6.0)
     high_voltage (3.1.2)
+    hkdf (0.3.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     hub (1.12.4)
@@ -359,6 +360,9 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpush (1.0.0)
+      hkdf (~> 0.2)
+      jwt (~> 2.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -419,6 +423,7 @@ DEPENDENCIES
   unicorn
   unicorn-rails
   web-console (>= 3.3.0)
+  webpush
 
 RUBY VERSION
    ruby 2.6.3p62
