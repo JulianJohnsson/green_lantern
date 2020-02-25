@@ -242,3 +242,31 @@ if Equivalent.count == 0
     Equivalent.create(name: name, emoji: emoji, kind: kind, carbone_min: carbone_min)
   end
 end
+
+modifier_list = [
+  [['Bio',0,1],[["Aliments issus de l'agriculture biologique", -0.20]],[40,70]],
+  [['Livraison à domicile',0,0],[["Courses ou repas livrés à domicile", 0.15]],[70]],
+  [['Type de nourriture',1,1],[["Vegan", -0.463],["Végétarien", -0.3955],["Carné", 0.5093]],[72,73,75]],
+  [['Type de commerce',1,0],[["Grande surface", 0.2],["Epicerie", 0.1],["Boucherie", 0.5093],["Poissonerie", 0.4],["Maraicher", -0.1],["Traiteur", 0.2],["Vin & alcools", 0.1],["Charcuterie", 0.3],["Boulangerie", 0.0],["Fromager", 0.2]],[75,77]],
+  [["Type d'énergie",1,1],[["Gaz", 0.336],["Gaz & Electricité", 0],["Electricité", -0.14]],[17]],
+  [["Part de renouvelable",1,1],[["Aucune énergie renouvelable", 0],["Partiellement renouvelable", -0.168],["100% renouvelable", -0.504]],[17]],
+  [['Occasion',0,0],[["Produit acheté d'occasion", -0.50]],[15,33,34,35,36,61,62,63]],
+  [["Provenance",1,0],[["Produit local", -0.30],["Produit importé", 0.18]],[15,25,70]],
+  [["Type de carburant",1,1],[["Diesel", 0.136],["Essence", 0],["Biocarburant", -0.14]],[5]],
+  [["Type de train",1,0],[["TGV", 0.336],["TER", 0],["Transilien & RER", -0.14],["Eurostar & Thalys", -0.14]],[4]],
+  [["Type de véhicule",1,0],[["Classique", 0],["Hybride", -0.24],["Electrique", -0.74]],[7, 145, 146]]
+]
+
+if Modifier.count == 0
+  modifier_list.each do |modifier, modifier_options, categories|
+    repeating = true if modifier[2] == 1
+    mod = Modifier.create(name: modifier[0], question_type: modifier[1], repeating: repeating)
+    modifier_options.each do |name, coeff|
+      mod.modifier_options.create(name: name, coeff: coeff)
+    end
+    categories.each do |cat|
+      mod.categories << Category.find(cat)
+    end
+    mod.save
+  end
+end

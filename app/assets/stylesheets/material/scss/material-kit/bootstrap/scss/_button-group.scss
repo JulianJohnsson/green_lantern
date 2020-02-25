@@ -53,9 +53,9 @@
   > .btn-group:not(:last-child) > .btn {
     @include border-right-radius(0);
   }
-
-  > .btn:not(:first-child),
-  > .btn-group:not(:first-child) > .btn {
+// Warning changed to accommodate rails form for radio buttons (a hidden child appears so 1st child condition is changed to 2nd)
+  > .btn:not(:nth-child(2)),
+  > .btn-group:not(:nth-child(2)) > .btn {
     @include border-left-radius(0);
   }
 }

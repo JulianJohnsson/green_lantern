@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  modifier_id: 1
+  name: MyString
+  modifier: 9.99
+  is_numeric: false
+  min: 9.99
+  max: 9.99
+  coeff: 9.99
+
+two:
+  modifier_id: 1
+  name: MyString
+  modifier: 9.99
+  is_numeric: false
+  min: 9.99
+  max: 9.99
+  coeff: 9.99

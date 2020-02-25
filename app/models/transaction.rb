@@ -2,6 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :comments
+  has_many :transaction_modifiers
 
   before_save :calculate_carbone
 
@@ -27,9 +28,9 @@ class Transaction < ApplicationRecord
     self.refine_category
     @category = Category.find(category_id)
     unless self.user.user_modifiers.category_id(category_id) == []
-      modifier = self.user.user_modifiers.category_id(category_id).last.carbone_modifier
+      modifier = self.user.user_modifiers.category_id(category_id).last.carbone_modifier + self.transaction_modifiers.sum(:coeff)
     else
-      modifier = 0
+      modifier = self.transaction_modifiers.sum(:coeff)
     end
     self.carbone = 0
     unless @category.coeff == nil

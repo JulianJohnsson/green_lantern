@@ -23,7 +23,7 @@ class ReductionsController < ApplicationController
         total = total + user.scores.last.detail[i].to_f
         count = count + 1
       end
-      @average_carbone = @average_carbone << [@categories[i], (total/ count*1000/12).round(2)]
+      @average_carbone = @average_carbone << [@categories[i], ((total/count).to_f*1000/12).round(2)]
     end
 
   end

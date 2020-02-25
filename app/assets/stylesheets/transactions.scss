@@ -29,3 +29,8 @@
 .modal-body .bmd-form-group {
   color: white;
 }
+
+label.btn.selected {
+  background: $brand-primary;
+  color: white;
+}

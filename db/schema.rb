@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_22_124903) do
+ActiveRecord::Schema.define(version: 2020_02_25_121123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,13 @@ ActiveRecord::Schema.define(version: 2020_02_22_124903) do
     t.string "color"
     t.string "emoji"
     t.boolean "visible"
+  end
+
+  create_table "categories_modifiers", id: false, force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "modifier_id"
+    t.index ["category_id"], name: "index_categories_modifiers_on_category_id"
+    t.index ["modifier_id"], name: "index_categories_modifiers_on_modifier_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -117,6 +124,26 @@ ActiveRecord::Schema.define(version: 2020_02_22_124903) do
     t.integer "user_id"
     t.integer "opponent_id"
     t.string "badge"
+  end
+
+  create_table "modifier_options", force: :cascade do |t|
+    t.integer "modifier_id"
+    t.string "name"
+    t.decimal "modifier"
+    t.boolean "is_numeric"
+    t.decimal "min"
+    t.decimal "max"
+    t.decimal "coeff"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "modifiers", force: :cascade do |t|
+    t.string "name"
+    t.integer "question_type"
+    t.boolean "repeating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "notification_data", force: :cascade do |t|
@@ -225,6 +252,15 @@ ActiveRecord::Schema.define(version: 2020_02_22_124903) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transaction_modifiers", force: :cascade do |t|
+    t.integer "modifier_option_id"
+    t.integer "transaction_id"
+    t.decimal "coeff"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "modifier_id"
   end
 
   create_table "transactions", force: :cascade do |t|
