@@ -44,8 +44,3 @@
       <%= link_to "Compenser mon impact", subscriptions_path, class: "btn btn-lg btn-warning btn-round" %>
     </div>
   </div>
-
-<% if current_user.role.to_sym == :admin %>
-  <%= @my_carbone.to_json %>
-  <%= @average_carbone.to_json %>
-<% end %>

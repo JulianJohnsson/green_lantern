@@ -23,7 +23,7 @@ class DriftDynamicActivationJob < ApplicationJob
         ],
         'TemplateID'=> 1166357,
         'TemplateLanguage'=> true,
-        'Subject'=> "Pourquoi 2 membres sur 3 activent le mode dynamique",
+        'Subject'=> "Un doute, ou un trou de mémoire ?",
         'Variables'=> {
           "name" => user.name
         }
