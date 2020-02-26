@@ -25,7 +25,7 @@ class DriftDynamicActivationJob < ApplicationJob
         'TemplateLanguage'=> true,
         'Subject'=> "Un doute, ou un trou de mémoire ?",
         'Variables'=> {
-          "name" => user.name
+          "name" => user.name || ""
         }
       }])
       p variable.attributes['Messages']
