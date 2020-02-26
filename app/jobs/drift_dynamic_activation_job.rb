@@ -9,7 +9,7 @@ class DriftDynamicActivationJob < ApplicationJob
       config.default_from = 'emmanuel@hellocarbo.com'
       config.api_version = 'v3.1'
     end
-    if user.present? && user.onboarded == true && user.scores.last.kind.to_s == :static
+    if user.present? && user.onboarded == true && user.scores.last.kind.to_sym == :static
       variable = Mailjet::Send.create(messages: [{
         'From'=> {
           'Email'=> "emmanuel@hellocarbo.com",
