@@ -20,8 +20,11 @@ class ReductionsController < ApplicationController
       total = 0
       count = 0
       User.all.onboarded.each do |user|
-        total = total + user.scores.last.detail[i].to_f
-        count = count + 1
+        # ignorer les users qui "jouent" avec le calculateur statique qui faussent la moyenne
+        if user.scores.last.kind.to_sym == :dynamic || user.scores.last.total < 30
+          total = total + user.scores.last.detail[i].to_f
+          count = count + 1
+        end
       end
       @average_carbone = @average_carbone << [@categories[i], ((total/count).to_f*1000/12).round(2)]
     end
