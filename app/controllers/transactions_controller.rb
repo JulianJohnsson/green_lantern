@@ -58,6 +58,8 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+    @modifiers = @transaction.category.modifiers
+    @parent_modifiers = @transaction.category.parent.modifiers
     @comment = Comment.new
   end
 

@@ -9,4 +9,5 @@ $(document).ready(function(){
     form = this.form;
     Rails.fire(form, 'submit');
   });
+
 });

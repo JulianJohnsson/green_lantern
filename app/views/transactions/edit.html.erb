@@ -1,54 +1,111 @@
 <% content_for :title, "Détail d'une dépense" %>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center">
-      <div class="card">
-        <div class="card-title">
-          <h3><small>Description : </small><%= @transaction.description %></h3>
-        </div>
-        <div class="card-body">
-          <h4>
-            <small>Effectuée le : </small>
-            <%= @transaction.date %>
-          </h4>
-          <h4>
-            <small>Montant de la dépense : </small>
-            <%= -1 * @transaction.amount %> €
-          </h4>
-          <h4>
-            <small>Coût carbone : </small>
-            <span id="carbone">
-              <%= number_with_precision(@transaction.carbone, precision: 1) %> kgCO2
+    <div class="col-md-12">
+      <div class="card transaction-title" style="background: <%= Category.find(@transaction.parent_category_id).color %>;">
+        <div class="row align-items-center text-white">
+          <div class="col-1">
+            <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-white btn-link" do %>
+              <i class="material-icons">arrow_back</i>
+            <% end %>
+          </div>
+          <div class="col-5">
+            <h3><%= @transaction.description %></h3>
+          </div>
+          <div class="col-2">
+            <span class="emoji accuracy <%="active" unless @transaction.category_id == 115 %>">
+              🎯
             </span>
-          </h4>
-          <div class="row">
-            <div class="col-md-12">
+            <span class="emoji accuracy <%="active" unless @transaction.category_id == @transaction.parent_category_id %>">
+              🎯
+            </span>
+            <span class="emoji accuracy <%="active" if @transaction.transaction_modifiers.present? %>">
+              🎯
+            </span>
+          </div>
+          <div class="col-4 text-center">
+            <span id= "carbone" class="number number-md">
+              <%= number_with_precision(@transaction.carbone, precision: 1) %>
+            </span>
+            <br>kgCO2
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="text-center">Détail</h4>
+          <div class="row align-items-center">
+            <div class="col-6">
               <%= render 'form', transaction: @transaction %>
             </div>
-          </div>
-        </div>
-        <% if @transaction.check_potential_modifiers == true %>
-          <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-              <div class="row justify-content-center align-items-center push-invitation" style="margin-top:20px;">
-                <div class="col-md-1 emoji text-center">
-                  🎯
-                </div>
-                <div class="col-lg-7 col-md-6 col-11">
-                  <p>Précise ton mode de consommation en répondant à quelques questions pour améliorer la précision de ton calcul carbone pour cette catégorie de dépenses</p>
-                </div>
-                <div class="col-lg-4 col-md-5 text-center">
-                  <%= link_to "J'améliore mon calcul", edit_score_path(current_user.scores.last), class: "btn btn-sm btn-round btn-outline-primary" %>
-                </div>
-              </div>
+            <div class="col-2">
+              <%= @transaction.date %>
+            </div>
+            <div class="col-4 text-center">
+              <%= -1 * @transaction.amount %> €
             </div>
           </div>
-        <% end %>
-        <div class="card-footer">
-          <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-primary btn-link" do %>
-            <i class="material-icons">arrow_back</i>
-            Retour à la liste
+          <% if @modifiers || @parent_modifiers %>
+            <div class="row">
+              <div class="col-md-12 modifiers-form">
+                <hr>
+                <% @modifiers.each do |modifier| %>
+                  <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
+                    <% transaction_modifier = @transaction.transaction_modifiers.find_by_modifier_id(modifier.id) %>
+                  <% else %>
+                    <% transaction_modifier = TransactionModifier.new  %>
+                  <% end %>
+                  <div id="modifier-<%= modifier.id %>">
+                    <%= form_with(model: transaction_modifier, remote: true) do |f| %>
+                      <div class="field">
+                        <%= f.hidden_field :transaction_id, :value => params[:id] %>
+                        <%= f.hidden_field :modifier_id, :value => modifier.id %>
+                        <%= f.label "#{modifier.name}" %>
+                        <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                          <%= f.collection_radio_buttons(:modifier_option_id, modifier.modifier_options, :id, :name, :selected => transaction_modifier.modifier_option_id) do |b| %>
+                            <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button(class: "radio-auto-submit") + b.text.humanize } %>
+                          <% end %>
+                        </div>
+                        <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
+                          <%= link_to transaction_modifier, method: :delete, :remote => true, :id => "delete-modifier-#{transaction_modifier.id}"  do %>
+                            <i class="material-icons">delete</i>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+                <% @parent_modifiers.each do |modifier| %>
+                  <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
+                    <% transaction_modifier = @transaction.transaction_modifiers.find_by_modifier_id(modifier.id) %>
+                  <% else %>
+                    <% transaction_modifier = TransactionModifier.new  %>
+                  <% end %>
+                  <div id="modifier-<%= modifier.id %>">
+                    <%= form_with(model: transaction_modifier, remote: true) do |f| %>
+                      <div class="field">
+                        <%= f.hidden_field :transaction_id, :value => params[:id] %>
+                        <%= f.hidden_field :modifier_id, :value => modifier.id %>
+                        <%= f.label "#{modifier.name}" %>
+                        <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                          <%= f.collection_radio_buttons(:modifier_option_id, modifier.modifier_options, :id, :name, :selected => transaction_modifier.modifier_option_id, class: "radio-auto-submit") do |b| %>
+                            <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button(class: "radio-auto-submit") + b.text.humanize } %>
+                          <% end %>
+                        </div>
+                        <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
+                          <%= link_to transaction_modifier, method: :delete, :remote => true, :id => "delete-modifier-#{transaction_modifier.id}"  do %>
+                            <i class="material-icons">delete</i>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           <% end %>
+        </div>
+        <div class="card-footer">
           <div class="ml-auto">
             <%= link_to 'Signaler un problème', "", class: 'btn btn-danger btn-link', "data-toggle" => "modal", "data-target" => "#commentModal" %>
           </div>
@@ -89,3 +146,15 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $("input:checked").parent().addClass("selected");
+  });
+  $('input[type=radio]').on('change', function() {
+   if( $(this).is(':checked') ) {
+      form = this.form;
+      Rails.fire(form, 'submit');
+    }
+  });
+</script>

@@ -7,6 +7,7 @@ class TransactionModifier < ApplicationRecord
 
   def get_modifier
     self.coeff =  self.modifier_option.coeff
-    Transaction.find(self.transaction_id).save
+    t = Transaction.find(self.transaction_id)
+    t.save
   end
 end

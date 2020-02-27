@@ -27,8 +27,8 @@ class Transaction < ApplicationRecord
   def calculate_carbone
     self.refine_category
     @category = Category.find(category_id)
-    unless self.user.user_modifiers.category_id(category_id) == []
-      modifier = self.user.user_modifiers.category_id(category_id).last.carbone_modifier + self.transaction_modifiers.sum(:coeff)
+    if self.transaction_modifiers == [] && self.user.user_modifiers.category_id(category_id).present?
+      modifier = self.user.user_modifiers.category_id(category_id).last.carbone_modifier
     else
       modifier = self.transaction_modifiers.sum(:coeff)
     end
@@ -68,14 +68,6 @@ class Transaction < ApplicationRecord
       elsif Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).present?
         self.suggested_category_id = Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).last.category_id
       end
-    end
-  end
-
-  def check_potential_modifiers
-    if UserModifier.all.category_id(self.category_id).present? && self.user.user_modifiers.category_id(self.category_id) == []
-      true
-    else
-      false
     end
   end
 

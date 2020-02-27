@@ -12,4 +12,4 @@ $(".progress-bar").css("width", "<%= 100*(1 - (@transactions.count).to_f / curre
   $("#transaction_<%= t.id %>").remove();
 <% end %>
 
-$("span#carbone").text("<%= number_with_precision(@transaction.carbone, precision: 1) %> kgCO2");
+$("span#carbone").text("<%= number_with_precision(@transaction.carbone, precision: 1) %>");
