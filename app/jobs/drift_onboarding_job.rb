@@ -18,14 +18,14 @@ class DriftOnboardingJob < ApplicationJob
           'To'=> [
             {
               'Email'=> user.email,
-              'Name'=> user.name
+              'Name'=> (user.name || "")
             }
           ],
           'TemplateID'=> 1111273,
           'TemplateLanguage'=> true,
           'Subject'=> "Finalise ton parcours Carbo ici",
           'Variables'=> {
-            "name" => user.name
+            "name" => (user.name || "")
           }
         }])
         p variable.attributes['Messages']

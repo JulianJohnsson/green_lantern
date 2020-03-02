@@ -244,17 +244,17 @@ if Equivalent.count == 0
 end
 
 modifier_list = [
-  [['Bio',0,1],[["Aliments issus de l'agriculture biologique", -0.20]],[40,70]],
-  [['Livraison à domicile',0,0],[["Courses ou repas livrés à domicile", 0.15]],[70]],
+  [['Bio',0,1],[["Produits Bio", -0.05]],[40,70]],
+  [['Livraison à domicile',0,0],[["Livraison à domicile", 0.05]],[70]],
   [['Type de nourriture',1,1],[["Vegan", -0.463],["Végétarien", -0.3955],["Carné", 0.5093]],[72,73,75]],
-  [['Type de commerce',1,0],[["Grande surface", 0.2],["Epicerie", 0.1],["Boucherie", 0.5093],["Poissonerie", 0.4],["Maraicher", -0.1],["Traiteur", 0.2],["Vin & alcools", 0.1],["Charcuterie", 0.3],["Boulangerie", 0.0],["Fromager", 0.2]],[75,77]],
-  [["Type d'énergie",1,1],[["Gaz", 0.336],["Gaz & Electricité", 0],["Electricité", -0.14]],[17]],
-  [["Part de renouvelable",1,1],[["Aucune énergie renouvelable", 0],["Partiellement renouvelable", -0.168],["100% renouvelable", -0.504]],[17]],
-  [['Occasion',0,0],[["Produit acheté d'occasion", -0.50]],[15,33,34,35,36,61,62,63]],
-  [["Provenance",1,0],[["Produit local", -0.30],["Produit importé", 0.18]],[15,25,70]],
-  [["Type de carburant",1,1],[["Diesel", 0.136],["Essence", 0],["Biocarburant", -0.14]],[5]],
-  [["Type de train",1,0],[["TGV", 0.336],["TER", 0],["Transilien & RER", -0.14],["Eurostar & Thalys", -0.14]],[4]],
-  [["Type de véhicule",1,0],[["Classique", 0],["Hybride", -0.24],["Electrique", -0.74]],[7, 145, 146]]
+  [['Type de commerce',1,0],[["Boucherie", 3.6],["Poissonnerie", 0.8],["Maraicher", -0.92],["Vin & alcools", -0.4],["Charcuterie", 1.06],["Boulangerie", -0.55],["Fromager", 0.45]],[75,77]],
+  [["Type d'énergie",1,1],[["Gaz", 0.19],["Gaz & Electricité", 0],["Electricité", -0.81]],[17]],
+  [["Part de renouvelable",1,1],[["Aucune énergie renouvelable", 0],["Partiellement renouvelable", -0.40],["100% renouvelable", -0.70]],[17]],
+  [['Occasion',0,0],[["Produit acheté d'occasion", -1]],[15,33,34,35,36,61,62,63]],
+  [["Provenance",1,0],[["Produit local", -0.10],["Produit importé", 0.03]],[15,25,70]],
+  [["Type de carburant",1,1],[["Diesel", -0.1],["Essence", 0]],[5]],
+  [["Type de train",1,0],[["TGV", -0.83],["TER", 1.35],["Transilien & RER", -0.6],["Eurostar & Thalys", 0.07]],[4]],
+  [["Type de véhicule",1,0],[["Classique", 0],["Hybride", -0.25],["Electrique", -0.87]],[7, 145, 146]]
 ]
 
 if Modifier.count == 0
@@ -270,3 +270,23 @@ if Modifier.count == 0
     mod.save
   end
 end
+
+badge_list = [
+  ["Maitrise la méthodologie Carbo", "badge_1.png", 0],
+  ["Précise ton mode de vie", "badge_2.png", 1],
+  ["Compense ton empreinte carbone", "badge_3.png", 2],
+  ["Invite un proche pour te comparer", "badge_4.png", 3],
+  ["Fais une 1ère estimation de ton impact", "badge_1.png", 0]
+]
+
+if Badge.count == 0
+  badge_list.each do |name, image, family|
+    Badge.create(name: name, image: image, family: family)
+  end
+end
+
+new_badge_list = [
+  ["Découvre ton impact carbone", "badge_1.png", 0],
+  ["Découvre un projet de compensation", "badge_1.png", 0],
+  ["Complète le quizz Carbo", "badge_1.png", 0]
+]

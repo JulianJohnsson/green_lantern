@@ -24,7 +24,6 @@
   </div>
 
   <div class="field">
-
     <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name) %>
   </div>
 <% end %>

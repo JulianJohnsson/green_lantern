@@ -119,6 +119,7 @@ class ScoresController < ApplicationController
         elsif request.referer.include? "/edit_regime"
           AnalyticService.new.track('Regime set', nil, current_user)
           UserModifier.food(@score.user)
+          current_user.badges <<  Badge.find(5)
           format.html { redirect_to bridges_path }
         else
           AnalyticService.new.track('Score details updated', nil, current_user)

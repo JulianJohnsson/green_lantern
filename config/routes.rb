@@ -62,5 +62,6 @@ Rails.application.routes.draw do
   post '/sendkeys' => 'notifications#sendPush'
 
   resources :transaction_modifiers
+  get '/badges' => 'badges#index'
 
 end

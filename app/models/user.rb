@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one :notification_preference, dependent: :destroy
   has_one :notification_datum, dependent: :destroy
   has_many :user_modifiers, dependent: :destroy
+  has_and_belongs_to_many :badges
 
   enum role: [:user, :vip, :admin]
 
@@ -74,6 +75,25 @@ class User < ApplicationRecord
 
   def subscribed?
     stripe_subscription_id?
+  end
+
+  def set_level
+    case when self.badges.count < 6
+      then level = "NIVEAU GLAND"
+      to_next = 6 - self.badges.count
+    when self.badges.count < 12 && self.badges.count >= 6
+      then level = "NIVEAU POUSSE"
+      to_next = 12 - self.badges.count
+    when self.badges.count < 18 && self.badges.count >= 12
+      then level = "NIVEAU BONSAI"
+      to_next = 18 - self.badges.count
+    when self.badges.count < 24 && self.badges.count >= 18
+      then level = "NIVEAU COCOTIER"
+      to_next = 24 - self.badges.count
+    when self.badges.count >= 24
+      then level = "NIVEAU BAOBAB"
+    end
+    return level, to_next
   end
 
   # Include default devise modules. Others available are:

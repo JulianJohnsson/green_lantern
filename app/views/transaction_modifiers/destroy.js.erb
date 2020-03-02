@@ -1,7 +1,7 @@
 $("#flash-messages").html('<%= j render "layouts/messages" %>');
 setTimeout(function(){
   $('.alert').fadeOut();
-}, 4000);
+}, 3000);
 
 $("span#carbone").text("<%= number_with_precision(@transaction.carbone, precision: 1) %>");
 

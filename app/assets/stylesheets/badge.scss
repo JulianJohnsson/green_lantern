@@ -1,0 +1,73 @@
+@import "material/scss/material-kit/variables";
+
+#progress-card {
+  background: linear-gradient(22.05deg, #20B2AA 0%, #0B4C65 100%);
+}
+
+.card-header.card-header-white {
+  background: white;
+  color: $brand-dark-blue;
+}
+
+.badge-family {
+  .progress {
+    width: 70%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 20px;
+    border-radius: 20px;
+    .progress-bar {
+      border-radius: 20px;
+    }
+  }
+  .card-body {
+    padding-top: 30px;
+    p {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  }
+}
+
+#family-0 {
+  background-color: $brand-warning;
+  .progress-bar {
+    background: $brand-warning;
+  }
+}
+
+#family-1 {
+  background-color: $brand-orange;
+  .progress-bar {
+    background: $brand-orange;
+  }
+}
+
+#family-2 {
+  background-color: $brand-rose;
+  .progress-bar {
+    background: $brand-rose;
+  }
+}
+
+#family-3 {
+  background-color: $brand-danger;
+  .progress-bar {
+    background: $brand-danger;
+  }
+}
+
+#family-4 {
+  background-color: $brand-violet;
+  .progress-bar {
+    background: $brand-violet;
+  }
+}
+
+#family-5 {
+  background-color: $brand-primary;
+  .progress-bar {
+    background: $brand-primary;
+  }
+}

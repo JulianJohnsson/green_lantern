@@ -25,27 +25,6 @@ class TransactionsController < ApplicationController
 
   end
 
-  def dashboard
-    @transactions = current_user.transactions.carbone_contribution.recent.order(date: :desc)
-    @bridge = Bridge.find_by_user_id(current_user.id)
-    @categories = Category.all.parent_categories
-
-    if (Date.today - Date.today.beginning_of_month).to_i < 5
-      # accomodate empty beginning of month by displaying previous month
-      @current_month_count = current_user.transactions.month_ago(1).sum(:carbone)
-      @last_month_count = current_user.transactions.month_ago(2).sum(:carbone)
-      @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(1).sum(:carbone)]}.to_h
-      @average_by_user = Transaction.all.month_ago(1).sum(:carbone) / Transaction.all.month_ago(1).distinct.count(:user_id)
-    else
-      @current_month_count = current_user.transactions.month_to_date(0).sum(:carbone)
-      @last_month_count = current_user.transactions.month_to_date(1).sum(:carbone)
-      @carbone_by_category = @categories.map{|c| [c.name, current_user.transactions.carbone_contribution.parent_category_id(c.id).month_ago(0).sum(:carbone)]}.to_h
-      @average_by_user = Transaction.all.month_to_date(0).sum(:carbone) / Transaction.all.month_to_date(0).distinct.count(:user_id)
-    end
-    @top_category = {@carbone_by_category.key(@carbone_by_category.values.max) => @carbone_by_category.values.max }
-    AnalyticService.new.identify(current_user,request)
-  end
-
   # GET /transactions/1
   # GET /transactions/1.json
   def show
@@ -61,6 +40,17 @@ class TransactionsController < ApplicationController
     @modifiers = @transaction.category.modifiers
     @parent_modifiers = @transaction.category.parent.modifiers
     @comment = Comment.new
+
+    @accuracy_tooltip = ""
+    case @transaction.accuracy when 0
+      @accuracy_tooltip = "Renseigne une catégorie pour améliorer ta précision"
+    when 1
+      @accuracy_tooltip = "Renseigne une catégorie pour améliorer ta précision"
+    when 2
+      @accuracy_tooltip = "Précise les informations sur cette dépense ci-dessous"
+    when 3
+      @accuracy_tooltip = "Niveau de précision 3/3"
+    end
   end
 
   # POST /transactions

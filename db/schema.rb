@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_121123) do
+ActiveRecord::Schema.define(version: 2020_02_29_082138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2020_02_25_121123) do
     t.index ["created_at"], name: "index_abraham_histories_on_created_at"
     t.index ["creator_id"], name: "index_abraham_histories_on_creator_id"
     t.index ["updated_at"], name: "index_abraham_histories_on_updated_at"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.text "short_desc"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "family"
   end
 
   create_table "bankin_categories", force: :cascade do |t|
@@ -279,6 +288,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_121123) do
     t.integer "previous_category"
     t.boolean "updated_by_similar"
     t.integer "suggested_category_id"
+    t.integer "accuracy"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -335,6 +345,13 @@ ActiveRecord::Schema.define(version: 2020_02_25_121123) do
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "badges_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "badge_id"
+    t.index ["badge_id"], name: "index_badges_users_on_badge_id"
+    t.index ["user_id"], name: "index_badges_users_on_user_id"
   end
 
   add_foreign_key "bridges", "users"

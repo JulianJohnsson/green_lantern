@@ -1,0 +1,94 @@
+<% content_for :title, "Ma progression" %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <%= image_tag("badges.png", class: "img-fluid", :style => "margin-bottom:-30px;") %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card" id="progress-card">
+        <div class="card-title">
+          <h3 class="text-white">
+            <%= current_user.set_level[0] %>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <div class="row justify-content-center">
+                <div class="col-2">
+                  <%= image_tag "badge_gland_white.png", class: "img-fluid" %>
+                </div>
+                <div class="col-2">
+                  <%= image_tag "badge_pousse_white.png", class: "img-fluid" %>
+                </div>
+                <div class="col-2">
+                  <%= image_tag "badge_bambou.png", class: "img-fluid" %>
+                </div>
+                <div class="col-2">
+                  <%= image_tag "badge_cocotier.png", class: "img-fluid" %>
+                </div>
+                <div class="col-2">
+                  <%= image_tag "badge_baobab.png", class: "img-fluid" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-10">
+              <p class="text-white">
+                Hey
+                <%= current_user.name %>... déjà
+                <%= current_user.badges.count %>
+                badges récupérés, bien joué ! Il ne t’en manque que
+                <%= current_user.set_level[1] %>
+                pour passer au niveau suivant, on s’y met ?
+              </p>
+              <%= link_to "A propos des niveaux", "", class: "btn btn-outline-white btn-round" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <% Badge.families.map do |k,v| %>
+      <% if @badges.where("family = ?", v).present? %>
+        <div class="col-md-6">
+          <div class="card badge-family" id="family-<%= v %>">
+            <div class="card-header card-header-white">
+              <h4>
+                <%= k.upcase %>
+              </h4>
+              <div class="progress">
+                <div class="progress-bar" role="progress-bar" style="width:<%= [100*current_user.badges.where("family = ?", v).count.to_f / @badges.where("family = ?", v).count.to_f, 10].max %>%;">
+                </div>
+              </div>
+            </div>
+            <div class="card-body text-white">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false" >
+                <div class="carousel-inner">
+                  <% @badges.where("family = ?", v).each do |badge| %>
+                    <div class="carousel-item <%= "active" if badge == @badges.where("family = ?", v).first %>">
+                      <%= image_tag badge.image, class: "img-fluid w-25" %>
+                      <p>
+                        <%= badge.name %>
+                      </p>
+                    </div>
+                  <% end %>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <i class="material-icons">arrow_back</i>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <i class="material-icons">arrow_forward</i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

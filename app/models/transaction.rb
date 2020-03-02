@@ -28,15 +28,19 @@ class Transaction < ApplicationRecord
     self.refine_category
     @category = Category.find(category_id)
     if self.transaction_modifiers == [] && self.user.user_modifiers.category_id(category_id).present?
-      modifier = self.user.user_modifiers.category_id(category_id).last.carbone_modifier
+      modifier = 1+ self.user.user_modifiers.category_id(category_id).last.carbone_modifier
     else
-      modifier = self.transaction_modifiers.sum(:coeff)
+      modifier = 1
+      self.transaction_modifiers.each do |m|
+        modifier = modifier * (1 + m.coeff)
+      end
     end
     self.carbone = 0
     unless @category.coeff == nil
-      self.carbone = self.amount * -1 * @category.coeff * (1 + modifier)
+      self.carbone = self.amount * -1 * @category.coeff * modifier
     end
     self.set_parent_category
+    self.set_accuracy
   end
 
   def update_similar_transactions
@@ -68,6 +72,18 @@ class Transaction < ApplicationRecord
       elsif Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).present?
         self.suggested_category_id = Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).last.category_id
       end
+    end
+  end
+
+  def set_accuracy
+    if self.category_id == 115
+      self.accuracy = 0
+    elsif self.category_id == self.parent_category_id
+      self.accuracy = 1
+    elsif (self.category.modifiers.present? || self.category.parent.modifiers.present?) && self.transaction_modifiers == []
+      self.accuracy = 2
+    else
+      self.accuracy = 3
     end
   end
 
