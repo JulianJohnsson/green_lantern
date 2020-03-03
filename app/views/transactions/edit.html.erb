@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="card transaction-title" style="background: <%= Category.find(@transaction.parent_category_id).color %>;">
+      <div class="card transaction-title" style="background: <%= Category.find(@transaction.parent_category_id).color || "#083849" %>;">
         <div class="row align-items-center text-white">
           <div class="col-1">
             <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-white btn-link" do %>
@@ -64,7 +64,7 @@
               <div class="col-md-12 modifiers-form">
                 <hr>
                 <p class="description">
-                  Tu peux préciser les options qui s'appliquent à cette dépense en cliquant sur les boutons correspondant pour affiner son calcul carbone.
+                  Tu peux préciser les options qui s'appliquent à cette dépense parmi les propositions suivantes pour affiner son calcul carbone.
                 </p>
                 <% @modifiers.each do |modifier| %>
                   <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
@@ -74,7 +74,9 @@
                   <% end %>
                   <div id="modifier-<%= modifier.id %>">
                     <%= form_with(model: transaction_modifier, remote: true) do |f| %>
+                    <!-- Formulaire repris dans les vues en js de transaction_modifiers, à mettre à jour également si modification ici -->
                       <div class="field">
+                        <%= f.hidden_field :origin, :value => "user" %>
                         <%= f.hidden_field :transaction_id, :value => params[:id] %>
                         <%= f.hidden_field :modifier_id, :value => modifier.id %>
                         <%= f.label "#{modifier.name}" %>
@@ -101,6 +103,7 @@
                   <div id="modifier-<%= modifier.id %>">
                     <%= form_with(model: transaction_modifier, remote: true) do |f| %>
                       <div class="field">
+                        <%= f.hidden_field :origin, :value => "user" %>
                         <%= f.hidden_field :transaction_id, :value => params[:id] %>
                         <%= f.hidden_field :modifier_id, :value => modifier.id %>
                         <%= f.label "#{modifier.name}" %>
@@ -123,7 +126,7 @@
           <% end %>
         </div>
         <div class="card-footer">
-          <div class="ml-auto">
+          <div class="text-center">
             <%= link_to 'Signaler un problème', "", class: 'btn btn-danger btn-link', "data-toggle" => "modal", "data-target" => "#commentModal" %>
           </div>
         </div>

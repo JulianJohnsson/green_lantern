@@ -6,7 +6,7 @@ setTimeout(function(){
 $("span#carbone").text("<%= number_with_precision(@transaction.carbone, precision: 1) %>");
 
 <% transaction_modifier = TransactionModifier.new  %>
-var new_form = '<%= form_with(model: transaction_modifier, remote: true) do |f| %><div class="field"><%= f.hidden_field :transaction_id, :value => @transaction.id %><%= f.hidden_field :modifier_id, :value => @modifier.id %><label><%= @modifier.name %></label><div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons"><%= f.collection_radio_buttons(:modifier_option_id, @modifier.modifier_options, :id, :name, class: "radio-auto-submit") do |b| %><%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button(class: "radio-auto-submit") + b.text.humanize } %><% end %></div></div><% end %>';
+var new_form = '<%= form_with(model: transaction_modifier, remote: true) do |f| %><div class="field"><%= f.hidden_field :origin, :value => "user" %><%= f.hidden_field :transaction_id, :value => @transaction.id %><%= f.hidden_field :modifier_id, :value => @modifier.id %><label><%= @modifier.name %></label><div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons"><%= f.collection_radio_buttons(:modifier_option_id, @modifier.modifier_options, :id, :name, class: "radio-auto-submit") do |b| %><%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button(class: "radio-auto-submit") + b.text.humanize } %><% end %></div></div><% end %>';
 
 $("#modifier-<%= @modifier.id%>").children().remove();
 $("#modifier-<%= @modifier.id%>").append(new_form);

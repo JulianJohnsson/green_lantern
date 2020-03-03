@@ -7,6 +7,7 @@ class Transaction < ApplicationRecord
   before_save :calculate_carbone
 
   after_update :update_similar_transactions
+  after_update :update_score, if: :saved_change_to_carbone?
 
   scope :week, -> {where("date > ?", 1.week.ago)}
   scope :previous_week, -> {where("date >= ? AND date < ?", 2.weeks.ago, 1.week.ago)}
@@ -85,6 +86,10 @@ class Transaction < ApplicationRecord
     else
       self.accuracy = 3
     end
+  end
+
+  def update_score
+    ScoreUpdateJob.perform_later(self.user.scores.last)
   end
 
 end

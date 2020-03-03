@@ -13,6 +13,7 @@ class TransactionModifiersController < ApplicationController
       if @transaction_modifier.save
         @transaction = Transaction.find(@transaction_modifier.transaction_id)
         @transaction.save
+        AnalyticService.new.track('Modifier added', nil, current_user)
         format.html { redirect_to "/transactions/#{@transaction_modifier.transaction_id}/edit", notice: 'Transaction modifier was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
         format.js { flash.now[:notice] = "La dépense a bien été mise à jour et son estimation carbone re-calculée" }
@@ -31,6 +32,7 @@ class TransactionModifiersController < ApplicationController
       if @transaction_modifier.update(transaction_modifier_params)
         @transaction = Transaction.find(@transaction_modifier.transaction_id)
         @transaction.save
+        AnalyticService.new.track('Modifier updated', nil, current_user)
         format.html { redirect_to "/transactions/#{@transaction.id}/edit", notice: 'Transaction modifier was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
         format.js { flash.now[:notice] = "La dépense a bien été mise à jour et son estimation carbone re-calculée" }
@@ -47,6 +49,7 @@ class TransactionModifiersController < ApplicationController
     @transaction_modifier.destroy
     @transaction = Transaction.find(@transaction_modifier.transaction_id)
     @transaction.save
+    AnalyticService.new.track('Modifier deleted', nil, current_user)
     respond_to do |format|
       format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
@@ -62,7 +65,7 @@ class TransactionModifiersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_modifier_params
-      params.require(:transaction_modifier).permit(:transaction_id, :modifier_option_id, :coeff, :modifier_id)
+      params.require(:transaction_modifier).permit(:transaction_id, :modifier_option_id, :coeff, :modifier_id, :origin)
     end
 
 end

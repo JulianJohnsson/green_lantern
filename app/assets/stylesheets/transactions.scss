@@ -32,6 +32,24 @@
 
 label.btn.selected {
   background: $brand-primary;
+  border-color: $brand-primary;
+  color: white;
+}
+
+.btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active, .show > .btn-outline-info.dropdown-toggle {
+  background: $brand-primary;
+  border-color: $brand-primary;
+  color: white;
+}
+
+.btn-outline-info:not(:disabled):not(.disabled):hover, .btn-outline-info:not(:disabled):not(.disabled).hover, .show > .btn-outline-info.dropdown-toggle {
+  background: $brand-primary;
+  border-color: $brand-primary;
+  color: white;
+}
+
+label.btn:hover {
+  background: $brand-primary;
   color: white;
 }
 
