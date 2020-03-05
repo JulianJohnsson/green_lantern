@@ -1,9 +1,13 @@
 :schedule:
   BridgeJob:
-    cron: '0 6 * * Sun'
+    cron: '0 2 * * Mon'
+    queue: default
+    enabled: true
+  AverageScoreUpdateJob:
+    cron: '0 7 * * Mon'
     queue: default
     enabled: true
   WeeklyScoreUpdateJob:
-    cron: '0 15 * * Sun'
+    cron: '0 9 * * Mon'
     queue: default
     enabled: true

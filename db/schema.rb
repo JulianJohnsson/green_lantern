@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_103312) do
+ActiveRecord::Schema.define(version: 2020_03_05_095716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 2020_03_03_103312) do
     t.index ["created_at"], name: "index_abraham_histories_on_created_at"
     t.index ["creator_id"], name: "index_abraham_histories_on_creator_id"
     t.index ["updated_at"], name: "index_abraham_histories_on_updated_at"
+  end
+
+  create_table "average_scores", force: :cascade do |t|
+    t.decimal "year_total"
+    t.text "year_detail", default: [], array: true
+    t.decimal "month_total"
+    t.text "month_detail", default: [], array: true
+    t.decimal "week_total"
+    t.text "week_detail", default: [], array: true
+    t.integer "score_kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "badges", force: :cascade do |t|

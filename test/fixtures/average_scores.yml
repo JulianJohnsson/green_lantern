@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year_total: 9.99
+  year_detail: MyText
+  month_total: 9.99
+  month_detail: MyText
+  week_total: 9.99
+  week_detail: MyText
+  score_kind: 1
+
+two:
+  year_total: 9.99
+  year_detail: MyText
+  month_total: 9.99
+  month_detail: MyText
+  week_total: 9.99
+  week_detail: MyText
+  score_kind: 1
