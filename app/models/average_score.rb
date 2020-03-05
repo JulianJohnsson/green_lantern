@@ -24,7 +24,7 @@ class AverageScore < ApplicationRecord
   end
 
   def set_static_average(scores)
-    static_scores = scores.where("kind = 0")
+    static_scores = scores.where("kind = 0 AND total < 30")
     total = 0
     count = 0
     detail = [0,0,0,0,0]

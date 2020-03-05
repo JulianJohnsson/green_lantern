@@ -22,16 +22,12 @@ class DashboardsController < ApplicationController
       @rand = rand(3)
 
       # COMPARER
-      total = 0
-      count = 0
-      User.all.onboarded.each do |user|
-        if user.scores.last.kind.to_sym == :dynamic
-          total = total + user.scores.last.total
-          count = count + 1
-        end
-      end
       @carbone = @score.total * 1000/12
-      @average = total / count * 1000/12
+      if @score.kind.to_sym == :dynamic
+        @average = AverageScore.where("score_kind = 1").last.year_total * 1000/12
+      else
+        @average = AverageScore.where("score_kind = 0").last.year_total * 1000/12
+      end
 
       # REDUIRE
 

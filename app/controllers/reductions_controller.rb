@@ -13,20 +13,17 @@ class ReductionsController < ApplicationController
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last
 
+    if @score.kind.to_sym == :dynamic
+      @average = AverageScore.where("score_kind = 1").last
+    else
+      @average = AverageScore.where("score_kind = 0").last
+    end
+
     @my_carbone = []
     @average_carbone = []
     for i in 0..4
       @my_carbone = @my_carbone << [@categories[i], (@score.detail[i].to_f*1000/12).round(2)]
-      total = 0
-      count = 0
-      User.all.onboarded.each do |user|
-        # ignorer les users qui "jouent" avec le calculateur statique qui faussent la moyenne
-        if user.scores.last.kind.to_sym == :dynamic || user.scores.last.total < 30
-          total = total + user.scores.last.detail[i].to_f
-          count = count + 1
-        end
-      end
-      @average_carbone = @average_carbone << [@categories[i], ((total/count).to_f*1000/12).round(2)]
+      @average_carbone = @average_carbone << [@categories[i], (@average.year_detail[i].to_f*1000/12).round(2)]
     end
 
   end
