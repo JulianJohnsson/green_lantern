@@ -18,19 +18,19 @@
             <div class="col-md-10">
               <div class="row justify-content-center">
                 <div class="col-2">
-                  <%= image_tag "badge_gland_white.png", class: "img-fluid" %>
+                  <%= image_tag "badge_gland#{"_white" if current_user.set_level[2] >= 0}.png", class: "img-fluid" %>
                 </div>
                 <div class="col-2">
-                  <%= image_tag "badge_pousse_white.png", class: "img-fluid" %>
+                  <%= image_tag "badge_pousse#{"_white" if current_user.set_level[2] >= 1}.png", class: "img-fluid" %>
                 </div>
                 <div class="col-2">
-                  <%= image_tag "badge_bambou.png", class: "img-fluid" %>
+                  <%= image_tag "badge_bonsai#{"_white" if current_user.set_level[2] >= 2}.png", class: "img-fluid" %>
                 </div>
                 <div class="col-2">
-                  <%= image_tag "badge_cocotier.png", class: "img-fluid" %>
+                  <%= image_tag "badge_cocotier#{"_white" if current_user.set_level[2] >= 3}.png", class: "img-fluid" %>
                 </div>
                 <div class="col-2">
-                  <%= image_tag "badge_baobab.png", class: "img-fluid" %>
+                  <%= image_tag "badge_baobab#{"_white" if current_user.set_level[2] >= 4}.png", class: "img-fluid" %>
                 </div>
               </div>
             </div>

@@ -53,3 +53,21 @@
 .stepbar.ecommerce li {
   width: 18%;
 }
+
+.stepbar.edit-score li {
+  width: 16%;
+}
+
+.nav-pills.edit-score .nav-item .nav-link {
+  font-weight: bold;
+  color: $brand-dark-blue;
+}
+
+.nav-pills.edit-score .nav-item .nav-link.active {
+  font-weight: bold;
+  color: white;
+}
+
+.stepbar.edit-score li .bulle {
+  font-size: 16px;
+}

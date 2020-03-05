@@ -59,6 +59,7 @@ class Bridge < ApplicationRecord
         @transaction.category_id = BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).category_id unless (@transaction.updated_by_user == true || @transaction.updated_by_similar == true)
         @transaction.user_id = user.id
         @transaction.save
+        TransactionEnrichment.enrich_transaction(@transaction)
     end
     self.last_sync_at = Time.now.to_datetime
     self.save

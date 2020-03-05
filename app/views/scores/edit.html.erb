@@ -1,149 +1,208 @@
-<% content_for :title, "Mon calcul carbone" %>
+<% content_for :title, "Mon mode de vie" %>
 <div class="row justify-content-center">
   <div class="col-4">
-    <%= image_tag("illu1_section3.png", class: "img-fluid") %>
+    <%= image_tag("illu1_section3.png", class: "img-fluid", :style => "opacity:0.5;") %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= form_for @score do |form| %>
-      <h3 class="text-danger"><span class="number">1.</span> Mes habitudes de transport</h3>
-      <div class="card border-danger">
-        <div class="card-body">
-          <h4>Combien parcours-tu de km <strong>par semaine</strong> ...</h4>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🚗_en_voiture_à_essence_ou_diesel_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :week_basic_car, class: "form-control", :autofocus => true %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🔌_en_voiture_électrique_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :week_electric_car, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🛵_en_moto_ou_scooter_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :week_moto, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🚎_en_transport_en_commun_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :week_public_trans, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-        </div>
-        <div class="card-footer text-center">
-          <div class="actions text-center">
-            <%= link_to 'Continuer', "#logement", class: 'btn btn-outline-info btn-round' %>
-          </div>
-        </div>
-      </div>
-      <h3 class="text-rose" id="logement"><span class="number">2.</span> Mon logement</h3>
-      <div class="card border-rose">
-        <div class="card-body">
-          <h4>Comment ton logement est-il chauffé ?</h4>
-          <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
-            <%= form.collection_radio_buttons(:energy, Score.energies, :first, :first) do |b| %>
-              <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
-            <% end %>
-          </div>
-          <h4>Ton contrat d'énergie inclut-il des sources renouvelables ?</h4>
-          <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
-            <%= form.collection_radio_buttons(:enr, Score.enrs, :first, :first) do |b| %>
-              <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
-            <% end %>
-          </div>
-        </div>
-        <div class="card-footer text-center">
-          <div class="actions text-center">
-            <%= link_to 'Continuer', "#alimentation", class: 'btn btn-outline-info btn-round' %>
-          </div>
+    <%= render 'edit_score_stepbar' %>
+    <div class="tab-content tab-space">
+      <div class="tab-pane active" id="link1">
+        <div class="card">
+          <%= form_for @score do |form| %>
+            <div class="card-body">
+              <h4>Comment te déplaces-tu généralement au quotidien ?</h4>
+              <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                <%= form.collection_radio_buttons(:main_transport_mode, Score.main_transport_modes, :first, :first, :selected => @score.main_transport_mode) do |b| %>
+                  <%= b.label(class: "btn btn-sm btn-outline-info", :onchange => "this.form.submit();") { b.radio_button + b.text.humanize } %>
+                <% end %>
+              </div>
+              <h4>Combien de vols long courrier effectues-tu par an (plus de 3h) ?</h4>
+              <div class="form-group bmd-form-group">
+                <%= form.number_field :long_flights, :min => 0, :max => 100,  class: "form-control" %>
+                <small class="form-text text-muted">Indique un nombre de vols aller-retour.</small>
+              </div>
+              <h4>Combien de vols moyen courrier effectues-tu par an (moins de 3h) ?</h4>
+              <div class="form-group bmd-form-group">
+                <%= form.number_field :short_flights, :min => 0, :max => 100, class: "form-control" %>
+                <small class="form-text text-muted">Indique un nombre de vols aller-retour.</small>
+              </div>
+              <h4>Quelle est la taille de ton logement ?</h4>
+              <div class="form-group bmd-form-group text-center">
+                <%= form.number_field :house_size, :min => 0, :max => 1000, class: "form-control" %>
+              </div>
+              <h4>Comment décrirais-tu ton régime alimentaire ?</h4>
+              <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                <%= form.collection_radio_buttons(:regime, Score.regimes, :first, :first) do |b| %>
+                  <%= b.label(class: "btn btn-sm btn-outline-info", :onchange => "this.form.submit();") { b.radio_button + b.text.humanize } %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="actions text-center">
+                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
-      <h3 class="text-primary" id="alimentation"><span class="number">3.</span> Mes habitudes alimentaires</h3>
-      <div class="card border-primary">
-        <div class="card-body">
-          <h4>Combien consommes-tu de repas <strong>par semaine</strong> à base de ...</h4>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🐮_viande_rouge_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :redmeat, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🐔_poulet_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :poultry, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
-          <div class="form-group bmd-form-group">
-            <%= form.label :🧀_produits_laitiers_?, class: 'bmd-label-floating' %>
-            <%= form.number_field :dairy, class: "form-control" %>
-            <span class="bmd-help"></span>
-          </div>
+      <div class="tab-pane" id="link2">
+        <div class="card">
+          <%= form_for @score do |form| %>
+            <div class="card-body">
+              <h4>Combien parcours-tu de km <strong>par semaine</strong> ...</h4>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🚗_en_voiture_à_essence_ou_diesel_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :week_basic_car, class: "form-control", :autofocus => true %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🔌_en_voiture_électrique_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :week_electric_car, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🛵_en_moto_ou_scooter_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :week_moto, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🚎_en_transport_en_commun_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :week_public_trans, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="actions text-center">
+                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
+              </div>
+            </div>
+          <% end %>
         </div>
-        <div class="card-footer text-center">
-          <div class="actions text-center">
+      </div>
+      <div class="tab-pane" id="link3">
+        <div class="card">
+          <%= form_for @score do |form| %>
+            <div class="card-body">
+              <h4>Comment ton logement est-il chauffé ?</h4>
+              <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                <%= form.collection_radio_buttons(:energy, Score.energies, :first, :first) do |b| %>
+                  <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
+                <% end %>
+              </div>
+              <h4>Ton contrat d'énergie inclut-il des sources renouvelables ?</h4>
+              <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                <%= form.collection_radio_buttons(:enr, Score.enrs, :first, :first) do |b| %>
+                  <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="actions text-center">
+                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="link4">
+        <div class="card">
+          <%= form_for @score do |form| %>
+            <div class="card-body">
+              <h4>Combien consommes-tu de repas <strong>par semaine</strong> à base de ...</h4>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🐮_viande_rouge_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :redmeat, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🐔_poulet_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :poultry, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :🧀_produits_laitiers_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :dairy, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="actions text-center">
+                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="link5">
+        <div class="card">
+          <%= form_for @score do |form| %>
+            <div class="card-body">
             <% if @score.kind.to_sym == :static %>
-              <%= link_to 'Continuer', "#biens", class: 'btn btn-outline-info btn-round' %>
-            <% elsif @score.kind.to_sym == :dynamic %>
-              <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-info btn-round' %>
+              <h4>Quel budget mensuel consacres-tu ...</h4>
+              <div class="form-group bmd-form-group">
+                <%= form.label :au_mobilier_et_appareils_ménagers_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :goods_furnitures, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :aux_vêtements_et_chaussures_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :goods_clothes, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label :aux_autres_biens_de_consommation_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :goods_others, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
             <% end %>
-          </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="actions text-center">
+                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
-      <% if @score.kind.to_sym == :static %>
-        <h3 class="text-warning" id="biens"><span class="number">4.</span> Mes biens de consommation</h3>
-        <div class="card border-warning">
-          <div class="card-body">
-            <h4>Quel budget mensuel consacres-tu ...</h4>
-            <div class="form-group bmd-form-group">
-              <%= form.label :au_mobilier_et_appareils_ménagers_?, class: 'bmd-label-floating' %>
-              <%= form.number_field :goods_furnitures, class: "form-control" %>
-              <span class="bmd-help"></span>
+      <div class="tab-pane" id="link6">
+        <div class="card">
+          <%= form_for @score do |form| %>
+            <div class="card-body">
+            <% if @score.kind.to_sym == :static %>
+              <h4>Quel budget mensuel consacres-tu ...</h4>
+              <div class="form-group bmd-form-group">
+                <%= form.label :pour_ta_santé_?, class: 'bmd-label-floating' %>
+                <%= form.number_field :services_health, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label "Pour tes abonnements ?", class: 'bmd-label-floating' %>
+                <%= form.number_field :services_plans, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+              <div class="form-group bmd-form-group">
+                <%= form.label "Pour d'autres services ?", class: 'bmd-label-floating' %>
+                <%= form.number_field :services_others, class: "form-control" %>
+                <span class="bmd-help"></span>
+              </div>
+            <% end %>
             </div>
-            <div class="form-group bmd-form-group">
-              <%= form.label :aux_vêtements_et_chaussures_?, class: 'bmd-label-floating' %>
-              <%= form.number_field :goods_clothes, class: "form-control" %>
-              <span class="bmd-help"></span>
+            <div class="card-footer text-center">
+              <div class="actions text-center">
+                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
+              </div>
             </div>
-            <div class="form-group bmd-form-group">
-              <%= form.label :aux_autres_biens_de_consommation_?, class: 'bmd-label-floating' %>
-              <%= form.number_field :goods_others, class: "form-control" %>
-              <span class="bmd-help"></span>
-            </div>
-          </div>
-          <div class="card-footer text-center">
-            <div class="actions text-center">
-              <%= link_to 'Continuer', "#services", class: 'btn btn-outline-info btn-round' %>
-            </div>
-          </div>
+          <% end %>
         </div>
-        <h3 class="text-violet" id="services"><span class="number">5.</span> Ma consommation de services</h3>
-        <div class="card border-violet">
-          <div class="card-body">
-            <h4>Quel budget mensuel consacres-tu ...</h4>
-            <div class="form-group bmd-form-group">
-              <%= form.label :pour_ta_santé_?, class: 'bmd-label-floating' %>
-              <%= form.number_field :services_health, class: "form-control" %>
-              <span class="bmd-help"></span>
-            </div>
-            <div class="form-group bmd-form-group">
-              <%= form.label "Pour tes abonnements ?", class: 'bmd-label-floating' %>
-              <%= form.number_field :services_plans, class: "form-control" %>
-              <span class="bmd-help"></span>
-            </div>
-            <div class="form-group bmd-form-group">
-              <%= form.label "Pour d'autres services ?", class: 'bmd-label-floating' %>
-              <%= form.number_field :services_others, class: "form-control" %>
-              <span class="bmd-help"></span>
-            </div>
-          </div>
-          <div class="card-footer text-center">
-            <div class="actions text-center">
-              <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-info btn-round' %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $("input:checked").parent().addClass("selected");
+  });
+</script>

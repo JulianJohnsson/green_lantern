@@ -79,21 +79,26 @@ class User < ApplicationRecord
 
   def set_level
     case when self.badges.count < 6
-      then level = "NIVEAU GLAND"
+      then rank = 0
+      level = "NIVEAU GLAND"
       to_next = 6 - self.badges.count
     when self.badges.count < 12 && self.badges.count >= 6
-      then level = "NIVEAU POUSSE"
+      then rank = 1
+      level = "NIVEAU POUSSE"
       to_next = 12 - self.badges.count
     when self.badges.count < 18 && self.badges.count >= 12
-      then level = "NIVEAU BONSAI"
+      then rank = 2
+      level = "NIVEAU BONSAI"
       to_next = 18 - self.badges.count
     when self.badges.count < 24 && self.badges.count >= 18
-      then level = "NIVEAU COCOTIER"
+      then rank = 3
+      level = "NIVEAU COCOTIER"
       to_next = 24 - self.badges.count
     when self.badges.count >= 24
-      then level = "NIVEAU BAOBAB"
+      then rank = 4
+      level = "NIVEAU BAOBAB"
     end
-    return level, to_next
+    return level, to_next, rank
   end
 
   # Include default devise modules. Others available are:
