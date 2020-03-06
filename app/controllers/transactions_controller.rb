@@ -72,12 +72,13 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1
   # PATCH/PUT /transactions/1.json
   def update
-    @transactions = current_user.transactions.category_id(115).order(date: :desc)
-    @categorize = @transactions.where("suggested_category_id IS NULL")
-    @suggested = @transactions.where("suggested_category_id IS NOT NULL")
     respond_to do |format|
       if @transaction.update(transaction_params)
         if params[:transaction][:previous_category] == "115"
+          @transactions = current_user.transactions.category_id(115).order(date: :desc)
+          @categorize = @transactions.where("suggested_category_id IS NULL")
+          @suggested = @transactions.where("suggested_category_id IS NOT NULL")
+
           format.html { redirect_to '/categorize', notice: 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
           format.js { flash.now[:notice] = 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
         elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"
@@ -100,8 +101,6 @@ class TransactionsController < ApplicationController
       },
       current_user
     )
-    @score = current_user.scores.last
-    @score.save
   end
 
   # DELETE /transactions/1
