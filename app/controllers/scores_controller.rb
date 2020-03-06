@@ -118,13 +118,13 @@ class ScoresController < ApplicationController
           format.html { redirect_to "/scores/#{@score.id}/edit_regime" }
         elsif request.referer.include? "/edit_regime"
           AnalyticService.new.track('Regime set', nil, current_user)
-          UserModifier.food(@score.user)
+          FoodModifierJob.perform_later(@score.user)
           current_user.badges <<  Badge.find(5)
           format.html { redirect_to bridges_path }
         else
           AnalyticService.new.track('Score details updated', nil, current_user)
-          UserModifier.food(@score.user)
-          UserModifier.house(@score.user)
+          FoodModifierJob.perform_later(@score.user)
+          HouseModifierJob.perform_later(@score.user)
           format.html { redirect_to '/track', notice: 'Ton impact carbone a bien été mis à jour' }
         end
         format.json { render :show, status: :ok, location: @score }
