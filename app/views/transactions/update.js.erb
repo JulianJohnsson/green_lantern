@@ -4,10 +4,11 @@ setTimeout(function(){
   $('.alert').fadeOut();
 }, 4000);
 
-$("h4#count").text("<%= @categorize.count %> dépenses à catégoriser <% if @suggested.count > 0 %>, <%= @suggested.count %> suggestions à valider<% end %>");
-$("span.notification").text("<%= @transactions.count %>");
-$(".progress-bar").css("width", "<%= 100*(1 - (@transactions.count).to_f / current_user.transactions.carbone_contribution.count.to_f) %>%");
-
+<% if params[:transaction][:previous_category] == "115" %>
+  $("h4#count").text("<%= @categorize.count %> dépenses à catégoriser <% if @suggested.count > 0 %>, <%= @suggested.count %> suggestions à valider<% end %>");
+  $("span.notification").text("<%= @transactions.count %>");
+  $(".progress-bar").css("width", "<%= 100*(1 - (@transactions.count).to_f / current_user.transactions.carbone_contribution.count.to_f) %>%");
+<% end %>
 <% current_user.transactions.where("updated_by_similar = true").each do |t| %>
   $("#transaction_<%= t.id %>").remove();
 <% end %>
