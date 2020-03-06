@@ -1,11 +1,11 @@
 <td>
-  <%= Category.find(transaction.category_id).emoji %>
+  <%= transaction.category.emoji %>
 </td>
 <td>
   <%= transaction.description %>
 </td>
 <td>
-  <%= Category.find(transaction.category_id).name %>
+  <%= transaction.category.name %>
 <td>
   <%= number_with_precision(transaction.carbone, precision: 2).to_s + " Kg" %>
 </td>
