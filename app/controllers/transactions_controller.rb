@@ -38,7 +38,10 @@ class TransactionsController < ApplicationController
   # GET /transactions/1/edit
   def edit
     @modifiers = @transaction.category.modifiers
-    @parent_modifiers = @transaction.category.parent.modifiers
+    if @transaction.category.parent.present?
+      @parent_modifiers = @transaction.category.parent.modifiers
+    end
+
     @comment = Comment.new
 
     @accuracy_tooltip = ""
