@@ -5,7 +5,7 @@
       <div class="card transaction-title" style="background: <%= Category.find(@transaction.parent_category_id).color || "#083849" %>;">
         <div class="row align-items-center text-white">
           <div class="col-1">
-            <%= link_to request.referer.present? ? request.referer : default_path, class: "btn btn-white btn-link" do %>
+            <%= link_to request.referer.present? ? request.referer : "/track", class: "btn btn-white btn-link" do %>
               <i class="material-icons">arrow_back</i>
             <% end %>
           </div>
