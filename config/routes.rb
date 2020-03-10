@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :projects
   resources :matches
+  get '/scores/edit' => 'scores#edit'
   resources :scores
   namespace :admin do
       resources :users
@@ -63,5 +64,6 @@ Rails.application.routes.draw do
 
   resources :transaction_modifiers
   get '/badges' => 'badges#index'
-
+  get '/badges/calcul' => 'badges#calcul'
+  post '/badges/add' => 'badges#add'
 end

@@ -1,6 +1,6 @@
 class ScoresController < ApplicationController
-  before_action :set_score, only:[:edit, :edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_score, only:[:edit, :edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy]
 
   def onboarding
 
@@ -125,6 +125,9 @@ class ScoresController < ApplicationController
           AnalyticService.new.track('Score details updated', nil, current_user)
           FoodModifierJob.perform_later(@score.user)
           HouseModifierJob.perform_later(@score.user)
+          unless current_user.badges.include?(Badge.find(5)) && @score.dairy == nil
+            current_user.badges <<  Badge.find(5)
+          end
           format.html { redirect_to '/track', notice: 'Ton impact carbone a bien été mis à jour' }
         end
         format.json { render :show, status: :ok, location: @score }
@@ -142,7 +145,7 @@ class ScoresController < ApplicationController
   protected
 
   def set_score
-    @score = Score.find(params[:id])
+    @score = Score.find(params[:id] || current_user.scores.last.id)
   end
 
   def score_params

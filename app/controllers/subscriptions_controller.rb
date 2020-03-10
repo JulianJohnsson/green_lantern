@@ -73,6 +73,10 @@ class SubscriptionsController < ApplicationController
 
     current_user.update(options)
 
+    unless current_user.badges.include?(Badge.find(3))
+      current_user.badges <<  Badge.find(3)
+    end
+
     redirect_to '/subscriptions/show', notice: "Ton abonnement a bien été activé, tu vas recevoir une facture par email d’ici quelques minutes"
   end
 

@@ -82,6 +82,10 @@ class TransactionsController < ApplicationController
           @categorize = @transactions.where("suggested_category_id IS NULL")
           @suggested = @transactions.where("suggested_category_id IS NOT NULL")
 
+          unless current_user.badges.include?(Badge.find(10))
+            current_user.badges <<  Badge.find(10)
+          end
+
           format.html { redirect_to '/categorize', notice: 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
           format.js { flash.now[:notice] = 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
         elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"

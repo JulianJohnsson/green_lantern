@@ -18,6 +18,10 @@ class MatchesController < ApplicationController
 
     @match_data = @opponent.get_match_data(current_user)
 
+    unless current_user.badges.include?(Badge.find(12)) && @match_data[3].to_f < @match_data[4].to_f
+      current_user.badges <<  Badge.find(12)
+    end
+
     @options = {
       legend: {
         display: false

@@ -1,0 +1,131 @@
+<% content_for :title, "Comprendre la méthodologie" %>
+<div class="container">
+  <ul class="nav nav-pills nav-pills-primary stepbar edit-score" role="tablist">
+    <li class="nav-item">
+      <a id="link-1" class="nav-link active" data-toggle="tab" href="#link1" role="tab" data-toggle="tab" aria-expanded="true">
+        <div class="emoji">📍</div>
+        <span class="d-none d-md-block">Empreinte carbone ?</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a id="link-2" class="nav-link" data-toggle="tab" href="#link2" role="tab" data-toggle="tab" aria-expanded="true">
+        <div class="emoji">🚗</div>
+        <span class="d-none d-md-block">Méthode de calcul</span>
+      </a>
+    </li>
+  </ul>
+  <div class="row justify-content-center">
+    <div class="col-11">
+      <div class="tab-content tab-space">
+        <div class="tab-pane active" id="link1">
+          <div class="card">
+            <div class="card-body">
+              <div class="text-center">
+                <%= image_tag "calcul_banner.png", class: "img-fluid w-50" %>
+              </div>
+              <p>
+                Les rejets de CO2 provenant des énergies fossiles et des procédés industriels composent près de 70 % des émissions mondiales de gaz à effet de serre, nous enseignent les rapports du GIEC. C’est leur augmentation continue depuis la fin du 19ème siècle qui est responsable du réchauffement climatique actuel, et c’est donc leur réduction qui constitue l’enjeu primordial de notre temps.
+              </p>
+              <p>
+                Il existe trois façons de les mesurer : l’empreinte carbone territoriale calcule les rejets de CO2 à l’intérieur des frontières d’un pays ; l’empreinte de consommation, ceux résultant des usages finaux de biens et services ; et l’empreinte d’extraction, ceux issus de l’extraction d’énergie fossile.
+              </p>
+              <h4>
+                L’empreinte territoriale
+              </h4>
+              <p>
+                Le thermomètre communément utilisé pour mesurer les émissions de gaz à effet de serre d’un pays est l’inventaire national. Lors des COP, c’est lui qu’on utilise pour négocier les engagements des différents pays.
+              </p>
+              <div class="text-center">
+                <%= image_tag "badge_calcul_1.png", :style => "width: 100%; max-width: 250px; margin-bottom: 20px;" %>
+              </div>
+              <h4>
+                L’empreinte de consommation
+              </h4>
+              <p>
+                Celle-ci recense les émissions résultant de l’usage final des biens et services dans une économie. Pour la calculer, il convient de corriger les émissions observées sur le territoire des effets du commerce extérieur : celles induites par les importations de biens et services émetteurs de CO2 doivent être ajoutées ; celles incluses dans les exportations doivent être retranchées.
+              </p>
+              <div class="text-center">
+                <%= image_tag "badge_calcul_2.png", :style => "width: 100%; max-width: 250px; margin-bottom: 20px;" %>
+              </div>
+              <h4>
+                L’empreinte d’extraction
+              </h4>
+              <p>
+                Elle calcule les émissions de CO2 qui résulteront de l’extraction des énergies fossiles, que ces émissions surviennent dans le pays exploitant les gisements ou à l’étranger.
+              </p>
+              <p><strong>
+                Le choix de Carbo : l’empreinte de consommation car elle est plus centrée sur l'utilisateur et illustre les choix de consommation à l’échelle individuelle.
+              </strong></p>
+              <p>
+                D'après les informations que tu nous as fourni, nous estimons que ton empreinte de consommation est de <%= current_user.scores.last.total.round(1) %> tonnes de CO2 par an, soit <%= (current_user.scores.last.total * 1000/12).round(0).to_i %> kgCO2 par mois.
+            </div>
+            <div class="card-footer text-center">
+              <%= link_to "Comprendre la méthode de calcul Carbo", "#link2", class: 'btn btn-round btn-primary', :id => "badge", :role => "tab", "data-toggle" => "tab", "aria-expanded" => "true" %>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="link2">
+          <div class="card">
+            <div class="card-body">
+              <h4>Comment Carbo calcule mes émissions de CO2 ?</h4>
+              <p><strong>
+                D'un côté, il y a la source des dépenses bancaires
+              </strong></p>
+              <p>
+                Nous prenons en compte toutes les émissions de CO2 des dépenses que nous pouvons catégoriser. Chaque fois que tu utilises une carte bancaire, nous analysons le type de dépense (essence, hotel, restaurant, etc.) et nous calculons le volume de CO2 associé.
+              </p>
+              <p>
+                Plus précisément, nous utilisons pour chaque dépense un facteur d’émission monétaire déterminé à partir de données environnementales publiques, reconnues et robustes, principalement issues des travaux de l’ADEME, de l'Aland Index et de la Banque Mondiale.
+              </p>
+              <p>
+                Ce facteur, exprimé en C02 par Euro, permet d’estimer un ordre de grandeur du contenu carbone d’un bien ou d’un service à l’aide de son prix. Il est généralement compris entre quelques dizaines à quelques milliers de gCO2/€.
+              </p>
+              <p><strong>
+                De l'autre, les informations déclaratives que tu peux nous fournir
+              </strong></p>
+              <p>
+                Chaque facteur d'émission monétaire est enrichi à partir de différents paramètres
+                <ul>
+                  <li>
+                    soit liés à la dépense (par exemple, l'appellation bio pour une épicerie)
+                  </li>
+                  <li>
+                    soit personnels ("j'ai déclaré être végétarien"). Pour un produit ou une activité humaine, on comptabilise les émissions en tenant compte de l'énergie primaire et de l'énergie finale de ces services.
+                  </li>
+                </ul>
+              </p>
+              <p>
+                Pour t’aider à comprendre comment tu génères cet impact et pouvoir comparer ce qui est comparable, nous calculons la répartition de ton impact par grande thématique : transport, logement, loisirs, achats de biens et alimentation.
+              </p>
+              <h4>🔬 Le calcul Carbo est-il précis ?</h4>
+              <p>
+                Soyons clairs : les conventions de calcul sont multiples et il est très difficile aujourd’hui de déterminer le contenu carbone exact de chaque produit ou service. Quand on fait ses courses dans un supermarché, la seule information du montant du panier total ne peut suffire à estimer précisément l’impact carbone, qui varie d’un produit à l’autre.
+              </p>
+              <p>
+                Notre objectif n’est pas d’aboutir à un calcul au gramme prêt de ton empreinte carbone mais de pouvoir en suivre facilement l’évolution pour orienter tes choix.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( "#badge" ).click(function() {
+    $.post('/badges/add', {
+      badge: 1
+    });
+    $("#link1").removeClass("active show");
+    $("#link-1").removeClass("active show");
+    $("#link2").addClass("active show");
+    $("#link-2").addClass("active show");
+    $(window).scrollTop();
+  });
+  $( "#link-2" ).click(function() {
+    $.post('/badges/add', {
+      badge: 1
+    });
+  });
+</script>

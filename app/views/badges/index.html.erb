@@ -67,21 +67,51 @@
               </div>
             </div>
             <div class="card-body text-white">
-              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false" >
+              <div id="carousel_badge_<%= v %>" class="carousel slide" data-ride="carousel" data-interval="false" >
                 <div class="carousel-inner">
                   <% @badges.where("family = ?", v).each do |badge| %>
                     <div class="carousel-item <%= "active" if badge == @badges.where("family = ?", v).first %>">
-                      <%= image_tag badge.image, class: "img-fluid w-25" %>
-                      <p>
-                        <%= badge.name %>
-                      </p>
+                      <%= link_to "", "data-toggle" => "modal", "data-target" => "#badgeModal#{badge.id}" do %>
+                        <div>
+                          <%= image_tag badge.image + "#{"_ok" if current_user.badges.include?(badge)}" + ".png", class: "img-fluid w-25" %>
+                          <p class="text-white">
+                            <%= badge.name %>
+                          </p>
+                        </div>
+                      <% end %>
                     </div>
+                    <!-- Modal -->
+                      <div class="modal fade badgeModal" id="badgeModal<%= badge.id %>" tabindex="-1" role="dialog" aria-labelledby="badgeModal<%= badge.id %>Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <%= image_tag badge.image + "#{"_ok" if current_user.badges.include?(badge)}" + ".png" %>
+                              <h4 class="modal-title" id="commentModalLabel"><%= badge.name %></h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -50px;">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <p class="description"><%= badge.short_desc %></p>
+                                  <% if current_user.badges.include?(badge) %>
+                                    <%= link_to "Badge déjà obtenu", badge.url, class: "btn-link btn-primary", :id => "badge_#{badge.id}" %>
+                                  <% else %>
+                                    <%= link_to "Obtenir ce badge", badge.url, class: "btn btn-round btn-primary", :id => "badge_#{badge.id}" %>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   <% end %>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#carousel_badge_<%= v %>" role="button" data-slide="prev">
                   <i class="material-icons">arrow_back</i>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carousel_badge_<%= v %>" role="button" data-slide="next">
                   <i class="material-icons">arrow_forward</i>
                 </a>
               </div>
@@ -92,3 +122,26 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  $( "#badge_7" ).click(function() {
+    $.post('/badges/add', {
+      badge: 7
+    });
+  });
+  $( "#badge_22" ).click(function() {
+    $.post('/badges/add', {
+      badge: 22
+    });
+  });
+  $( "#badge_23" ).click(function() {
+    $.post('/badges/add', {
+      badge: 23
+    });
+  });
+  $( "#badge_24" ).click(function() {
+    $.post('/badges/add', {
+      badge: 24
+    });
+  });
+</script>

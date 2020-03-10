@@ -46,6 +46,11 @@ class User < ApplicationRecord
       DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
       SurveyOptinJob.set(wait: 2.days).perform_later(self)
       DriftDynamicActivationJob.set(wait: 5.days).perform_later(self)
+      user = User.find(self.invited_by_id)
+      unless user.badges.include?(Badge.find(4))
+        user.badges <<  Badge.find(4)
+      end
+
     end
   end
 

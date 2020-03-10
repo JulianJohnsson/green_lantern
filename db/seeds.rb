@@ -286,7 +286,60 @@ if Badge.count == 0
 end
 
 new_badge_list = [
-  ["Découvre ton impact carbone", "badge_1.png", 0],
-  ["Découvre un projet de compensation", "badge_1.png", 0],
-  ["Complète le quizz Carbo", "badge_1.png", 0]
+  ["Découvre ton impact carbone", "badge_1.png", 0, "Un kilogramme de CO2, ça ne parle pas à tout le monde ! Pourquoi parle t-on d’équivalent, quelle différence avec les autres gaz à effet de serre : prends 2 minutes ici pour bien comprendre ce que représente ton empreinte carbone.", ""],
+  ["Découvre un projet de compensation", "badge_2.png",  0, "La compensation est une première étape qui vise à assumer la responsabilité de ses choix quotidiens, Connais-tu les différents projets Carbo qui permettent de compenser ton empreinte carbone ? C’est par ici !", "https://www.hellocarbo.com/compenser-mon-empreinte-carbone/"],
+  ["Teste tes connnaissances carbone", "badge_4.png", 0, "Comprendre en s’amusant, quoi de mieux ? Prends 5 min pour mieux maîtriser les fondamentaux du réchauffement climatique avec le Quizz Carbo ! Seras-tu capable de répondre correctement et maintenir la température de la Terre ?", ""],
+  ["Connecte un compte bancaire", "badge_5.png", 1, "La méthodologie Carbo permet de suivre automatiquement et sans effort ton empreinte carbone. Autorise Carbo à se connecter en toute sécurité à une ou plusieurs banques que tu utilises au quotidien, c’est 100% gratuit !", "/bridges/new"],
+  ["Catégorise tes dépenses", "badge_8.png", 1, "Pour gagner en précision carbone, certaines dépenses requièrent une modification manuelle, par exemple en adaptant la catégorie associée. Tu peux propager cette action aux autres dépenses similaires. Et hop, un badge !", "/categorize"],
+  ["Suggére une précision", "badge_6.png", 1, "Avec ta contribution, on peut bâtir de grandes choses ! À commencer par un meilleur algorithme. Si une évolution te semble utile (nouvelle catégorie, fonctionnalité, etc.), fais le nous savoir ici et remporte un badge !", "/transactions"],
+  ["Remporte un match Carbo", "badge_10.png", 2, "La comparaison sociale, rien de tel pour se bouger le cocotier ! Carbo te permet de comparer ton impact carbone avec celui d’autres profils. As-tu les épaules pour remporter ton premier match, et le badge qui va avec ?", "/matches"],
+  ["Réduire ton impact de XX kg CO2", "badge_9.png", 2, "Réduire ton empreinte carbone, c’est probablement aujourd’hui l’action la plus utile pour contenir le réchauffement climatique et préserver la planète. Pour remporter ce badge, suis tes recommandations Carbo !", "/reduce"],
+  ["Respecte l’accord de Paris", "badge_12.png", 2, "Pour faire simple, cet accord fixe pour chaque individu un plafond maximum annuel à ne pas dépasser pour maintenir la température de la Terre dans des proportions raisonnables. Es tu capable de décrocher ce Graal ? ", "/reduce"],
+  ["Partage ton Profil Carbone", "badge_19.png", 3, "Si tu as appris quelque chose avec Carbo, il y a de fortes chances que tu souhaites en faire bénéficier tes proches ? Ça tombe bien, voici une page publique dédiée à ton profil, prêt à partager ! Clique ici et gagne un badge :)", ""],
+  ["Partage ton Carbomètre", "badge_20.png", 3, "Le Carbomètre est un moyen simple et ludique de se repérer dans la jungle du carbone. De quoi sensibiliser facilement le plus grand nombre ! Remporte un badge en partageant ton Carbomètre en un clic ici >", ""],
+  ["Offre Carbo à un proche", "badge_18.png", 3, "Faire plaisir en agissant pour la planète, c’est possible ! Offre un abonnement Carbo à un proche, de la durée de ton choix, pour lui permettre de soutenir nos projets certifiés et de démarrer une vie neutre en carbone.", "https://www.hellocarbo.com/offrir-cadeau-ecolo/"],
+  ["Ajoute une photo à ton profil", "badge_13.png", 4, "Tout est dit. Cela permet à ton application d’être plus agréable à utiliser, pour toi mais aussi pour toute la communauté ! Mais ça te permettra surtout de partager facilement à tes proches certains visuels, comme le Carbomètre.", ""],
+  ["Installe Carbo sur ton smartphone", "badge_14.png", 4, "Carbo est une application web disponible sur tous tes appareils. Il existe un moyen simple de l’ajouter à l’écran d’accueil de ton téléphone, comme n’importe quelle appli de l’App Store ou Google Play. Mieux, ça prend 15 secondes !", "https://www.hellocarbo.com/questions/problemes-app-web/?#q1"],
+  ["Activer les notifications Carbo", "badge_15.png", 4, "Sois prévenu.e lorsqu’un événement clef apparaît sur ton profil carbone ou dans la communauté Carbo. Un moyen simple de gagner un badge ! Pas d'inquiétude, ces notifications se limiteront toujours à l’essentiel :)", ""],
+  ["Mettre à jour tes ID bancaires", "badge_16.png", 4, "Par mesure de sécurité, la plupart des banques requiert de changer régulièrement le mot de passe associé à ton compte. Quand cela arrive, modifie simplement tes identifiants ici pour ne pas perdre le fil de ton impact carbone !", "/users/edit"],
+  ["Suis Carbo sur Facebook", "badge_23.png", 5, "Tu aimes ce qu’on fait et tu aimerais nous soutenir un peu ? Commence par nous suivre sur les réseaux sociaux, c’est un moyen efficace de faire connaître Carbo à ton entourage...et de remporter un badge facile ;)", "https://www.facebook.com/hellocarbo/"],
+  ["Recommande Carbo sur TrustPilot", "badge_21.png", 5, "Carbo utilise cette plateforme pour consolider les avis vérifiés de la communauté. Recommander Carbo, c’est un moyen efficace de renforcer notre crédibilité pour, à terme, sensibiliser le plus grand nombre. On compte sur toi !", "https://fr.trustpilot.com/evaluate/hellocarbo.com?utm_medium=trustbox&utm_source=TrustBoxReviewCollector"],
+  ["Vote pour tes fonctionnalités", "badge_24.png", 5, "Chez Carbo, on a fait le choix d’être 100% transparent sur notre démarche, en rendant notamment public notre plan de développement. Tu peux même voter pour soutenir et prioriser certaines fonctionnalités ! C’est par ici >", "https://trello.com/b/ikSl3Q07/carbo-suivi-du-d%C3%A9veloppement"],
+  ["Connecte toi à Carbo au moins 5 fois", "badge_22.png", 5, "Tes petites actions quotidiennes peuvent, à long terme, contribuer efficacement à la préservation de notre bonne vieille planète. Mais s’engager à long-terme, ça reste le plus difficile, et Carbo est aussi là pour ça !", ""]
 ]
+
+if Badge.count == 5
+  new_badge_list.each do |name, image, family, short_desc, url|
+    Badge.create(name: name, image: image, family: family, short_desc: short_desc, url: url)
+  end
+end
+
+users = User.where("onboarded IS TRUE")
+users.each do |user|
+  score = user.scores.last
+  if score.regime.present?
+    unless user.badges.include?(Badge.find(5))
+      user.badges <<  Badge.find(5)
+    end
+  end
+  if score.dairy.present?
+    unless user.badges.include?(Badge.find(2))
+      user.badges <<  Badge.find(2)
+    end
+  end
+  if user.subscribed == true
+    unless user.badges.include?(Badge.find(3))
+      user.badges <<  Badge.find(3)
+    end
+  end
+  if User.where("invited_by_id = ?", user.id).present?
+    unless user.badges.include?(Badge.find(4))
+      user.badges <<  Badge.find(4)
+    end
+  end
+  if score.kind.to_sym == :dynamic
+    unless user.badges.include?(Badge.find(9))
+      user.badges <<  Badge.find(9)
+    end
+  end
+end

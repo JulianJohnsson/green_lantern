@@ -21,6 +21,9 @@ class BridgesController < ApplicationController
         AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
         @bridge.save
+        unless current_user.badges.include?(Badge.find(9)) && @score.dairy == nil
+          current_user.badges <<  Badge.find(9)
+        end
         TransactionFetcherJob.perform_later(current_user)
         TransactionFetcherJob.set(wait: 1.minute).perform_later(current_user)
         TransactionFetcherJob.set(wait: 3.minutes).perform_later(current_user)

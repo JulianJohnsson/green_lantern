@@ -51,14 +51,14 @@
   }
 }
 
-#family-3 {
+#family-4 {
   background-color: $brand-danger;
   .progress-bar {
     background: $brand-danger;
   }
 }
 
-#family-4 {
+#family-3 {
   background-color: $brand-violet;
   .progress-bar {
     background: $brand-violet;
@@ -69,5 +69,19 @@
   background-color: $brand-info;
   .progress-bar {
     background: $brand-info;
+  }
+}
+
+.badgeModal {
+  .modal-content {
+    background: white;
+  }
+  img {
+    width: 80px;
+    margin-top: -80px;
+  }
+  .modal-header {
+    display: block;
+    color: $brand-info;
   }
 }
