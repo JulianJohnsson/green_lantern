@@ -1,15 +1,15 @@
 <% content_for :title, "Comprendre la méthodologie" %>
 <div class="container">
-  <ul class="nav nav-pills nav-pills-primary stepbar edit-score" role="tablist">
-    <li class="nav-item">
+  <ul class="nav nav-pills nav-pills-primary stepbar calcul-badge text-center" role="tablist">
+    <li class="nav-item ml-auto">
       <a id="link-1" class="nav-link active" data-toggle="tab" href="#link1" role="tab" data-toggle="tab" aria-expanded="true">
-        <div class="emoji">📍</div>
+        <div class="emoji">👣</div>
         <span class="d-none d-md-block">Empreinte carbone ?</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mr-auto">
       <a id="link-2" class="nav-link" data-toggle="tab" href="#link2" role="tab" data-toggle="tab" aria-expanded="true">
-        <div class="emoji">🚗</div>
+        <div class="emoji">🧮</div>
         <span class="d-none d-md-block">Méthode de calcul</span>
       </a>
     </li>
@@ -19,15 +19,16 @@
       <div class="tab-content tab-space">
         <div class="tab-pane active" id="link1">
           <div class="card">
+            <%= image_tag "calcul_banner_3.png", class: "card-img-top", :style => "opacity: 0.6;" %>
             <div class="card-body">
-              <div class="text-center">
-                <%= image_tag "calcul_banner.png", class: "img-fluid w-50" %>
-              </div>
+              <h4>
+                Pourquoi se concentrer sur le CO2 ?
+              </h4>
               <p>
                 Les rejets de CO2 provenant des énergies fossiles et des procédés industriels composent près de 70 % des émissions mondiales de gaz à effet de serre, nous enseignent les rapports du GIEC. C’est leur augmentation continue depuis la fin du 19ème siècle qui est responsable du réchauffement climatique actuel, et c’est donc leur réduction qui constitue l’enjeu primordial de notre temps.
               </p>
               <p>
-                Il existe trois façons de les mesurer : l’empreinte carbone territoriale calcule les rejets de CO2 à l’intérieur des frontières d’un pays ; l’empreinte de consommation, ceux résultant des usages finaux de biens et services ; et l’empreinte d’extraction, ceux issus de l’extraction d’énergie fossile.
+                Il existe deux façons courantes de les mesurer : l’empreinte carbone territoriale calcule les rejets de CO2 à l’intérieur des frontières d’un pays ; l’empreinte de consommation, ceux résultant des usages finaux de biens et services.
               </p>
               <h4>
                 L’empreinte territoriale
@@ -48,16 +49,15 @@
                 <%= image_tag "badge_calcul_2.png", :style => "width: 100%; max-width: 250px; margin-bottom: 20px;" %>
               </div>
               <h4>
-                L’empreinte d’extraction
+                Le choix de Carbo
               </h4>
               <p>
-                Elle calcule les émissions de CO2 qui résulteront de l’extraction des énergies fossiles, que ces émissions surviennent dans le pays exploitant les gisements ou à l’étranger.
+                Chez Carbo, nous faison le choix de mesurer et suivre ton empreinte de consommation car elle car elle illustre tes choix de consommation à l’échelle individuelle et permet de te responsabiliser sur l'ensemble de tes achats (y compris et surtout de produis venant de loin qui ont une empreinte carbone plus importante).
               </p>
-              <p><strong>
-                Le choix de Carbo : l’empreinte de consommation car elle est plus centrée sur l'utilisateur et illustre les choix de consommation à l’échelle individuelle.
-              </strong></p>
-              <p>
+              <hr>
+              <h4>
                 D'après les informations que tu nous as fourni, nous estimons que ton empreinte de consommation est de <%= current_user.scores.last.total.round(1) %> tonnes de CO2 par an, soit <%= (current_user.scores.last.total * 1000/12).round(0).to_i %> kgCO2 par mois.
+              </h4>
             </div>
             <div class="card-footer text-center">
               <%= link_to "Comprendre la méthode de calcul Carbo", "#link2", class: 'btn btn-round btn-primary', :id => "badge", :role => "tab", "data-toggle" => "tab", "aria-expanded" => "true" %>
@@ -66,6 +66,7 @@
         </div>
         <div class="tab-pane" id="link2">
           <div class="card">
+            <%= image_tag "calcul_banner_4.png", class: "card-img-top", :style => "opacity: 0.5;" %>
             <div class="card-body">
               <h4>Comment Carbo calcule mes émissions de CO2 ?</h4>
               <p><strong>
@@ -94,9 +95,6 @@
                   </li>
                 </ul>
               </p>
-              <p>
-                Pour t’aider à comprendre comment tu génères cet impact et pouvoir comparer ce qui est comparable, nous calculons la répartition de ton impact par grande thématique : transport, logement, loisirs, achats de biens et alimentation.
-              </p>
               <h4>🔬 Le calcul Carbo est-il précis ?</h4>
               <p>
                 Soyons clairs : les conventions de calcul sont multiples et il est très difficile aujourd’hui de déterminer le contenu carbone exact de chaque produit ou service. Quand on fait ses courses dans un supermarché, la seule information du montant du panier total ne peut suffire à estimer précisément l’impact carbone, qui varie d’un produit à l’autre.
@@ -104,6 +102,25 @@
               <p>
                 Notre objectif n’est pas d’aboutir à un calcul au gramme prêt de ton empreinte carbone mais de pouvoir en suivre facilement l’évolution pour orienter tes choix.
               </p>
+              <h4>Découvre ton impact carbone détaillé</h4>
+              <p>
+                Pour t’aider à comprendre comment tu génères cet impact et pouvoir comparer ce qui est comparable, nous calculons la répartition de ton impact par grande thématique :
+              </p>
+              <div class="row justify-content-center text-center" style="padding-top:15px; padding-bottom:20px;">
+                <% Category.parent_categories.each do |cat| %>
+                  <div class="col-md-2 col-4">
+                    <div style="background: <%= cat.color %>; border-radius: 6px; height: 72px; color:white;">
+                      <div class="mt-auto mb-auto" style="vertical-align:middle;"><%= cat.emoji %><br><%= cat.name %></div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <p>
+                Maintenant que tu maitrises la théorie, tu peux passer à la pratique en analysant ton impact carbone en détail
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <%= link_to "Découvre ton impact carbone", "/track", class: 'btn btn-round btn-primary' %>
             </div>
           </div>
         </div>

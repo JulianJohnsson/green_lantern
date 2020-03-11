@@ -85,3 +85,19 @@
     color: $brand-info;
   }
 }
+
+.stepbar.calcul-badge {
+  margin-bottom: -25px;
+}
+
+.stepbar.calcul-badge li {
+  width: 40%;
+  max-width: 300px;
+  span {
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+  .emoji {
+    margin-bottom: 5px;
+  }
+}
