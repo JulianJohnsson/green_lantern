@@ -3,6 +3,7 @@ class BadgesController < ApplicationController
 
   def index
     @badges = Badge.where("active = true")
+    AnalyticService.new.track('Display Badges', nil, current_user)
   end
 
   def calcul
@@ -13,6 +14,7 @@ class BadgesController < ApplicationController
     @badge = Badge.find(params[:badge])
     unless current_user.badges.include?(@badge)
       current_user.badges <<  @badge
+      AnalyticService.new.track('Badge Obtained', nil, current_user)
     end
     render body: nil
   end
