@@ -21,7 +21,7 @@ class Bridge < ApplicationRecord
   def add_item_url(user)
     self.refresh(user)
     response = RestClient::Request.execute(method: :get,
-      url: "https://sync.bankin.com/v2/connect/items/add/url?#{credential}",
+      url: "https://sync.bankin.com/v2/connect/items/add/url?#{credential}&prefill_email=#{user.email}",
       headers: {'Bankin-Version' => '2018-06-15',
       'Authorization' => "Bearer #{token}"}
     )
