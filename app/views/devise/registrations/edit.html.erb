@@ -65,7 +65,7 @@
           <% else %>
             mode dynamique
             <span class="link">
-              <%= link_to "Modifier >", '/users/show', class: '' %>
+              <%= link_to "Modifier >", "/users/#{current_user.id}", class: '' %>
             </span>
           <% end %>
         </div>
