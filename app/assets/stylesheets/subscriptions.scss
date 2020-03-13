@@ -216,3 +216,24 @@ span.currency-spinner > .add:hover {
   background: $brand-primary;
   color: white;
 }
+
+.assurance {
+  .emoji {
+    opacity: 0.4;
+    line-height: 0.8em;
+  }
+  margin-top: 35px;
+  .description {
+    margin-top: 10px;
+    opacity: 0.6;
+    line-height: 1.2em;
+  }
+}
+
+#card-errors {
+  color: $brand-danger;
+}
+
+.StripeElement--invalid {
+  border: 1px solid $brand-danger;
+}

@@ -41,43 +41,49 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    Stripe.api_key = Rails.application.credentials[:stripe][Rails.env.to_sym][:private_key]
+    begin
+      Stripe.api_key = Rails.application.credentials[:stripe][Rails.env.to_sym][:private_key]
 
-    plan_id = params[:plan_id]
-    plan = Stripe::Plan.retrieve(plan_id)
-    token = params[:stripeToken]
+      plan_id = params[:plan_id]
+      plan = Stripe::Plan.retrieve(plan_id)
+      token = params[:stripeToken]
 
-    customer = if current_user.stripe_id?
-                Stripe::Customer.retrieve(current_user.stripe_id)
-               else
-                Stripe::Customer.create(email: current_user.email, source: token)
-              end
+      customer = if current_user.stripe_id?
+                  Stripe::Customer.retrieve(current_user.stripe_id)
+                 else
+                  Stripe::Customer.create(email: current_user.email, source: token)
+                end
 
-    subscription = customer.subscriptions.create(plan: plan.id, quantity: params[:quantity].to_i)
+      subscription = customer.subscriptions.create(plan: plan.id, quantity: params[:quantity].to_i)
 
-    options = {
-      stripe_id: customer.id,
-      stripe_subscription_id: subscription.id,
-      subscribed: true,
-      subscription_plan: params[:plan],
-      subscription_price: params[:quantity].to_i * 0.02,
-      subscription_started_at: DateTime.now.to_date
-    }
+      options = {
+        stripe_id: customer.id,
+        stripe_subscription_id: subscription.id,
+        subscribed: true,
+        subscription_plan: params[:plan],
+        subscription_price: params[:quantity].to_i * 0.02,
+        subscription_started_at: DateTime.now.to_date
+      }
 
-    options.merge!(
-      card_last4: params[:user][:card_last4],
-      card_exp_month: params[:user][:card_exp_month],
-      card_exp_year: params[:user][:card_exp_year],
-      card_type: params[:user][:card_type]
-    ) if params[:user][:card_last4]
+      options.merge!(
+        card_last4: params[:user][:card_last4],
+        card_exp_month: params[:user][:card_exp_month],
+        card_exp_year: params[:user][:card_exp_year],
+        card_type: params[:user][:card_type]
+      ) if params[:user][:card_last4]
 
-    current_user.update(options)
+      current_user.update(options)
 
-    unless current_user.badges.include?(Badge.find(3))
-      current_user.badges <<  Badge.find(3)
+      unless current_user.badges.include?(Badge.find(3))
+        current_user.badges <<  Badge.find(3)
+      end
+
+      redirect_to '/subscriptions/show', notice: "Ton abonnement a bien été activé, tu vas recevoir une facture par email d’ici quelques minutes"
+
+    rescue Stripe::CardError => e
+      AnalyticService.new.track('Payment Error', nil, current_user)
+      redirect_to "/subscriptions/new?plan=#{params[:plan]}&quantity=#{params[:quantity]}", alert: "#{e.error.code} : #{e.error.message}"
     end
-
-    redirect_to '/subscriptions/show', notice: "Ton abonnement a bien été activé, tu vas recevoir une facture par email d’ici quelques minutes"
   end
 
   def destroy

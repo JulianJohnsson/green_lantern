@@ -55,7 +55,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   setTimeout(function(){
     $('.alert').fadeOut();
-    }, 3000);
+    }, 4000);
 });
 
 $(window).scroll(function() {

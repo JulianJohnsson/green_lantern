@@ -1,7 +1,7 @@
 <% content_for :title, "Activer mon forfait" %>
 <p class="big d-none d-md-block" style="margin-left:-25px;">
-  Tu n’es qu’à un pas de compenser ton impact avec Carbo ! <br>
-  Merci de vérifier ton choix et confirmer ton paiement mensuel, tu pourras l'interrompre à tout moment 👉
+  Tu n’es plus qu’à un pas de compenser ton impact avec Carbo ! <br>
+  Merci de vérifier ton choix et de confirmer ton paiement mensuel 👉
 <div class="row justify-content-center">
   <div class="col-md-6 col-lg-5">
     <div class="card payment-detail-card">
@@ -18,19 +18,12 @@
         <p>
           Je compense <%= number_with_precision(@carbone_count*12*100 / (@score.total*1000), precision: 0) %>% de mon impact
         </p>
-        <h5 class="text-<%= @color %>">
-          <small class="description">
-            MON IMPACT<br>
-          </small>
-        </h5>
-        <p>
-          Je retire chaque mois de la route l’équivalent de <%= number_with_precision(@price/2, precision:0) %> voitures
-        </p>
+
         <h5 class="text-<%= @color %>">
           <small class="description">
             MON PAIEMENT<br>
           </small>
-          TOTAL <%= number_with_precision(@price, precision: 2) %>€ TTC / mois
+          <%= number_with_precision(@price, precision: 0) %>€ TTC / mois
         </h5>
       </div>
       <div class="card-footer">
@@ -46,7 +39,7 @@
       <div class="card-body">
         <%= form_tag subscriptions_path, id: "payment-form" do |form| %>
           <div class="field text-left">
-            <label for="card-element" class="">Paiement par carte de crédit ou de débit</label>
+            <label for="card-element" class="">Paiement par carte de crédit</label>
 
             <div id="card-element" class="MyCardElement">
               <!-- A Stripe element will be intserted here !-->
@@ -59,14 +52,38 @@
             <%= hidden_field_tag :plan, params[:plan] %>
           </div>
           <p id="cgv">
-            En activant mon forfait, j'accepte les conditions générales de vente de carbo.
+            En activant mon forfait, j'accepte les
+            <%= link_to "conditions générales de vente de carbo", "https://www.hellocarbo.com/conditions-generales-utilisation/", :target => "_blank" %>.
           </p>
-          <button class="btn btn-lg btn-round btn-primary">Activer mon forfait</button>
+          <button class="btn btn-round btn-primary">Activer mon forfait</button>
           <p class="description">
-            <small><i class="material-icons" style="vertical-align:middle;">lock</i>Paiements sécurisés et réalisés avec Stripe</small>
+            <small><i class="material-icons" style="vertical-align:middle;">lock</i>Paiements sécurisés par Stripe</small>
           </p>
         <% end %>
       </div>
     </div>
+  </div>
+</div>
+<div class="text-center">
+  <h5 class="description" style="opacity:0.6; margin-top:25px;">De bonnes raisons pour passer à l'action</h5>
+</div>
+<div class="row justify-content-center assurance text-center">
+  <div class="col-md-3 col-4">
+    <p class="emoji">🚗</p>
+    <p class="description">
+      Je retire chaque mois de la route <%= number_with_precision(@price/2, precision:0) %> voitures
+    </p>
+  </div>
+  <div class="col-md-3 col-4">
+    <p class="emoji">🏆</p>
+    <p class="description">
+      Je finance des projets certifiés avec un impact à long terme
+    </p>
+  </div>
+  <div class="col-md-3 col-4">
+    <p class="emoji">☝</p>
+    <p class="description">
+      Forfait sans engagement, annulable en 1 clic
+    </p>
   </div>
 </div>

@@ -45,14 +45,14 @@
                 <%= current_user.set_level[1] %>
                 pour passer au niveau suivant, on s’y met ?
               </p>
-              <%= link_to "A propos des niveaux", "", class: "btn btn-outline-white btn-round" %>
+              <%= link_to "Obtenir plus de badges", "#badges", class: "btn btn-outline-white btn-round" %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row text-center">
+  <div class="row text-center" id="badges">
     <% Badge.families.map do |k,v| %>
       <% if @badges.where("family = ?", v).present? %>
         <div class="col-md-6">
@@ -96,9 +96,9 @@
                                 <div class="col-md-12">
                                   <p class="description"><%= badge.short_desc %></p>
                                   <% if current_user.badges.include?(badge) %>
-                                    <%= link_to "Badge déjà obtenu", badge.url, class: "btn-link btn-primary", :id => "badge_#{badge.id}" %>
+                                    <%= link_to "Badge déjà obtenu", badge.url, class: "btn-link btn-primary", :id => "badge_#{badge.id}", :target => "#{'_blank' if badge.url.include?('http')}" %>
                                   <% else %>
-                                    <%= link_to "Obtenir ce badge", badge.url, class: "btn btn-round btn-primary", :id => "badge_#{badge.id}" %>
+                                    <%= link_to "Obtenir ce badge", badge.url, class: "btn btn-round btn-primary", :id => "badge_#{badge.id}", :target => "#{'_blank' if badge.url.include?('http')}" %>
                                   <% end %>
                                 </div>
                               </div>
