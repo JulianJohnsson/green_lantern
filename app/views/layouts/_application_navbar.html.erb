@@ -32,19 +32,18 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
             <% if user_signed_in? %>
-              <%= link_to 'Profil', edit_user_registration_path, class: 'dropdown-item' %>
-              <%= link_to 'Préciser mon calcul', edit_score_path(current_user.scores.last), class: 'dropdown-item' %>
+              <%= link_to '⚙ Paramètres', edit_user_registration_path, class: 'dropdown-item' %>
+              <%= link_to '📋 Mode de vie', edit_score_path(current_user.scores.last), class: 'dropdown-item' %>
+              <%= link_to '🚀 Progression', '/badges', class: 'dropdown-item' %>
               <% if current_user.scores.last.kind.to_sym == :dynamic %>
-                <%= link_to 'Comptes synchronisés', user_path(current_user), class: 'dropdown-item' %>
+                <%= link_to '🔃 Comptes synchronisés', user_path(current_user), class: 'dropdown-item' %>
               <% end %>
+              <%= link_to '🍄 Aide', "https://www.hellocarbo.com/?page_id=199", class: 'dropdown-item', :target=>'_blank' %>
               <div class="dropdown-divider"></div>
-              <%= link_to 'Déconnexion', destroy_user_session_path, :method=>'delete', class: 'dropdown-item' %>
+              <%= link_to '⭕ Déconnexion', destroy_user_session_path, :method=>'delete', class: 'dropdown-item' %>
             <% else %>
               <%= link_to 'Inscription', new_user_registration_path, class: 'btn btn-info btn-raised btn-round' %></li>
             <% end %>
-            <div class="dropdown-divider"></div>
-            <%= link_to 'FAQ', "https://www.hellocarbo.com/?page_id=199", class: 'dropdown-item', :target=>'_blank' %>
-            <%= link_to 'Offrir Carbo 🎁', "https://www.hellocarbo.com/offrir/", class: 'dropdown-item', :target=>'_blank' %>
           </div>
         </li>
       </ul>
