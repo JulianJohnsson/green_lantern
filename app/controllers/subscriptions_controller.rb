@@ -90,8 +90,7 @@ class SubscriptionsController < ApplicationController
     Stripe.api_key = Rails.application.credentials[:stripe][Rails.env.to_sym][:private_key]
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     customer.subscriptions.retrieve(current_user.stripe_subscription_id).delete
-    current_user.update(stripe_subscription_id: nil)
-    current_user.subscribed = false
+    current_user.update(stripe_subscription_id: nil, subscribed: false)
 
     AnalyticService.new.track('Subscription Cancelled', nil, current_user)
 

@@ -101,3 +101,27 @@
     margin-bottom: 5px;
   }
 }
+
+.profile-item {
+  background: #FAFAFA;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  .link {
+    float: right;
+    font-weight: bold;
+  }
+}
+
+h4.description {
+  color: $brand-grey;
+  text-transform: uppercase;
+}
+
+.profile-badge {
+  width: 50%;
+  margin-top: -100px;
+}
