@@ -8,9 +8,19 @@ setTimeout(function(){
   $("h4#count").text("<%= @categorize.count %> dépenses à catégoriser <% if @suggested.count > 0 %>, <%= @suggested.count %> suggestions à valider<% end %>");
   $("span.notification").text("<%= @transactions.count %>");
   $(".progress-bar").css("width", "<%= 100*(1 - (@transactions.count).to_f / current_user.transactions.carbone_contribution.count.to_f) %>%");
-<% end %>
-<% current_user.transactions.where("updated_by_similar = true").each do |t| %>
-  $("#transaction_<%= t.id %>").remove();
+  <% current_user.transactions.where("updated_by_similar = true").each do |t| %>
+    $("#transaction_<%= t.id %>").remove();
+  <% end %>
+  <% @suggested.each do |t| %>
+    $("form#edit_transaction_<%= t.id %>").find("select").val("<%= t.suggested_category_id %>").change();
+    $("#transaction_<%= t.id %>").find(".btn-outline-success").remove();
+    $("form#edit_transaction_<%= t.id %>").append('<%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %><i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i><% end %>');
+  <% end %>
 <% end %>
 
 $("span#carbone").text("<%= number_with_precision(@transaction.carbone, precision: 1) %>");
+
+
+// Ne pas mettre à jour automatiquement les transactions similaires
+// les mettre en suggestion
+// jquery : comment mettre à jour la valeur d'un select ? (pour mettre à jour les suggestions lorsqu'on catégorise une dépense)

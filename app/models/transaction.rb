@@ -6,7 +6,7 @@ class Transaction < ApplicationRecord
 
   before_save :calculate_carbone
 
-  after_update :update_similar_transactions
+  after_update :update_similar_transactions, if: :saved_change_to_category_id?
   after_update :update_score, if: :saved_change_to_carbone?
 
   scope :week, -> {where("date > ?", 1.week.ago)}
@@ -46,13 +46,23 @@ class Transaction < ApplicationRecord
 
   def update_similar_transactions
     if self.updated_by_user == true
-      transactions = self.user.transactions
-      to_update = transactions.where("description = ? AND updated_by_user IS NOT TRUE", self.description)
-      to_update.each do |t|
-        t.previous_category = t.category_id
-        t.category_id = self.category_id
-        t.updated_by_similar = true
-        t.save
+      transactions = self.user.transactions.where("description = ?", self.description)
+      to_check =  transactions.where("updated_by_user IS TRUE")
+      to_update = transactions.where("updated_by_user IS NULL")
+      # check if user has already categorized similar transaction 3 times with always the same category before mapping it automatically.
+      if to_check.present? && to_check.count > 2 && to_check.count == to_check.where("category_id = ?",transactions.last.category_id).count
+        to_update.each do |t|
+          t.previous_category = t.category_id
+          t.category_id = self.category_id
+          t.updated_by_similar = true
+          t.save
+        end
+      # Otherwise, category is just suggested for similar transactions.
+      elsif to_update.present?
+        to_update.each do |t|
+          t.suggested_category_id = self.category_id
+          t.save
+        end
       end
     end
   end
@@ -67,9 +77,10 @@ class Transaction < ApplicationRecord
   def refine_category
     if self.category_id == 115
       transactions = self.user.transactions.where("description = ? AND updated_by_user IS TRUE", self.description)
-      if transactions.present?
+      if transactions.present? && transactions.count > 2 && transactions.count == transactions.where("category_id = ?",transactions.last.category_id).count
         self.category_id = transactions.last.category_id
         self.updated_by_similar = true
+
       elsif Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).present?
         self.suggested_category_id = Transaction.all.where("description = ? AND updated_by_user IS TRUE", self.description).last.category_id
       end

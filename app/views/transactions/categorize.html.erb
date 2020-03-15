@@ -51,15 +51,14 @@
                         <%= form.hidden_field :updated_by_user, :value => true %>
 
                         <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, :include_blank => "Choisir une catégorie", :selected => transaction.suggested_category_id) %>
-
-                    </td>
-                    <td  class="text-right" style="width:12%;">
-                      <% if transaction.suggested_category_id.present? %>
-                        <%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %>
-                          <i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i>
+                        <% if transaction.suggested_category_id.present? %>
+                          <%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %>
+                            <i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i>
+                          <% end %>
                         <% end %>
                       <% end %>
-                      <% end %>
+                    </td>
+                    <td  class="text-right" style="width:12%;">
                       <span data-toggle="modal" data-target="#commentModal_<%= transaction.id %>">
                         <a class='btn btn-fab btn-sm btn-outline-danger' data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Signaler un problème sur la dépense">
                           <i class="material-icons">warning</i>

@@ -32,16 +32,6 @@
         </div>
       </div>
       <div class="card">
-        <div class="spinner">
-          <div class="sk-chase">
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-          </div>
-        </div>
         <div class="card-body">
           <h4 class="text-center">Détail</h4>
 
@@ -59,70 +49,8 @@
               <%= -1 * @transaction.amount %> €
             </div>
           </div>
-          <% if @modifiers || @parent_modifiers %>
-            <div class="row">
-              <div class="col-md-12 modifiers-form">
-                <hr>
-                <p class="description">
-                  Tu peux préciser les options qui s'appliquent à cette dépense parmi les propositions suivantes pour affiner son calcul carbone.
-                </p>
-                <% @modifiers.each do |modifier| %>
-                  <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
-                    <% transaction_modifier = @transaction.transaction_modifiers.find_by_modifier_id(modifier.id) %>
-                  <% else %>
-                    <% transaction_modifier = TransactionModifier.new  %>
-                  <% end %>
-                  <div id="modifier-<%= modifier.id %>">
-                    <%= form_with(model: transaction_modifier, remote: true) do |f| %>
-                    <!-- Formulaire repris dans les vues en js de transaction_modifiers, à mettre à jour également si modification ici -->
-                      <div class="field">
-                        <%= f.hidden_field :origin, :value => "user" %>
-                        <%= f.hidden_field :transaction_id, :value => params[:id] %>
-                        <%= f.hidden_field :modifier_id, :value => modifier.id %>
-                        <%= f.label "#{modifier.name}" %>
-                        <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
-                          <%= f.collection_radio_buttons(:modifier_option_id, modifier.modifier_options, :id, :name, :selected => transaction_modifier.modifier_option_id) do |b| %>
-                            <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button(class: "radio-auto-submit") + b.text.humanize } %>
-                          <% end %>
-                        </div>
-                        <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
-                          <%= link_to transaction_modifier, method: :delete, :remote => true, :id => "delete-modifier-#{transaction_modifier.id}"  do %>
-                            <i class="material-icons">delete</i>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
-                <% @parent_modifiers.each do |modifier| %>
-                  <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
-                    <% transaction_modifier = @transaction.transaction_modifiers.find_by_modifier_id(modifier.id) %>
-                  <% else %>
-                    <% transaction_modifier = TransactionModifier.new  %>
-                  <% end %>
-                  <div id="modifier-<%= modifier.id %>">
-                    <%= form_with(model: transaction_modifier, remote: true) do |f| %>
-                      <div class="field">
-                        <%= f.hidden_field :origin, :value => "user" %>
-                        <%= f.hidden_field :transaction_id, :value => params[:id] %>
-                        <%= f.hidden_field :modifier_id, :value => modifier.id %>
-                        <%= f.label "#{modifier.name}" %>
-                        <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
-                          <%= f.collection_radio_buttons(:modifier_option_id, modifier.modifier_options, :id, :name, :selected => transaction_modifier.modifier_option_id, class: "radio-auto-submit") do |b| %>
-                            <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button(class: "radio-auto-submit") + b.text.humanize } %>
-                          <% end %>
-                        </div>
-                        <% if @transaction.transaction_modifiers.find_by_modifier_id(modifier.id).present? %>
-                          <%= link_to transaction_modifier, method: :delete, :remote => true, :id => "delete-modifier-#{transaction_modifier.id}"  do %>
-                            <i class="material-icons">delete</i>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
+          <% if @modifiers.present? || @parent_modifiers.present? %>
+            <%= render 'transaction_modifiers/form' %>
           <% end %>
         </div>
         <div class="card-footer">
@@ -166,26 +94,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(document).ready(function(){
-    $("input:checked").parent().addClass("selected");
-
-      // hide spinner
-      $(".spinner").hide();
-      // show spinner on AJAX start
-      $(document).ajaxStart(function(){
-        $(".spinner").show();
-      });
-      // hide spinner on AJAX stop
-      $(document).ajaxStop(function(){
-        $(".spinner").hide();
-      });
-  });
-  $('input[type=radio]').on('change', function() {
-   if( $(this).is(':checked') ) {
-      form = this.form;
-      Rails.fire(form, 'submit');
-    }
-  });
-</script>

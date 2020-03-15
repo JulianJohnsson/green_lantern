@@ -14,8 +14,8 @@ $("#modifier-<%= @modifier.id%>").append(new_form);
 
 $("input:checked").parent().addClass("selected");
 $("#modifier-<%= @modifier.id%>").children('form').children('div').children('div').children('label').children('input').on('change', function() {
-   if( $(this).is(':checked') ) {
-      form = this.form;
-      Rails.fire(form, 'submit');
-    }
-  });
+  if( $(this).is(':checked') ) {
+    form = this.form;
+    Rails.fire(form, 'submit');
+  }
+});
