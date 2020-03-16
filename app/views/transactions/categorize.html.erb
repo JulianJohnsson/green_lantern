@@ -45,7 +45,7 @@
                     <td class="d-none d-md-table-cell">
                       <%= transaction.date %>
                     </td>
-                    <td>
+                    <td id="category_select">
                       <%= form_for(transaction, remote: true) do |form| %>
                         <%= form.hidden_field :previous_category, :value => 115 %>
                         <%= form.hidden_field :updated_by_user, :value => true %>
@@ -58,35 +58,49 @@
                         <% end %>
                       <% end %>
                     </td>
-                    <td  class="text-right" style="width:12%;">
-                      <span data-toggle="modal" data-target="#commentModal_<%= transaction.id %>">
-                        <a class='btn btn-fab btn-sm btn-outline-danger' data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Signaler un problème sur la dépense">
-                          <i class="material-icons">warning</i>
-                        </a>
-                      </span>
-                      <!-- Modal -->
-                      <div class="modal fade" id="commentModal_<%= transaction.id %>" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h4 class="modal-title" id="commentModalLabel">Signaler un problème</h4>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <%= form_for @comment do |form| %>
-                                    <div class="field">
-                                      <%= form.hidden_field :transaction_id, :value => transaction.id %>
-                                      <%= form.hidden_field :author, :value => transaction.user.id %>
-                                      <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true %>
+                    <td class="text-right d-none d-md-table-cell" style="width:12%;">
+                      <div class="row">
+                        <div class="col-6">
+                          <%= form_for(transaction, remote: true) do |form| %>
+                            <%= form.hidden_field :previous_category, :value => 115 %>
+                            <%= form.hidden_field :updated_by_user, :value => true %>
+                            <%= form.hidden_field :category_id, :value => 116 %>
+                            <%= button_tag :class => "btn btn-fab btn-sm btn-outline-danger" do %>
+                              <i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Ne pas comptabiliser cette dépense">delete</i>
+                            <% end %>
+                          <% end %>
+                        </div>
+                        <div class="col-6">
+                          <span data-toggle="modal" data-target="#commentModal_<%= transaction.id %>">
+                            <a class='btn btn-fab btn-sm btn-outline-info' data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Signaler un problème sur la dépense">
+                              <i class="material-icons">warning</i>
+                            </a>
+                          </span>
+                          <!-- Modal -->
+                          <div class="modal fade" id="commentModal_<%= transaction.id %>" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="commentModalLabel">Signaler un problème</h4>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <%= form_for @comment do |form| %>
+                                        <div class="field">
+                                          <%= form.hidden_field :transaction_id, :value => transaction.id %>
+                                          <%= form.hidden_field :author, :value => transaction.user.id %>
+                                          <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true %>
+                                        </div>
+                                        <div class="actions">
+                                          <%= form.submit 'Envoyer mon commentaire', class: 'btn btn-primary' %>
+                                        </div>
+                                      <% end %>
                                     </div>
-                                    <div class="actions">
-                                      <%= form.submit 'Envoyer mon commentaire', class: 'btn btn-primary' %>
-                                    </div>
-                                  <% end %>
+                                  </div>
                                 </div>
                               </div>
                             </div>

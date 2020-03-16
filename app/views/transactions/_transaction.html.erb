@@ -4,12 +4,12 @@
 <td>
   <%= transaction.description %>
 </td>
-<td>
+<td class="d-none d-md-table-cell">
   <%= transaction.category.name %>
 <td>
   <%= number_with_precision(transaction.carbone, precision: 2).to_s + " Kg" %>
 </td>
-<td>
+<td class="d-none d-md-table-cell">
   <%= transaction.date %>
 </td>
 <td>

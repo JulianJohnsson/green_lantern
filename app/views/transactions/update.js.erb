@@ -14,13 +14,8 @@ setTimeout(function(){
   <% @suggested.each do |t| %>
     $("form#edit_transaction_<%= t.id %>").find("select").val("<%= t.suggested_category_id %>").change();
     $("#transaction_<%= t.id %>").find(".btn-outline-success").remove();
-    $("form#edit_transaction_<%= t.id %>").append('<%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %><i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i><% end %>');
+    $("#category_select").find("form#edit_transaction_<%= t.id %>").append('<%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %><i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i><% end %>');
   <% end %>
 <% end %>
 
 $("span#carbone").text("<%= number_with_precision(@transaction.carbone, precision: 1) %>");
-
-
-// Ne pas mettre à jour automatiquement les transactions similaires
-// les mettre en suggestion
-// jquery : comment mettre à jour la valeur d'un select ? (pour mettre à jour les suggestions lorsqu'on catégorise une dépense)
