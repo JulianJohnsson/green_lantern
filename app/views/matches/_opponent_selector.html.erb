@@ -19,7 +19,7 @@
           <% Match.user_matches(current_user).sort_by {|m| m.id}.each do |match| %>
             <div class="carousel-item <%= "active" if match.id == (params[:opponent].to_i || 2) %> justify-content-center">
               <div class="col-md-2 col-4">
-                <%= link_to("/matches?opponent=#{match.id}", class: "#{'active' if match.id == (params[:opponent] || 2).to_i}") do %>
+                <%= link_to("/matches?opponent=#{match.id}", class: "#{'active' if match.id == (params[:opponent] || Match.all.first.id).to_i}") do %>
                   <%= image_tag match.image, class: "img-fluid" %>
                   <%= (match.name || User.find(match.opponent_id).email).truncate(14, ommission: '..') %>
                 <% end %>
