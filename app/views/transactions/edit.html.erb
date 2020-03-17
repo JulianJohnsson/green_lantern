@@ -3,16 +3,16 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card transaction-title" style="background: <%= Category.find(@transaction.parent_category_id).color || "#083849" %>;">
-        <div class="row align-items-center text-white">
-          <div class="col-1">
+        <div class="row align-items-center justify-content-center text-white">
+          <div class="col-1 d-none d-md-flex">
             <%= link_to request.referer.present? ? request.referer : "/track", class: "btn btn-white btn-link" do %>
               <i class="material-icons">arrow_back</i>
             <% end %>
           </div>
-          <div class="col-5">
+          <div class="col-md-5 col-7">
             <h3><%= @transaction.description %></h3>
           </div>
-          <div class="col-2" id="accuracy-level" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="<%= @accuracy_tooltip %>">
+          <div class="col-2 d-none d-md-flex" id="accuracy-level" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="<%= @accuracy_tooltip %>">
             <span class="emoji accuracy <%="active" if @transaction.accuracy > 0 %>">
               🎯
             </span>
@@ -42,11 +42,11 @@
             <div class="col-5">
               <%= render 'form', transaction: @transaction %>
             </div>
-            <div class="col-2">
-              <%= @transaction.date %>
+            <div class="col-md-2 text-center">
+              <label>Date </label><%= " " + @transaction.date.to_s %>
             </div>
-            <div class="col-4 text-center">
-              <%= -1 * @transaction.amount %> €
+            <div class="col-md-4 text-center">
+              <label>Montant </label><%= " " +  (-1 * @transaction.amount).to_s %> €
             </div>
           </div>
           <% if @modifiers.present? || @parent_modifiers.present? %>
