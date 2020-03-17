@@ -2,30 +2,8 @@
 <h2 class="description text-center" style="padding-top: 40px;">
   <span style="opacity:0.3;">🤖</span> Mon binôme
 </h2>
-<div class="row justify-content-center align-items-center">
-  <div class="col-md-6">
-    <p class="description">
-      Comparer ton impact, c’est cool et ça permet de mieux te situer et placer tes efforts. Alors, on fait ça avec qui?
-    </p>
-  </div>
-  <div class="col-md-6">
-    <%= render 'opponent_selector' %>
-  </div>
-</div>
-<div class="row justify-content-center">
-  <div class="col-lg-8 col-md-10">
-    <div class="row justify-content-center align-items-center push-invitation" style="margin-top:20px;">
-      <div class="col-md-1 emoji text-center">
-        🤼‍♀
-      </div>
-      <div class="col-lg-5 col-md-7 col-11">
-        <p>Pssss, tu peux inviter d'autres personnes sur Carbo pour pouvoir te comparer à eux</p>
-      </div>
-      <div class="col-lg-3 col-md-4 text-center">
-        <%= link_to 'Comparer avec mes proches', new_user_invitation_path, class: "btn btn-sm btn-round btn-outline-primary" %>
-      </div>
-    </div>
-  </div>
+<div class="row justify-content-center align-items-center text-center">
+  <%= render 'opponent_selector' %>
 </div>
 <h2 class="description text-center" style="padding-top: 40px;">
   <i class="material-icons">whatshot</i> Mon carbomètre
