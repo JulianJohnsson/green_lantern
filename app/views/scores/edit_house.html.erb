@@ -1,5 +1,5 @@
 <div class="row align-items-center justify-content-center">
-  <div class="col-lg-10 col-md-12">
+  <div class="col-lg-11 col-md-12">
     <div class="card">
       <div class="row">
         <div class="col-md-7">
@@ -7,17 +7,17 @@
             <h3><strong>
               <small>Question 5 / 6</small>
               <br>
-             Quelle est la taille de ton logement ?
+             Quelle est la taille de ton logement en m² ?
             </strong></h3>
             <%= form_for @score do |form| %>
               <div class="form-group bmd-form-group text-center">
                 <%= form.number_field :house_size, :value => @default, :min => 0, :max => 1000, class: "form-control" %>
-                <small class="form-text text-muted">La valeur par défaut correspond à la taille moyenne des logements dans ton pays.</small>
+                <small class="form-text text-muted">La surface moyenne d'un logement en <%= @score.country.name %> est de <%= @default %>m²</small>
               </div>
               <div class="actions text-center">
                 <%= form.submit 'Continuer', class: 'btn btn-primary btn-round' %>
               </div>
-              <%= image_tag "house_size.png", class: "img-fluid w-50", :style => "margin-left:auto;margin-right:auto;display:block;" %>
+              <%= image_tag "house_size.png", class: "img-fluid w-50", :style => "margin-left:auto;margin-right:auto;display:block;opacity:0.8;" %>
             <% end %>
           </div>
         </div>

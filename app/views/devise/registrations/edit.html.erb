@@ -13,7 +13,7 @@
     <% when 4 then %>
       <%= image_tag "badge_baobab.png", class: "img-fluid profile-badge" %>
     <% end %>
-    <% if current_user.name %>
+    <% if current_user.name.present? %>
       <h3><%= current_user.name + " " + (current_user.last_name || "") %></h3>
     <% else %>
       <h3><%= current_user.email %></h3>
