@@ -1,7 +1,7 @@
 class Equivalent < ApplicationRecord
   enum kind: [:weight, :production, :distance, :treat]
   def self.random(subject, carbone_amount)
-    equivalent = Equivalent.all.where("carbone_min*2 <= ?", carbone_amount).sample
+    equivalent = Equivalent.all.where("carbone_min*2 <= ?", carbone_amount).sample || Equivalent.all.where("carbone_min*2 <= 1").sample
     sentence = equivalent.build_sentence(subject, carbone_amount)
     return equivalent.id, sentence
   end
