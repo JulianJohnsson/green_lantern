@@ -66,7 +66,7 @@
   color: $brand-dark-blue;
 }
 
-.carousel.opponent-carousel .carousel-item a.active, a:hover {
+.carousel.opponent-carousel .carousel-item a.active, .carousel.opponent-carousel .carousel-item a:hover {
   opacity: 1;
   font-weight: bold;
   color: $brand-primary;
