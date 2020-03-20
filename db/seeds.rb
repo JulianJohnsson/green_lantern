@@ -343,3 +343,42 @@ users.each do |user|
     end
   end
 end
+
+transaction_enrichments_list = [
+  ['CB Uber Paris',145,nil,nil],
+  ['CB Uber',145,nil,nil],
+  ['CB Naturalia',75,12,36],
+  ['CB Lim*ride Cost',147,nil,nil],
+  ['CB Cityscoot',147,nil,nil],
+  ['CB Txfy.me Paris',145,nil,nil],
+  ['CB Carrefour Bio',75,12,36],
+  ['CB Naturalia Paris',75,12,36],
+  ['CB Paris Feni',73,14,39],
+  ['CB Velib Metropole',147,nil,nil],
+  ['Lunchr',73,nil,nil],
+  ['Kapten',145,nil,nil],
+  ['CB Bio C Bon',75,12,36],
+  ['CB Biocoop',75,12,36],
+  ['CB Lime Sarl Paris',147,nil,nil],
+  ['CB Lunchr',73,nil,nil],
+  ['CB Mgp*vinted',34,18,54],
+  ['CB Velib Metropole Paris',147,nil,nil],
+  ['CB Uber *trip',145,nil,nil],
+  ['CB Uber Trip Help.ub',145,nil,nil],
+  ['CB Blablacar',146,nil,nil],
+  ['CB Gb Eurostar Inter',4,21,62],
+  ['CB Kapten Levallois Per',145,nil,nil],
+  ['CB Ubereats',72,nil,nil],
+  ['CB Transport Marce Paris',145,22,65],
+  ['CB Txfy.me',145,nil,nil],
+  ['CB Lim*ride Cost Paris',147,nil,nil],
+  ["CB Autolib'",7,22,65]
+]
+
+if TransactionEnrichment.auto.count < 3
+  transaction_enrichments_list.each do |desc,category,modifier,modifier_option|
+    t = TransactionEnrichment.create(description: desc, category_id: category, modifier_id: modifier, modifier_option_id: modifier_option)
+    t.is_auto = true
+    t.save
+  end
+end
