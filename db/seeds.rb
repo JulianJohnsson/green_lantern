@@ -192,34 +192,6 @@ bridges.each do |bridge|
   end
 end
 
-users = User.where("onboarded IS NULL")
-users.each do |user|
-  if user.scores.present? && user.scores.last.kind.to_sym == :dynamic && user.scores.last.total > 0
-    user.onboarded = true
-  elsif user.scores.present? && user.scores.last.kind.to_sym == :static && user.scores.last.regime.present?
-    user.onboarded = true
-  else
-    user.onboarded = false
-  end
-  user.save
-end
-
-users = User.all
-users.each do |user|
-  if user.scores.present? && user.scores.last.detail.present? && user.reductions == []
-    user.scores.last.refresh_reductions
-  end
-  unless user.notification_preference.present?
-    user.create_notification_preference
-  end
-  if user.scores.present? && user.scores.last.regime.present? && user.user_modifiers == []
-    UserModifier.food(user)
-  end
-  if user.scores.present? && user.scores.last.energy.present?
-    UserModifier.house(user)
-  end
-end
-
 equivalent_list = [
   ["petits voiliers", "⛵", 0, 150],
   ["vaches limousines", "🐮", 0, 750],
@@ -316,30 +288,32 @@ end
 
 users = User.where("onboarded IS TRUE")
 users.each do |user|
-  score = user.scores.last
-  if score.regime.present?
-    unless user.badges.include?(Badge.find(5))
-      user.badges <<  Badge.find(5)
+  if user.badges.count == 0
+    score = user.scores.last
+    if score.regime.present?
+      unless user.badges.include?(Badge.find(5))
+        user.badges <<  Badge.find(5)
+      end
     end
-  end
-  if score.dairy.present?
-    unless user.badges.include?(Badge.find(2))
-      user.badges <<  Badge.find(2)
+    if score.dairy.present?
+      unless user.badges.include?(Badge.find(2))
+        user.badges <<  Badge.find(2)
+      end
     end
-  end
-  if user.subscribed == true
-    unless user.badges.include?(Badge.find(3))
-      user.badges <<  Badge.find(3)
+    if user.subscribed == true
+      unless user.badges.include?(Badge.find(3))
+        user.badges <<  Badge.find(3)
+      end
     end
-  end
-  if User.where("invited_by_id = ?", user.id).present?
-    unless user.badges.include?(Badge.find(4))
-      user.badges <<  Badge.find(4)
+    if User.where("invited_by_id = ?", user.id).present?
+      unless user.badges.include?(Badge.find(4))
+        user.badges <<  Badge.find(4)
+      end
     end
-  end
-  if score.kind.to_sym == :dynamic
-    unless user.badges.include?(Badge.find(9))
-      user.badges <<  Badge.find(9)
+    if score.kind.to_sym == :dynamic
+      unless user.badges.include?(Badge.find(9))
+        user.badges <<  Badge.find(9)
+      end
     end
   end
 end
