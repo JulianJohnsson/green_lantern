@@ -91,3 +91,12 @@
   border-radius: 100px;
   border: 5px solid $brand-primary;
 }
+
+@media screen and (max-width: 767px) {
+  .carousel.opponent-carousel .carousel-control-prev {
+    margin-left: -20px;
+  }
+  .carousel.opponent-carousel .carousel-control-next {
+    margin-right: -20px;
+  }
+}
