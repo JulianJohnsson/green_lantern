@@ -352,7 +352,5 @@ transaction_enrichments_list = [
 if TransactionEnrichment.auto.count < 3
   transaction_enrichments_list.each do |desc,category,modifier,modifier_option|
     t = TransactionEnrichment.create(description: desc, category_id: category, modifier_id: modifier, modifier_option_id: modifier_option)
-    t.is_auto = true
-    t.save
   end
 end
