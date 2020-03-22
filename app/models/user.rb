@@ -87,23 +87,28 @@ class User < ApplicationRecord
       then rank = 0
       level = "NIVEAU GLAND"
       to_next = 6 - self.badges.count
+      image = "badge_gland_white.png"
     when self.badges.count < 12 && self.badges.count >= 6
       then rank = 1
       level = "NIVEAU POUSSE"
       to_next = 12 - self.badges.count
+      image = "badge_pousse_white.png"
     when self.badges.count < 18 && self.badges.count >= 12
       then rank = 2
       level = "NIVEAU BONSAI"
       to_next = 18 - self.badges.count
+      image = "badge_bonsai_white.png"
     when self.badges.count < 24 && self.badges.count >= 18
       then rank = 3
       level = "NIVEAU COCOTIER"
       to_next = 24 - self.badges.count
+      image = "badge_cocotier_white.png"
     when self.badges.count >= 24
       then rank = 4
       level = "NIVEAU BAOBAB"
+      image = "badge_baobab_white.png"
     end
-    return level, to_next, rank
+    return level, to_next, rank, image
   end
 
   # Include default devise modules. Others available are:

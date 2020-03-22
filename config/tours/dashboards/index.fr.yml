@@ -1,36 +1,38 @@
 intro:
   steps:
     1:
-      text: "Bienvenue sur ton dashboard. C'est ici que tu retrouves le résumé des informations sur ton impact carbone. On fait une petite visite guidée ?"
+      title: "Bienvenue sur ton dashboard !"
+      text: "C'est ici que tu retrouves le résumé des informations sur ton impact carbone. Regarde tout ce qu'on peut faire ensemble !"
     2:
+      title: "Niveau actuel : gland"
+      text: "Tu viens de gagner un badge en faisant une 1ère estimation rapide de ton empreinte carbone. Gagne d'autres badges en découvrant toutes les possibilités de Carbo et progresse dans la compréhension ton impact carbone en cliquant ici."
+      attachTo:
+        element: "#animated"
+        placement: "bottom"
+    3:
       title: "SUIVRE"
       text: "Visualise en 1 clin d'oeil ton impact carbone moyen : c'est la quantité de CO2 que tu émets en 1 mois. Tu peux suivre son évolution dans le temps et accéder à plus de détails dans la rubrique Suivre (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#suivre"
         placement: "right"
-    3:
+    4:
       title: "COMPARER"
       text: "Voici l'impact carbone moyen de tous les utilisateurs Carbo pour t'aider à te situer. Tu peux te comparer à des personnalités, aux fondateurs de carbo ou à tes amis et collègues en les invitant depuis la rubrique Comparer (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#comparer"
         placement: "left"
-    4:
+    5:
       title: "REDUIRE"
       text: "Découvre comment réduire significativement ton impact avec un conseil adapté à ton mode de vie. Tu peux visualiser tes points d'améliorations et découvrir d'autres conseils dans la rubrique Réduire (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#reduire"
         placement: "right"
-    5:
+    6:
       title: "COMPENSER"
       text: "Ce que tu n'arrives pas encore à réduire, tu peux le compenser pour assumer ta responsabilité. Découvre et suis les projets (régulièrement mis à jour) permettant d'absorber ton carbone et passe à l'action dans la rubrique Compenser (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#compenser"
         placement: "left"
-    6:
-      text: "Retrouve ton dashboard en un éclair en cliquant ici."
-      attachTo:
-        element: ".navbar-brand"
-        placement: "right"
     7:
       text: "Clique ici pour accéder à ton profil ou modifier tes paramètres."
       attachTo:

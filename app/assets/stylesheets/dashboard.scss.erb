@@ -7,12 +7,27 @@
   background-repeat: no-repeat;
   background-position: left 50% top 50%;
 
+  .badge-container {
+    background-image: url(<%= asset_path('dashboard_badge_background.png') %>);
+    background-size: cover;
+    background-position: left 50% bottom 0%;
+    padding-bottom: 20px;
+    svg {
+      width:50%;
+      transition: transform .5s;
+    }
+    svg:hover {
+      transform: scale(1.05);
+    }
+  }
+
   h2 {
     border: 0;
+    margin-bottom: 10px;
   }
 
   .card {
-    margin-top: 20px;
+    margin-top: 10px;
     transition: transform .5s;
   }
 

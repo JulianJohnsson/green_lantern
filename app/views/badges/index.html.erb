@@ -99,6 +99,9 @@
                                     <%= link_to "Badge déjà obtenu", badge.url, class: "btn-link btn-primary", :id => "badge_#{badge.id}", :target => "#{'_blank' if badge.url.include?('http')}" %>
                                   <% else %>
                                     <%= link_to "Obtenir ce badge", badge.url, class: "btn btn-round btn-primary", :id => "badge_#{badge.id}", :target => "#{'_blank' if badge.url.include?('http')}" %>
+                                    <small>
+                                      <br><%= badge.users.count %> membres ont décroché ce badge
+                                    </small>
                                   <% end %>
                                 </div>
                               </div>

@@ -17,6 +17,9 @@ class DashboardsController < ApplicationController
          current_user.gaid = cookies[:_ga]
          current_user.save
       end
+
+      @level = current_user.set_level
+
       # SUIVRE
       @score = current_user.scores.last
       @rand = rand(3)

@@ -1,0 +1,32 @@
+<%= link_to "/badges", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "#{@level[0]} : il te manque #{@level[1]} badges pour passer au niveau suivant." do %>
+    <svg id="animated" viewbox="0 0 100 100">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#20B2AA;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#0B4C65;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <defs>
+            <pattern id="image" x="0%" y="0%" height="100%" width="100%"
+                     viewBox="0 0 512 512">
+              <image x="0%" y="0%" width="512" height="512" xlink:href='<%= asset_path(@level[3]) %>'></image>
+            </pattern>
+          </defs>
+          <circle cx="50" cy="50" r="45" fill="url(#grad1)"/>
+          <circle cx="50" cy="52.5" r="30" fill="url(#image)"/>
+          <path id="progress" stroke-linecap="round" stroke-width="2" stroke="#fff" fill="none"
+                d="M50 10
+                   a 40 40 0 0 1 0 80
+                   a 40 40 0 0 1 0 -80">
+          </path>
+        </svg>
+<% end %>
+<script>
+  var s = Snap('#animated');
+  var progress = s.select('#progress');
+
+  progress.attr({strokeDasharray: '0, 251.2'});
+  Snap.animate(0,"<%= 251.2*(6-@level[1])/6%>", function( value ) {
+      progress.attr({ 'stroke-dasharray':value+',251.2'});
+  }, 2500);
+</script>

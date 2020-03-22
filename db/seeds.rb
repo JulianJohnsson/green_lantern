@@ -353,4 +353,5 @@ if TransactionEnrichment.auto.count < 3
   transaction_enrichments_list.each do |desc,category,modifier,modifier_option|
     t = TransactionEnrichment.create(description: desc, category_id: category, modifier_id: modifier, modifier_option_id: modifier_option)
   end
+  # make them auto in rails console after, for timeout reasons
 end

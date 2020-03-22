@@ -7,7 +7,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "L’impact de tes choix quotidiens. Carbo, l'application qui calcule automatiquement le poids carbone de toutes tes dépenses bancaires." %>">
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Material+Icons|Baloo|Maven+Pro:400,700,900|Quicksand:400,700&display=swap" %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application', 'https://js.stripe.com/v3/' %>
+    <%= javascript_include_tag 'application', 'https://js.stripe.com/v3/', 'https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js' %>
     <%= csrf_meta_tags %>
     <%= tag :meta, name: "stripe-key", content: Rails.application.credentials[:stripe][Rails.env.to_sym][:public_key] %>
   <link rel="manifest" href="/manifest.json" />
