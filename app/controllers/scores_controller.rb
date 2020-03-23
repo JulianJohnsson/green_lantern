@@ -125,8 +125,9 @@ class ScoresController < ApplicationController
           AnalyticService.new.track('Score details updated', nil, current_user)
           FoodModifierJob.perform_later(@score.user)
           HouseModifierJob.perform_later(@score.user)
-          unless current_user.badges.include?(Badge.find(5)) && @score.dairy == nil
-            current_user.badges <<  Badge.find(5)
+          unless current_user.badges.include?(Badge.find(2)) && @score.dairy == nil
+            current_user.badges <<  Badge.find(2)
+            AnalyticService.new.track('Badge Obtained', nil, current_user)
           end
           format.html { redirect_to '/track', notice: 'Ton impact carbone a bien été mis à jour' }
         end

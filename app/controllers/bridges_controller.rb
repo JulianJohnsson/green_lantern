@@ -23,6 +23,7 @@ class BridgesController < ApplicationController
         @bridge.save
         unless current_user.badges.include?(Badge.find(9)) && @score.dairy == nil
           current_user.badges <<  Badge.find(9)
+          AnalyticService.new.track('Badge Obtained', nil, current_user)
         end
         TransactionFetcherJob.perform_later(current_user)
         TransactionFetcherJob.set(wait: 1.minute).perform_later(current_user)

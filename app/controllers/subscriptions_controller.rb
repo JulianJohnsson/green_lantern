@@ -76,6 +76,7 @@ class SubscriptionsController < ApplicationController
 
       unless current_user.badges.include?(Badge.find(3))
         current_user.badges <<  Badge.find(3)
+        AnalyticService.new.track('Badge Obtained', nil, current_user)
       end
 
       redirect_to '/subscriptions/show', notice: "Ton abonnement a bien été activé, tu vas recevoir une facture par email d’ici quelques minutes"
