@@ -78,7 +78,7 @@
                         <%= number_with_precision(@score.detail[i].to_f*100 / @score.total, precision: 0).to_s + " %" %>
                       </td>
                       <td>
-                        <% @avg_accuracy = @transactions.parent_category_id(c.id).average(:accuracy) %>
+                        <% @avg_accuracy = @transactions.parent_category_id(c.id).average(:accuracy) if @score.kind.to_sym == :dynamic  %>
                         <% if @avg_accuracy %>
                           <% if @avg_accuracy < 2 && @avg_accuracy > 0  %>
                             <span class="badge badge-pill badge-danger">Basse</span>
