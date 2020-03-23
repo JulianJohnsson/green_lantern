@@ -52,15 +52,15 @@
                 Le choix de Carbo
               </h4>
               <p>
-                Chez Carbo, nous faison le choix de mesurer et suivre ton empreinte de consommation car elle car elle illustre tes choix de consommation à l’échelle individuelle et permet de te responsabiliser sur l'ensemble de tes achats (y compris et surtout de produis venant de loin qui ont une empreinte carbone plus importante).
+                Chez Carbo, nous faisons le choix de mesurer et suivre ton empreinte de consommation car elle illustre tes choix de consommation à l’échelle individuelle et permet de te responsabiliser sur l'ensemble de tes achats (y compris et surtout de produits venant de loin qui ont une empreinte carbone plus importante).
               </p>
               <hr>
               <h4>
-                D'après les informations que tu nous as fourni, nous estimons que ton empreinte de consommation est de <%= current_user.scores.last.total.round(1) %> tonnes de CO2 par an, soit <%= (current_user.scores.last.total * 1000/12).round(0).to_i %> kgCO2 par mois.
+                D'après les informations que tu nous as fournies, nous estimons que ton empreinte de consommation est de <%= current_user.scores.last.total.round(1) %> tonnes de CO2 par an, soit <%= (current_user.scores.last.total * 1000/12).round(0).to_i %> kgCO2 par mois.
               </h4>
             </div>
             <div class="card-footer text-center">
-              <%= link_to "Comprendre la méthode de calcul Carbo", "#link2", class: 'btn btn-round btn-primary', :id => "badge", :role => "tab", "data-toggle" => "tab", "aria-expanded" => "true" %>
+              <%= link_to "Comprendre le calcul Carbo", "#link2", class: 'btn btn-round btn-primary', :id => "badge", :role => "tab", "data-toggle" => "tab", "aria-expanded" => "true" %>
             </div>
           </div>
         </div>
