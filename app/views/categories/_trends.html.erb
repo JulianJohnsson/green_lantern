@@ -70,8 +70,54 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-md-6 text-center">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <div class="emoji-title">
+              💳
+              <h4>
+                Mes dernières dépenses
+              </h4>
+            </div>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover">
+              <tbody>
+                <% @transaction_list.each do |transaction| %>
+                  <tr>
+                    <td class="text-left">
+                      <%= Category.find(transaction.category_id).emoji %>
+                    </td>
+                    <td class="text-left" style="width:50%;"><%= truncate(transaction.description, :length => 33) %></td>
+                    <td class="text-right"><%= number_with_precision(transaction.carbone, precision: 1) %> kgCO2</td>
+                    <td class="text-right">
+                      <%= link_to edit_transaction_path(transaction) do %>
+                        <i class='material-icons text-warning' style="font-size:18px;">edit</i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= link_to "Voir tout l'historique", transactions_path, class: "btn btn-outline-warning btn-round" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 text-center">
         <%= render 'analysis_carousel' if @score.top_category.present? %>
+      </div>
+      <div class="col-md-12 text-center">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <div class="emoji-title">
+              📈
+              <h4>Evolution de mon impact carbone</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+          </div>
+        </div>
       </div>
     </div>
   <% else %>
@@ -82,6 +128,7 @@
         </p>
         <div class="img-container">
           <%= image_tag 'suivre_tendances_static.png', class: 'img-fluid' %>
+          <%= image_tag 'suivre_detail_static.png', class: 'img-fluid' %>
           <%= link_to 'Activer le mode dynamique', '/account', class: 'btn btn-round btn-primary' %>
         </div>
       </div>

@@ -1,16 +1,31 @@
-<td>
+<td data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="<%= transaction.category.name %>" >
   <%= transaction.category.emoji %>
 </td>
 <td>
   <%= transaction.description %>
 </td>
-<td class="d-none d-md-table-cell">
-  <%= transaction.category.name %>
 <td>
   <%= number_with_precision(transaction.carbone, precision: 2).to_s + " Kg" %>
 </td>
 <td class="d-none d-md-table-cell">
   <%= transaction.date %>
+</td>
+<td class="d-none d-md-table-cell">
+  <% unless transaction.category_id == 116 %>
+    <%= link_to edit_transaction_path(transaction, :month => params[:month], :category => transaction.category_id) do %>
+      <div data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="<%= 'Tu peux préciser cette dépense pour affiner ton calcul carbone' if transaction.accuracy < 3 %>" >
+            <span class="accuracy <%="active" if transaction.accuracy > 0 %>">
+              🎯
+            </span>
+            <span class="accuracy <%="active" if transaction.accuracy > 1 %>">
+              🎯
+            </span>
+            <span class="accuracy <%="active" if transaction.accuracy > 2 %>">
+              🎯
+            </span>
+          </div>
+    <% end %>
+  <% end %>
 </td>
 <td>
   <%= link_to edit_transaction_path(transaction, :month => params[:month], :category => transaction.category_id) do %>
