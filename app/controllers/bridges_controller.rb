@@ -21,7 +21,7 @@ class BridgesController < ApplicationController
         AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
         @bridge.save
-        ab_finished(:bridge_page)
+        ab_finished(bridge_page: "connect")
         unless current_user.badges.include?(Badge.find(9))
           current_user.badges <<  Badge.find(9)
           AnalyticService.new.track('Badge Obtained', nil, current_user)
@@ -85,7 +85,7 @@ class BridgesController < ApplicationController
       AnalyticService.new.identify(current_user,request)
       AnalyticService.new.track('Bank Connection Asked', nil, current_user)
 
-      @test = ab_test(:bridge_page, "control", "experiment")
+      @test = ab_test({bridge_page: ["start","connect"]}, "control", "experiment")
       if @test == "experiment"
         render :template => '/bridges/connexion'
       end
@@ -105,6 +105,7 @@ class BridgesController < ApplicationController
 
     redirect_url = @bridge.add_item_url(@user)
     AnalyticService.new.track('Bank Connection Started', nil, current_user)
+    ab_finished(bridge_page: "start")
     @bridge.save
 
     respond_to do |format|
