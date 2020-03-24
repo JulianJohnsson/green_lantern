@@ -130,6 +130,7 @@ class ScoresController < ApplicationController
             AnalyticService.new.track('Badge Obtained', nil, current_user)
           end
           format.html { redirect_to '/track', notice: 'Ton impact carbone a bien été mis à jour' }
+          format.js { flash.now[:notice] = 'Ton mode de vie a bien été mis à jour' }
         end
         format.json { render :show, status: :ok, location: @score }
 

@@ -1,0 +1,4 @@
+$("#flash-messages").html('<%= j render "layouts/messages" %>');
+setTimeout(function(){
+  $('.alert').fadeOut();
+}, 4000);
