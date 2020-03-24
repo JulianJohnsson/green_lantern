@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-lg-11 col-md-12 ml-auto mr-auto">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card-body">
+            <h3><strong>
+              <small>Ok <%= current_user.name %>, on se connait déjà un peu mieux !</small>
+              <br>
+              Suis automatiquement l’impact carbone de tes dépenses quotidiennes
+            </strong></h3>
+            <p style="margin-top:30px;">
+              Le mode dynamique est le principal intéret de Carbo, accessible gratuitement et en toute sécurité en connectant tes relévés bancaires.
+            </p>
+            <p><strong>
+              Activer ce mode va te permettre d’identifier sans effort chacun de tes choix les plus carbonés et d’être accompagné pour comprendre et réduire sensiblement l’impact de ton quotidien.
+            </strong></p>
+            <%= form_with(model: @bridge, local: true) do |form| %>
+              <div class="field">
+                <%= form.hidden_field :user_id, :value => @user.id %>
+              </div>
+              <div class="actions text-center">
+                <%= form.submit "Connecter un compte bancaire", :class => 'btn btn-primary btn-round' %>
+                <%= link_to "Non merci, plus tard", '/later', class: 'btn btn-outline-danger btn-round' unless cookies[:bridge] == "true" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-5 d-none d-md-block align-self-center">
+          <div class="card-body security-details text-center" style="height:auto;padding-top:0.9375rem!important;padding-bottom:0.9375rem!important;">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-3">
+                <%= image_tag "security_6.png", class: "img-fluid" %>
+              </div>
+              <div class="col-6 text-left big">
+                <strong>Automatisé</strong>
+              </div>
+            </div>
+            <div class="row align-items-center justify-content-center">
+              <div class="col-3">
+                <%= image_tag "security_2_white.png", class: "img-fluid", :style => "opacity:0.8;" %>
+              </div>
+              <div class="col-6 text-left big">
+                <strong>Sécurisé & chiffré</strong>
+              </div>
+            </div>
+            <div class="row align-items-center justify-content-center">
+              <div class="col-3">
+                <%= image_tag "security_7.png", class: "img-fluid" %>
+              </div>
+              <div class="col-6 text-left big">
+                <strong>Confidentiel</strong>
+              </div>
+            </div>
+            <%= image_tag "powered_by_bridge.png", class: "img-fluid w-50" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center text-center">
+  <div class="col-md-5">
+    <%= image_tag "bridge_testimonial_1.png", class: "w-25", :style => "margin-bottom:10px;" %>
+    <p class="big">
+      <i>On voit instantanément nos dépenses les moins vertueuses à chaque connexion. Carbo capte automatiquement les changements d’habitude et adapte ses recommandations au cours du temps. C’est super efficace pour agir à long terme !</i>
+    </p>
+    <p>
+      <strong>Alice</strong>, Nantes
+    </p>
+    <%= image_tag "bridge_testimonial_2.png", :style => "width: 50px;" %>
+  </div>
+</div>

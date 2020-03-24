@@ -49,13 +49,14 @@ gem 'select2-rails'
 gem 'rollbar'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mailjet'
-gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'abraham'
+gem 'rack-reverse-proxy', :require => 'rack/reverse_proxy'
 gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
 gem "serviceworker-rails"
 gem 'webpush'
 gem 'newrelic_rpm'
+gem 'split', require: 'split/dashboard'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

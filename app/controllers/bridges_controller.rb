@@ -21,7 +21,8 @@ class BridgesController < ApplicationController
         AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
         @bridge.save
-        unless current_user.badges.include?(Badge.find(9)) && @score.dairy == nil
+        ab_finished(:bridge_page)
+        unless current_user.badges.include?(Badge.find(9))
           current_user.badges <<  Badge.find(9)
           AnalyticService.new.track('Badge Obtained', nil, current_user)
         end
@@ -83,6 +84,11 @@ class BridgesController < ApplicationController
       @score = current_user.scores.last
       AnalyticService.new.identify(current_user,request)
       AnalyticService.new.track('Bank Connection Asked', nil, current_user)
+
+      @test = ab_test(:bridge_page, "control", "experiment")
+      if @test == "experiment"
+        render :template => '/bridges/connexion'
+      end
     end
   end
 

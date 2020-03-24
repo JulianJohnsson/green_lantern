@@ -66,4 +66,6 @@ Rails.application.routes.draw do
   get '/badges' => 'badges#index'
   get '/badges/calcul' => 'badges#calcul'
   post '/badges/add' => 'badges#add'
+
+  mount Split::Dashboard, at: 'split'
 end
