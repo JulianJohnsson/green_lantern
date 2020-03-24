@@ -125,7 +125,7 @@ class ScoresController < ApplicationController
           AnalyticService.new.track('Score details updated', nil, current_user)
           FoodModifierJob.perform_later(@score.user)
           HouseModifierJob.perform_later(@score.user)
-          unless current_user.badges.include?(Badge.find(2)) && @score.dairy == nil
+          unless current_user.badges.include?(Badge.find(2))
             current_user.badges <<  Badge.find(2)
             AnalyticService.new.track('Badge Obtained', nil, current_user)
           end
