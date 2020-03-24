@@ -96,34 +96,27 @@
         </div>
       </div>
     </div>
+    <div class="col-md-12 text-center">
+      <div class="card">
+        <div class="card-header card-header-info">
+          <div class="emoji-title">
+            📈
+            <h4>
+              Evolution de mon impact carbone en
+              <%= @category.name %>
+            </h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <%= area_chart current_user.transactions.parent_category_id(@category.id).year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.parent_category_id(@category.id).year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+        </div>
+      </div>
+      </div>
   </div>
   <div class="row justify-content-center bottom-cta">
     <div class="col-md-3 text-center">
       <%= image_tag("reduire_CTA.png", class: "img-fluid") %>
       <%= link_to "Réduire mon impact", "/reduce", class: "btn btn-lg btn-rose btn-round" %>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="moreInfoModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content text-center">
-      <div class="modal-header">
-        <h5 class="modal-title ml-auto mr-auto" id="moreInfoModalLabel"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <i class="material-icons">wb_incandescent</i>
-        <p>
-          À ce stade, notre méthode de calcul comporte plusieurs incertitudes. Améliorez la précision de vos données en fournissant plus d’informations sur vos dépenses.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-lg btn-primary ml-auto mr-auto">Enrichir mes données</button>
-      </div>
     </div>
   </div>
 </div>
