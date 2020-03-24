@@ -25,7 +25,10 @@ class AnalyticService
           referer: "#{request.referer if request.present?}",
           integrations: {
            "Google Analytics" => {
-             clientId: "#{user.gaid if user.present?}"
+              clientId: "#{user.gaid if user.present?}"
+           },
+           "Intercom" => {
+             user_hash: "#{OpenSSL::HMAC.hexdigest("sha256", "pwLHksgcRNZdxQNZlE818_FEIBNt2-JRcfV_VCAA", user.id.to_s) if user.present?}"
            }
           }
         }
@@ -49,6 +52,9 @@ class AnalyticService
           integrations: {
            'Google Analytics' => {
              clientId: "#{user.gaid if user.present?}"
+           },
+           "Intercom" => {
+             user_hash: "#{OpenSSL::HMAC.hexdigest("sha256", "pwLHksgcRNZdxQNZlE818_FEIBNt2-JRcfV_VCAA", user.id.to_s) if user.present?}"
            }
           }
         }
