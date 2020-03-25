@@ -37,7 +37,7 @@
             <div class="col-1 text-right">
               <h4><%= @transaction.category.emoji if @transaction.category %></h4>
             </div>
-            <div class="col-5">
+            <div class="col-5" id="category_select">
               <%= render 'form', transaction: @transaction %>
             </div>
             <div class="col-md-2 text-center">

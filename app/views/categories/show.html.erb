@@ -108,7 +108,9 @@
           </div>
         </div>
         <div class="card-body">
-          <%= area_chart current_user.transactions.parent_category_id(@category.id).year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.parent_category_id(@category.id).year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+          <% if current_user.transactions.parent_category_id(@category.id).year.present? %>
+            <%= area_chart current_user.transactions.parent_category_id(@category.id).year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.parent_category_id(@category.id).year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+          <% end %>
         </div>
       </div>
       </div>

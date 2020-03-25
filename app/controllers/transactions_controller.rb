@@ -59,11 +59,12 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
+    params[:transaction][:amount] = -1 * params[:transaction][:amount].to_f
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to transactions_path, notice: 'La dépense a bien été créée' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -128,6 +129,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:external_id, :description, :raw_description, :amount, :date, :category_id, :user_id, :carbone, :parent_category_id, :updated_by_user, :previous_category)
+      params.require(:transaction).permit(:description, :amount, :date, :category_id, :user_id, :updated_by_user, :previous_category)
     end
 end
