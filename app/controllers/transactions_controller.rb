@@ -60,10 +60,12 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     params[:transaction][:amount] = -1 * params[:transaction][:amount].to_f
+    params[:transaction][:date] = Date.strptime(params[:transaction][:date], '%m/%d/%Y').to_date
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
       if @transaction.save
+        AnalyticService.new.track('Transaction created', nil, current_user)
         format.html { redirect_to transactions_path, notice: 'La dépense a bien été créée' }
         format.json { render :show, status: :created, location: @transaction }
       else

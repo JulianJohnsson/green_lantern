@@ -1,11 +1,14 @@
 <div class="row justify-content-center">
-  <div class="col-lg-6 col-md-8 col-sm-10 text-center">
+  <div class="col-lg-7 col-md-9 col-sm-11 text-center">
     <div class="card">
       <%= form_for @transaction do |form| %>
         <div class="card-header card-header-primary">
           <h4>Entrer une dépense manuellement</h4>
         </div>
         <div class="card-body text-left">
+          <p class="text-center"><small class="text-danger">
+            Attention : n'entre que des dépenses qui n'ont pas été effectuées avec tes comptes synchronisés sur Carbo, sinon tu risques de les comptabiliser 2 fois dans ton impact carbone.
+          </small></p>
           <% if @transaction.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -32,7 +35,7 @@
           </div>
           <div class="form-group bmd-form-group">
             <%= form.label :date %>
-            <%= form.text_field :date, :value => 0.days.ago.to_date, class: 'form-control datetimepicker' %>
+            <%= form.text_field :date, class: 'form-control datetimepicker' %>
           </div>
           <div class="form-group bmd-form-group">
             <%= form.label :catégorie %>
@@ -67,5 +70,13 @@ $('.datetimepicker').datetimepicker({
     clear: 'fa fa-trash',
     close: 'fa fa-remove'
   }
+});
+$(document).ready(function(){
+  // Turn on js-selectable class so that it becomes SELCT 2 tag
+  var $eventSelect=$('select#transaction_category_id').select2({
+    allowClear: true,
+    width: 220,
+    theme: "bootstrap"
+  });
 });
 </script>

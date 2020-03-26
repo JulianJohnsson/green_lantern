@@ -47,10 +47,10 @@
                           <br />
                           <% unless v == 0 %>
                             <%= link_to "/transactions?month=#{params[:month]}&category=#{c.id}" do %>
-                              <%= @transactions.category_id(c.id).count.to_s + " transactions" %>
+                              <%= @transactions.category_id(c.id).count.to_s + " dépenses" %>
                             <% end %>
                           <% else %>
-                           pas de transaction
+                           pas de dépenses
                           <% end %>
                         </small>
                       </td>
@@ -92,6 +92,10 @@
           <%= link_to "/track?month=#{params[:month]}", class: "btn btn-primary btn-link" do %>
             <i class="material-icons">arrow_back</i>
             Retour aux catégories
+          <% end %>
+          <%= link_to new_transaction_path, class: "btn btn-warning btn-link" do %>
+            <i class="material-icons">add</i>
+            Ajouter une dépense
           <% end %>
         </div>
       </div>
