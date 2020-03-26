@@ -12,9 +12,9 @@ setTimeout(function(){
     $("#transaction_<%= t.id %>").remove();
   <% end %>
   <% @suggested.each do |t| %>
-    $("form#edit_transaction_<%= t.id %>").find("select").val("<%= t.suggested_category_id %>").change();
+    $("#transaction_<%= t.id %>").find("select").val("<%= t.suggested_category_id %>").change();
     $("#transaction_<%= t.id %>").find(".btn-outline-success").remove();
-    $("#category_select").find("form#edit_transaction_<%= t.id %>").append('<%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %><i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i><% end %>');
+    $("#transaction_<%= t.id %>").find("select").parent().append('<%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %><i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i><% end %>');
   <% end %>
 <% end %>
 

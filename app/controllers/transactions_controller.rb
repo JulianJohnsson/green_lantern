@@ -89,8 +89,8 @@ class TransactionsController < ApplicationController
             current_user.badges <<  Badge.find(10)
           end
 
-          format.html { redirect_to '/categorize', notice: 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
-          format.js { flash.now[:notice] = 'La dépense (et les dépenses similaires) ont bien été catégorisées, et leur poids carbone a été calculé.' }
+          format.html { redirect_to '/categorize', notice: 'La dépense a bien été catégorisée, et son poids carbone a été calculé.' }
+          format.js { flash.now[:notice] = 'La dépense a bien été catégorisée, et son poids carbone a été calculé.' }
         elsif params[:transaction][:previous_category] != "" && params[:transaction][:previous_category] != "115"
           format.html { redirect_to transactions_path(:month => params[:transaction][:month], :category => params[:transaction][:previous_category]), notice: 'La dépense a bien été mise à jour, ainsi que son poids carbone.' }
           format.js { flash.now[:notice] = "La dépense a bien été catégorisée, et son poids carbone a été calculé." }
