@@ -13,6 +13,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
   after_create_commit :notify_signup
   after_create :create_notification_preference
+  after_create :set_invite_encrypt
   after_update :notify_invited_signup, if: :saved_change_to_invitation_accepted_at?
   after_update :notify_subscription, if: :saved_change_to_stripe_subscription_id?
 
@@ -52,6 +53,12 @@ class User < ApplicationRecord
       end
 
     end
+  end
+
+  def set_invite_encrypt
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+    self.invite_encrypt = crypt.encrypt_and_sign(self.email)
+    self.save
   end
 
   def notify_subscription

@@ -8,7 +8,7 @@
         <div class="carousel-inner">
           <div class="carousel-item justify-content-center <%= "active" unless params[:opponent] %>">
               <div class="col-md-2 col-4">
-                <%= link_to("/users/invitation/new") do %>
+                <%= link_to("", "data-toggle" => "modal", "data-target" => "#invite", "aria-expanded" => "false", "aria-controls" => "modal") do %>
                   <div class="ml-auto mr-auto">
                     +
                   </div>
@@ -38,6 +38,36 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="invite" tabindex="-1" role="dialog" aria-labelledby="inviteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header text-center">
+        <h5 class="modal-title" id="inviteModalLabel">Invite des proches pour te comparer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left">
+        <p>
+          <strong>Partage ton lien d'invitation personnalisé où tu le souhaites </strong>(sms, whatsapp, facebook, ... etc) :
+        </p>
+        <p>
+          <input id="myInput" value="<%= short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}", url_options: { protocol: 'https' }) %>" style="background:transparent;color:white;width:200px;border:none;" />
+          <button class="btn btn-primary btn-round" onclick='myFunction()'>Copier le lien</button>
+        </p>
+        <hr>
+        <p style="margin-top:20px;">
+          Ou laisse-nous leur envoyer un email de ta part : <strong><%= link_to("inviter par mail", "/users/invitation/new") %></strong>
+        </p>
+        <p >
+          Tu seras prévenu dès que quelqu'un s'inscrit avec ton lien pour enfin savoir qui remporte le match !
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- JavaScript for adding slider for multiple images shown at once-->
 <script type="text/javascript">
         $(document).ready(function(){
@@ -51,4 +81,18 @@
                   i.children(":first-child").clone().appendTo($(this))
             })
         });
+function myFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Lien d'invitation copié"+ copyText.value);
+}
 </script>

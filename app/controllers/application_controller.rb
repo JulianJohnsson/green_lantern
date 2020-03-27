@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :capture_utm
+  before_action :capture_invite
 
   protected
 
@@ -12,6 +13,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def capture_invite
+    if params[:invite] != nil && cookies[:invited_by] == nil
+      crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+      decrypted_back = crypt.decrypt_and_verify(params[:invite])
+      user = User.find_by_email(decrypted_back)
+      cookies[:invited_by] = user.id
+    end
+  end
 
   def capture_utm
     unless cookies[:utm]

@@ -150,7 +150,7 @@ class Score < ApplicationRecord
 
   def set_match
     #créer le match + notifier le parrain que son adversaire est prêt
-    if self.user.invitation_accepted_at != nil
+    if self.user.invited_by_id != nil
       Match.create(name: User.find(self.user.invited_by_id).name, user_id: self.user.id, opponent_id: self.user.invited_by_id, badge: 'badge_avatar.png', image: 'avatar.png')
       Match.create(name: self.user.name, user_id: self.user.invited_by_id, opponent_id: self.user.id, badge: 'badge_avatar.png', image: 'avatar.png')
     end

@@ -57,6 +57,7 @@ gem "serviceworker-rails"
 gem 'webpush'
 gem 'newrelic_rpm'
 gem 'split', require: 'split/dashboard'
+gem 'shortener'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

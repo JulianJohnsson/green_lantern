@@ -68,4 +68,6 @@ Rails.application.routes.draw do
   post '/badges/add' => 'badges#add'
 
   mount Split::Dashboard, at: 'split'
+
+  get '/:id' => "shortener/shortened_urls#show"
 end

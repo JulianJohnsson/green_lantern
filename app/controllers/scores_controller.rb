@@ -55,6 +55,13 @@ class ScoresController < ApplicationController
     @score = Score.new
     @countries = Country.all
     AnalyticService.new.track('Onboarding started', nil, current_user)
+
+    if cookies[:invited_by]
+      current_user.invited_by_id = cookies[:invited_by].to_i
+      current_user.save
+      AnalyticService.new.track('Invitation accepted', nil, current_user)
+    end
+
     render :layout => 'bridges'
   end
 

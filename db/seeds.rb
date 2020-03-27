@@ -355,3 +355,11 @@ if TransactionEnrichment.auto.count < 3
   end
   # make them auto in rails console after, for timeout reasons
 end
+
+if User.all.first.invite_encrypt == nil
+  crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+  User.all.each do |u|
+    u.invite_encrypt = crypt.encrypt_and_sign(u.email)
+    u.save
+  end
+end
