@@ -58,6 +58,9 @@ class User < ApplicationRecord
   def set_invite_encrypt
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
     self.invite_encrypt = crypt.encrypt_and_sign(self.email)
+    while self.invite_encrypt.include?("+")
+      self.invite_encrypt = crypt.encrypt_and_sign(self.email)
+    end
   end
 
   def notify_subscription

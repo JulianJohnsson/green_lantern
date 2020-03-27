@@ -360,6 +360,9 @@ if User.all.first.invite_encrypt == nil
   crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
   User.all.each do |u|
     u.invite_encrypt = crypt.encrypt_and_sign(u.email)
+    while u.invite_encrypt.include?("+")
+      u.invite_encrypt = crypt.encrypt_and_sign(u.email)
+    end
     u.save
   end
 end
