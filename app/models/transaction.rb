@@ -103,4 +103,13 @@ class Transaction < ApplicationRecord
     ScoreUpdateJob.perform_later(self.user.scores.last)
   end
 
+  def self.deduplicate
+    transactions = self.group(:external_id).having('count("external_id") > 1').count(:external_id)
+    transactions.each do |key,value|
+      duplicates = Transaction.where(external_id: key)[1..value-1]
+      puts "#{key} = #{duplicates.count}"
+      duplicates.each(&:destroy)
+    end
+  end
+
 end
