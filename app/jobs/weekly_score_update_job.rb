@@ -13,6 +13,7 @@ class WeeklyScoreUpdateJob < ApplicationJob
 
     @bridges.each do |bridge|
       @user = bridge.user
+      ReductionGeneratorJob.perform_later(@user)
       if @user.transactions.week.carbone_contribution.present? && @user.notification_preference.weekly_score_update == true
         @score = @user.transactions.week.carbone_contribution.sum(:carbone).round(0)
         @last_score = @user.transactions.previous_week.carbone_contribution.sum(:carbone).round(0)
