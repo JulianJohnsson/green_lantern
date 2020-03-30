@@ -62,7 +62,7 @@
           <div class="col-6">
             <%= link_to "https://wa.me/?text=Psss...%20à%20mon%20avis,%20mon%20empreinte%20carbone%20est%20meilleure%20que%20la%20tienne%20😎%20Viens%20te%20mesurer%20à%20moi%20sur%20un%20site%20génial,%20Carbo,%20avec%20ce%20lien%20d%E2%80%99invitation%20rien%20que%20pour%20toi%20🥊%20"+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=whatsapp&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#25D366;min-width:150px;", :target => "_blank" do %>
               <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
-              Whatsapp
+              WhatsApp
             <% end %>
           </div>
         </div>
@@ -99,7 +99,7 @@
           ou en partageant ton lien d'invitation
         </p>
         <p>
-          <input id="myInput" value="<%= short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=invitation_link&utm_campaign=invitation_link", url_options: { protocol: 'https' }) %>" style="background:transparent;color:white;width:200px;border:none;" />
+          <input id="myInput" value="<%= short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=invitation_link&utm_campaign=invitation_link", url_options: { protocol: 'https' }) %>" style="background:transparent;color:white;width:230px;border:none;" />
           <%= link_to "", :onclick => 'myFunction()' do %>
             <i class="material-icons" style="font-size:30px;margin-bottom:0;">file_copy</i>
           <% end %>
