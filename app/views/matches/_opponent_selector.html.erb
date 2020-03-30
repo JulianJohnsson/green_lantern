@@ -43,25 +43,66 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content text-center">
       <div class="modal-header text-center">
-        <h5 class="modal-title" id="inviteModalLabel">Invite des proches pour te comparer</h5>
+        <h5 class="modal-title" id="inviteModalLabel">Mais qui a la meilleure empreinte carbone ?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-left">
+      <div class="modal-body">
         <p>
-          <strong>Partage ton lien d'invitation personnalisé où tu le souhaites </strong>(sms, whatsapp, facebook, ... etc) :
+          Pour en avoir le coeur net, invite tes proches à se comparer via
         </p>
-        <p>
-          <input id="myInput" value="<%= short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}", url_options: { protocol: 'https' }) %>" style="background:transparent;color:white;width:200px;border:none;" />
-          <button class="btn btn-primary btn-round" onclick='myFunction()'>Copier le lien</button>
-        </p>
+        <div class="row text-center">
+          <div class="col-6">
+            <%= link_to "https://www.facebook.com/sharer/sharer.php?u="+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=facebook&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#39569c;min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              Facebook
+            <% end %>
+          </div>
+          <div class="col-6">
+            <%= link_to "https://wa.me/?text=Psss...%20à%20mon%20avis,%20mon%20empreinte%20carbone%20est%20meilleure%20que%20la%20tienne%20😎%20Viens%20te%20mesurer%20à%20moi%20sur%20un%20site%20génial,%20Carbo,%20avec%20ce%20lien%20d%E2%80%99invitation%20rien%20que%20pour%20toi%20🥊%20"+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=whatsapp&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#25D366;min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              Whatsapp
+            <% end %>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-6">
+            <%= link_to "https://www.linkedin.com/shareArticle?mini=true&url="+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=linkedin&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#0e76a8;min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              LinkedIn
+            <% end %>
+          </div>
+          <div class="col-6">
+            <%= link_to "https://twitter.com/intent/tweet?text=Aujourd’hui%20j’ai%20découvert%20@hellocarbo,%20un%20outil%20génial%20pour%20réduire%20et%20compenser%20mon%20impact%20carbone%20!%20Viens%20comparer%20ton%20empreinte%20à%20la%20mienne%20avec%20ce%20lien%20d%E2%80%99invitation%20:%20&url=" + short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=twitter&utm_campaign=invitation_link", url_options: { protocol: 'https' }) + "&hashtags=changementclimatique%2Cjagispourlaplanete", class: 'btn btn-round', :style => "background:#00acee;min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              Twitter
+            <% end %>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-6">
+            <%= link_to "sms:&body=Psss...à%20mon%20avis,%20mon%20empreinte%20carbone%20est%20meilleure%20que%20la%20tienne%20:lunettes_de_soleil:%20Viens%20te%20mesurer%20à%20moi%20sur%20un%20site%20génial,%20Carbo,%20avec%20ce%20lien%20d%E2%80%99invitation%20rien%20que%20pour%20toi%20:gant_de_boxe:%20"+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=sms&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#0d7c4a;min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              SMS
+            <% end %>
+          </div>
+          <div class="col-6">
+            <%= link_to "/users/invitation/new", class: 'btn btn-round', :style => "min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              Email
+            <% end %>
+          </div>
+        </div>
         <hr>
-        <p style="margin-top:20px;">
-          Ou laisse-nous leur envoyer un email de ta part : <strong><%= link_to("inviter par mail", "/users/invitation/new") %></strong>
+        <p>
+          ou en partageant ton lien d'invitation
         </p>
-        <p >
-          Tu seras prévenu dès que quelqu'un s'inscrit avec ton lien pour enfin savoir qui remporte le match !
+        <p>
+          <input id="myInput" value="<%= short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=invitation_link&utm_campaign=invitation_link", url_options: { protocol: 'https' }) %>" style="background:transparent;color:white;width:200px;border:none;" />
+          <%= link_to "", :onclick => 'myFunction()' do %>
+            <i class="material-icons" style="font-size:30px;margin-bottom:0;">file_copy</i>
+          <% end %>
         </p>
       </div>
     </div>
@@ -93,6 +134,10 @@ function myFunction() {
   document.execCommand("copy");
 
   /* Alert the copied text */
-  alert("Lien d'invitation copié"+ copyText.value);
+  alert("Lien d'invitation copié");
+  analytics.track("Invitation link copied", {user_id: <%= current_user.id %>});
 }
+$( "#invite .btn-round" ).click(function() {
+  analytics.track("Invitation link shared", {user_id: <%= current_user.id %>});
+  });
 </script>
