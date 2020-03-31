@@ -47,4 +47,8 @@ class MatchesController < ApplicationController
 
   end
 
+  def trends
+    @average_history = AverageScore.where("score_kind = 1")
+  end
+
 end

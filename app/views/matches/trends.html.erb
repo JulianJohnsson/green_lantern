@@ -1,0 +1,17 @@
+<% content_for :title, "Comparer" %>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="emoji-title">
+          📈
+          <h4>Moyenne des utilisateurs dynamiques</h4>
+          <p>Sur 4 semaines glissantes</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+      </div>
+    </div>
+  </div>
+</div>
