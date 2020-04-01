@@ -154,7 +154,7 @@ class ScoresController < ApplicationController
   protected
 
   def set_score
-    @score = Score.find(params[:id] || current_user.scores.last.id)
+    @score = Score.find(current_user.scores.last.id)
   end
 
   def score_params

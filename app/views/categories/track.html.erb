@@ -8,7 +8,7 @@
   </h2>
   <% if @score.kind.to_sym == :static %>
     <p class="description text-center">
-      Tu peux à tout moment <%= link_to 'modifier ton estimation ici', edit_score_path(current_user.scores.last) %> pour gagner en précision ou intégrer un changement dans ton mode de vie !
+      Tu peux à tout moment <%= link_to 'modifier ton estimation ici', '/scores/edit' %> pour gagner en précision ou intégrer un changement dans ton mode de vie !
     </p>
   <% end %>
   <div class="row text-center">

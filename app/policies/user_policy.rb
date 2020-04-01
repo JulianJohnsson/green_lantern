@@ -18,6 +18,10 @@ class UserPolicy
     @current_user.admin? or @current_user == @user
   end
 
+  def accounts?
+    @current_user.admin? or @current_user == @user
+  end
+
   def track_trump?
     @current_user.admin? or @current_user == @user
   end
