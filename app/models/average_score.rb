@@ -78,4 +78,28 @@ class AverageScore < ApplicationRecord
     return avg_total, avg_detail, avg_recent_total, avg_recent_detail
   end
 
+  def self.dynamic_history(date)
+    scores = Score.where("kind = 1 and created_at <= ?", date)
+
+    total = 0
+    count = 0
+    detail = [0,0,0,0,0]
+    categories = [1,12,24,25,70]
+
+    scores.each do |score|
+      transactions = score.user.transactions.carbone_contribution.where("date > ? AND date <= ?", date - 1.month, date)
+      total = total + transactions.sum(:carbone)
+      count = count + 1
+      for i in 0..4
+        detail[i] = detail[i] + transactions.where("parent_category_id = ?", categories[i]).sum(:carbone)
+      end
+    end
+    avg_total = total / count * 12 / 1000
+    avg_detail = [0,0,0,0,0]
+    for i in 0..4
+      avg_detail[i] = detail[i] / count * 12 / 1000
+    end
+    AverageScore.create(score_kind: 1, month_total: avg_total, month_detail: avg_detail, created_at: date)
+  end
+
 end

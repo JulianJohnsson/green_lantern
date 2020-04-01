@@ -14,9 +14,9 @@ class ReductionsController < ApplicationController
     @score = current_user.scores.last
 
     if @score.kind.to_sym == :dynamic
-      @average = AverageScore.where("score_kind = 1").last
+      @average = AverageScore.where("score_kind = 1").order("created_at asc").last
     else
-      @average = AverageScore.where("score_kind = 0").last
+      @average = AverageScore.where("score_kind = 0").order("created_at asc").last
     end
 
     @my_carbone = []

@@ -27,9 +27,9 @@ class DashboardsController < ApplicationController
       # COMPARER
       @carbone = @score.total * 1000/12
       if @score.kind.to_sym == :dynamic
-        @average = AverageScore.where("score_kind = 1").last.year_total * 1000/12
+        @average = AverageScore.where("score_kind = 1").order("created_at asc").last.year_total * 1000/12
       else
-        @average = AverageScore.where("score_kind = 0").last.year_total * 1000/12
+        @average = AverageScore.where("score_kind = 0").order("created_at asc").last.year_total * 1000/12
       end
 
       # REDUIRE
