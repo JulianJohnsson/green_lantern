@@ -9,7 +9,7 @@ class TransactionEnrichment < ApplicationRecord
     enrich = TransactionEnrichment.auto.where("description = ?",transaction.description)
     if enrich.present?
       enrich.each do |e|
-        if e.modifier_id.present?
+        if e.modifier_id.present? && transaction.transaction_modifiers.find_by_modifier_id(e.modifier_id) == nil
           m = TransactionModifier.new
           m.transaction_id = transaction.id
           m.modifier_id = e.modifier_id
@@ -31,7 +31,6 @@ class TransactionEnrichment < ApplicationRecord
       if transactions.present? && self.category_id.present?
         transactions.each do |t|
           t.category_id = self.category_id
-          t.save
         end
       end
       if transactions.present? && self.modifier_id.present?
@@ -44,6 +43,10 @@ class TransactionEnrichment < ApplicationRecord
             m.origin = "auto"
             m.save
           end
+        end
+      end
+      if transactions.present?
+        transactions.each do |t|
           t.save
         end
       end
