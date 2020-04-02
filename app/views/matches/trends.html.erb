@@ -6,11 +6,12 @@
         <div class="emoji-title">
           📈
           <h4>Moyenne des utilisateurs dynamiques</h4>
-          <p>Sur 4 semaines glissantes</p>
+          <p>Impact carbone hebdomadaire</p>
         </div>
       </div>
       <div class="card-body">
-        <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+        <%= line_chart [{ name: 'Moyenne mobile 4 semaines', data: @average_history.map { |a| [a.created_at, a.month_total*1000/(12*4.33)] } },
+        { name: 'Moyenne de la semaine', data: @average_history.map { |a| [a.created_at, a.week_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
       </div>
     </div>
   </div>

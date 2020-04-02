@@ -130,4 +130,30 @@ class AverageScore < ApplicationRecord
     self.save
   end
 
+  def update_week_history
+    scores = Score.where("kind = 1 and created_at <= ?", self.created_at)
+
+    total = 0
+    count = 0
+    detail = [0,0,0,0,0]
+    categories = [1,12,24,25,70]
+
+    scores.each do |score|
+      transactions = score.user.transactions.carbone_contribution.where("date > ? AND date <= ?", self.created_at - 1.week, self.created_at)
+      total = total + transactions.sum(:carbone)
+      count = count + 1
+      for i in 0..4
+        detail[i] = detail[i] + transactions.where("parent_category_id = ?", categories[i]).sum(:carbone)
+      end
+    end
+    avg_total = total / count * 12 / 1000
+    avg_detail = [0,0,0,0,0]
+    for i in 0..4
+      avg_detail[i] = detail[i] / count * 12 / 1000
+    end
+    self.week_total = avg_total
+    self.week_detail = avg_detail
+    self.save
+  end
+
 end
