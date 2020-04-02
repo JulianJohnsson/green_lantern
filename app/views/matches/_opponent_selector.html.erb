@@ -36,6 +36,9 @@
       </div>
     </div>
   </div>
+  <div class="d-md-none">
+    <%= link_to "+ invite tes proches pour te comparer à eux", "", "data-toggle" => "modal", "data-target" => "#invite", "aria-expanded" => "false", "aria-controls" => "modal", class: "btn btn-primary btn-link" %>
+  </div>
 </div>
 
 <!-- Modal -->
@@ -53,7 +56,13 @@
           Pour en avoir le coeur net, invite tes proches, amis ou collègues à se comparer via
         </p>
         <div class="row text-center">
-          <div class="col-6">
+          <div class="col-6 d-md-none">
+            <%= link_to "fb-messenger://share?app_id=2895884647107205&link="+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=messenger&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#39569c;min-width:150px;", :target => "_blank" do %>
+              <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
+              Messenger
+            <% end %>
+          </div>
+          <div class="col-6 d-none d-md-block">
             <%= link_to "https://www.facebook.com/sharer/sharer.php?u="+short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=facebook&utm_campaign=invitation_link", url_options: { protocol: 'https' }), class: 'btn btn-round', :style => "background:#39569c;min-width:150px;", :target => "_blank" do %>
               <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
               Facebook

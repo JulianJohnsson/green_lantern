@@ -33,14 +33,14 @@ class User < ApplicationRecord
       DriftDynamicActivationJob.set(wait: 3.days).perform_later(self)
     else
       AnalyticService.new.identify(self, nil)
-      AnalyticService.new.track('Invitation sent', nil, self)
+      AnalyticService.new.track('Invitation sent', nil, User.find(self.invited_by_id))
     end
   end
 
   def notify_invited_signup
     if self.invitation_created_at != nil
       #AnalyticService.new.track('Signed Up', nil, self)
-      AnalyticService.new.track('Invitation accepted', nil, self)
+      AnalyticService.new.track('Invitation accepted', nil, User.find(self.invited_by_id))
 
       SignupJob.perform_later(self)
       #UserMailer.welcome_email(self).deliver_later

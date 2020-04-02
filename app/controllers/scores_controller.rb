@@ -59,7 +59,7 @@ class ScoresController < ApplicationController
     if cookies[:invited_by]
       current_user.invited_by_id = cookies[:invited_by].to_i
       current_user.save
-      AnalyticService.new.track('Invitation accepted', nil, current_user)
+      AnalyticService.new.track('Invitation accepted', nil, User.find(current_user.invited_by_id))
     end
 
     render :layout => 'bridges'
