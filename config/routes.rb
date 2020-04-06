@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :transactions
   resources :bridges
   resources :comments
+  get 'subscriptions/project' => 'subscriptions#project'
+  get 'subscriptions/formula' => 'subscriptions#formula'
+  get 'subscriptions/payment' => 'subscriptions#payment'
   resources :subscriptions
   resources :projects
   resources :matches

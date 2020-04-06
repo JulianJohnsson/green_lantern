@@ -1,0 +1,90 @@
+<div class="row align-items-center justify-content-center">
+  <div class="col-md-6">
+    <div class="map-parent text-center">
+      <%= image_tag "Pur_Projet_Map.png", :id => 'map' %>
+      <%= image_tag "Pur_Projet_Nord.png", class: 'map-child', :id => 'child-1' %>
+      <%= image_tag "Pur_Projet_Aquitaine.png", class: 'map-child', :id => 'child-2' %>
+      <%= image_tag "Pur_Projet_Med.png", class: 'map-child', :id => 'child-3' %>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-5 text-center" id="project-container">
+    <div class="card card-blog local-project-card active" id="project-1">
+      <div class="card-header card-header-image">
+        <%= image_tag "Projet_Carbo_Nord.png", class: "img-fluid" %>
+        <div class="card-title">
+          <h4>Carbo Nord</h4>
+          <%= image_tag "Picto_Projet_Nord.png", class: "img-fluid w-25" %>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>
+          Situé dans le bassin de la rivière Orinoco en Colombie, le projet Vichada associe reboisement pour une production durable de bois, protection de la biodiversité et de restauration.
+        </p>
+        <%= link_to "Planter mes arbres ici", "/subscriptions/formula?project=1", class: "btn btn-round btn-danger" %>
+      </div>
+      <div class="card-footer">
+        <%= link_to "En savoir plus", "https://www.hellocarbo.com/contribuer-projet-carbo-nord/", class: "btn btn-link btn-primary" %>
+      </div>
+    </div>
+    <div class="card card-blog local-project-card" id="project-2">
+      <div class="card-header card-header-image">
+        <%= image_tag "Projet_Carbo_Aquitaine.png", class: "img-fluid" %>
+        <div class="card-title">
+          <h4>Carbo Loire</h4>
+          <%= image_tag "Picto_Projet_Aquitaine.png", class: "img-fluid w-25" %>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>
+          Situé dans le bassin de la rivière Orinoco en Colombie, le projet Vichada associe reboisement pour une production durable de bois, protection de la biodiversité et de restauration.
+        </p>
+        <%= link_to "Planter mes arbres ici", "/subscriptions/formula?project=2", class: "btn btn-round btn-info" %>
+      </div>
+      <div class="card-footer">
+        <%= link_to "En savoir plus", "https://www.hellocarbo.com/contribuer-projet-carbo-loire/", class: "btn btn-link btn-primary" %>
+      </div>
+    </div>
+    <div class="card card-blog local-project-card" id="project-3">
+      <div class="card-header card-header-image">
+        <%= image_tag "Projet_Carbo_Nord.png", class: "img-fluid" %>
+        <div class="card-title">
+          <h4>Carbo Med</h4>
+          <%= image_tag "Picto_Projet_Med.png", class: "img-fluid w-25" %>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>
+          Situé dans le bassin de la rivière Orinoco en Colombie, le projet Vichada associe reboisement pour une production durable de bois, protection de la biodiversité et de restauration.
+        </p>
+        <%= link_to "Planter mes arbres ici", "/subscriptions/formula?project=3", class: "btn btn-round btn-warning" %>
+      </div>
+      <div class="card-footer">
+        <%= link_to "En savoir plus", "https://www.hellocarbo.com/contribuer-projet-carbo-med/", class: "btn btn-link btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $( "#child-1" ).click(function() {
+    $(".local-project-card.active").removeClass( "active" );
+    $("#project-1").addClass( "active" );
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#project-container").offset().top
+    }, 200);
+  });
+  $( "#child-2" ).click(function() {
+    $(".local-project-card.active").removeClass( "active" );
+    $("#project-2").addClass( "active" );
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#project-container").offset().top
+    }, 200);
+  });
+  $( "#child-3" ).click(function() {
+    $(".local-project-card.active").removeClass( "active" );
+    $("#project-3").addClass( "active" );
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#project-container").offset().top
+    }, 200);
+  });
+</script>

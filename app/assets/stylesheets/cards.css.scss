@@ -19,7 +19,7 @@
   font-family: Maven Pro;
 }
 
-.main-panel .card .card-header, .ecommerce .card .card-header {
+.main-panel .card .card-header, .ecommerce .card .card-header, .card.payment-detail-card .card-header {
   border-radius: 12px 12px 0px 0px;
   padding: 0.5rem 15px;
   margin-left: 0px;
@@ -40,7 +40,7 @@
   border-bottom: 1px solid white;
 }
 
-.main-panel .card .card-header.card-header-info, .card.bg-info {
+.main-panel .card .card-header.card-header-info, .card.bg-info, .card.payment-detail-card .card-header.card-header-info {
   /* background: linear-gradient(60deg, lighten($brand-info, 10%), $brand-info); */
   background: $brand-info;
 }
@@ -49,7 +49,7 @@
   border-bottom: 1px solid white;
 }
 
-.main-panel .card .card-header.card-header-info, .ecommerce .card .card-header.card-header-info {
+.main-panel .card .card-header.card-header-info, .ecommerce .card .card-header.card-header-info, .card.payment-detail-card .card-header.card-header-info {
   box-shadow: none;
 }
 
@@ -59,7 +59,7 @@
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-warning, .ecommerce .card .card-header.card-header-warning {
+.main-panel .card .card-header.card-header-warning, .ecommerce .card .card-header.card-header-warning, .card.payment-detail-card .card-header.card-header-warning {
   /* background: linear-gradient(60deg, lighten($brand-warning, 10%), $brand-warning); */
   background: $brand-warning;
   box-shadow: none;
@@ -70,7 +70,7 @@
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-danger, .ecommerce .card .card-header.card-header-danger {
+.main-panel .card .card-header.card-header-danger, .ecommerce .card .card-header.card-header-danger, .card.payment-detail-card .card-header.card-header-danger {
   background: $brand-danger;
   box-shadow: none;
 }
@@ -80,7 +80,7 @@
   box-shadow: none;
 }
 
-.main-panel .card .card-header.card-header-violet, .ecommerce.card .card-header.card-header-violet {
+.main-panel .card .card-header.card-header-violet, .ecommerce .card .card-header.card-header-violet {
   background: $brand-violet;
   box-shadow: none;
 }

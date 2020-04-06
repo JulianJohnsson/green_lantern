@@ -1,19 +1,23 @@
 <% content_for :title, "Activer mon forfait" %>
-<p class="big d-none d-md-block text-center" style="margin-left:-25px;">
-  Tu n’es plus qu’à un pas de compenser ton impact avec Carbo ! <br>
-  Merci de vérifier ton choix et de confirmer ton paiement mensuel 👉
+<h3 class="text-center text-info" style="margin-bottom:20px;">
+  Tu es prêt pour neutraliser ton impact carbone <%= current_user.name %> !
+</h3>
+<p class="text-center big description">
+  Merci de vérifier ton choix et de confirmer ton paiement mensuel 👇
+</p>
 <div class="row justify-content-center">
-  <div class="col-md-6 col-lg-5">
+  <div class="col-md-5 col-lg-4">
     <div class="card payment-detail-card">
       <div class="card-header card-header-<%= @color %> text-center">
-        <%= image_tag @image, class: 'img-fluid', :style => 'height: 80px;' %>
+        <h5>PROJET <%= @name.upcase %></h5>
+        <%= image_tag @logo, class: 'img-fluid', :style => 'height:70px;margin-bottom:-35px;margin-top:10px;' %>
       </div>
       <div class="card-body">
         <h5 class="text-<%= @color %>">
           <small class="description">
             MON FORFAIT<br>
           </small>
-          FORFAIT <%= params[:plan].upcase %>
+          CARBO <%= params[:plan].upcase %>
         </h5>
         <p>
           Je compense <%= number_with_precision(@carbone_count*12*100 / (@score.total*1000), precision: 0) %>% de mon impact
@@ -28,12 +32,12 @@
       </div>
       <div class="card-footer">
         <strong>
-          <%= link_to "Changer de forfait >", "/subscriptions#anchor" %>
+          <%= link_to "Modifier >", "/subscriptions/project#project-container" %>
         </strong>
       </div>
     </div>
   </div>
-  <div class="col-md-6 col-lg-5">
+  <div class="col-md-5 col-lg-4">
     <div class="card text-center payment-card">
       <h4 class="card-title">Entre tes informations de paiement</h4>
       <div class="card-body">

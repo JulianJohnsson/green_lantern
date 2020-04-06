@@ -1,0 +1,44 @@
+<%= image_tag("contribution_target_background.png", class: "img-fluid w-25", :style => "margin-left:0px;margin-top:19px;") %>
+<div class="card text-center">
+  <div class="card-title img-title" style="margin-top:-60px;">
+    <svg id="animated" viewbox="0 0 100 100" style="width:125px;">
+      <defs>
+        <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#20B2AA;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0B4C65;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="45" fill="url(#grad2)"/>
+      <text x="50%" y="45%" text-anchor="middle" fill="white" font-size="36px" font-weight="100" font-family="Baloo" dy=".3em">100</text>
+      <text x="50%" y="70%" text-anchor="middle" fill="white" font-size="14px" font-weight="100" font-family="Quicksand" dy=".3em">TCO2</text>
+      <path id="progress" stroke-linecap="round" stroke-width="2" stroke="#fff" fill="none"
+                d="M50 10
+                   a 40 40 0 0 1 0 80
+                   a 40 40 0 0 1 0 -80">
+      </path>
+    </svg>
+  </div>
+  <div class="card-body" style="margin-top:-30px;">
+    <p>
+      Notre objectif pour mars : compenser 100 tonnes de CO2. <strong>Atteint à 50 %</strong>
+    </p>
+  </div>
+</div>
+
+<script>
+  var s = Snap('#animated');
+  var progress = s.select('#progress');
+
+  progress.attr({strokeDasharray: '0, 251.2'});
+  Snap.animate(0,"<%= 251.2*(6-3)/6%>", function( value ) {
+      progress.attr({ 'stroke-dasharray':value+',251.2'});
+  }, 2500);
+</script>
+<style>
+svg {
+  transition: transform .5s;
+}
+svg:hover {
+  transform: scale(1.05);
+}
+</style>

@@ -1,0 +1,20 @@
+
+  <div class="stepbar-container">
+      <ul class="stepbar ecommerce">
+        <li class="active">
+          <%= link_to '/subscriptions/project' do %>
+            <div class="bulle">📍</div>
+          <% end %>
+        </li>
+        <li class="<%= "active" if current_page?('/subscriptions/new') %>">
+          <%= link_to "/subscription/formula?project=#{params[:project]}" do %>
+            <div class="bulle">🎁</div>
+          <% end %>
+        </li>
+        <li class="">
+          <div class="bulle">💳</div>
+        </li>
+        <li class=""><div class="bulle">🚀</div></li>
+      </ul>
+  </div>
+

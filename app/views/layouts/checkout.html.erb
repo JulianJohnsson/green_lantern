@@ -4,27 +4,30 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><%= content_for?(:title) ? yield(:title) : "Carbo" %></title>
-    <%= csrf_meta_tags %>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "L’impact de tes choix quotidiens. Carbo, l'application qui calcule automatiquement le poids carbone de toutes tes dépenses bancaires." %>">
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Material+Icons|Baloo|Maven+Pro:400,700,900|Quicksand:400,700&display=swap" %>
-    <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'https://js.stripe.com/v3/', 'https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application', 'https://js.stripe.com/v3/', 'data-turbolinks-track': 'reload' %>
     <%= tag :meta, name: "stripe-key", content: Rails.application.credentials[:stripe][Rails.env.to_sym][:public_key] %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="wrapper">
-      <%= render 'layouts/application_sidebar' %>
-      <div class="main-panel">
-        <%= render 'layouts/application_navbar' %>
-        <div class="content">
-          <div class="container-fluid">
-            <%= render 'layouts/messages' %>
-            <%= yield %>
-          </div>
-        </div>
-        <%= render 'layouts/footer' %>
+    <%= render 'layouts/mini_navigation' %>
+    <div class="onboarding-page" style="padding-top:70px;">
+      <div class="container">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
       </div>
     </div>
+    <%= render 'layouts/footer' %>
+    <%= render 'layouts/messenger' %>
   </body>
   <%= render 'layouts/analytics' %>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+    $('.alert').fadeOut();
+    }, 2000);
+  })
+  </script>
 </html>

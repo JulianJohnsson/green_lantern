@@ -1,0 +1,153 @@
+<% content_for :title, "Choix de la formule" %>
+<div class="row justify-content-center">
+  <div class="col-md-9 col-lg-8">
+    <h2 class="text-center" style="margin-bottom:20px;">
+      Quelle part de ton impact souhaites-tu neutraliser avec
+      <%= "Carbo Nord" %>
+      ?
+    </h2>
+    <p class="description big text-center">
+      A chaque formule correspond un nombre d'arbres plantés pour neutraliser tout ou partie des <span class="text-primary">692 kgCO2</span> que tu génères par mois en moyenne.
+    </p>
+  </div>
+</div>
+<div class="row justify-content-center text-center packs ecommerce">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header card-header-rose">
+        <h3>Carbo Neutre</h3>
+        <p class="big"><%= number_with_precision(@carbone_count * 0.02, precision: 0) %> € / mois</p>
+      </div>
+      <div class="card-body text-left">
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            💎
+          </div>
+          <div class="col-10">
+            Neutraliser <strong>100%</strong> de mon impact
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            🌳
+          </div>
+          <div class="col-10">
+            En plantant ou sauvant chaque mois
+            <strong>
+              <%= number_with_precision(@carbone_count / 150, precision: 0) %> arbres
+            </strong>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid', :style => "width:75%;" %>
+          </div>
+          <div class="col-10">
+            Simple et logique, c’est le choix privilégié des membres Carbo
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= link_to 'Neutraliser mon impact', "/subscriptions/payment?quantity=#{number_with_precision(@carbone_count, precision: 0)}&plan=neutre&project=#{params[:project].to_i}", class: 'btn btn-rose btn-round mr-auto ml-auto' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header card-header-orange">
+        <h3>Carbo Héros</h3>
+        <p class="big"><%= number_with_precision(@carbone_count * 0.04, precision: 0) %> € / mois</p>
+      </div>
+      <div class="card-body text-left">
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            💎
+          </div>
+          <div class="col-10">
+            Neutraliser <strong>200%</strong> de mon impact
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            🌳
+          </div>
+          <div class="col-10">
+            En plantant ou sauvant chaque mois
+            <strong>
+              <%= number_with_precision(@carbone_count / 75, precision: 0) %> arbres
+            </strong>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid', :style => "width:75%;" %>
+          </div>
+          <div class="col-10">
+            Le choix de ceux qui veulent aussi compenser leurs actions passées
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= link_to 'Neutraliser mon impact', "/subscriptions/payment?quantity=#{number_with_precision(@carbone_count*2, precision: 0)}&plan=heros&project=#{params[:project].to_i}", class: 'btn btn-orange btn-round mr-auto ml-auto' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header card-header-violet">
+        <h3>Carbo Libre</h3>
+        <p class="big">Montant au choix</p>
+      </div>
+      <div class="card-body text-left">
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            💎
+          </div>
+          <div class="col-10">
+            Neutraliser comme je l'entends
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-2 emoji text-right">
+            <%= image_tag 'Logo-Carbo-Blue.png', class: 'img-fluid', :style => "width:75%;" %>
+          </div>
+          <div class="col-10">
+            Minimum requis de <strong>3€ / mois</strong>
+          </div>
+        </div>
+        <%= form_tag("/subscriptions/payment", method: :get) do %>
+          <div class="form-group bmd-form-group text-center">
+            <%= number_field_tag :price, 3, :min => 3, :max => 1000, class: 'form-control big-input-info' %>
+            <%= hidden_field_tag :plan, 'libre' %>
+            <%= hidden_field_tag :project, params[:project].to_i %>
+          </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= submit_tag 'Neutraliser mon impact', class: 'btn btn-violet btn-round mr-auto ml-auto' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center" style="opacity:0.8;">
+  <h5>Rejoins <span class="text-primary">Alice</span> et les <span class="text-primary">123</span> autres contributeurs qui agissent pour la planète avec Carbo !</h5>
+</div>
+<div class="row justify-content-center align-items-center text-center" style="opacity:0.8;">
+  <div class="col-md-2 text-right d-none d-md-block">
+    <%= image_tag "bridge_testimonial_1.png", class: "w-50", :style => "margin-bottom:10px;" %>
+  </div>
+  <div class="col-md-6">
+    <p class="description">
+      <i>On voit instantanément nos dépenses les moins vertueuses à chaque connexion. Carbo capte automatiquement les changements d’habitude et adapte ses recommandations au cours du temps. C’est super efficace pour agir à long terme !</i>
+    </p>
+    <p>
+      <strong>Alice</strong>, Nantes
+    </p>
+  </div>
+  <div class="col-md-2 text-left d-none d-md-block">
+    <%= image_tag "bridge_testimonial_2.png", :style => "width: 50px;" %>
+  </div>
+</div>
+
+<%= render '/scores/currency_spinner' %>

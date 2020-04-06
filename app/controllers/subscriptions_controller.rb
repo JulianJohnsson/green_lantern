@@ -10,6 +10,55 @@ class SubscriptionsController < ApplicationController
     AnalyticService.new.track('Subscription Viewed', nil, current_user)
   end
 
+  def project
+  end
+
+  def formula
+    @score = current_user.scores.last
+    @carbone_count = @score.total*1000/12
+    @average_price = 15 * @carbone_count / 750
+    AnalyticService.new.track('Project selected', nil, current_user)
+    render :layout => 'checkout'
+  end
+
+  def payment
+    if current_user.subscribed?
+      redirect_to '/subscriptions/show', notice: "You are already a subscriber!"
+    end
+    @score = current_user.scores.last
+    if params[:quantity] == nil && params[:price].present?
+      params[:quantity] = params[:price].to_i * 50
+    end
+    case params[:plan] when 'neutre'
+      @carbone_count = @score.total*1000/12.to_i
+      @price = @carbone_count * 0.02
+    when 'heros'
+      @carbone_count = @score.total*1000/12.to_i * 2
+      @price = @carbone_count * 0.02
+    when 'neutre'
+      @price = params[:price].to_i
+      @carbone_count = @price * 50
+    end
+    case params[:project] when "1"
+      @color = 'danger'
+      @name = 'Carbo Nord'
+      @logo = "Picto_Projet_Nord.png"
+      @image = "Projet_Carbo_Nord.png"
+    when "2"
+      @color = 'info'
+      @name = 'Carbo Loire'
+      @logo = "Picto_Projet_Aquitaine.png"
+      @image = "Projet_Carbo_Aquitaine.png"
+    when "3"
+      @color = 'warning'
+      @name = 'Carbo Med'
+      @logo = "Picto_Projet_Med.png"
+      @image = "Projet_Carbo_Nord.png"
+    end
+    AnalyticService.new.track('Subscription Choosed', nil, current_user)
+    render :layout => 'checkout'
+  end
+
   def new
     if current_user.subscribed?
       redirect_to '/subscriptions/show', notice: "You are already a subscriber!"
