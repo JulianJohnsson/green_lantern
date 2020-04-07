@@ -7,13 +7,19 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body container">
           <div class="row align-items-center">
             <div class="col-md-4">
-              <%= image_tag "Logo_Pur_Projet.png", :style => 'width:100%;max-width:200px;height:auto;' %>
+              <%= link_to "", "data-toggle" => "modal", "data-target" => "#Modal1" do  %>
+                <%= image_tag "Logo_Pur_Projet.png", :style => 'width:100%;max-width:190px;height:auto;' %>
+              <% end %>
             </div>
             <div class="col-md-8">
-                Carbo s'associe à Pur Projet pour permettre à tous nos membres de neutraliser leur impact carbone de manière simple : en faisant pousser nos propres arbres.
+              <p>
+                Carbo s'associe à
+                <%= link_to "Pur Projet", "", "data-toggle" => "modal", "data-target" => "#Modal1" %>
+                pour permettre à tous nos membres de neutraliser leur impact carbone de manière simple : en faisant pousser nos propres arbres.
+              </p>
             </div>
           </div>
         </div>
@@ -24,10 +30,14 @@
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col-md-4">
-              <%= image_tag "lama.png" %>
+              <%= link_to "", "data-toggle" => "modal", "data-target" => "#Modal2" do  %>
+                <%= image_tag "lama.png" %>
+                <% end %>
             </div>
             <div class="col-md-8">
-              Une partie de tes arbres poussera au Pérou : notre projet y est certifié par Gold Standard et permet d’attester ta compensation. Le reste sera planté en France, dans la région de ton choix.
+              Une partie de tes arbres
+              <%= link_to "poussera au Pérou", "", "data-toggle" => "modal", "data-target" => "#Modal2" %>
+               : notre projet y est certifié par Gold Standard et permet d’attester ta compensation. Le reste sera planté en France, dans la région de ton choix.
             </div>
           </div>
         </div>
@@ -38,15 +48,95 @@
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col-md-4">
-              <%= image_tag "arbres.png" %>
+              <%= link_to "", "data-toggle" => "modal", "data-target" => "#Modal3" do  %>
+                <%= image_tag "arbres.png" %>
+              <% end %>
             </div>
             <div class="col-md-8">
-              On a estimé ensemble ton empreinte carbone à 380 kg CO2. Chacun arbre Carbo peut en absorber environ 150 pendant sa vie. Chaque mois, il te faut donc idéalement planter 2.4 arbres.
+              On a estimé ensemble ton empreinte carbone à 380 kg CO2. Chacun arbre Carbo peut en absorber environ
+              <%= link_to "150 pendant sa vie", "", "data-toggle" => "modal", "data-target" => "#Modal3" %>
+              . Chaque mois, il te faut donc idéalement planter 2.4 arbres.
             </div>
           </div>
         </div>
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Modals -->
+<div class="modal fade subscription-modal" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="Modal1Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= image_tag "Logo_Pur_Projet.png", :style => 'width:100%;max-width:200px;height:auto;margin-left:auto;margin-right:auto;' %>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              Nous sommes très fiers d’être partenaires de Pur Projet, l’une des références de l’agroforesterie en France.
+            </p>
+            <p>
+              Certifié B Corporation, Pur Projet agit quotidiennement pour le climat au travers de 80 projets, plus de 16 millions d’arbres plantés et un réseau de 42 000 fermiers.
+            </p>
+            <button type="button" class="btn btn-round btn-white ml-auto mr-auto text-violet" data-dismiss="modal" aria-label="Close" >
+              C’est du beau bouleau
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade subscription-modal" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="Modal2Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="margin-left:auto;margin-right:auto;">🇵🇪<br>Pourquoi donc au Pérou ?</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              D’un côté, la solidarité : les accords récents sur le climat ont privilégié l’émergence de solutions dans des zones plus exposées aux risques et/ou en voie de développement.
+            </p>
+            <p>
+              De l’autre, l’économie : les côuts de développement des projets y sont moins importants, ce qui permet de te proposer une contribution dans un budget “raisonnable”.
+            </p>
+            <button type="button" class="btn btn-round btn-white ml-auto mr-auto text-violet" data-dismiss="modal" aria-label="Close" >
+              Gracias Carbo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade subscription-modal" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="Modal3Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="margin-left:auto;margin-right:auto;">🌱<br>Les arbres et l'absorption de CO2</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              Le respect des contraintes locales impose une sélection minutieuse du type d’arbres et une grande qualité des plants.
+            </p>
+            <p>
+              Fort de l’expérience de notre partenaire, nous avons estimé, en moyenne, qu’un plan moyen pourra absorber environ 150 kg de dioxyde de carbone tout au long de son cycle de vie.
+            </p>
+            <button type="button" class="btn btn-round btn-white ml-auto mr-auto text-violet" data-dismiss="modal" aria-label="Close" >
+              Je dormirai moins bête
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

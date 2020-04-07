@@ -30,7 +30,7 @@ class WeeklyScoreUpdateJob < ApplicationJob
         when @score > 30
           @equivalent = "#{(@score / 5).to_i} burgers bien gras 🍔"
         else
-          @equivalent = "#{(@score / 0.202).to_i}km en trotinette électrique 🛴"
+          @equivalent = "#{(@score / 0.125).to_i}km en trotinette électrique 🛴"
         end
 
         carbone_by_category = Category.all.map{|c| [c.name, @user.transactions.week.category_id(c.id).sum(:carbone)]}.to_h

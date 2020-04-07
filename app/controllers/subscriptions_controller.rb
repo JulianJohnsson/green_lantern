@@ -11,6 +11,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def project
+    render :layout => 'application'
   end
 
   def formula
