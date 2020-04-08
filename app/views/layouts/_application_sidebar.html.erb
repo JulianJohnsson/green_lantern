@@ -27,7 +27,11 @@
       <li class="nav-item <%= 'active' if current_page?(new_subscription_path) %>">
         <%= link_to "/subscriptions/project", class: "nav-link" do %>
           <i class="material-icons">account_balance_wallet</i>
-          <p>Contribuer</p>
+          <p>
+            Contribuer
+            <span class="badge badge-pill badge-rose" style="vertical-align:middle;font-size:8px;">nouveau</span>
+          </p>
+
         <% end %>
       </li>
     </ul>
