@@ -28,8 +28,8 @@ intro:
         element: "#reduire"
         placement: "right"
     6:
-      title: "COMPENSER"
-      text: "Ce que tu n'arrives pas encore à réduire, tu peux le compenser pour assumer ta responsabilité. Découvre et suis les projets (régulièrement mis à jour) permettant d'absorber ton carbone et passe à l'action dans la rubrique Compenser (en cliquant sur ce bloc ou dans le menu)."
+      title: "CONTRIBUER"
+      text: "Ce que tu n'arrives pas encore à réduire, tu peux le compenser pour assumer ta responsabilité. Découvre et suis les projets (régulièrement mis à jour) permettant d'absorber ton carbone et passe à l'action dans la rubrique Contribuer (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#compenser"
         placement: "left"

@@ -66,7 +66,7 @@ class SubscriptionsController < ApplicationController
 
   def new
     if current_user.subscribed?
-      redirect_to '/subscriptions/show', notice: "You are already a subscriber!"
+      redirect_to '/subscriptions/show', notice: "Tu es déjà abonné !"
     end
     @score = current_user.scores.last
     if params[:quantity] == nil && params[:price].present?
