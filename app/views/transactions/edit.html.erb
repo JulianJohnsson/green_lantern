@@ -76,8 +76,8 @@
           <div class="col-md-12">
             <%= form_for @comment do |form| %>
               <div class="field">
-                <%= form.hidden_field :transaction_id, :value => @transaction.id %>
                 <%= form.hidden_field :author, :value => @transaction.user.id %>
+                <%= form.hidden_field :transaction_id, :value => @transaction.id %>
               </div>
               <div class="field">
                 <%= form.text_area :description, placeholder: "Expliquer en quelques mots le problème avec cette dépense.", class: 'form-control', :autofocus => true, :style => "color:white;" %>

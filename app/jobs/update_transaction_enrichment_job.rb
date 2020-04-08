@@ -3,7 +3,7 @@ class UpdateTransactionEnrichmentJob < ApplicationJob
   def perform(transaction_modifier)
     existing_enrichment = TransactionEnrichment.where("description = ? AND modifier_option_id = ?", Transaction.find(transaction_modifier.transaction_id).description, transaction_modifier.modifier_option_id).last
     if existing_enrichment.present?
-      existing_enrichment.count = existing_enrichment.count + 1
+      existing_enrichment.count = (existing_enrichment.count || 0) + 1
       existing_enrichment.save
     else
       enrichment = TransactionEnrichment.new
