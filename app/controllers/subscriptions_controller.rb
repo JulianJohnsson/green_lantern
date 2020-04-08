@@ -16,6 +16,7 @@ class SubscriptionsController < ApplicationController
     @users = User.subscribed
     @total = @users.sum(:subscription_price) * 50 * (0.days.ago.month) / 1000 + 220
     @target = 100
+    AnalyticService.new.track('Subscription Viewed', nil, current_user)
     render :layout => 'application'
   end
 
