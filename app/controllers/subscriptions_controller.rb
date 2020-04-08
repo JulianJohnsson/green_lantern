@@ -14,8 +14,8 @@ class SubscriptionsController < ApplicationController
     @score = current_user.scores.last
     @carbone_count = @score.total*1000/12
     @users = User.subscribed
-    @total = @users.sum(:subscription_price) * 50 * (0.days.ago.month) / 1000
-    @target = (@users.sum(:subscription_price) * 50 / 1000) * 1.5
+    @total = @users.sum(:subscription_price) * 50 * (0.days.ago.month) / 1000 + 220
+    @target = 100
     render :layout => 'application'
   end
 
@@ -115,6 +115,7 @@ class SubscriptionsController < ApplicationController
         stripe_subscription_id: subscription.id,
         subscribed: true,
         subscription_plan: params[:plan],
+        subscription_project: params[:project],
         subscription_price: params[:quantity].to_i * 0.02,
         subscription_started_at: DateTime.now.to_date
       }

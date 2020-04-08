@@ -32,8 +32,10 @@ class SubscriptionActivationJob < ApplicationJob
           "name" => (user.name||""),
           "subscribed" => true,
           "user_plan" => user.subscription_plan,
+          "user_project" => user.subscription_project,
           "user_carbon_share" => (user.subscription_price/0.02).to_i,
           "user_price" => user.subscription_price,
+          "user_tree" => (user.subscription_price/3).to_i,
           "user_plan_share" => (100* user.subscription_price/0.02 / (user.scores.last.total*1000/12).round(0)).to_i
         }
       }])

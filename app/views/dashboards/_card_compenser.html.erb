@@ -1,23 +1,23 @@
-<%= link_to subscriptions_path do %>
+<%= link_to "/subscriptions/project" do %>
   <div class="card" id="compenser">
     <div class="card-header card-header-warning">
       <h4>PROJET DU MOIS</h4>
       <p class="big text-info mr-auto ml-auto">
-         La plantation communautaire de Vazhur
+         Agroforesterie et reboisement en Hauts-de-France
       </p>
       <div class="subtitle">
         <span>
           SOUTENU PAR
-          <%= @users.count + 12 %>
+          <%= @users.count + 57 %>
           MEMBRES
         </span>
       </div>
     </div>
     <div class="card-body">
       <p class="description">
-        Chaque mois, l’équivalent de
-        <%= @cars %>
-        🚗 sont retirées de la route par les abonnés Carbo !
+        Chaque mois,
+        <%= @trees %>
+        🌳 sont plantés ou sauvés par les abonnés Carbo !
       </p>
     </div>
   </div>

@@ -78,11 +78,7 @@ class DashboardsController < ApplicationController
 
       # COMPENSER
       @users = User.all.subscribed
-      sum = 0
-      @users.each do |user|
-        sum = sum + user.scores.last.total
-      end
-      @cars = ((sum+12*6)*1000/12*0.01).to_i
+      @trees = (@users.sum(:subscription_price) / 3 + 127*4).to_i
     end
   end
 

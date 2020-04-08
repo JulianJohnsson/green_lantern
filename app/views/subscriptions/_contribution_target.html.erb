@@ -10,7 +10,7 @@
       </defs>
       <circle cx="50" cy="50" r="45" fill="url(#grad2)"/>
       <text x="50%" y="45%" text-anchor="middle" fill="white" font-size="36px" font-weight="100" font-family="Baloo" dy=".3em">
-        <%= number_with_precision(@target, precision: 1) %>
+        <%= number_with_precision(@target, precision: 0) %>
       </text>
       <text x="50%" y="70%" text-anchor="middle" fill="white" font-size="14px" font-weight="100" font-family="Quicksand" dy=".3em">TCO2</text>
       <path id="progress" stroke-linecap="round" stroke-width="2" stroke="#fff" fill="none"
@@ -25,8 +25,13 @@
       Notre objectif pour
       <%= l(0.months.ago, format: '%B') %>
        : compenser
-      <%= number_with_precision(@target, precision: 1) %>
-      tonnes de CO2. <strong>Atteint à 40 %</strong>
+      <%= number_with_precision(@target, precision: 0) %>
+      tonnes de CO2.
+      <strong>
+        Atteint à
+        <%= number_with_precision(100*(@users.sum(:subscription_price)*50/1000 + 128*600/1000) / @target, precision: 0) %>
+        %
+      </strong>
     </p>
   </div>
 </div>
@@ -36,7 +41,7 @@
   var progress = s.select('#progress');
 
   progress.attr({strokeDasharray: '0, 251.2'});
-  Snap.animate(0,"<%= 251.2*(4)/10%>", function( value ) {
+  Snap.animate(0,"<%= 251.2*(@users.sum(:subscription_price)*50/1000 + 128*600/1000) / @target %>", function( value ) {
       progress.attr({ 'stroke-dasharray':value+',251.2'});
   }, 2500);
 </script>
