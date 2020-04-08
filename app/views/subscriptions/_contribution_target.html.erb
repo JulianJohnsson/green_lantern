@@ -22,7 +22,9 @@
   </div>
   <div class="card-body" style="margin-top:-30px;">
     <p>
-      Notre objectif pour mars : compenser
+      Notre objectif pour
+      <%= l(0.months.ago, format: '%B') %>
+       : compenser
       <%= number_with_precision(@target, precision: 1) %>
       tonnes de CO2. <strong>Atteint à 40 %</strong>
     </p>
