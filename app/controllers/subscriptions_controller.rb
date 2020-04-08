@@ -139,7 +139,7 @@ class SubscriptionsController < ApplicationController
 
     rescue Stripe::CardError => e
       AnalyticService.new.track('Payment Error', nil, current_user)
-      redirect_to "/subscriptions/new?plan=#{params[:plan]}&quantity=#{params[:quantity]}", alert: "#{e.error.code} : #{e.error.message}"
+      redirect_to "/subscriptions/payment?plan=#{params[:plan]}&quantity=#{params[:quantity]}", alert: "#{e.error.code} : #{e.error.message}"
     end
   end
 
