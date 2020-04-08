@@ -270,6 +270,7 @@ span.currency-spinner > .add:hover {
     }
   }
 }
+
 #carouselContribution .carousel-indicators {
   height: 40px;
 }
@@ -335,4 +336,24 @@ span.currency-spinner > .add:hover {
 
 .local-project-card.active {
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  #carouselContribution.carousel .card {
+    background: none;
+    .card-body {
+      padding: 10px 20px;
+      .col-md-4 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .map-parent {
+    #child-1 {
+      left: 35%;
+    }
+    #child-2 {
+      left: 15%;
+    }
+  }
 }

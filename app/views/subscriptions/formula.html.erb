@@ -1,13 +1,16 @@
 <% content_for :title, "Choix de la formule" %>
 <div class="row justify-content-center">
-  <div class="col-md-9 col-lg-8">
-    <h2 class="text-center" style="margin-bottom:20px;">
-      Quelle part de ton impact souhaites-tu neutraliser avec
-      <%= "Carbo Nord" %>
-      ?
-    </h2>
+  <div class="col-md-9 col-lg-7">
+    <h3 class="text-center text-info" style="margin-bottom:20px;">
+      Quelle part de ton impact souhaites-tu neutraliser avec Carbo ?
+    </h3>
     <p class="description big text-center">
-      A chaque formule correspond un nombre d'arbres plantés pour neutraliser tout ou partie des <span class="text-primary">692 kgCO2</span> que tu génères par mois en moyenne.
+      A chaque formule correspond un nombre d'arbres plantés pour neutraliser tout ou partie des
+      <span class="text-primary">
+        <%= number_with_precision(@carbone_count, precision: 0) %>
+        kgCO2
+      </span>
+      que tu génères par mois en moyenne.
     </p>
   </div>
 </div>
@@ -16,7 +19,7 @@
     <div class="card">
       <div class="card-header card-header-rose">
         <h3>Carbo Neutre</h3>
-        <p class="big"><%= number_with_precision(@carbone_count * 0.02, precision: 0) %> € / mois</p>
+        <p class="big"><%= number_with_precision(@carbone_count * 0.02, precision: 2) %> € / mois</p>
       </div>
       <div class="card-body text-left">
         <div class="row align-items-center">
@@ -56,7 +59,7 @@
     <div class="card">
       <div class="card-header card-header-orange">
         <h3>Carbo Héros</h3>
-        <p class="big"><%= number_with_precision(@carbone_count * 0.04, precision: 0) %> € / mois</p>
+        <p class="big"><%= number_with_precision(@carbone_count * 0.04, precision: 2) %> € / mois</p>
       </div>
       <div class="card-body text-left">
         <div class="row align-items-center">
@@ -130,8 +133,14 @@
   </div>
 </div>
 
-<div class="text-center" style="opacity:0.8;">
-  <h5>Rejoins <span class="text-primary">Alice</span> et les <span class="text-primary">123</span> autres contributeurs qui agissent pour la planète avec Carbo !</h5>
+<div class="text-center" style="opacity:0.8;margin-top:30px;">
+  <h5>
+    Rejoins Alice et les
+    <span class="text-primary">
+      <%= @users.count %>
+    </span>
+    autres contributeurs qui agissent pour la planète avec Carbo !
+  </h5>
 </div>
 <div class="row justify-content-center align-items-center text-center" style="opacity:0.8;">
   <div class="col-md-2 text-right d-none d-md-block">
@@ -139,7 +148,7 @@
   </div>
   <div class="col-md-6">
     <p class="description">
-      <i>On voit instantanément nos dépenses les moins vertueuses à chaque connexion. Carbo capte automatiquement les changements d’habitude et adapte ses recommandations au cours du temps. C’est super efficace pour agir à long terme !</i>
+      <i>Pour moi, il ne s’agit pas seulement de participer localement : c'est aussi soutenir les démarches comme Carbo, parce qu'on devrait tous inciter nos meilleurs talents à agir pour notre planète plutôt que d’optimiser les publicités de Facebook</i>
     </p>
     <p>
       <strong>Alice</strong>, Nantes

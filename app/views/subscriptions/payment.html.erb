@@ -1,6 +1,6 @@
 <% content_for :title, "Activer mon forfait" %>
 <h3 class="text-center text-info" style="margin-bottom:20px;">
-  Tu es prêt pour neutraliser ton impact carbone <%= current_user.name %> !
+  On neutralise ton impact carbone <%= current_user.name %> ?
 </h3>
 <p class="text-center big description">
   Merci de vérifier ton choix et de confirmer ton paiement mensuel 👇
@@ -27,7 +27,7 @@
           <small class="description">
             MON PAIEMENT<br>
           </small>
-          <%= number_with_precision(@price, precision: 0) %>€ TTC / mois
+          <%= number_with_precision(@price, precision: 2) %>€ TTC / mois
         </h5>
       </div>
       <div class="card-footer">
@@ -75,13 +75,13 @@
   <div class="col-md-3 col-4">
     <p class="emoji">🚗</p>
     <p class="description">
-      Je retire chaque mois de la route <%= number_with_precision(@price/2, precision:0) %> voitures
+      Je retire chaque mois de la route l'équivalent de <%= number_with_precision(@price/2, precision:0) %> voitures
     </p>
   </div>
   <div class="col-md-3 col-4">
     <p class="emoji">🏆</p>
     <p class="description">
-      Je finance des projets certifiés avec un impact à long terme
+      Je finance des projets de qualité avec un impact à long terme
     </p>
   </div>
   <div class="col-md-3 col-4">

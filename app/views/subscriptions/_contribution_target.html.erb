@@ -9,7 +9,9 @@
         </linearGradient>
       </defs>
       <circle cx="50" cy="50" r="45" fill="url(#grad2)"/>
-      <text x="50%" y="45%" text-anchor="middle" fill="white" font-size="36px" font-weight="100" font-family="Baloo" dy=".3em">100</text>
+      <text x="50%" y="45%" text-anchor="middle" fill="white" font-size="36px" font-weight="100" font-family="Baloo" dy=".3em">
+        <%= number_with_precision(@target, precision: 1) %>
+      </text>
       <text x="50%" y="70%" text-anchor="middle" fill="white" font-size="14px" font-weight="100" font-family="Quicksand" dy=".3em">TCO2</text>
       <path id="progress" stroke-linecap="round" stroke-width="2" stroke="#fff" fill="none"
                 d="M50 10
@@ -20,7 +22,9 @@
   </div>
   <div class="card-body" style="margin-top:-30px;">
     <p>
-      Notre objectif pour mars : compenser 100 tonnes de CO2. <strong>Atteint à 50 %</strong>
+      Notre objectif pour mars : compenser
+      <%= number_with_precision(@target, precision: 1) %>
+      tonnes de CO2. <strong>Atteint à 40 %</strong>
     </p>
   </div>
 </div>
@@ -30,7 +34,7 @@
   var progress = s.select('#progress');
 
   progress.attr({strokeDasharray: '0, 251.2'});
-  Snap.animate(0,"<%= 251.2*(6-3)/6%>", function( value ) {
+  Snap.animate(0,"<%= 251.2*(4)/10%>", function( value ) {
       progress.attr({ 'stroke-dasharray':value+',251.2'});
   }, 2500);
 </script>

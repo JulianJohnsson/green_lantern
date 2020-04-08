@@ -9,13 +9,21 @@
         </linearGradient>
       </defs>
       <circle cx="50" cy="50" r="45" fill="url(#grad1)"/>
-      <text x="50%" y="45%" text-anchor="middle" fill="white" font-size="36px" font-weight="100" font-family="Baloo" dy=".3em">845</text>
+      <text x="50%" y="45%" text-anchor="middle" fill="white" font-size="36px" font-weight="100" font-family="Baloo" dy=".3em">
+        <%= number_with_precision(@total, precision: 1) %>
+      </text>
       <text x="50%" y="70%" text-anchor="middle" fill="white" font-size="14px" font-weight="100" font-family="Quicksand" dy=".3em">TCO2</text>
     </svg>
   </div>
   <div class="card-body" style="margin-top:-30px;">
     <p>
-      ont déjà été compensées <strong>par la communauté</strong> depuis le 1er janvier 2020
+      ont déjà été compensées
+      <strong>
+        par
+        <%= @users.count %>
+        membres
+      </strong>
+      depuis le 1er janvier 2020
     </p>
   </div>
 </div>

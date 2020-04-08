@@ -11,10 +11,14 @@ class SubscriptionsController < ApplicationController
   end
 
   def project
+    @users = User.subscribed
+    @total = @users.sum(:subscription_price) * 50 * (0.days.ago.month) / 1000
+    @target = (@users.sum(:subscription_price) * 50 / 1000) * 1.5
     render :layout => 'application'
   end
 
   def formula
+    @users = User.subscribed
     @score = current_user.scores.last
     @carbone_count = @score.total*1000/12
     @average_price = 15 * @carbone_count / 750
@@ -25,6 +29,7 @@ class SubscriptionsController < ApplicationController
   def payment
     if current_user.subscribed?
       redirect_to '/subscriptions/show', notice: "You are already a subscriber!"
+      return
     end
     @score = current_user.scores.last
     if params[:quantity] == nil && params[:price].present?
@@ -44,17 +49,14 @@ class SubscriptionsController < ApplicationController
       @color = 'danger'
       @name = 'Carbo Nord'
       @logo = "Picto_Projet_Nord.png"
-      @image = "Projet_Carbo_Nord.png"
     when "2"
       @color = 'info'
-      @name = 'Carbo Loire'
+      @name = 'Carbo Ouest'
       @logo = "Picto_Projet_Aquitaine.png"
-      @image = "Projet_Carbo_Aquitaine.png"
     when "3"
       @color = 'warning'
-      @name = 'Carbo Med'
+      @name = 'Carbo Sud'
       @logo = "Picto_Projet_Med.png"
-      @image = "Projet_Carbo_Nord.png"
     end
     AnalyticService.new.track('Subscription Choosed', nil, current_user)
     render :layout => 'checkout'
