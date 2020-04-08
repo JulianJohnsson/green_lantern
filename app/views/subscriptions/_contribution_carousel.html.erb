@@ -35,9 +35,12 @@
               <% end %>
             </div>
             <div class="col-md-8">
-              On a estimé ensemble ton empreinte carbone à 380 kg CO2. Chacun arbre Carbo peut en absorber environ
-              <%= link_to "150 pendant sa vie", "", "data-toggle" => "modal", "data-target" => "#Modal3" %>
-              . Chaque mois, il te faut donc idéalement planter 2.4 arbres.
+              On a estimé ensemble ton empreinte carbone à
+              <%= number_with_precision(@carbone_count, precision: 0) %>
+              kg CO2. Chaque arbre Carbo peut en absorber environ
+              <%= link_to "150 pendant sa vie", "", "data-toggle" => "modal", "data-target" => "#Modal3" %>. Chaque mois, il te faut donc idéalement planter
+              <%= number_with_precision(@carbone_count / 150, precision: 1) %>
+              arbres.
             </div>
           </div>
         </div>

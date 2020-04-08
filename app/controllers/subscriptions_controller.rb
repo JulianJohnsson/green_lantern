@@ -11,6 +11,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def project
+    @score = current_user.scores.last
+    @carbone_count = @score.total*1000/12
     @users = User.subscribed
     @total = @users.sum(:subscription_price) * 50 * (0.days.ago.month) / 1000
     @target = (@users.sum(:subscription_price) * 50 / 1000) * 1.5
