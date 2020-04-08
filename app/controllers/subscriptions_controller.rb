@@ -44,7 +44,7 @@ class SubscriptionsController < ApplicationController
     when 'heros'
       @carbone_count = @score.total*1000/12.to_i * 2
       @price = @carbone_count * 0.02
-    when 'neutre'
+    when 'libre'
       @price = params[:price].to_i
       @carbone_count = @price * 50
     end
