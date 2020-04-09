@@ -1,15 +1,10 @@
 @import "material/scss/material-kit/variables";
 
 .faq {
-  background-size: cover;
+  background-size: 50%;
+  background-repeat: no-repeat;
   background-image: url(<%= asset_path("home_section1.png") %>);
   background-position: right 0% top 0%;
-  padding-top: 100px;
-  padding-bottom: 40px;
-  h2 {
-    color: $brand-primary;
-    font-weight: normal;
-  }
   .card-body {
     padding-bottom: 30px;
   }
@@ -20,13 +15,14 @@
   width: 100%;
   color: $brand-dark-blue;
   background-color: inherit;
-  font-size: 1.4em;
+  font-size: 1.2em;
   padding: 20px 0;
   font-weight: bold;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid #DFE0EB;
+  border-bottom: none;
+  cursor: pointer;
 }
 
 .faq .collapse {
