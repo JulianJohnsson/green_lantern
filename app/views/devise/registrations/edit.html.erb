@@ -93,12 +93,12 @@
             <%= current_user.subscription_plan %>
             (<%= current_user.subscription_price %> € / mois)
             <span class="link">
-              <%= link_to "Modifier >", '/subscriptions/new', class: '' %>
+              <%= link_to "Modifier >", '/subscriptions/show', class: '' %>
             </span>
           <% else %>
             Aucun
             <span class="link">
-              <%= link_to "Modifier >", '/subscriptions', class: '' %>
+              <%= link_to "Modifier >", '/subscriptions/project', class: '' %>
             </span>
           <% end %>
         </div>
