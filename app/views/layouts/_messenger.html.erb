@@ -1,20 +1,3 @@
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>
-       window.fbAsyncInit = function() {
-         FB.init({
-           xfbml            : true,
-           version          : 'v4.0'
-         });
-       };
-       (function(d, s, id) {
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) return;
-       js = d.createElement(s); js.id = id;
-       js.src = 'https://connect.facebook.net/fr_FR/sdk/xfbml.customerchat.js';
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-</script>
-<!-- Your customer chat code -->
-<div class="fb-customerchat" attribution=setup_tool page_id="100816017980697" theme_color="#20B2AA" logged_in_greeting="Hey, bienvenue sur Carbo ! Que recherches tu ?" logged_out_greeting="Hey, bienvenue sur Carbo ! Que recherches tu ?" greeting_dialog_display="hide" >
-</div>
+<%= link_to "", class: "text-center", :id => "intercom" do %>
+  <i class="material-icons">insert_comment</i>
+<% end %>

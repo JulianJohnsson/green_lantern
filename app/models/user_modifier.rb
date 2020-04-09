@@ -41,6 +41,10 @@ class UserModifier < ApplicationRecord
         modifier = -0.14
       when :gaz
         modifier = 0.336
+      when :fioul
+        modifier = 310.00/100
+      when :bois
+        modifier = -72.00/100
       end
     end
     if score.enr.present?

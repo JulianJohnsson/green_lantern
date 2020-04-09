@@ -12,7 +12,7 @@ class Score < ApplicationRecord
   enum regime: [:végétalien, :végétarien, :flexitarien, :moyen, :viandard]
   enum kind: [:static, :dynamic]
 
-  enum energy: [:je_ne_sais_pas, :électricité, :gaz]
+  enum energy: [:je_ne_sais_pas, :électricité, :gaz, :fioul, :bois]
   enum enr: [:inconnu, :partiellement_renouvelable, :fortement_renouvelable]
 
   def set_default
@@ -90,6 +90,10 @@ class Score < ApplicationRecord
         energy_modifier = -14.00/100
       when :gaz
         energy_modifier = 33.60/100
+      when :fioul
+        energy_modifier = 310.00/100
+      when :bois
+        energy_modifier = -72.00/100
       end
     end
     if self.enr.present?
@@ -99,7 +103,7 @@ class Score < ApplicationRecord
         enr_modifier = -50.40/100
       end
     end
-    self.detail[1] = base * self.house_size / Country.find(country_id).house_size.to_f * (1+ (energy_modifier||0) + (enr_modifier||0))
+    self.detail[1] = base * (self.house_size / Country.find(country_id).house_size.to_f) * (1+ (energy_modifier||0)) * (1 + (enr_modifier||0))
   end
 
   def set_food_score

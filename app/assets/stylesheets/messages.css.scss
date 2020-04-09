@@ -1,3 +1,5 @@
+@import "material/scss/material-kit/variables";
+
 .alert {
     position: fixed;
     top: 10px;
@@ -15,4 +17,26 @@
 .modal-content i {
   font-size: 64px;
   margin-bottom: 20px;
+}
+
+#intercom {
+  z-index: 1031;
+  background: $brand-primary;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  i {
+    line-height: 60px;
+    font-size: 2em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #intercom {
+    bottom: 45px;
+  }
 }
