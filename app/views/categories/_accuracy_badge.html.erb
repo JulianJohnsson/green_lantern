@@ -1,0 +1,62 @@
+<% @avg_accuracy = @transactions.parent_category_id(c.id).average(:accuracy) if @score.kind.to_sym == :dynamic  %>
+<% if @avg_accuracy %>
+  <% if @avg_accuracy < 2 && @avg_accuracy > 0  %>
+    <span class="badge badge-pill badge-danger">Basse</span>
+  <% elsif @avg_accuracy < 3 %>
+    <span class="badge badge-pill badge-warning">Moyenne</span>
+  <% elsif @avg_accuracy == 3 %>
+    <span class="badge badge-pill badge-success">Elevée</span>
+  <% end %>
+<% else %>
+    <% case c.id when 1 %>
+      <% if @score.energy.present? %>
+        <%= link_to "/account" do %>
+          <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Active le mode dynamique pour gagner en précision grâce à l'analyse de tes dépenses" >Moyenne</span>
+        <% end %>
+      <% else %>
+        <%= link_to "/scores/edit" do %>
+          <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Précise ton mode de vie pour gagner en précision" >Basse</span>
+        <% end %>
+      <% end %>
+    <% when 12 %>
+      <% if @score.week_basic_car.present? %>
+        <%= link_to "/account" do %>
+          <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Active le mode dynamique pour gagner en précision grâce à l'analyse de tes dépenses" >Moyenne</span>
+        <% end %>
+      <% else %>
+        <%= link_to "/scores/edit" do %>
+          <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Précise ton mode de vie pour gagner en précision" >Basse</span>
+        <% end %>
+      <% end %>
+    <% when 24 %>
+      <% if @score.services_plans.present? %>
+        <%= link_to "/account" do %>
+          <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Active le mode dynamique pour gagner en précision grâce à l'analyse de tes dépenses" >Moyenne</span>
+        <% end %>
+      <% else %>
+        <%= link_to "/scores/edit" do %>
+          <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Précise ton mode de vie pour gagner en précision" >Basse</span>
+        <% end %>
+      <% end %>
+    <% when 25 %>
+      <% if @score.goods_clothes.present? %>
+        <%= link_to "/account" do %>
+          <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Active le mode dynamique pour gagner en précision grâce à l'analyse de tes dépenses" >Moyenne</span>
+        <% end %>
+      <% else %>
+        <%= link_to "/scores/edit" do %>
+          <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Précise ton mode de vie pour gagner en précision" >Basse</span>
+        <% end %>
+      <% end %>
+    <% when 70 %>
+      <% if @score.dairy.present? %>
+        <%= link_to "/account" do %>
+          <span class="badge badge-pill badge-warning" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Active le mode dynamique pour gagner en précision grâce à l'analyse de tes dépenses" >Moyenne</span>
+        <% end %>
+      <% else %>
+        <%= link_to "/scores/edit" do %>
+          <span class="badge badge-pill badge-danger" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Précise ton mode de vie pour gagner en précision" >Basse</span>
+        <% end %>
+      <% end %>
+    <% end %>
+<% end %>

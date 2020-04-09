@@ -3,12 +3,9 @@
     <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") if @score.kind.to_sym == :dynamic %>
   </small>
 
-  <h2 class="description text-center">
-    <span style="opacity:0.3;">👁‍</span> En un clin d'oeil
-  </h2>
   <% if @score.kind.to_sym == :static %>
     <p class="description text-center">
-      Tu peux à tout moment <%= link_to 'modifier ton estimation ici', '/scores/edit' %> pour gagner en précision ou intégrer un changement dans ton mode de vie !
+      Tu peux à tout moment <%= link_to 'détailler ou mettre à jour ton mode de vie ici', '/scores/edit' %> pour gagner en précision !
     </p>
   <% end %>
   <div class="row text-center">
@@ -75,16 +72,7 @@
                         <%= number_with_precision(@score.detail[i].to_f*100 / @score.total, precision: 0).to_s + " %" %>
                       </td>
                       <td>
-                        <% @avg_accuracy = @transactions.parent_category_id(c.id).average(:accuracy) if @score.kind.to_sym == :dynamic  %>
-                        <% if @avg_accuracy %>
-                          <% if @avg_accuracy < 2 && @avg_accuracy > 0  %>
-                            <span class="badge badge-pill badge-danger">Basse</span>
-                          <% elsif @avg_accuracy < 3 %>
-                            <span class="badge badge-pill badge-warning">Moyenne</span>
-                          <% elsif @avg_accuracy == 3 %>
-                            <span class="badge badge-pill badge-success">Elevée</span>
-                          <% end %>
-                        <% end %>
+                        <%= render 'accuracy_badge', c: c %>
                       </td>
                       <td class="text-left" style="width:8%;">
                         <% unless @score.kind.to_sym == :static || @score.detail[i] == 0 %>

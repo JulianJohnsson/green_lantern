@@ -14,6 +14,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    if current_user.scores.last.kind.to_sym == :static
+      redirect_to "/scores/edit"
+    end
     @category = Category.find(params[:id])
     @categories = Category.all.sub_categories(@category.id)
     @transactions = current_user.transactions.carbone_contribution.parent_category_id(@category.id).month_ago(params[:month].to_i || 0)
