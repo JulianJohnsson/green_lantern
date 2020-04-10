@@ -1,0 +1,30 @@
+<div class="row align-items-center justify-content-center">
+  <div class="col-lg-11 col-md-12">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card-body">
+            <h3><strong>
+              <small>Question 5bis / 6</small>
+              <br>
+              A combien vivez-vous dans ce logement ?
+            </strong></h3>
+            <%= form_for @score do |form| %>
+              <div class="form-group bmd-form-group text-center">
+                <%= form.number_field :house_people, :min => 0, :max => 100, class: "form-control" %>
+              </div>
+              <div class="actions text-center">
+                <%= form.submit 'Continuer', class: 'btn btn-primary btn-round' %>
+              </div>
+              <%= image_tag "house_size.png", class: "img-fluid w-50", :style => "margin-left:auto;margin-right:auto;display:block;opacity:0.8;" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-5 score-preview text-center">
+          <%= render "score" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'number_spinner' %>

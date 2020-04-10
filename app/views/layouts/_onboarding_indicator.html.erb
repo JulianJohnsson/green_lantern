@@ -1,11 +1,14 @@
 
-  <div class="stepbar-container">
+  <div class="stepbar-container" style="<%= 'left:23.5%;' if @test == 'experiment' %>">
       <ul class="stepbar">
         <li class="<%= "active" if @score && @score.country_id.present? %>"><div class="bulle">📍</div></li>
         <li class="<%= "active" if @score && @score.main_transport_mode.present? %>"><div class="bulle">🚗</div></li>
         <li class="<%= "active" if @score && @score.long_flights.present? %>"><div class="bulle">🛩</div></li>
         <li class="<%= "active" if @score && @score.short_flights.present? %>"><div class="bulle">🚁</div></li>
         <li class="<%= "active" if @score && @score.house_size.present? %>"><div class="bulle">🏠</div></li>
+        <% if @test == "experiment" %>
+          <li class="<%= "active" if @score && @score.house_people.present? %>"><div class="bulle">👨‍👨‍👧</div></li>
+        <% end %>
         <li class="<%= "active" if @score && @score.regime.present? %>"><div class="bulle">🥙</div></li>
         <li class="<%= "active" if Bridge.find_by_user_id(current_user.id).present? %>"><div class="bulle">🚀</div></li>
       </ul>

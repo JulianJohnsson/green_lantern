@@ -3,9 +3,9 @@
   <div class="col-md-12">
     <%= render 'edit_score_stepbar' %>
     <div class="tab-content tab-space">
-      <div class="tab-pane" id="link1">
+      <div class="tab-pane active" id="link2">
         <div class="card">
-          <%= form_for(@score, remote: true) do |form| %>
+          <%= form_for @score, remote: true do |form| %>
             <div class="card-body">
               <h4>Comment te déplaces-tu généralement au quotidien ?</h4>
               <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
@@ -13,43 +13,21 @@
                   <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
                 <% end %>
               </div>
-              <h4>Combien de vols long courrier effectues-tu par an (plus de 3h) ?</h4>
+              <h4>Combien de vols effectues-tu par an ?</h4>
               <div class="form-group bmd-form-group">
+                <%= form.label "Long courrier (plus de 3h)", class: 'bmd-label-floating' %>
                 <%= form.number_field :long_flights, :min => 0, :max => 100,  class: "form-control" %>
                 <small class="form-text text-muted">Indique un nombre de vols aller-retour.</small>
               </div>
-              <h4>Combien de vols moyen courrier effectues-tu par an (moins de 3h) ?</h4>
               <div class="form-group bmd-form-group">
+                <%= form.label "Moyen courrier (moins de 3h)", class: 'bmd-label-floating' %>
                 <%= form.number_field :short_flights, :min => 0, :max => 100, class: "form-control" %>
                 <small class="form-text text-muted">Indique un nombre de vols aller-retour.</small>
               </div>
-              <h4>Quelle est la taille de ton logement ?</h4>
-              <div class="form-group bmd-form-group text-center">
-                <%= form.number_field :house_size, :min => 0, :max => 1000, class: "form-control" %>
-              </div>
-              <h4>Comment décrirais-tu ton régime alimentaire ?</h4>
-              <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
-                <%= form.collection_radio_buttons(:regime, Score.regimes, :first, :first) do |b| %>
-                  <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
-                <% end %>
-              </div>
-            </div>
-            <div class="card-footer text-center">
-              <div class="actions text-center">
-                <%= form.submit 'Mettre à jour mon calcul', class: 'btn btn-primary btn-round' %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="tab-pane active" id="link2">
-        <div class="card">
-          <%= form_for @score, remote: true do |form| %>
-            <div class="card-body">
               <h4>Combien parcours-tu de km <strong>par semaine</strong> ...</h4>
               <div class="form-group bmd-form-group">
                 <%= form.label :🚗_en_voiture_à_essence_ou_diesel_?, class: 'bmd-label-floating' %>
-                <%= form.number_field :week_basic_car, class: "form-control", :autofocus => true %>
+                <%= form.number_field :week_basic_car, class: "form-control" %>
                 <span class="bmd-help"></span>
               </div>
               <div class="form-group bmd-form-group">
@@ -80,6 +58,14 @@
         <div class="card">
           <%= form_for @score, remote: true do |form| %>
             <div class="card-body">
+              <h4>Quelle est la taille de ton logement ?</h4>
+              <div class="form-group bmd-form-group text-center">
+                <%= form.number_field :house_size, :min => 0, :max => 1000, class: "form-control" %>
+              </div>
+              <h4>A combien vivez-vous dans ce logement ?</h4>
+              <div class="form-group bmd-form-group text-center">
+                <%= form.number_field :house_people, :min => 0, :max => 100, class: "form-control" %>
+              </div>
               <h4>Comment ton logement est-il chauffé ?</h4>
               <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
                 <%= form.collection_radio_buttons(:energy, Score.energies, :first, :first) do |b| %>
@@ -105,6 +91,12 @@
         <div class="card">
           <%= form_for @score, remote: true do |form| %>
             <div class="card-body">
+              <h4>Comment décrirais-tu ton régime alimentaire ?</h4>
+              <div class="form-group btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                <%= form.collection_radio_buttons(:regime, Score.regimes, :first, :first) do |b| %>
+                  <%= b.label(class: "btn btn-sm btn-outline-info") { b.radio_button + b.text.humanize } %>
+                <% end %>
+              </div>
               <h4>Combien consommes-tu de repas <strong>par semaine</strong> à base de ...</h4>
               <div class="form-group bmd-form-group">
                 <%= form.label :🐮_viande_rouge_?, class: 'bmd-label-floating' %>

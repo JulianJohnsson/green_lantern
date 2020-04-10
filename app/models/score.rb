@@ -29,7 +29,7 @@ class Score < ApplicationRecord
       if self.main_transport_mode_changed? || self.long_flights_changed? || self.short_flights_changed? || self.week_basic_car_changed? || self.week_electric_car_changed? || self.week_moto_changed? || self.week_public_trans_changed?
         self.set_transport_score
       end
-      if self.house_size_changed? || self.energy_changed? || self.enr_changed?
+      if self.house_size_changed? || self.energy_changed? || self.enr_changed? || self.house_people_changed?
         self.set_house_score
       end
       if self.regime_changed? || self.redmeat_changed? || self.poultry_changed? || self.dairy_changed?
@@ -103,7 +103,7 @@ class Score < ApplicationRecord
         enr_modifier = -50.40/100
       end
     end
-    self.detail[1] = base * (self.house_size / Country.find(country_id).house_size.to_f) * (1+ (energy_modifier||0)) * (1 + (enr_modifier||0))
+    self.detail[1] = base * (self.house_size / Country.find(country_id).house_size.to_f) * (1+ (energy_modifier||0)) * (1 + (enr_modifier||0)) * (2.3 / (house_people||2.3))
   end
 
   def set_food_score

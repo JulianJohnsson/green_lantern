@@ -1,6 +1,6 @@
 class ScoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_score, only:[:edit, :edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy]
+  before_action :set_score, only:[:edit, :edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy, :edit_house2]
 
   def onboarding
 
@@ -62,6 +62,8 @@ class ScoresController < ApplicationController
       AnalyticService.new.track('Invitation accepted', nil, User.find(current_user.invited_by_id))
     end
 
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
+
     render :layout => 'bridges'
   end
 
@@ -80,23 +82,37 @@ class ScoresController < ApplicationController
   end
 
   def edit_transport
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
   def edit_plane
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
   def edit_plane2
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
   def edit_house
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     @default = Country.find(@score.country_id).house_size.to_i
     render :layout => 'bridges'
   end
 
+  def edit_house2
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
+    if @test == "control"
+      redirect_to "/scores/#{@score.id}/edit_regime"
+      return
+    end
+    render :layout => 'bridges'
+  end
+
   def edit_regime
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
@@ -109,11 +125,15 @@ class ScoresController < ApplicationController
   end
 
   def update
+    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     respond_to do |format|
       if @score.update(score_params)
         if request.referer.include? "/edit_transport"
           AnalyticService.new.track('Transport set', nil, current_user)
           format.html { redirect_to "/scores/#{@score.id}/edit_plane" }
+        elsif request.referer.include? "/edit_house2"
+          AnalyticService.new.track('People set', nil, current_user)
+          format.html { redirect_to "/scores/#{@score.id}/edit_regime" }
         elsif request.referer.include? "/edit_plane2"
           AnalyticService.new.track('Short flights set', nil, current_user)
           format.html { redirect_to "/scores/#{@score.id}/edit_house" }
@@ -122,9 +142,16 @@ class ScoresController < ApplicationController
           format.html { redirect_to "/scores/#{@score.id}/edit_plane2" }
         elsif request.referer.include? "/edit_house"
           AnalyticService.new.track('House set', nil, current_user)
-          format.html { redirect_to "/scores/#{@score.id}/edit_regime" }
+          if @test == "experiment"
+            format.html { redirect_to "/scores/#{@score.id}/edit_house2" }
+          else
+            format.html { redirect_to "/scores/#{@score.id}/edit_regime" }
+          end
         elsif request.referer.include? "/edit_regime"
           AnalyticService.new.track('Regime set', nil, current_user)
+
+          ab_finished(:onboarding_with_house_people)
+
           FoodModifierJob.perform_later(@score.user)
           current_user.badges <<  Badge.find(5)
           format.html { redirect_to bridges_path }
@@ -158,7 +185,7 @@ class ScoresController < ApplicationController
   end
 
   def score_params
-    params.require(:score).permit(:user_id, :country_id, :total, :detail, :main_transport_mode, :long_flights, :short_flights, :house_size, :regime, :kind, :recent_total, :recent_detail, :week_basic_car, :week_electric_car, :week_moto, :week_public_trans, :energy, :enr, :redmeat, :poultry, :dairy, :goods_furnitures, :goods_clothes, :goods_others, :services_health, :services_plans, :services_others)
+    params.require(:score).permit(:user_id, :country_id, :total, :detail, :main_transport_mode, :long_flights, :short_flights, :house_size, :regime, :kind, :recent_total, :recent_detail, :week_basic_car, :week_electric_car, :week_moto, :week_public_trans, :energy, :enr, :redmeat, :poultry, :dairy, :goods_furnitures, :goods_clothes, :goods_others, :services_health, :services_plans, :services_others, :house_people)
   end
 
 end

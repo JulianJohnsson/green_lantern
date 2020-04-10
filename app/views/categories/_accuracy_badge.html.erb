@@ -7,7 +7,7 @@
   <% elsif @avg_accuracy == 3 %>
     <span class="badge badge-pill badge-success">Elevée</span>
   <% end %>
-<% else %>
+<% elsif @score.kind.to_sym == :static %>
     <% case c.id when 1 %>
       <% if @score.energy.present? %>
         <%= link_to "/account" do %>
