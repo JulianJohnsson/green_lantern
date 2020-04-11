@@ -38,7 +38,7 @@ class Transaction < ApplicationRecord
     end
     self.carbone = 0
     unless @category.coeff == nil
-      self.carbone = self.amount * -1 * @category.coeff * modifier
+      self.carbone = self.amount * -1 * @category.coeff * modifier / self.people
     end
     self.set_parent_category
     self.set_accuracy

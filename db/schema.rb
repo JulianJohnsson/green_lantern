@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_10_090319) do
+ActiveRecord::Schema.define(version: 2020_04_10_164953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -337,6 +337,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_090319) do
     t.boolean "updated_by_similar"
     t.integer "suggested_category_id"
     t.integer "accuracy"
+    t.integer "people", default: 1
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 

@@ -66,3 +66,57 @@ label.btn:hover {
 .accuracy.active {
   opacity: 1;
 }
+
+.edit_transaction {
+  span.spinner input[type=number] {
+    float: left;
+    width: 50px;
+    height: 35px;
+    padding: 0;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: $brand-dark-blue;
+    border: 1px $brand-grey solid;
+    background: none;
+    outline: none;
+  }
+
+  span.spinner {
+    height: 35px;
+  }
+
+  span.spinner > .input-group-text {
+    float: left;
+    display: block;
+    border: 1px $brand-grey solid;
+    border-right: 0;
+    width: 20px;
+    background: $brand-grey;
+  }
+
+  span.spinner > .sub,
+  span.spinner > .add {
+    float: left;
+    display: block;
+    width: 35px;
+    height: 35px;
+    font-size: 1em;
+    line-height: 30px;
+    color: $brand-dark-blue;
+    border: 1px $brand-grey solid;
+  }
+
+  span.spinner > .add {
+    top: 0;
+    border: 1px $brand-grey solid;
+    border-left: 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  span.spinner > .sub{
+    border-right-width: 0px;
+  }
+}
+
+

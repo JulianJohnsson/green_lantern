@@ -33,17 +33,31 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <div class="row align-items-center">
+          <div class="row align-items-end">
             <div class="col-1 text-right">
               <h4><%= @transaction.category.emoji if @transaction.category %></h4>
             </div>
-            <div class="col-5">
+            <div class="col-10 col-md-5">
               <%= render 'form', transaction: @transaction %>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-1 text-right">
+              <h4 data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Combien de personnes sont concernées par cette dépense ?">👥</h4>
+            </div>
+            <div class="col-10 col-md-5">
+              <%= form_for(@transaction, remote: true) do |t| %>
+                <label class="d-md-none" style="margin-top:10px;">Combien de personnes sont concernées par cette dépense ?</label>
+                <%= t.number_field :people, :min => 1, :max => 1000, class: "" %>
+                <%= button_tag :class => "btn btn-fab btn-sm btn-outline-primary" do %>
+                  <i class="material-icons">check</i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="row justify-content-end" style="margin-top:30px;">
+            <div class="col-md-6 ">
               <label>Date :</label><%= " " + @transaction.date.to_s %>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-5 ">
               <label>Montant :</label><%= " " +  (-1 * @transaction.amount).to_s %> €
             </div>
           </div>
@@ -92,7 +106,7 @@
     </div>
   </div>
 </div>
-
+<%= render '/scores/number_spinner' %>
 <script>
 $(document).ready(function(){
   // Turn on js-selectable class so that it becomes SELCT 2 tag

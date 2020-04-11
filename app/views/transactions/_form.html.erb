@@ -23,7 +23,7 @@
     <%= form.hidden_field :updated_by_user, :value => true %>
   </div>
 
-  <div class="field">
+  <div class="field" style="margin-bottom:3px;">
     <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, :include_blank => "Choisir une catégorie") %>
   </div>
 <% end %>
