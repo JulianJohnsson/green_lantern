@@ -38,8 +38,8 @@ class WeeklyScoreUpdateJob < ApplicationJob
 
         variable = Mailjet::Send.create(messages: [{
           'From'=> {
-            'Email'=> "emmanuel@hellocarbo.com",
-            'Name'=> "Emmanuel de Carbo"
+            'Email'=> "julien@hellocarbo.com",
+            'Name'=> "Julien de Carbo"
           },
           'To'=> [
             {
