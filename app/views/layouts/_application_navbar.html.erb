@@ -36,7 +36,7 @@
               <%= link_to '📋 Mode de vie', '/scores/edit', class: 'dropdown-item' %>
               <%= link_to '🚀 Progression', '/badges', class: 'dropdown-item' %>
               <% if current_user.scores.last.kind.to_sym == :dynamic %>
-                <%= link_to '🔃 Comptes synchronisés', '/users/accounts', class: 'dropdown-item' %>
+                <%= link_to '🔃 Comptes synchronisés', '/accounts', class: 'dropdown-item' %>
               <% end %>
               <%= link_to '🍄 Aide', "https://www.hellocarbo.com/?page_id=199", class: 'dropdown-item', :target=>'_blank' %>
               <div class="dropdown-divider"></div>

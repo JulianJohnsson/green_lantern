@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       root to: "users#index"
     end
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
-  get '/users/accounts' => 'users#accounts'
   resources :users
 
   authenticated :user do
@@ -72,6 +71,8 @@ Rails.application.routes.draw do
   get '/badges' => 'badges#index'
   get '/badges/calcul' => 'badges#calcul'
   post '/badges/add' => 'badges#add'
+
+  resources :accounts
 
   mount Split::Dashboard, at: 'split'
 

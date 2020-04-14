@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_100951) do
+ActiveRecord::Schema.define(version: 2020_04_14_111021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_100951) do
     t.string "kind"
     t.datetime "last_sync_at"
     t.integer "item_id"
+    t.string "status_info"
   end
 
   create_table "average_scores", force: :cascade do |t|

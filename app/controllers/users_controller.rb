@@ -15,14 +15,6 @@ class UsersController < ApplicationController
     authorize User
   end
 
-  def accounts
-    Account.refresh_accounts(current_user)
-    @accounts = current_user.accounts
-    @bridge = Bridge.find_by_user_id(current_user.id)
-    @redirect_url = @bridge.add_item_url(current_user)
-    authorize current_user
-  end
-
   def update
     @user = User.find(params[:id])
     authorize @user

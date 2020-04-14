@@ -192,6 +192,8 @@ bridges.each do |bridge|
   end
   if user.accounts == []
     Account.refresh_accounts(user)
+  elsif user.accounts.last.status_info == nil
+    Account.refresh_accounts(user)
   end
 end
 

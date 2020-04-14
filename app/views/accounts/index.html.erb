@@ -23,6 +23,14 @@
             </div>
           </div>
           <table class="table">
+            <thead>
+              <tr>
+                <th>Nom du compte</th>
+                <th>Etat</th>
+                <th>Personnes concernées</th>
+                <th/>
+              </tr>
+            </thead>
             <tbody>
               <% @accounts.each do |account| %>
                 <% if account.kind != 'savings' %>
@@ -41,9 +49,18 @@
                         <div class="category-pill pill-danger" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Ton compte n'est plus synchronisé, réessaie demain et si cela persiste merci de nous contacter"/>
                       <% end %>
                     </td>
+                    <td class="text-center edit_account">
+                      <%= form_for(account, remote: true, :url => "accounts/#{account.id}") do |t| %>
+                        <label data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Combien de personnes sont concernées par les dépenses sur ce compte ?">👥</label>
+                        <%= t.number_field :people, :value => (account.people||1), :min => 1, :max => 1000, class: "" %>
+                        <%= button_tag :class => "btn btn-fab btn-sm btn-outline-primary" do %>
+                          <i class="material-icons">check</i>
+                        <% end %>
+                      <% end %>
+                    </td>
                     <td class="text-right">
-                      <%= link_to 'Modifier mes identifiants', @bridge.edit_item_url(current_user, account.item_id), class: "btn btn-link btn-info" %>
-                      <%= link_to 'Supprimer le compte', "mailto:julien@hellocarbo.com?subject=Supprimer%20mon%20compte%20bancaire&body=Hey%20Carbo,%20ici%20#{current_user.name}%20!
+                      <%= link_to 'Mettre à jour', @bridge.edit_item_url(current_user, account.item_id), class: "btn btn-link btn-info" %>
+                      <%= link_to 'Supprimer', "mailto:julien@hellocarbo.com?subject=Supprimer%20mon%20compte%20bancaire&body=Hey%20Carbo,%20ici%20#{current_user.name}%20!
                         %0d%0dPourriez%20vous%20svp%20supprimer%20mon%20compte%20bancaire%20libellé%20:%20_______________%0d%0dMerci%20!", class: "btn btn-link btn-danger" %>
                     </td>
                   </tr>
@@ -57,3 +74,4 @@
   </div>
   <%= link_to 'Ajouter un nouveau compte', @redirect_url, :class => 'btn btn-lg btn-primary btn-round' %>
 </div>
+<%= render '/scores/number_spinner' %>

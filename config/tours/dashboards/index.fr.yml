@@ -4,7 +4,7 @@ intro:
       title: "Bienvenue sur ton dashboard !"
       text: "C'est ici que tu retrouves le résumé des informations sur ton impact carbone. Regarde tout ce qu'on peut faire ensemble !"
     2:
-      title: "Niveau actuel : gland"
+      title: "Gagne des badges pour faire pousser ton arbre"
       text: "Tu viens de gagner un badge en faisant une 1ère estimation rapide de ton empreinte carbone. Gagne d'autres badges en découvrant toutes les possibilités de Carbo et progresse dans la compréhension ton impact carbone en cliquant ici."
       attachTo:
         element: "#animated"
@@ -17,7 +17,7 @@ intro:
         placement: "right"
     4:
       title: "COMPARER"
-      text: "Voici l'impact carbone moyen de tous les utilisateurs Carbo pour t'aider à te situer. Tu peux te comparer à des personnalités, aux fondateurs de carbo ou à tes amis et collègues en les invitant depuis la rubrique Comparer (en cliquant sur ce bloc ou dans le menu)."
+      text: "Voici l'impact carbone moyen de tous les utilisateurs Carbo pour t'aider à te situer. Tu peux te comparer à des personnalités ou à tes amis et collègues en les invitant depuis la rubrique Comparer (en cliquant sur ce bloc ou dans le menu)."
       attachTo:
         element: "#comparer"
         placement: "left"
