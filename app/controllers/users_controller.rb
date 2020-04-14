@@ -16,9 +16,9 @@ class UsersController < ApplicationController
   end
 
   def accounts
-    @user = current_user
-    @bridge = Bridge.find_by_user_id(@user.id)
-    @list = @bridge.list_accounts(@user)
+    Account.refresh_accounts(current_user)
+    @accounts = current_user.accounts
+    @bridge = Bridge.find_by_user_id(current_user.id)
     @redirect_url = @bridge.add_item_url(current_user)
     authorize current_user
   end

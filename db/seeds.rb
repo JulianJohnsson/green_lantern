@@ -183,12 +183,15 @@ end
 bridges = Bridge.where("bank_connected = true")
 bridges.each do |bridge|
   user = User.find(bridge.user_id)
-  if user.scores == [] &&
+  if user.scores == []
     if user.transactions.present?
       Score.create(user_id: bridge.user_id, kind: :dynamic, country_id: 63)
     else
       Score.create(user_id: bridge.user_id, kind: :static, country_id: 63)
     end
+  end
+  if user.accounts == []
+    Account.refresh_accounts(user)
   end
 end
 

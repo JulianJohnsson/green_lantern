@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one :notification_preference, dependent: :destroy
   has_one :notification_datum, dependent: :destroy
   has_many :user_modifiers, dependent: :destroy
+  has_many :accounts, dependent: :destroy
   has_and_belongs_to_many :badges
 
   enum role: [:user, :vip, :admin]
