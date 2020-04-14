@@ -4,7 +4,7 @@ class Account < ApplicationRecord
 
   def self.refresh_accounts(user)
     accounts = user.accounts
-    if accounts.last.updated_at < 1.day.ago
+    if accounts == [] || accounts.last.updated_at < 1.day.ago
       bridge = Bridge.find_by_user_id(user.id)
       list = bridge.list_accounts(user)
       list.each do |account|
