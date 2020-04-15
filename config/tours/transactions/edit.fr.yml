@@ -1,0 +1,28 @@
+intro:
+  steps:
+    1:
+      title: "Catégorie d'une dépense"
+      text: "Si tu juges qu'elle est imprécise ou fausse, tu peux changer la catégorie d'une dépense ici."
+      attachTo:
+        element: "#category"
+        placement: "bottom"
+    2:
+      title: "Nombre de personnes concernées par une dépense"
+      text: "Si cette dépense concerne plusieurs personnes tu peux le préciser pour que seule ta part soit prise en compte dans le calcul de ton impact carbone."
+      attachTo:
+        element: "#people"
+        placement: "bottom"
+    3:
+      title: "Tu dépenses pour plusieurs régulièrement ?"
+      text: "Pour ne pas avoir à modifier chaque dépense manuellement, tu peux préciser le nombre de personnes concernées par les dépenses de chaque compte en banque que tu synchronises (dans tes paramètres)."
+      attachTo:
+        element: "#people"
+        placement: "bottom"
+    4:
+      title: "Précise ta dépense"
+      text: "Si la précision n'est pas au maximum, c'est que tu peux préciser cette dépense en ajoutant des informations en bas de cette page (comme la provenance d'un produit)."
+      attachTo:
+        element: "#accuracy"
+        placement: "bottom"
+
+
