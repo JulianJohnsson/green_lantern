@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-lg-11 col-md-12 ml-auto mr-auto">
+    <div class="card">
+
+        <div class="row">
+          <div class="col-md-7">
+          <div class="card-body">
+            <h3><strong>
+              <small>✅ Bien noté <%= current_user.name %>, on verra plus tard</small>
+              <br>
+              Voici ta première estimation :
+              <span class="d-md-none">
+                <br><%= number_with_precision(@score.total * 1000 / 12, precision: 0) %>
+                kgCO2 / mois
+              </span>
+            </strong></h3>
+            <p class="description">
+              C'est l'estimation que nous avons pu faire à partir des 1ères informations que tu as fourni et des données moyennes des français.
+            </p>
+            <p class="description">
+              Sans la liste de tes dépenses nous ne pouvons pas le calculer plus précisément automatiquement.</p><p class="description">Tu peux nous fournir plus d'informations <strong>pour affiner ton calcul</strong>, ou commencer par découvrir ton dashboard pour <strong>comparer, réduire et compenser ton impact carbone !</strong>
+            </p>
+            <div class="text-center">
+              <%= link_to("Améliorer mon calcul", '/scores/edit', :class => 'btn btn-primary btn-round', :style => 'margin-top:20px;') %>
+              <%= link_to("Aller sur mon dashboard", root_path, :class => 'btn btn-outline-primary btn-round', :style => 'margin-top:20px;') %>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-5 score-preview text-center align-self-end">
+            <%= render "/scores/score" %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

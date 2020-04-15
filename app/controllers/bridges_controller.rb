@@ -62,6 +62,21 @@ class BridgesController < ApplicationController
   end
 
   def later
+    @test = ab_test(:score_update_in_onboarding, "control", "experiment")
+    if @test == "experiment"
+      redirect_to '/next'
+    end
+    @user = current_user
+    @score = current_user.scores.last
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Bank Connection Skipped', nil, current_user)
+    if current_user.onboarded != true
+      current_user.onboarded = true
+      current_user.save
+    end
+  end
+
+  def next
     @user = current_user
     @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
@@ -83,7 +98,6 @@ class BridgesController < ApplicationController
       @score = current_user.scores.last
       AnalyticService.new.identify(current_user,request)
       AnalyticService.new.track('Bank Connection Asked', nil, current_user)
-
     end
   end
 

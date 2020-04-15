@@ -61,9 +61,6 @@ class ScoresController < ApplicationController
       current_user.save
       AnalyticService.new.track('Invitation accepted', nil, User.find(current_user.invited_by_id))
     end
-
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
-
     render :layout => 'bridges'
   end
 
@@ -82,37 +79,27 @@ class ScoresController < ApplicationController
   end
 
   def edit_transport
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
   def edit_plane
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
   def edit_plane2
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
   def edit_house
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     @default = Country.find(@score.country_id).house_size.to_i
     render :layout => 'bridges'
   end
 
   def edit_house2
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
-    if @test == "control"
-      redirect_to "/scores/#{@score.id}/edit_regime"
-      return
-    end
     render :layout => 'bridges'
   end
 
   def edit_regime
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     render :layout => 'bridges'
   end
 
@@ -125,7 +112,6 @@ class ScoresController < ApplicationController
   end
 
   def update
-    @test = ab_test(:onboarding_with_house_people, "control", "experiment")
     respond_to do |format|
       if @score.update(score_params)
         if request.referer.include? "/edit_transport"
@@ -142,21 +128,17 @@ class ScoresController < ApplicationController
           format.html { redirect_to "/scores/#{@score.id}/edit_plane2" }
         elsif request.referer.include? "/edit_house"
           AnalyticService.new.track('House set', nil, current_user)
-          if @test == "experiment"
-            format.html { redirect_to "/scores/#{@score.id}/edit_house2" }
-          else
-            format.html { redirect_to "/scores/#{@score.id}/edit_regime" }
-          end
+          format.html { redirect_to "/scores/#{@score.id}/edit_house2" }
         elsif request.referer.include? "/edit_regime"
           AnalyticService.new.track('Regime set', nil, current_user)
-
-          ab_finished(:onboarding_with_house_people)
-
           FoodModifierJob.perform_later(@score.user)
           current_user.badges <<  Badge.find(5)
           format.html { redirect_to bridges_path }
         else
           AnalyticService.new.track('Score details updated', nil, current_user)
+
+          ab_finished(:score_update_in_onboarding)
+
           FoodModifierJob.perform_later(@score.user)
           HouseModifierJob.perform_later(@score.user)
           unless current_user.badges.include?(Badge.find(2))

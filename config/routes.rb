@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/bankin' => 'bridges#index'
   get '/account' => 'bridges#account'
   get '/later' => 'bridges#later'
-  get '/waitlist' => 'users#waitlist'
+  get '/next' => 'bridges#next'
 
   get '/dashboard' => 'dashboards#index'
   get '/categorize' => 'transactions#categorize'

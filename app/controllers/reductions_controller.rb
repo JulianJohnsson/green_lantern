@@ -7,6 +7,8 @@ class ReductionsController < ApplicationController
   end
 
   def index
+    ab_finished(:score_update_in_onboarding)
+
     @reductions = current_user.reductions.visible.order("month_carbone desc").first(3)
     @tips = Tip.all
 

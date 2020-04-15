@@ -28,6 +28,8 @@ class CategoriesController < ApplicationController
   end
 
   def track
+    ab_finished(:score_update_in_onboarding)
+
     @bridge = Bridge.find_by_user_id(current_user.id)
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last
