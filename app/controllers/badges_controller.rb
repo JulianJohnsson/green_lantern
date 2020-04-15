@@ -1,5 +1,6 @@
 class BadgesController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_onboarding
 
   def index
     @badges = Badge.where("active = true")
