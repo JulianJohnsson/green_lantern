@@ -8,15 +8,16 @@
     <%= render 'contribution_target' %>
   </div>
 </div>
-<h2 class="description text-center">
+<h2 class="description text-center" style="margin-top:0;">
   Comment ça marche ?
 </h2>
 <div class="row justify-content-center text-center">
   <div class="col-lg-10 col-md-12">
     <%= render 'contribution_carousel' %>
+    <%= link_to "👇🌳 Démarrer ma plantation 🌳👇", "#impact-local", class: "btn btn-lg btn-primary btn-link", :style => "font-size:1em;margin-top:-20px;" %>
   </div>
 </div>
-<h2 class="description text-center">
+<h2 class="description text-center" id="impact-local">
   Mon impact local
 </h2>
 <p class="text-center">
