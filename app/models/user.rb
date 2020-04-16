@@ -31,7 +31,7 @@ class User < ApplicationRecord
       #UserMailer.welcome_email(self).deliver_later
       DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
       SurveyOptinJob.set(wait: 2.days).perform_later(self)
-      DriftDynamicActivationJob.set(wait: 3.days).perform_later(self)
+      DriftSubscriptionJob.set(wait: 3.days).perform_later(self)
     else
       AnalyticService.new.identify(self, nil)
       AnalyticService.new.track('Invitation sent', nil, User.find(self.invited_by_id))
@@ -47,7 +47,7 @@ class User < ApplicationRecord
       #UserMailer.welcome_email(self).deliver_later
       DriftOnboardingJob.set(wait: 5.hours).perform_later(self)
       SurveyOptinJob.set(wait: 2.days).perform_later(self)
-      DriftDynamicActivationJob.set(wait: 5.days).perform_later(self)
+      DriftSubscriptionJob.set(wait: 3.days).perform_later(self)
       user = User.find(self.invited_by_id)
       unless user.badges.include?(Badge.find(4))
         user.badges <<  Badge.find(4)
