@@ -63,9 +63,9 @@ class MatchesController < ApplicationController
       user = score.user
       name = user.name
       points = user.scores.last.recent_total*1000/12 + (user.set_level[2]||0) * -10 + ((User.where("invited_by_id = ?", user.id).count)||0) * -20 + (user.subscription_price||0) * -50
-      @array << [name, points]
+      @array << { :name => name, :points => points }
     end
-    @ranking = @array.sort { |a,b| a[1].to_f<=>b[1].to_f }
+    @ranking = @array.sort_by { |hsh| hsh[:points] }
   end
 
 end
