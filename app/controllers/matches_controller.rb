@@ -51,6 +51,21 @@ class MatchesController < ApplicationController
 
   def trends
     @average_history = AverageScore.where("score_kind = 1")
+
+    @score = current_user.scores.last.recent_total*1000/12
+    @badge = current_user.set_level[2] * -10
+    @friends = (User.where("invited_by_id = ?", current_user.id).count) * -20
+    @project = (current_user.subscription_price||0) * -50
+
+    @array = []
+    @scores = Score.all.dynamic
+    @scores.each do |score|
+      user = score.user
+      name = user.name
+      points = user.scores.last.recent_total*1000/12 + user.set_level[2] * -10 + (User.where("invited_by_id = ?", user.id).count) * -20 + (user.subscription_price||0) * -50
+      @array << [name, points]
+    end
+    @ranking = @array.sort { |a,b| a[1]>b[1] }
   end
 
 end

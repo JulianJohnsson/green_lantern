@@ -1,0 +1,17 @@
+<h1>Un de tes comptes bancaires est désynchronisé</h1>
+<p>Hey <%= @user.name %>,</p>
+<p>
+  Nous n'avons pas pu mettre à jour ton impact carbone car un de tes comptes en banque n'est plus synchronisé avec Carbo pour une raison indépendante de notre volonté.
+</p>
+<p>
+  Voici le message indiqué par notre prestataire Bridge by Bankin' expliquant la raison du problème (in english) :
+  <%= @account.status_info %>
+</p>
+<p>
+  Tu peux te connecter sur Carbo pour re-synchroniser ton compte, ou nous contacter en répondant à cet email.
+</p>
+<%= link_to "Re-synchroniser mon compte", "https://www.app.hellocarbo.com/accounts?utm_source=refresh_account&utm_medium=email", class: "btn btn-round btn-primary" %>
+<p>À très vite 👋</p>
+<p>Julien<br>
+Cofondateur de Carbo</p>
+

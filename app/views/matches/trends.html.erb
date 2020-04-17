@@ -5,13 +5,75 @@
       <div class="card-header card-header-info">
         <div class="emoji-title">
           📈
-          <h4>Moyenne des utilisateurs dynamiques</h4>
-          <p>Impact carbone hebdomadaire</p>
+          <h4>Evolution de ton impact carbone mensuel</h4>
         </div>
       </div>
       <div class="card-body">
-        <%= line_chart [{ name: 'Moyenne mobile 4 semaines', data: @average_history.map { |a| [a.created_at, a.month_total*1000/(12*4.33)] } },
-        { name: 'Moyenne de la semaine', data: @average_history.map { |a| [a.created_at, a.week_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+        <%= line_chart [{ name: 'Ton impact', data: @average_history.map { |a| [a.created_at, current_user.transactions.carbone_contribution.where("date <= ? and date > ?", a.created_at, a.created_at - 1.month).sum(:carbone)] } }, { name: 'Moyenne des membres Carbo', data: @average_history.map { |a| [a.created_at, a.month_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="emoji-title">
+          📈
+          <h4>Ton score</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <p>Ton impact calculé</p>
+            <span class="text-danger number number-sm">
+              <%= number_with_precision(@score, precision: 0) %>
+              kgCO2
+            </span>
+          </div>
+          <div class="col-2">
+            <p>Ton arbre Carbo</p>
+            <span class="text-primary number number-sm">
+              <%= number_with_precision(@badge, precision: 0) %>
+            </span>
+          </div>
+          <div class="col-2">
+            <p>Ta forêt proche</p>
+            <span class="text-primary number number-sm">
+              <%= number_with_precision(@friends, precision: 0) %>
+            </span>
+          </div>
+          <div class="col-2">
+            <p>Ta compensation</p>
+            <span class="text-primary number number-sm">
+              <%= number_with_precision(@project, precision: 0) %>
+            </span>
+          </div>
+          <div class="col-4">
+            <p>Ton score</p>
+            <span class="text-rose number number-md">
+              <%= number_with_precision(@score+@badge+@friends+@project, precision: 0) %>
+              kgCO2
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="emoji-title">
+          📈
+          <h4>Classement</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= @ranking %>
       </div>
     </div>
   </div>

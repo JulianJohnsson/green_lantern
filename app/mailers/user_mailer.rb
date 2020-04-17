@@ -4,13 +4,6 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: '🎉  Bienvenue dans la communauté Carbo ! 🎉 ')
   end
 
-  def weekly_score_update(user)
-    @user = user
-    @score = user.transactions.week.carbone_contribution.sum(:carbone).round(0)
-    @last_score = user.transactions.previous_week.carbone_contribution.sum(:carbone).round(0)
-    mail(to: @user.email, subject: "Tu as généré #{@score} kg de CO2 cette semaine")
-  end
-
   def new_match_ready(match_id)
     match = Match.find(match_id)
     @user = User.find(match.user_id)
@@ -27,10 +20,10 @@ class UserMailer < ApplicationMailer
     mail(to: emails, subject: 'Nouveau commentaire sur une transaction')
   end
 
-  def new_subscription(subscription)
-    @subscription = subscription
-    @recipients = User.where("role = 2")
-    emails = @recipients.collect(&:email).join(",")
-    mail(to: emails, subject: 'Nouvel abonnement demandé')
+  def refresh_bridge_email(account)
+    @account = account
+    @user = @account.user
+    mail(to: @user.email, subject: "Ton impact carbone n'est plus à jour")
   end
+
 end

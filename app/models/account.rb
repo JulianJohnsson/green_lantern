@@ -3,6 +3,7 @@ class Account < ApplicationRecord
   has_many :transactions
 
   after_save :update_transactions, if: :saved_change_to_people?
+  after_save :check_status, if: :saved_change_to_status?
 
   def self.refresh_accounts(user)
     accounts = user.accounts
@@ -27,6 +28,29 @@ class Account < ApplicationRecord
     self.transactions.each do |transaction|
       transaction.people = self.people
       transaction.save
+    end
+  end
+
+  def check_status
+    if [1003,402,429,1010,1009].include?(status.to_i) && (self.user.notification_preference.refresh_bridge_date == nil || self.user.notification_preference.refresh_bridge_date < 1.day.ago)
+      if status_info.present?
+        UserMailer.refresh_bridge_email(self).deliver_later
+        self.user.notification_preference.update(refresh_bridge_date: 0.day.ago)
+      else
+        case status when 429
+          text = "Please activate your account on your bank's website or app."
+        when 1010
+          text = "Thanks for filling in the strong customer authentification (SMS, notification, etc.) provided by your bank."
+        when 402
+          text = "The credentials you used don't allow us to synchronize your accounts. Please edit them (check for any typo)."
+        when 1003
+          text = "There's a synchronisation error with your accounts. Click here to learn more."
+        end
+        self.status_info = text
+        self.save
+        UserMailer.refresh_bridge_email(self).deliver_later
+        self.user.notification_preference.update(refresh_bridge_date: 0.day.ago)
+      end
     end
   end
 

@@ -108,7 +108,7 @@ class ScoresController < ApplicationController
   end
 
   def show
-    render :layout => 'bridges'
+    redirect_to root_path
   end
 
   def update

@@ -166,6 +166,7 @@ class Score < ApplicationRecord
       user.onboarded = true
     elsif self.kind.to_sym == :static && self.regime.present?
       user.onboarded = true
+      refresh_reductions
     else
       user.onboarded = false
     end
