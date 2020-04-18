@@ -20,14 +20,4 @@ class TransactionModifier < ApplicationRecord
     end
   end
 
-  def self.deduplicate
-    transactions = Transaction.joins(:transaction_modifiers).group('transactions.id').having('count(transaction_id) > 1')
-    transactions.each do |transaction|
-      transaction_modifiers = transaction.transaction_modifiers.group(:modifier_id).having('count("modifier_id") > 1').count(:modifier_id)
-      transaction_modifiers.each do |key,value|
-        duplicates = TransactionModifier.where(modifier_id: key)[1..value-1]
-        duplicates.each(&:destroy)
-      end
-    end
-  end
 end

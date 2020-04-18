@@ -34,7 +34,7 @@ class Account < ApplicationRecord
   def check_status
     if [1003,402,429,1010,1009].include?(status.to_i) && (self.user.notification_preference.refresh_bridge_date == nil || self.user.notification_preference.refresh_bridge_date < 1.day.ago)
       if status_info.present?
-        UserMailer.refresh_bridge_email(self).deliver_later
+        RefreshBridgeJob.perform_later(self)
         self.user.notification_preference.update(refresh_bridge_date: 0.day.ago)
       else
         case status when 429
@@ -48,7 +48,7 @@ class Account < ApplicationRecord
         end
         self.status_info = text
         self.save
-        UserMailer.refresh_bridge_email(self).deliver_later
+        RefreshBridgeJob.perform_later(self)
         self.user.notification_preference.update(refresh_bridge_date: 0.day.ago)
       end
     end

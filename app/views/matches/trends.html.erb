@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="card-body">
-        <%= line_chart [{ name: 'Ton impact', data: @average_history.map { |a| [a.created_at, current_user.transactions.carbone_contribution.where("date <= ? and date > ?", a.created_at, a.created_at - 1.month).sum(:carbone)] } }, { name: 'Moyenne des membres Carbo', data: @average_history.map { |a| [a.created_at, a.month_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+        <%= line_chart [{ name: 'Ton impact', data: @average_history.map { |a| [a.created_at, current_user.transactions.carbone_contribution.where("date <= ? and date > ?", a.created_at, a.created_at - 1.month).sum(:carbone)] } }, { name: 'Moyenne des membres Carbo', data: @average_history.map { |a| [a.created_at, a.month_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", max: 1500 %>
       </div>
     </div>
   </div>

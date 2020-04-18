@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :user
-  belongs_to :account
+  belongs_to :account, required: false
   belongs_to :category
   has_many :comments
   has_many :transaction_modifiers

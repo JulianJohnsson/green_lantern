@@ -51,19 +51,25 @@ class Bridge < ApplicationRecord
   def create_transactions(user)
     json = self.list_transactions(user)
     json['resources'].each do |transaction|
-      @transaction = Transaction.find_or_create_by(external_id: transaction['id'])
-        @transaction.description = transaction['description']
-        @transaction.raw_description = transaction['raw_description']
-        @transaction.amount = transaction['amount']
-        @transaction.date = transaction['date']
-        @transaction.category_id = BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).category_id if @transaction.category_id == nil
-        @transaction.user_id = user.id
-        @transaction.account_id = Account.find_or_create_by(external_id: transaction['account']['id']).id
-        unless @transaction.account_id == nil
-          @transaction.people = Account.find(@transaction.account_id).people || 1
+      @transaction = Transaction.find_or_create_by(external_id: transaction['id']) do |t|
+        t.user_id = user.id
+        t.amount = transaction['amount']
+        if BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).present?
+          t.category_id = BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).category_id
+        else
+          t.category_id = 115
         end
-        @transaction.save
-        TransactionEnrichment.enrich_transaction(@transaction)
+      end
+      @transaction.description = transaction['description']
+      @transaction.raw_description = transaction['raw_description']
+      @transaction.date = transaction['date']
+      @transaction.account_id = Account.find_or_create_by(external_id: transaction['account']['id']).id
+      unless @transaction.account_id == nil
+        @transaction.people = Account.find(@transaction.account_id).people || 1
+      end
+      @transaction.save
+
+      TransactionEnrichmentJob.perform_later(@transaction)
     end
     self.last_sync_at = Time.now.to_datetime
     self.save
