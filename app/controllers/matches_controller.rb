@@ -55,7 +55,11 @@ class MatchesController < ApplicationController
     @score = current_user.scores.last.recent_total*1000/12
     @badge = current_user.set_level[2] * -10
     @friends = (User.where("invited_by_id = ?", current_user.id).count) * -20
-    @project = (current_user.subscription_price||0) * -50
+    if current_user.subscribed
+      @project = (current_user.subscription_price) * -50
+    else
+      @project = 0
+    end
 
     @array = []
     @scores = Score.all.dynamic.where("recent_total > 0")
@@ -64,7 +68,12 @@ class MatchesController < ApplicationController
       id = user.id
       name = (user.name||"") + " (" + user.email + ")"
       city = user.city
-      points = user.scores.last.recent_total*1000/12 + (user.set_level[2]||0) * -10 + ((User.where("invited_by_id = ?", user.id).count)||0) * -20 + ((user.subscription_price if user.subscribed)||0) * -50
+      if user.subscribed
+        compensation = user.subscription_price
+      else
+        compensation = 0
+      end
+      points = user.scores.last.recent_total*1000/12 + (user.set_level[2]||0) * -10 + ((User.where("invited_by_id = ?", user.id).count)||0) * -20 + compensation * -50
       @array << { :id => id, :name => name, :points => points, :city => city }
     end
     @ranking = @array.sort_by { |hsh| hsh[:points] }
