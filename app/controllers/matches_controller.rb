@@ -73,7 +73,7 @@ class MatchesController < ApplicationController
       else
         compensation = 0
       end
-      points = user.scores.last.recent_total*1000/12 + (user.set_level[2]||0) * -10 + ((User.where("invited_by_id = ?", user.id).count)||0) * -20 + compensation * -50
+      points = score.recent_total*1000/12 + (user.set_level[2]||0) * -10 + ((User.where("invited_by_id = ?", user.id).count)||0) * -20 + compensation * -50
       @array << { :id => id, :name => name, :points => points, :city => city }
     end
     @ranking = @array.sort_by { |hsh| hsh[:points] }
