@@ -66,7 +66,7 @@ class MatchesController < ApplicationController
     @scores.each do |score|
       user = score.user
       id = user.id
-      name = user.name || "Utilisateur " + id
+      name = user.name || "Utilisateur " + id.to_s
       city = user.city
       if user.subscribed
         compensation = (user.subscription_price||0)
