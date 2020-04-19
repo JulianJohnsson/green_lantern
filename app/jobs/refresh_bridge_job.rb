@@ -26,7 +26,7 @@ class RefreshBridgeJob < ApplicationJob
             ],
             'TemplateID'=> 1110159,
             'TemplateLanguage'=> true,
-            'Subject'=> "Ton impact carbone n'est plus à jour 🚨",
+            'Subject'=> "Un de tes comptes bancaires est désynchronisé 🚨",
             'Variables'=> {
               "name" => (@user.name||""),
               "technical_reason" => @account.status_info

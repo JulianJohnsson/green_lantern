@@ -71,8 +71,28 @@
           <h4>Classement</h4>
         </div>
       </div>
-      <div class="card-body">
-        <%= @ranking %>
+      <div class="card-body table-responsive">
+        <table class="table table-hover">
+          <tbody>
+            <% @ranking.each do |r| %>
+              <tr>
+                <td class="text-left">
+                  <%= @ranking.index(r) + 1 %>
+                </td>
+                <td class="text-left">
+                  <%= r[:name] %>
+                </td>
+                <td class="text-left">
+                  <%= r[:city] %>
+                </td>
+                <td class="text-right number number-sm">
+                  <%= number_with_precision(r[:points], precision: 0) %>
+                  kgCO2
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
