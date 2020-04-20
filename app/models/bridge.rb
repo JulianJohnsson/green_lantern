@@ -69,7 +69,7 @@ class Bridge < ApplicationRecord
       end
       @transaction.save
 
-      TransactionEnrichmentJob.perform_later(@transaction)
+      TransactionEnrichment.enrich_transaction(@transaction)
     end
     self.last_sync_at = Time.now.to_datetime
     self.save

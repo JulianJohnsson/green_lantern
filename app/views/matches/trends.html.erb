@@ -85,8 +85,10 @@
                 <td class="text-left">
                   <%= r[:city] %>
                 </td>
-                <td class="text-right number number-sm">
-                  <%= number_with_precision(r[:points], precision: 0) %>
+                <td class="text-right">
+                  <span class="number number-sm">
+                    <%= number_with_precision(r[:points], precision: 0) %>
+                  </span>
                   kgCO2
                 </td>
               </tr>
