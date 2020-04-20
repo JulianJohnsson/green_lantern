@@ -60,8 +60,7 @@
                     </td>
                     <td class="text-right">
                       <%= link_to 'Re-synchroniser', @bridge.edit_item_url(current_user, account.item_id), class: "btn btn-link btn-info" %>
-                      <%= link_to 'Supprimer', "mailto:julien@hellocarbo.com?subject=Supprimer%20mon%20compte%20bancaire&body=Hey%20Carbo,%20ici%20#{current_user.name}%20!
-                        %0d%0dPourriez%20vous%20svp%20supprimer%20mon%20compte%20bancaire%20libellé%20:%20_______________%0d%0dMerci%20!", class: "btn btn-link btn-danger" %>
+                      <%= link_to "Supprimer", "/accounts/#{account.id}" , :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger btn-link' %>
                     </td>
                   </tr>
                 <% end %>

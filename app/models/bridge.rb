@@ -54,20 +54,24 @@ class Bridge < ApplicationRecord
       @transaction = Transaction.find_or_create_by(external_id: transaction['id']) do |t|
         t.user_id = user.id
         t.amount = transaction['amount']
+        t.description = transaction['description']
+        t.raw_description = transaction['raw_description']
+        t.date = transaction['date']
+        account = Account.find_or_create_by(external_id: transaction['account']['id'])
+        t.account_id = account.id
+        t.people = account.people || 1
         if BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).present?
           t.category_id = BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).category_id
         else
           t.category_id = 115
         end
       end
-      @transaction.description = transaction['description']
-      @transaction.raw_description = transaction['raw_description']
-      @transaction.date = transaction['date']
-      @transaction.account_id = Account.find_or_create_by(external_id: transaction['account']['id']).id
-      unless @transaction.account_id == nil
-        @transaction.people = Account.find(@transaction.account_id).people || 1
+
+      if Account.find(@transaction.account_id).active = false
+        @transaction.destroy
+      else
+        @transaction.save
       end
-      @transaction.save
 
       TransactionEnrichment.enrich_transaction(@transaction)
     end

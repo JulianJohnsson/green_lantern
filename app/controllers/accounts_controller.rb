@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
 
   def index
     Account.refresh_accounts(current_user)
-    @accounts = current_user.accounts
+    @accounts = current_user.accounts.active
     @bridge = Bridge.find_by_user_id(current_user.id)
     @redirect_url = @bridge.add_item_url(current_user)
   end
@@ -20,6 +20,13 @@ class AccountsController < ApplicationController
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @account = Account.find(params[:id])
+    @account.active = false
+    @account.save
+    redirect_to accounts_path, :notice => "Ce compte a bien été supprimé, il ne sera plus synchronisé."
   end
 
   private

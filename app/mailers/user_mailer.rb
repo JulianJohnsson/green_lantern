@@ -20,10 +20,4 @@ class UserMailer < ApplicationMailer
     mail(to: emails, subject: 'Nouveau commentaire sur une transaction')
   end
 
-  def refresh_bridge_email(account)
-    @account = account
-    @user = @account.user
-    mail(to: @user.email, subject: "Ton impact carbone n'est plus à jour")
-  end
-
 end

@@ -4,6 +4,9 @@ class Account < ApplicationRecord
 
   after_save :update_transactions, if: :saved_change_to_people?
   after_save :check_status, if: :saved_change_to_status?
+  after_save :hide_transactions, if: :saved_change_to_active?
+
+  scope :active, -> { where("active = true") }
 
   def self.refresh_accounts(user)
     accounts = user.accounts
@@ -52,6 +55,10 @@ class Account < ApplicationRecord
         self.user.notification_preference.update(refresh_bridge_date: 0.day.ago)
       end
     end
+  end
+
+  def hide_transactions
+    self.transactions.each { |t| t.destroy }
   end
 
 end
