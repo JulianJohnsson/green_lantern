@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :transactions
   resources :bridges
+  get '/connexion' => 'bridges#connexion'
   resources :comments
   post '/feedback' => 'comments#feedback'
   get 'subscriptions/project' => 'subscriptions#project'

@@ -137,8 +137,6 @@ class ScoresController < ApplicationController
         else
           AnalyticService.new.track('Score details updated', nil, current_user)
 
-          ab_finished(:score_update_in_onboarding)
-
           FoodModifierJob.perform_later(@score.user)
           HouseModifierJob.perform_later(@score.user)
           unless current_user.badges.include?(Badge.find(2))

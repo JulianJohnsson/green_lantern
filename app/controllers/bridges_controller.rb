@@ -18,6 +18,8 @@ class BridgesController < ApplicationController
         AnalyticService.new.track('Account Verified', nil, current_user)
         redirect_to action: 'later', notice: "Ton email a bien été vérifié mais ton compte n'est pas connecté!"
       else
+        ab_finished(bridge_new_2: "connect")
+
         AnalyticService.new.track('Bank Connected', nil, current_user)
         @bridge.bank_connected = true
         @bridge.save
@@ -62,21 +64,6 @@ class BridgesController < ApplicationController
   end
 
   def later
-    @test = ab_test(:score_update_in_onboarding, "control", "experiment")
-    if @test == "experiment"
-      redirect_to '/next'
-    end
-    @user = current_user
-    @score = current_user.scores.last
-    AnalyticService.new.identify(current_user,request)
-    AnalyticService.new.track('Bank Connection Skipped', nil, current_user)
-    if current_user.onboarded != true
-      current_user.onboarded = true
-      current_user.save
-    end
-  end
-
-  def next
     @user = current_user
     @score = current_user.scores.last
     AnalyticService.new.identify(current_user,request)
@@ -89,16 +76,30 @@ class BridgesController < ApplicationController
 
   # GET /bridges/new
   def new
+    @test = ab_test({bridge_new_2: ["start","connect"]}, 'control', 'experiment')
+
     @bridge = Bridge.find_by_user_id(current_user.id)
     if @bridge
       redirect_to '/account'
+    elsif @test == 'experiment'
+      redirect_to '/connexion'
     else
       @bridge = Bridge.new
       @user = current_user
       @score = current_user.scores.last
       AnalyticService.new.identify(current_user,request)
-      AnalyticService.new.track('Bank Connection Asked', nil, current_user)
+      AnalyticService.new.track('Bank Connection Asked', {variant: @test}, current_user)
     end
+  end
+
+  def connexion
+    @test = ab_test({bridge_new_2: ["start","connect"]}, 'control', 'experiment')
+
+    @bridge = Bridge.new
+    @user = current_user
+    @score = current_user.scores.last
+    AnalyticService.new.identify(current_user,request)
+    AnalyticService.new.track('Bank Connection Asked', {variant: @test}, current_user)
   end
 
   # GET /bridges/1/edit
@@ -109,6 +110,8 @@ class BridgesController < ApplicationController
   # POST /bridges
   # POST /bridges.json
   def create
+    ab_finished(bridge_new_2: "start")
+
     @bridge = Bridge.new(bridge_params)
     @user = current_user
 
