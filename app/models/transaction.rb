@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
   has_many :comments
   has_many :transaction_modifiers
 
+  after_create :enrich
+
   before_save :calculate_carbone
 
   after_update :update_similar_transactions, if: :saved_change_to_category_id?
@@ -25,6 +27,11 @@ class Transaction < ApplicationRecord
   scope :year_to_date, -> (int) {where("date >= ? AND date <= ?", int.years.ago.beginning_of_year, int.years.ago)}
 
   scope :carbone_contribution, -> {where "carbone > 0"}
+
+  def enrich
+    TransactionEnrichment.enrich_transaction(self)
+    self.save
+  end
 
   def calculate_carbone
     self.refine_category

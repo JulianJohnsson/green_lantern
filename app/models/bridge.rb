@@ -57,7 +57,9 @@ class Bridge < ApplicationRecord
         t.description = transaction['description']
         t.raw_description = transaction['raw_description']
         t.date = transaction['date']
-        account = Account.find_or_create_by(external_id: transaction['account']['id'])
+        account = Account.find_or_create_by(external_id: transaction['account']['id']) do |a|
+          a.user_id = user.id
+        end
         t.account_id = account.id
         t.people = account.people || 1
         if BankinCategory.find_by_bankin_id(transaction['category']['id'].to_i).present?
@@ -72,8 +74,6 @@ class Bridge < ApplicationRecord
       else
         @transaction.save
       end
-
-      TransactionEnrichment.enrich_transaction(@transaction)
     end
     self.last_sync_at = Time.now.to_datetime
     self.save
