@@ -68,12 +68,7 @@ class Bridge < ApplicationRecord
           t.category_id = 115
         end
       end
-
-      if Account.find(@transaction.account_id).active = false
-        @transaction.destroy
-      else
-        @transaction.save
-      end
+      @transaction.save
     end
     self.last_sync_at = Time.now.to_datetime
     self.save

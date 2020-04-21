@@ -29,8 +29,12 @@ class Transaction < ApplicationRecord
   scope :carbone_contribution, -> {where "carbone > 0"}
 
   def enrich
-    TransactionEnrichment.enrich_transaction(self)
-    self.save
+    if self.account.active == false
+      self.destroy
+    else
+      TransactionEnrichment.enrich_transaction(self)
+      self.save
+    end
   end
 
   def calculate_carbone
