@@ -7,8 +7,6 @@ class MatchesController < ApplicationController
   end
 
   def index
-    ab_finished(:score_update_in_onboarding)
-
     if params[:opponent]
       @opponent = Match.find(params[:opponent])
       AnalyticService.new.track('Changed Match Opponent', nil, current_user)

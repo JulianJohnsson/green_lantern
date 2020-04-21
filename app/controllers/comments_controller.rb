@@ -22,6 +22,13 @@ class CommentsController < ApplicationController
     end
   end
 
+  def feedback
+    AnalyticService.new.track('Feedback Wanted', nil, current_user)
+    respond_to do |format|
+      format.js { flash.now[:notice] = 'Ta demande a bien été prise en compte, tu vas être contacté rapidement.' }
+    end
+  end
+
   private
 
   def comment_params

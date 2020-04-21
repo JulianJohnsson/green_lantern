@@ -111,11 +111,13 @@
           <div class="card-header card-header-info">
             <div class="emoji-title">
               📈
-              <h4>Evolution de mon impact carbone</h4>
+              <h4>Evolution de mon impact carbone mensuel</h4>
             </div>
           </div>
           <div class="card-body">
-            <%= area_chart current_user.transactions.year.group_by_month(:date).sum(:carbone), defer: true, max: (current_user.transactions.year.group_by_month(:date).sum(:carbone).values.max * 1.1).to_i.round(-3), points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+            <%= line_chart [{ name: 'Mon impact mensuel', data: @average_history.map { |a| [a.created_at, current_user.transactions.carbone_contribution.where("date <= ? and date > ?", a.created_at, a.created_at - 1.month).sum(:carbone)] } }, { name: 'Moyenne des membres Carbo', data: @average_history.map { |a| [a.created_at, a.month_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", max: 1500 %>
+            <p class="description" style="margin-top:20px;">Tu es intéressé par ces informations ? Tu veux en savoir plus sur l'évolution et la répartition de ton impact carbone ? <br>Fais nous part de tes idées et suggestions et tu pourras tester en avant-première nos nouvelles fonctionnalités !</p>
+            <%= button_tag "Donner mon avis", class: "btn btn-round btn-outline-primary", :id => "feedback" %>
           </div>
         </div>
       </div>
@@ -134,3 +136,11 @@
       </div>
     </div>
   <% end %>
+
+  <script>
+  $( "#feedback" ).click(function() {
+    $.post('/feedback', {
+      user_id: <%= current_user.id %>
+    });
+  });
+</script>

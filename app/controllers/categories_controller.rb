@@ -28,8 +28,6 @@ class CategoriesController < ApplicationController
   end
 
   def track
-    ab_finished(:score_update_in_onboarding)
-
     @bridge = Bridge.find_by_user_id(current_user.id)
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last
@@ -55,6 +53,8 @@ class CategoriesController < ApplicationController
     for i in 0..4
       @data = @data << [@categories[i].name, (@score.detail[i].to_f*1000/12).round(2)]
     end
+
+    @average_history = AverageScore.where("score_kind = 1")
 
     AnalyticService.new.identify(current_user,request)
   end
