@@ -86,41 +86,56 @@ class Reduction < ApplicationRecord
     transactions = user.transactions
     Category.all.each do |c|
       t = transactions.category_id(c.id)
-      if t.present?
-        first_transaction_date = t.order(date: :asc).first.date
-        days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
-        category_count = t.carbone_contribution.sum(:carbone) * 30 / days
-        all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
-        average_category_count = all_transactions.sum(:carbone) / all_transactions.distinct.count(:user_id)  * 30 / days
-        if category_count > 1.5 *  average_category_count
-          red = user.reductions.where("category_id = ?", c.id).last
-          unless red.present?
-            red = Reduction.new
-          end
-          red.category_id = c.id
-          red.parent_category_id = c.parent_id
-          red.title = "Tu dépenses plus que la moyenne en #{c.name}"
+      red = user.reductions.where("category_id = ?", c.id).last
+      if red.present?
+        if t.present?
+          first_transaction_date = t.order(date: :asc).first.date
+          days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
+          category_count = t.carbone_contribution.sum(:carbone) * 30 / days
+          all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
+          average_category_count = all_transactions.sum(:carbone) / all_transactions.distinct.count(:user_id)  * 30 / days
           red.month_carbone =  category_count - average_category_count
-          red.month_cost = 0
-          red.user_id = user.id
-          case c.parent_id when 1
-            color = 'danger'
-            red.image = "reduction_voiture.png"
-          when 12
-            color = "rose"
-            red.image = "reduction_logement.png"
-          when 24
-            color = "violet"
-          when 25
-            color = "warning"
-          when 70
-            color = "primary"
-            red.image = "reduction_regime.png"
-          end
-          red.color = color
+          red.save
+        else
+          red.month_carbone = 0
           red.save
         end
+        if red.month_carbone <= 0
+          red.destroy
+        end
       end
+        if red == nil && t.count > 2
+          first_transaction_date = t.order(date: :asc).first.date
+          days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
+          category_count = t.carbone_contribution.sum(:carbone) * 30 / days
+          all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
+          average_category_count = all_transactions.sum(:carbone) / all_transactions.distinct.count(:user_id)  * 30 / days
+          if category_count > 1.5 *  average_category_count
+            red = Reduction.new
+            red.category_id = c.id
+            red.parent_category_id = c.parent_id
+            red.title = "Tu dépenses plus que la moyenne en #{c.name}"
+            red.month_carbone =  category_count - average_category_count
+            red.month_cost = 0
+            red.user_id = user.id
+            case c.parent_id when 1
+              color = 'danger'
+              red.image = "reduction_voiture.png"
+            when 12
+              color = "rose"
+              red.image = "reduction_logement.png"
+            when 24
+              color = "violet"
+            when 25
+              color = "warning"
+            when 70
+              color = "primary"
+              red.image = "reduction_regime.png"
+            end
+            red.color = color
+            red.save
+          end
+        end
     end
   end
 

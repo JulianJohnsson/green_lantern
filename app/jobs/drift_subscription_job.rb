@@ -12,8 +12,8 @@ class DriftSubscriptionJob < ApplicationJob
     if user.present? && user.onboarded == true && user.subscribed != true
       variable = Mailjet::Send.create(messages: [{
         'From'=> {
-          'Email'=> "emmanuel@hellocarbo.com",
-          'Name'=> "Emmanuel de Carbo"
+          'Email'=> "simon@hellocarbo.com",
+          'Name'=> "Simon de Carbo"
         },
         'To'=> [
           {
