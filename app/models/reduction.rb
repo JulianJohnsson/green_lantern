@@ -91,8 +91,8 @@ class Reduction < ApplicationRecord
         if t.present?
           first_transaction_date = t.order(date: :asc).first.date
           days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
-          category_count = t.carbone_contribution.sum(:carbone) * 30 / days
-          all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
+          category_count = t.carbone_contribution.where("date >= ?", days.days.ago).sum(:carbone) * 30 / days
+          all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", days.days.ago)
           average_category_count = all_transactions.sum(:carbone) / all_transactions.distinct.count(:user_id)  * 30 / days
           red.month_carbone =  category_count - average_category_count
           red.save
@@ -107,8 +107,8 @@ class Reduction < ApplicationRecord
         if red == nil && t.count > 2
           first_transaction_date = t.order(date: :asc).first.date
           days = [365, (DateTime.now.to_date - first_transaction_date).to_i].min
-          category_count = t.carbone_contribution.sum(:carbone) * 30 / days
-          all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", first_transaction_date)
+          category_count = t.carbone_contribution.where("date >= ?", days.days.ago).sum(:carbone) * 30 / days
+          all_transactions = Transaction.category_id(c.id).carbone_contribution.where("date >= ?", days.days.ago)
           average_category_count = all_transactions.sum(:carbone) / all_transactions.distinct.count(:user_id)  * 30 / days
           if category_count > 1.5 *  average_category_count
             red = Reduction.new
