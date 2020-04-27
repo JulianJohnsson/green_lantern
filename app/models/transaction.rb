@@ -29,31 +29,31 @@ class Transaction < ApplicationRecord
   scope :carbone_contribution, -> {where "carbone > 0"}
 
   def enrich
-    if self.account.active == false
-      self.destroy
-    else
-      TransactionEnrichment.enrich_transaction(self)
-      self.save
-    end
+    TransactionEnrichment.enrich_transaction(self)
+    self.save
   end
 
   def calculate_carbone
-    self.refine_category
-    @category = Category.find(category_id)
-    if self.transaction_modifiers == [] && self.user.user_modifiers.category_id(category_id).present?
-      modifier = 1+ self.user.user_modifiers.category_id(category_id).last.carbone_modifier
+    if self.account.active == false
+      self.destroy
     else
-      modifier = 1
-      self.transaction_modifiers.each do |m|
-        modifier = modifier * (1 + m.coeff)
+      self.refine_category
+      @category = Category.find(category_id)
+      if self.transaction_modifiers == [] && self.user.user_modifiers.category_id(category_id).present?
+        modifier = 1+ self.user.user_modifiers.category_id(category_id).last.carbone_modifier
+      else
+        modifier = 1
+        self.transaction_modifiers.each do |m|
+          modifier = modifier * (1 + m.coeff)
+        end
       end
+      self.carbone = 0
+      unless @category.coeff == nil
+        self.carbone = self.amount * -1 * @category.coeff * modifier / self.people
+      end
+      self.set_parent_category
+      self.set_accuracy
     end
-    self.carbone = 0
-    unless @category.coeff == nil
-      self.carbone = self.amount * -1 * @category.coeff * modifier / self.people
-    end
-    self.set_parent_category
-    self.set_accuracy
   end
 
   def update_similar_transactions
