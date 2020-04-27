@@ -1,7 +1,14 @@
 <%= link_to '/track' do %>
   <div class="card" id="suivre">
     <div class="card-header card-header-info">
-      <h4>MON IMPACT</h4>
+      <h4>
+        MON IMPACT
+        <% if @score.kind.to_sym == :dynamic %>
+          RECENT
+        <% else %>
+          MOYEN
+        <% end %>
+      </h4>
       <p class="number number-lg">
         <%= number_with_precision(@carbone, precision: 0) %>
         <% if @score.kind.to_sym == :dynamic %>
