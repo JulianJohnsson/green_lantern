@@ -16,6 +16,13 @@ class MatchesController < ApplicationController
     end
     AnalyticService.new.identify(current_user,request)
 
+    @score = current_user.scores.last
+    if @score.kind.to_sym == :dynamic
+      @average = AverageScore.where("score_kind = 1").order("created_at asc").last.month_total * 1000/12
+    else
+      @average = AverageScore.where("score_kind = 0").order("created_at asc").last.year_total * 1000/12
+    end
+
     @match_data = @opponent.get_match_data(current_user)
 
     unless current_user.badges.include?(Badge.find(12))

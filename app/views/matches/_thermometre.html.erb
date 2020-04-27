@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="badge-right" id="carbo" style="bottom:<%= number_with_precision(460 / 10, precision: 0)  %>%;">
+  <div class="badge-right" id="carbo" style="bottom:<%= number_with_precision(@average / 10, precision: 0)  %>%;">
     <div class="row align-items-center">
       <div class="col-5 text-right">
         <%= image_tag 'badge_carbo.png', class: 'img-fluid' %>
@@ -55,7 +55,7 @@
       <div class="col-7 text-left">
         <p><strong>
           Un membre Carbo<br>
-          <small>460</small>
+          <small><%= @average.to_i %></small>
         </strong></p>
       </div>
     </div>
