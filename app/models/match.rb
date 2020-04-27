@@ -24,10 +24,18 @@ class Match < ApplicationRecord
   def get_user_data(user)
     score = user.scores.last
     categories = Category.all.parent_categories.sort_by {|c| c.id}
-    raw_user_total = score.total.to_f*1000/12.round(2)
-    raw_user_data = []
-    for i in 0..4
-      raw_user_data = raw_user_data << [categories[i], (score.detail[i].to_f*1000/12).round(2)]
+    if score.kind.to_sym == :dynamic
+      raw_user_total = score.recent_total.to_f*1000/12.round(2)
+      raw_user_data = []
+      for i in 0..4
+        raw_user_data = raw_user_data << [categories[i], (score.recent_detail[i].to_f*1000/12).round(2)]
+      end
+    else
+      raw_user_total = score.total.to_f*1000/12.round(2)
+      raw_user_data = []
+      for i in 0..4
+        raw_user_data = raw_user_data << [categories[i], (score.detail[i].to_f*1000/12).round(2)]
+      end
     end
     return raw_user_total, raw_user_data
   end

@@ -20,15 +20,16 @@ class DashboardsController < ApplicationController
 
       @level = current_user.set_level
 
-      # SUIVRE
+      # SUIVRE + COMPARER
       @score = current_user.scores.last
       @rand = rand(3)
 
-      # COMPARER
-      @carbone = @score.total * 1000/12
       if @score.kind.to_sym == :dynamic
-        @average = AverageScore.where("score_kind = 1").order("created_at asc").last.year_total * 1000/12
+        @carbone = @score.recent_total * 1000/12
+        @average = AverageScore.where("score_kind = 1").order("created_at asc").last.month_total * 1000/12
+        @week = current_user.transactions.carbone_contribution.where("date >= ?", 1.week.ago).sum(:carbone)
       else
+        @carbone = @score.total * 1000/12
         @average = AverageScore.where("score_kind = 0").order("created_at asc").last.year_total * 1000/12
       end
 
