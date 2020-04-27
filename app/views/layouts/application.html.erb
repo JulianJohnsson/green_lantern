@@ -14,7 +14,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <script>
   function sendPush(){
-    getKeys(false)
+    //getKeys(false)
+    checkNotifs()
   }
   var vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(Rails.application.credentials[:vapid_public_key]).bytes %>);
 
