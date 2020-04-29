@@ -34,7 +34,7 @@ class Transaction < ApplicationRecord
   end
 
   def calculate_carbone
-    if self.account.active == false
+    if self.account && self.account.active == false
       self.destroy
     else
       self.refine_category
