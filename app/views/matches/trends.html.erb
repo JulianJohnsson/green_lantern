@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="card-body">
-            <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", max: 1500 %>
+            <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
           </div>
         </div>
       </div>
