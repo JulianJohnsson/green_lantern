@@ -1,19 +1,19 @@
 <% content_for :title, "Comparer" %>
 <div class="col-md-12 text-center">
-        <div class="card">
-          <div class="card-header card-header-info">
-            <div class="emoji-title">
-              📈
-              <h4>
-                Evolution l'impact carbone moyen des utilisateurs Carbo
-              </h4>
-            </div>
-          </div>
-          <div class="card-body">
-            <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
-          </div>
-        </div>
+  <div class="card">
+    <div class="card-header card-header-info">
+      <div class="emoji-title">
+        📈
+        <h4>
+          Evolution l'impact carbone moyen des utilisateurs Carbo
+        </h4>
       </div>
+    </div>
+    <div class="card-body">
+      <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12 text-center">
     <div class="card">

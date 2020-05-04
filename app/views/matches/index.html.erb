@@ -26,8 +26,8 @@
             moins
             <% end %>
             que la moyenne des français</p>
-          <p>👉 C’est <%= number_with_precision(100*(460 - @match_data[3]).abs / 460, precision: 0) %>% de
-            <% if @match_data[3] > 460 %>
+          <p>👉 C’est <%= number_with_precision(100*(@average.to_i - @match_data[3]).abs / @average.to_i, precision: 0) %>% de
+            <% if @match_data[3] > @average.to_i %>
             plus
             <% else %>
             moins
