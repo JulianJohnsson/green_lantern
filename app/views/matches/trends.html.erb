@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="card-body">
-      <%= line_chart @average_history.map { |a| [a.created_at, a.month_total*1000/12] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
+      <%= line_chart @average_history.group_by_week(:created_at).sum(:week_total), defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
     </div>
   </div>
 </div>
