@@ -1,6 +1,17 @@
 
 <div class="col-md-12 text-center">
-  <h3>Welcome</h3>
+  <h4>
+    L'impact carbone hebdomadaire est de
+    <%= (@average_history.last.month_total * 1000 / (12*4)).to_i %>
+    kg CO2 en moyenne
+    <small> sur les 4 dernières semaines</small>
+  </h4>
+  <h4>
+    A ce rythme, l'impact carbone annuel moyen sera de
+    <%= @average_history.last.year_total.round(2) %>
+    TCO2.
+    <small></small>
+  </h4>
   <div class="card">
     <div class="card-header card-header-info">
       <div class="emoji-title">
