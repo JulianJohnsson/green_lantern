@@ -39,7 +39,11 @@
                       <%= account.name %>
                       <br />
                       <small>
-                        <%= account.last_sync_at.strftime("Mis à jour le %d/%m/%Y") %>
+                        <% if account.last_sync_at != nil %>
+                          <%= account.last_sync_at.strftime("Mis à jour le %d/%m/%Y") %>
+                        <% else %>
+                          En attente de synchronisation
+                        <% end %>
                       </small>
                     </td>
                     <td>

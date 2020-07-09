@@ -26,36 +26,36 @@
         area_chart [
       {
         name: @categories[0].name,
-        data: @average_history.map { |average| [average.created_at, (average.week_detail[0].to_f)*1000/12] },
+        data: @average_history.map { |average| [average.created_at, ((average.week_detail[0].to_f)*1000/12).round(2)] },
         dataset: { backgroundColor: @categories[0].color, borderColor: @categories[0].color},
         color: @categories[0].color
       },
       {
         name: @categories[1].name,
-        data: @average_history.map { |average| [average.created_at, (average.week_detail[1].to_f)*1000/12] },
+        data: @average_history.map { |average| [average.created_at, ((average.week_detail[1].to_f)*1000/12).round(2)] },
         dataset: { backgroundColor: @categories[1].color, borderColor: @categories[1].color},
         color: @categories[1].color
       },
       {
         name: @categories[2].name,
-        data: @average_history.map { |average| [average.created_at, (average.week_detail[2].to_f)*1000/12] },
+        data: @average_history.map { |average| [average.created_at, ((average.week_detail[2].to_f)*1000/12).round(2)] },
         dataset: { backgroundColor: @categories[2].color, borderColor: @categories[2].color},
         color: @categories[2].color
       },
       {
         name: @categories[3].name,
-        data: @average_history.map { |average| [average.created_at, (average.week_detail[3].to_f)*1000/12] },
+        data: @average_history.map { |average| [average.created_at, ((average.week_detail[3].to_f)*1000/12).round(2)] },
         dataset: { backgroundColor: @categories[3].color, borderColor: @categories[3].color},
         color: @categories[3].color
       },
       {
         name: @categories[4].name,
-        data: @average_history.map { |average| [average.created_at, (average.week_detail[4].to_f)*1000/12] },
+        data: @average_history.map { |average| [average.created_at, ((average.week_detail[4].to_f)*1000/12).round(2)] },
         dataset: { backgroundColor: @categories[4].color, borderColor: @categories[4].color},
         color: @categories[4].color
       }
     ],
-          defer: true, :style => "margin-top:30px;", suffix: " kg", decimal: ",", stacked: true, points: false
+          defer: true, :style => "margin-top:30px;", suffix: " kgCO2", decimal: ",", stacked: true, points: false
       %>
     </div>
   </div>
