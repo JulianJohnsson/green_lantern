@@ -8,7 +8,7 @@
         <h5 class="description">
           Suivez chaque semaine l'évolution de l'impact carbone moyen des utilisateurs carbo, un indicateur avancé de l'empreinte carbone personnelle.
         </h5>
-        <%= link_to "Voir l'évolution", new_user_registration_path, class: "btn btn-lg btn-round btn-outline-primary" %>
+        <%= link_to "Voir l'évolution", "#evolution", class: "btn btn-lg btn-round btn-outline-primary" %>
       </div>
       <div class="col-md-6 dashboard-wrapper mt-auto mb-auto" id="indice">
         <div class="row justify-content-center align-items-center">
@@ -57,7 +57,7 @@
     </div>
   </div>
 </div>
-<div class="" style="margin-top:-80px;">
+<div style="margin-top:-90px;" id="evolution">
   <div class="row justify-content-center">
     <div class="col-md-10 text-center">
       <div class="row align-items-center">
@@ -69,35 +69,40 @@
           </div>
         </div>
         <div class="col-8 text-left">
-          <h4>
+          <h5>
             L'impact carbone hebdomadaire est de
-            <%= (@average_history.last.month_total * 1000 / (12*4)).to_i %>
-            kg CO2
+            <span class="text-rose number-sm">
+              <%= (@average_history.last.month_total * 1000 / (12*4)).to_i %>
+              kg CO2
+            </span>
             <br><small>en moyenne sur les 4 dernières semaines</small>
-          </h4>
+          </h5>
         </div>
       </div>
       <div class="row align-items-center">
         <div class="col-4">
-          <div class="card bg-info">
+          <div class="card bg-warning">
             <div class="card-body">
               <h4>Cumul 2020</h4>
             </div>
           </div>
         </div>
         <div class="col-8 text-left">
-          <h4>
+          <h5>
             A ce rythme, l'impact carbone annuel cumulé sera de
-            <%= @average_history.last.year_total.round(2) %>
-            TCO2.
-          </h4>
+            <span class="text-warning number-sm">
+              <%= @average_history.last.year_total.round(2) %>
+              TCO2
+            </span>
+          </h5>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header">
+      <div class="card" style="margin-top:50px;">
+        <div class="card-title">
           <div class="emoji-title">
-            📈
             <h4>
+              <span class="big" style="font-size:2em;margin-top:-20px;">📈</span>
+              <br>
               Evolution de l'indice carbone hebdomadaire
             </h4>
           </div>
@@ -143,3 +148,34 @@
     </div>
   </div>
 </div>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <h4>
+            <small>12 juillet 2020</small><br>
+            Attention à l'effet rebond
+          </h4>
+        </div>
+        <p>
+          Le texte le texte le texte le texte letexte letetet ltretetf zelfzelcz
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <h4>
+            <small>25 avril 2020</small><br>
+            Lockdown !
+          </h4>
+        </div>
+        <p>
+          Le texte le texte le texte le texte letexte letetet ltretetf zelfzelcz
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
