@@ -1,62 +1,145 @@
-
-<div class="col-md-12 text-center">
-  <h4>
-    L'impact carbone hebdomadaire est de
-    <%= (@average_history.last.month_total * 1000 / (12*4)).to_i %>
-    kg CO2 en moyenne
-    <small> sur les 4 dernières semaines</small>
-  </h4>
-  <h4>
-    A ce rythme, l'impact carbone annuel cumulé sera de
-    <%= @average_history.last.year_total.round(2) %>
-    TCO2.
-    <small></small>
-  </h4>
-  <div class="card">
-    <div class="card-header card-header-info">
-      <div class="emoji-title">
-        📈
-        <h4>
-          Indice de consommation carbone hebdomadaire
-        </h4>
+<% content_for :title do %>Calcule, réduis et compense ton impact quotidien avec Carbo<% end %>
+<% content_for :description do %>Tu veux vivre neutre en carbone ? Rejoins la communauté des optimistes qui agissent contre le changement climatique<% end %>
+<div class="page-header home-section home-section1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-auto mb-auto">
+        <h1>L'indice carbone <span class="badge badge-pill badge-primary d-none d-md-inline" style="vertical-align: top;">By carbo</span></h1>
+        <h5 class="description">
+          Suivez chaque semaine l'évolution de l'impact carbone moyen des utilisateurs carbo, un indicateur avancé de l'empreinte carbone personnelle.
+        </h5>
+        <%= link_to "Voir l'évolution", new_user_registration_path, class: "btn btn-lg btn-round btn-outline-primary" %>
+      </div>
+      <div class="col-md-6 dashboard-wrapper mt-auto mb-auto" id="indice">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-8">
+            <div class="card text-center" id="suivre">
+              <div class="card-header card-header-info">
+                <h4>
+                  Indice carbo de la semaine
+                </h4>
+                <p class="number number-lg">
+                  <%= number_with_precision(@week.week_total*1000/12, precision: 0) %>
+                    <% if @week.month_total > @week.week_total * 4.2 %>
+                      <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "L'indice carbone est en baisse par rapport à la semaine dernière" %>
+                    <% elsif @week.month_total < @week.week_total * 4.2 %>
+                      <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "L'indice carbone est en hausse par rapport à la semaine dernière" %>
+                    <% else %>
+                      <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "L'indice carbone est stable" %>
+                    <% end %>
+                </p>
+                <div class="subtitle">
+                  <span>KGCO2 PAR SEMAINE</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="description">
+                  <% case @rand when 0 %>
+                    L'équivalent de la fabrication de
+                    <%=  number_with_precision(@week.week_total*1000/12 / 15, precision: 0) %>
+                    jeans 👖
+                  <% when 1 %>
+                    Soit
+                    <%= number_with_precision(@week.week_total*1000/12 / 0.202, precision: 0) %>
+                    km en trotinette électrique 🛴
+                  <% when 2 %>
+                    L'empreinte de
+                    <%= number_with_precision(@week.week_total*1000/12 / 5, precision: 0) %>
+                    burgers bien gras 🍔
+                  <% end %>
+                </p>
+                <%= link_to "Comment est calculé l'indice carbo ?", "", "data-toggle" => "tooltip", "data-placement" => "left", "data-container" => "body", "data-original-title" => "L'indice carbo correspond à la moyenne de l'impact carbone de la consommation des utilisateurs de Carbo ayant synchronisés leurs comptes en banque." %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="card-body">
-      <%=
-        area_chart [
-      {
-        name: @categories[0].name,
-        data: @average_history.map { |average| [average.created_at, ((average.week_detail[0].to_f)*1000/12).round(2)] },
-        dataset: { backgroundColor: @categories[0].color, borderColor: @categories[0].color},
-        color: @categories[0].color
-      },
-      {
-        name: @categories[1].name,
-        data: @average_history.map { |average| [average.created_at, ((average.week_detail[1].to_f)*1000/12).round(2)] },
-        dataset: { backgroundColor: @categories[1].color, borderColor: @categories[1].color},
-        color: @categories[1].color
-      },
-      {
-        name: @categories[2].name,
-        data: @average_history.map { |average| [average.created_at, ((average.week_detail[2].to_f)*1000/12).round(2)] },
-        dataset: { backgroundColor: @categories[2].color, borderColor: @categories[2].color},
-        color: @categories[2].color
-      },
-      {
-        name: @categories[3].name,
-        data: @average_history.map { |average| [average.created_at, ((average.week_detail[3].to_f)*1000/12).round(2)] },
-        dataset: { backgroundColor: @categories[3].color, borderColor: @categories[3].color},
-        color: @categories[3].color
-      },
-      {
-        name: @categories[4].name,
-        data: @average_history.map { |average| [average.created_at, ((average.week_detail[4].to_f)*1000/12).round(2)] },
-        dataset: { backgroundColor: @categories[4].color, borderColor: @categories[4].color},
-        color: @categories[4].color
-      }
-    ],
-          defer: true, :style => "margin-top:30px;", suffix: " kgCO2", decimal: ",", stacked: true, points: false
-      %>
+  </div>
+</div>
+<div class="" style="margin-top:-80px;">
+  <div class="row justify-content-center">
+    <div class="col-md-10 text-center">
+      <div class="row align-items-center">
+        <div class="col-4">
+          <div class="card bg-rose">
+            <div class="card-body">
+              <h4>Tendance récente</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 text-left">
+          <h4>
+            L'impact carbone hebdomadaire est de
+            <%= (@average_history.last.month_total * 1000 / (12*4)).to_i %>
+            kg CO2
+            <br><small>en moyenne sur les 4 dernières semaines</small>
+          </h4>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-4">
+          <div class="card bg-info">
+            <div class="card-body">
+              <h4>Cumul 2020</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 text-left">
+          <h4>
+            A ce rythme, l'impact carbone annuel cumulé sera de
+            <%= @average_history.last.year_total.round(2) %>
+            TCO2.
+          </h4>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="emoji-title">
+            📈
+            <h4>
+              Evolution de l'indice carbone hebdomadaire
+            </h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <%=
+            area_chart [
+          {
+            name: @categories[0].name,
+            data: @average_history.map { |average| [average.created_at, ((average.week_detail[0].to_f)*1000/12).round(2)] },
+            dataset: { backgroundColor: @categories[0].color, borderColor: @categories[0].color},
+            color: @categories[0].color
+          },
+          {
+            name: @categories[1].name,
+            data: @average_history.map { |average| [average.created_at, ((average.week_detail[1].to_f)*1000/12).round(2)] },
+            dataset: { backgroundColor: @categories[1].color, borderColor: @categories[1].color},
+            color: @categories[1].color
+          },
+          {
+            name: @categories[2].name,
+            data: @average_history.map { |average| [average.created_at, ((average.week_detail[2].to_f)*1000/12).round(2)] },
+            dataset: { backgroundColor: @categories[2].color, borderColor: @categories[2].color},
+            color: @categories[2].color
+          },
+          {
+            name: @categories[3].name,
+            data: @average_history.map { |average| [average.created_at, ((average.week_detail[3].to_f)*1000/12).round(2)] },
+            dataset: { backgroundColor: @categories[3].color, borderColor: @categories[3].color},
+            color: @categories[3].color
+          },
+          {
+            name: @categories[4].name,
+            data: @average_history.map { |average| [average.created_at, ((average.week_detail[4].to_f)*1000/12).round(2)] },
+            dataset: { backgroundColor: @categories[4].color, borderColor: @categories[4].color},
+            color: @categories[4].color
+          }
+        ],
+              defer: true, :style => "margin-top:30px;", suffix: " kgCO2", decimal: ",", stacked: true, points: false
+          %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
