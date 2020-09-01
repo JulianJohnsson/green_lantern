@@ -1,74 +1,120 @@
-<% content_for :title, "Comparer" %>
-<div class="col-md-12 text-center">
-  <div class="card">
-    <div class="card-header card-header-info">
-      <div class="emoji-title">
-        📈
-        <h4>
-          Evolution l'impact carbone moyen des utilisateurs Carbo
-        </h4>
-      </div>
-    </div>
-    <div class="card-body">
-      <%= line_chart @average_history.group_by_week(:created_at).sum(:week_total), defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: "," %>
-    </div>
-  </div>
-</div>
+<% content_for :title, "Classement des membres" %>
+<h2 class="description text-center" style="padding-top: 40px;">
+  <span style="opacity:0.3;">💯</span> Mon score
+</h2>
 <div class="row">
-  <div class="col-md-12 text-center">
+  <div class="col-md-3 col-6 text-center">
     <div class="card">
-      <div class="card-header card-header-info">
+      <div class="card-header card-header-danger">
         <div class="emoji-title">
-          📈
-          <h4>Ton score</h4>
+          🧮
+          <p>Mon impact calculé</p>
+          <h5>
+          <span class="number number-sm">
+            <%= number_with_precision(@score, precision: 0) %>
+            kgCO2
+          </span>
+          </h5>
         </div>
       </div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-2">
-            <p>Ton impact calculé</p>
-            <span class="text-danger number number-sm">
-              <%= number_with_precision(@score, precision: 0) %>
-              kgCO2
-            </span>
-          </div>
-          <div class="col-2">
-            <p>Ton arbre Carbo</p>
-            <span class="text-primary number number-sm">
-              <%= number_with_precision(@badge, precision: 0) %>
-            </span>
-          </div>
-          <div class="col-2">
-            <p>Ta forêt proche</p>
-            <span class="text-primary number number-sm">
-              <%= number_with_precision(@friends, precision: 0) %>
-            </span>
-          </div>
-          <div class="col-2">
-            <p>Ta compensation</p>
-            <span class="text-primary number number-sm">
-              <%= number_with_precision(@project, precision: 0) %>
-            </span>
-          </div>
-          <div class="col-4">
-            <span class="text-rose number number-md">
-              <%= number_with_precision(@score+@badge+@friends+@project, precision: 0) %>
-              kgCO2
-            </span>
-          </div>
+        <small>
+          Tu peux voir le détail de ton impact et comment le réduire avec carbo.
+          <%= link_to "Voir le détail", "/track", class: "btn btn-outline-info btn-sm btn-round" %>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 text-center">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <div class="emoji-title">
+          🌳
+          <p>Mon arbre badge</p>
+          <h5>
+          <span class="number number-sm">
+            <%= number_with_precision(@badge, precision: 0) %>
+            kgCO2
+          </span>
+        </h5>
         </div>
+      </div>
+      <div class="card-body">
+        <small>Tu fais pousser ton arbre grâce à tes badges. Tu peux gagner plus de points en gagnant des badges ici
+        <%= link_to "Gagner des badges", "/badges", class: "btn btn-outline-info btn-sm btn-round" %></small>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 text-center">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <div class="emoji-title">
+          👥
+          <p>Ma forêt proche</p>
+          <h5>
+          <span class="number number-sm">
+            <%= number_with_precision(@friends, precision: 0) %>
+            kgCO2
+          </span>
+        </h5>
+        </div>
+      </div>
+      <div class="card-body">
+        Tu aides tes proches à améliorer leur impact carbone en les invitant sur carbo et tu récupères des points.
+        <%= link_to "Inviter mes proches", "/matches", class: "btn btn-outline-info btn-sm btn-round" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 text-center">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <div class="emoji-title">
+          🌱
+          <p>Ma compensation</p>
+          <h5>
+          <span class="number number-sm">
+            <%= number_with_precision(@project, precision: 0) %>
+            kgCO2
+          </span>
+        </h5>
+        </div>
+      </div>
+      <div class="card-body">
+        Tu peux compenser une partie de ton impact en contoribuant à des projets, ce qui fait baisser ton score.
+        <%= link_to "Contribuer", "/subscriptions/projects", class: "btn btn-outline-info btn-sm btn-round" %>
       </div>
     </div>
   </div>
 </div>
+<div class="row justify-content-center">
+  <div class="col-md-5 col-sm-6 col-8 text-center">
+    <div class="card">
+      <div class="card-header">
+        <div class="emoji-title">
+          💯
+          <h4>Mon classement/h4>
+          <span class="number number-md">
+            <%= number_with_precision(@score+@badge+@friends+@project, precision: 0) %>
+            kgCO2
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
 
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="description text-center" style="padding-top: 40px;">
+  <span style="opacity:0.3;">🥇</span> Classement
+</h2>
 <div class="row">
   <div class="col-md-12 text-center">
     <div class="card">
       <div class="card-header card-header-info">
         <div class="emoji-title">
-          📈
-          <h4>Classement</h4>
+          🏆
+          <h4>Le top 20</h4>
         </div>
       </div>
       <div class="card-body table-responsive">

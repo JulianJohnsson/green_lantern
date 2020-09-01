@@ -55,8 +55,6 @@ class MatchesController < ApplicationController
   end
 
   def trends
-    @average_history = AverageScore.where("score_kind = 1")
-
     @score = current_user.scores.last.recent_total*1000/12
     @badge = current_user.set_level[2] * -10
     @friends = (User.where("invited_by_id = ?", current_user.id).count) * -20
@@ -81,7 +79,7 @@ class MatchesController < ApplicationController
       points = score.recent_total*1000/12 + (user.set_level[2]||0) * -10 + ((User.where("invited_by_id = ?", user.id).count)||0) * -20 + compensation * -50
       @array << { :id => id, :name => name, :points => points, :city => city }
     end
-    @ranking = @array.sort_by { |hsh| hsh[:points] }
+    @ranking = @array.sort_by { |hsh| hsh[:points] }.first(20)
   end
 
 end
