@@ -10,7 +10,7 @@ class Account < ApplicationRecord
 
   def self.refresh_accounts(user)
     accounts = user.accounts
-    if accounts == [] || accounts.last.updated_at < 1.hour.ago || Account.where("user_id = ? item_id is null", user.id).present?
+    if accounts == [] || accounts.last.updated_at < 1.hour.ago || Account.where("user_id = ? and item_id is null", user.id).present?
       bridge = Bridge.find_by_user_id(user.id)
       list = bridge.list_accounts(user)
       list.each do |account|
