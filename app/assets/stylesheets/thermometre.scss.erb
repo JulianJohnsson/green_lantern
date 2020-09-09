@@ -75,3 +75,40 @@
 @media screen and (max-width: 768px) {
 
 }
+
+.page-header .thermometre-parent {
+  p {
+    font-size: 1em;
+  }
+  .legend {
+    bottom: 5px;
+    left: 75px;
+    font-weight: bold;
+  }
+  .thermometre-graduation {
+    opacity: 0.5;
+  }
+  .progress .progress-bar {
+    animation-name: animateBar;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+  }
+  @keyframes animateBar {
+      0% {transform: translateX(-100%);}
+      100% {transform: translateX(0);}
+  }
+  #carbo {
+    animation-name: animateBadge;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+  }
+  @keyframes animateBadge {
+    0% {transform: translateY(-100%);}
+    100% {transform: translateY(0);}
+  }
+  .badge-right {
+    width: 80%;
+  }
+}

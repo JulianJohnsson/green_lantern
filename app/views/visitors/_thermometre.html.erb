@@ -1,0 +1,66 @@
+
+<div class="thermometre-parent">
+  <%= image_tag "thermometre.png", class: "thermometre" %>
+  <%= image_tag "thermometre_graduation.png", class: "thermometre-graduation" %>
+  <div class="progress-container vertical">
+    <div class="progress progress-line-primary">
+      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:<%= [number_with_precision(@week.week_total*1000/12 / 2, precision: 0) .to_i, 100].min  %>%;">
+      </div>
+    </div>
+  </div>
+  <div class="badge-left" id="carbo" style="bottom:<%= [number_with_precision(@week.week_total*1000/12 / 2, precision: 0) .to_i, 90].min %>%;">
+    <div class="row align-items-center">
+      <div class="col-7 text-right">
+        <p><strong>
+          <span class="number number-md"><%= number_with_precision(@week.week_total*1000/12, precision: 0) %></span>
+        </strong></p>
+      </div>
+      <div class="col-5 text-left">
+        <%= image_tag 'badge_carbo_left.png', class: 'img-fluid' %>
+      </div>
+    </div>
+  </div>
+  <div class="badge-right" id="opponent" style="bottom:<%= [number_with_precision(500 / 2, precision: 0).to_i, 90].min  %>%;">
+    <div class="row align-items-center">
+      <div class="col-5 text-rigth">
+        <%= image_tag 'badge_trump_right.png', class: 'img-fluid' %>
+      </div>
+      <div class="col-7 text-left">
+        <p><strong>
+          Donald Trump
+          <br><span class="description"><%= number_with_precision(500, precision: 0) %></span>
+        </strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="badge-right" id="france" style="bottom:<%= number_with_precision(138 / 2, precision: 0)  %>%;">
+    <div class="row align-items-center">
+      <div class="col-5 text-right">
+        <%= image_tag 'badge_france.png', class: 'img-fluid' %>
+      </div>
+      <div class="col-7 text-left">
+        <p><strong>
+          Un français
+          <br><span class="description">138</span>
+        </strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="badge-right" id="accord_paris" style="bottom:<%= number_with_precision(37 / 2, precision: 0)  %>%;">
+    <div class="row align-items-center">
+      <div class="col-5 text-right">
+        <%= image_tag 'badge_earth.png', class: 'img-fluid' %>
+      </div>
+      <div class="col-7 text-left">
+        <p><strong>
+          L'accord de Paris
+          <br><span class="description">37</span>
+        </strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="description legend">
+    <p>Indice de la semaine (kgCO2e)</p>
+  </div>
+</div>
+

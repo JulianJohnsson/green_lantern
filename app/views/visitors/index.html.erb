@@ -1,150 +1,181 @@
 <% content_for :title do %>L'indice carbone : impact carbone hebdomadaire<% end %>
 <% content_for :description do %>Suivez chaque semaine l'évolution de l'impact carbone moyen des utilisateurs carbo, un indicateur avancé de l'empreinte carbone personnelle.<% end %>
-<div class="page-header home-section home-section1">
+<div class="page-header home-section indice-section1">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 mt-auto mb-auto">
-        <h1>L'indice carbone <span class="badge badge-pill badge-primary d-none d-md-inline" style="vertical-align: top;">By carbo</span></h1>
+    <div class="row justify-content-center align-items-top">
+      <div class="col-md-5" style="margin-right:-40px;">
+        <h1>L'indice carbone</h1>
         <h5 class="description">
-          Suivez chaque semaine l'évolution de l'impact carbone moyen des utilisateurs carbo, un indicateur avancé de l'empreinte carbone personnelle.
+          Suivez chaque semaine l'évolution de l'impact carbone de la consommation des français.
         </h5>
-        <%= link_to "Voir l'évolution", "#evolution", class: "btn btn-lg btn-round btn-outline-primary" %>
+        <%= link_to "Voir le détail", "#detail", class: "btn btn-lg btn-round btn-outline-primary" %>
       </div>
       <div class="col-md-6 dashboard-wrapper mt-auto mb-auto" id="indice">
         <div class="row justify-content-center align-items-center">
           <div class="col-8">
-            <div class="card text-center" id="suivre">
-              <div class="card-header card-header-info">
-                <h4>
-                  Indice carbo de la semaine
-                </h4>
-                <p class="number number-lg">
-                  <%= number_with_precision(@week.week_total*1000/12, precision: 0) %>
-                    <% if @week.month_total > @week.week_total * 4.2 %>
-                      <%= image_tag "arrow-green.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "L'indice carbone est en baisse par rapport à la semaine dernière" %>
-                    <% elsif @week.month_total < @week.week_total * 4.2 %>
-                      <%= image_tag "arrow-red.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "L'indice carbone est en hausse par rapport à la semaine dernière" %>
-                    <% else %>
-                      <%= image_tag "arrow-yellow.png", class: 'img-fluid', :style => "width:15%;", "data-toggle" => "tooltip", "data-placement" => "bottom", "data-container" => "body", "data-original-title" => "L'indice carbone est stable" %>
-                    <% end %>
-                </p>
-                <div class="subtitle">
-                  <span>KGCO2 PAR SEMAINE</span>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="description">
-                  <% case @rand when 0 %>
-                    L'équivalent de la fabrication de
-                    <%=  number_with_precision(@week.week_total*1000/12 / 15, precision: 0) %>
-                    jeans 👖
-                  <% when 1 %>
-                    Soit
-                    <%= number_with_precision(@week.week_total*1000/12 / 0.202, precision: 0) %>
-                    km en trotinette électrique 🛴
-                  <% when 2 %>
-                    L'empreinte de
-                    <%= number_with_precision(@week.week_total*1000/12 / 5, precision: 0) %>
-                    burgers bien gras 🍔
-                  <% end %>
-                </p>
-                <%= link_to "Comment est calculé l'indice carbo ?", "", "data-toggle" => "tooltip", "data-placement" => "left", "data-container" => "body", "data-original-title" => "L'indice carbo correspond à la moyenne de l'impact carbone de la consommation des utilisateurs de Carbo ayant synchronisés leurs comptes en banque." %>
-              </div>
-            </div>
+            <%= render 'thermometre' %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div style="margin-top:-90px;" id="evolution">
-  <div class="row justify-content-center">
-    <div class="col-md-10 text-center">
-      <div class="row align-items-center">
-        <div class="col-4">
-          <div class="card bg-rose">
-            <div class="card-body">
-              <h4>Tendance récente</h4>
+<div id="detail" class="row">
+  <div class="col-6 text-center camembert" style="padding-top: 50px;">
+    <h3>
+      Indice carbone<br>
+      <span style="font-weight:normal;">de la semaine</span>
+    </h3>
+    <div class="piechart-title text-center" style="margin-top:15px;">
+      <div>
+        <span class="number number-md"><%= number_with_precision(@week.week_total*1000/12, precision: 0) %></span>
+        <br>kgCO2e
+      </div>
+    </div>
+    <div style="margin-top:30px;">
+      <%= pie_chart @data, colors: @categories.map { |c| c.color}, round: 1, donut: true, legend: "none", suffix: " kgCO2" %>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <table class="table text-left table-category">
+          <tbody>
+                  <% i = 0 %>
+                  <% @categories.each do |c| %>
+                    <tr>
+                      <td class="text-right" style="width:8%;">
+                        <div class="category-pill ml-auto" style="cursor: pointer; background:<%= c.color %>;"/>
+                      </td>
+                      <td>
+                        <%= c.name %>
+                      </td>
+                      <td style="width:20%; color:<%= c.color %>; font-weight:bold;">
+                        <%= number_with_precision(@week.week_detail[i].to_f*100 / @week.week_total, precision: 0).to_s + " %" %>
+                      </td>
+                    </tr>
+                    <% i = i+1 %>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           </div>
+  </div>
+  <div class="col-6 background-linear">
+    <div class="content">
+      <h3>La tendance</h3>
+      <div class="row align-items-center">
+        <% if @week.week_total <= @previous.week_total %>
+          <div class="col-2 emoji">
+            🌱
+          </div>
+          <div class="col-10" style="margin-left:-20px;">
+            <p class="big">
+              En baisse par rapport à la semaine passée (<%= ((@week.week_total - @previous.week_total)*100 / @previous.week_total).round(0).to_i %>%)
+            </p>
+          </div>
+        <% else %>
+          <div class="col-2 emoji">
+            🥵
+          </div>
+          <div class="col-10" style="margin-left:-20px;">
+            <p class="big">
+              En hausse par rapport à la semaine passée (+<%= ((@week.week_total - @previous.week_total)*100 / @previous.week_total).round(0).to_i %>%)
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-2 emoji">
+          🔮
         </div>
-        <div class="col-8 text-left">
-          <h5>
-            L'impact carbone hebdomadaire est de
-            <span class="text-rose number-sm">
+        <div class="col-10" style="margin-left:-20px;">
+          <p class="big">
+            Sur les 4 dernières semaines, l'indice carbo atteint en moyenne
+            <strong>
               <%= (@average_history.last.month_total * 1000 / (12*4)).to_i %>
-              kg CO2
-            </span>
-            <br><small>en moyenne sur les 4 dernières semaines</small>
-          </h5>
+              kg CO2e
+            </strong>
+          </p>
+        </div>
+      </div>
+      <hr>
+      <p class="big">
+        Ces émissions, c'est l'équivalent de :
+      </p>
+      <div class="row align-items-center">
+        <div class="col-2 emoji">
+          👖
+        </div>
+        <div class="col-10" style="margin-left:-20px;">
+          <p class="big">
+            La fabrication de
+            <strong>
+              <%= (@average_history.last.week_total*1000/12 / 15).to_i %>
+              jeans
+            </strong>
+          </p>
         </div>
       </div>
       <div class="row align-items-center">
-        <div class="col-4">
-          <div class="card bg-warning">
-            <div class="card-body">
-              <h4>Cumul 2020</h4>
-            </div>
-          </div>
+        <div class="col-2 emoji">
+          🍔
         </div>
-        <div class="col-8 text-left">
-          <h5>
-            A ce rythme, l'impact carbone annuel cumulé sera de
-            <span class="text-warning number-sm">
-              <%= @average_history.last.year_total.round(2) %>
-              TCO2
-            </span>
-          </h5>
+        <div class="col-10" style="margin-left:-20px;">
+          <p class="big">
+            La production de
+            <strong>
+              <%= (@average_history.last.week_total*1000/12 / 5).to_i %>
+              hamburgers
+            </strong>
+          </p>
         </div>
       </div>
+      <div class="row align-items-center">
+        <div class="col-2 emoji">
+          🛴
+        </div>
+        <div class="col-10" style="margin-left:-20px;">
+          <p class="big">
+            <strong>
+              <%= (@average_history.last.week_total*1000/12 / 0.125).to_i %>
+              kilomètres parcourus
+            </strong>
+             en trotinette électrique
+          </p>
+        </div>
+      </div>
+      <%= link_to "✨ Estimer mon empreinte", "/users/sign_up", class: "btn btn-lg btn-round btn-info" %>
+      <%# link_to "🔗 Partager l'indice", "", class: "btn btn-lg btn-round btn-primary" %>
+    </div>
+  </div>
+</div>
+<div id="evolution">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <h3>Et d'ici la fin de l'année ?</h3>
+      <p class="description big">
+        A ce rythme, notre impact carbone annuel moyen sera de
+        <span class="text-primary"><strong><%= @week.year_total.round(1) %>
+        TCO2e.</strong></span> C’est
+        <%= (-(@week.year_total - @average_history.first.year_total)*100 / @average_history.first.year_total).to_i %>% de moins qu’en 2019 👏
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
       <div class="card" style="margin-top:50px;">
         <div class="card-title">
           <div class="emoji-title">
-            <h4>
-              <span class="big" style="font-size:2em;margin-top:-20px;">📈</span>
-              <br>
-              Evolution de l'indice carbone hebdomadaire
-            </h4>
+            <h5>
+              📈
+              Indice carbone sur 12 mois
+            </h5>
           </div>
         </div>
         <div class="card-body">
-          <%=
-            area_chart [
-          {
-            name: @categories[0].name,
-            data: @average_history.map { |average| [average.created_at, ((average.week_detail[0].to_f)*1000/12).round(2)] },
-            dataset: { backgroundColor: @categories[0].color, borderColor: @categories[0].color},
-            color: @categories[0].color
-          },
-          {
-            name: @categories[1].name,
-            data: @average_history.map { |average| [average.created_at, ((average.week_detail[1].to_f)*1000/12).round(2)] },
-            dataset: { backgroundColor: @categories[1].color, borderColor: @categories[1].color},
-            color: @categories[1].color
-          },
-          {
-            name: @categories[2].name,
-            data: @average_history.map { |average| [average.created_at, ((average.week_detail[2].to_f)*1000/12).round(2)] },
-            dataset: { backgroundColor: @categories[2].color, borderColor: @categories[2].color},
-            color: @categories[2].color
-          },
-          {
-            name: @categories[3].name,
-            data: @average_history.map { |average| [average.created_at, ((average.week_detail[3].to_f)*1000/12).round(2)] },
-            dataset: { backgroundColor: @categories[3].color, borderColor: @categories[3].color},
-            color: @categories[3].color
-          },
-          {
-            name: @categories[4].name,
-            data: @average_history.map { |average| [average.created_at, ((average.week_detail[4].to_f)*1000/12).round(2)] },
-            dataset: { backgroundColor: @categories[4].color, borderColor: @categories[4].color},
-            color: @categories[4].color
-          }
-        ],
-              defer: true, :style => "margin-top:30px;", suffix: " kgCO2", decimal: ",", stacked: true, points: false
-          %>
+          <%= line_chart @average_history.map { |a| [a.created_at, (a.week_total*1000/12).round(0).to_i] }, defer: true, points: false, :style => "margin-top:30px;", suffix: " kgCO2e", decimal: "," %>
         </div>
       </div>
+      <%= link_to "Suivre mon impact gratuitement", "/users/sign_up", class: "btn btn-lg btn-round btn-rose", :style => "margin-bottom: 50px;" %>
     </div>
   </div>
 </div>
