@@ -62,11 +62,11 @@ $(window).scroll(function() {
 if ($("#registration-navbar").offset().top > 80) {
     $('#custom-nav').addClass('affix');
     $(".navbar-fixed-top").addClass("top-nav-collapse");
-    $('.navbar-brand img').attr('src','/assets/Logo-Carbo-White.png'); //change src
+    $('.navbar-brand img').attr('src',"<%= asset_path('Logo-Carbo-White.png') %>"); //change src
 } else {
     $('#custom-nav').removeClass('affix');
     $(".navbar-fixed-top").removeClass("top-nav-collapse");
-    $('.navbar-brand img').attr('src','/assets/Logo-Carbo-Blue.png')
+    $('.navbar-brand img').attr('src',"<%= asset_path('Logo-Carbo-Blue.png') %>")
 }
 });
 

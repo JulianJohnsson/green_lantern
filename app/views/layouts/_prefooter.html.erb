@@ -20,8 +20,7 @@
     <div class="row align-items-center">
       <div class="col-md-3" style="margin-top:-20px;">
         <h3>
-          <%= image_tag("Logo-Carbo-Blue.png", style: "width:55px;") %>
-          Carbo
+          <%= image_tag("Logo-Carbo-Blue.png", style: "width:120px;") %>
         </h3>
         <p class="description">
           Donner au plus grand nombre le pouvoir d’agir contre le changement climatique.
@@ -32,16 +31,16 @@
         <h5>Explorer</h5>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <%= link_to "Notre mission", page_path('mission') %>
+            <%= link_to "Notre mission", "https://www.hellocarbo.com/?page_id=6" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Les projets soutenus", new_project_path %>
+            <%= link_to "Les projets soutenus", "https://www.hellocarbo.com/compenser-mon-empreinte-carbone/" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sécurité de tes données", page_path('security') %>
+            <%= link_to "Sécurité de tes données", "https://www.hellocarbo.com/?page_id=160" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Offrir Carbo", page_path('gift') %>
+            <%= link_to "Blog Carbo", "https://www.hellocarbo.com/blog/" %>
           </li>
         </ul>
       </div>
@@ -60,13 +59,13 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Blog Carbo", 'https://blog.hellocarbo.com', :target => "_blank" %>
-          </li>
-          <li class="nav-item">
             <%= link_to "Questions fréquentes", page_path('faq') %>
           </li>
           <li class="nav-item">
             <%= link_to "Suivre notre développement", 'https://trello.com/b/ikSl3Q07', :target => "_blank" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Politique de confidentialité", 'https://www.hellocarbo.com/?page_id=3' %>
           </li>
         </ul>
       </div>
