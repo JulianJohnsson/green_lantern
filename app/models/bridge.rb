@@ -145,9 +145,8 @@ class Bridge < ApplicationRecord
   end
 
   def refresh(user)
-    unless self.credential == "client_id=#{Rails.application.credentials[:bridge_4][Rails.env.to_sym][:client_id]}&client_secret=#{Rails.application.credentials[:bridge_4][Rails.env.to_sym][:client_secret]}" && Rails.env.to_sym == :production
-      RestClient.proxy = ENV["FIXIE_URL"]
-    end
+    RestClient.proxy = ENV["FIXIE_URL"]
+
     unless self.uuid
       self.set_credential
       self.create_account(user)
