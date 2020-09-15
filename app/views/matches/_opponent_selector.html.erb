@@ -93,7 +93,7 @@
             <% end %>
           </div>
           <div class="col-6">
-            <%= link_to "https://twitter.com/intent/tweet?text=Aujourd’hui%20j’ai%20découvert%20@hellocarbo,%20un%20outil%20génial%20pour%20réduire%20et%20compenser%20mon%20impact%20carbone%20!%20Viens%20comparer%20ton%20empreinte%20à%20la%20mienne%20avec%20ce%20lien%20d%E2%80%99invitation%20:%20&url=" + short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=twitter&utm_campaign=invitation_link", url_options: { protocol: 'https' }) + "&hashtags=changementclimatique%2Cjagispourlaplanete", class: 'btn btn-round', :style => "background:#00acee;min-width:150px;", :target => "_blank" do %>
+            <%= link_to "https://twitter.com/intent/tweet?text=Aujourd’hui%20j’ai%20découvert%20@carbo_fr,%20un%20outil%20génial%20pour%20réduire%20et%20compenser%20mon%20impact%20carbone%20!%20Viens%20comparer%20ton%20empreinte%20à%20la%20mienne%20avec%20ce%20lien%20d%E2%80%99invitation%20:%20&url=" + short_url("https://app.hellocarbo.com/users/sign_up?invite=#{current_user.invite_encrypt}&utm_medium=referral&utm_source=twitter&utm_campaign=invitation_link", url_options: { protocol: 'https' }) + "&hashtags=changementclimatique%2Cjagispourlaplanete", class: 'btn btn-round', :style => "background:#00acee;min-width:150px;", :target => "_blank" do %>
               <%= image_tag "Logo-Carbo-White.png", :style => 'width:20px;margin-right:10px;' %>
               Twitter
             <% end %>
