@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get '/track' => 'categories#track'
   get '/compare_with' => 'matches#index'
   get '/trends' => 'matches#trends'
-  get '/impact-carbone' => 'visitors#index'
+  get '/indice-carbone' => 'visitors#index'
   get '/reduce' => 'reductions#index'
   get '/compare', to: redirect('/reduce', status: 301)
 

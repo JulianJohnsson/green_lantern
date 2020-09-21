@@ -3,7 +3,7 @@
 <div class="page-header home-section indice-section1">
   <div class="container">
     <div class="row justify-content-center align-items-top">
-      <div class="col-md-5" style="margin-right:-40px;">
+      <div class="col-md-5" style="margin-right:-40px; margin-top:20px;">
         <h1>L'indice carbone</h1>
         <h5 class="description">
           Suivez chaque semaine l'évolution de l'impact carbone de la consommation des français.
@@ -21,7 +21,7 @@
   </div>
 </div>
 <div id="detail" class="row">
-  <div class="col-6 text-center camembert" style="padding-top: 50px;">
+  <div class="col-md-6 text-center camembert" style="padding-top: 50px;">
     <h3>
       Indice carbone<br>
       <span style="font-weight:normal;">de la semaine</span>
@@ -36,7 +36,7 @@
       <%= pie_chart @data, colors: @categories.map { |c| c.color}, round: 1, donut: true, legend: "none", suffix: " kgCO2", defer: true %>
     </div>
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-8 col-10">
         <table class="table text-left table-category">
           <tbody>
                   <% i = 0 %>
@@ -59,7 +59,7 @@
             </div>
           </div>
   </div>
-  <div class="col-6 background-linear">
+  <div class="col-md-6 background-linear">
     <div class="content">
       <h3>La tendance</h3>
       <div class="row align-items-center">
