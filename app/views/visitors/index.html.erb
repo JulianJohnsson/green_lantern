@@ -33,7 +33,7 @@
       </div>
     </div>
     <div style="margin-top:30px;">
-      <%= pie_chart @data, colors: @categories.map { |c| c.color}, round: 1, donut: true, legend: "none", suffix: " kgCO2", defer: true %>
+      <%= pie_chart @data, colors: @categories.map { |c| c.color}, round: 1, donut: true, legend: "none", suffix: " kgCO2", defer: true, height: "250px" %>
     </div>
     <div class="row justify-content-center">
       <div class="col-md-8 col-10">
@@ -215,6 +215,24 @@
         <%= link_to "En savoir plus", "https://www.hellocarbo.com/blog/calculer/confinement-et-impact-carbone-des-pistes-pour-un-apres-moins-carbone/", class: "mx-auto" %>
       </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <h4>
+            La méthodologie
+          </h4>
+        </div>
+        <p>
+          L’indice Carbone® développé par Carbo permet de suivre chaque semaine l’impact de la consommation des français. Il s’appuie sur un panel moyen de 500 utilisateurs représentant des profils variés de la société française.
+        </p>
+        <p>
+          Pour obtenir cet indice, l’algorithme Carbo s’appuie sur les dépenses bancaires anonymisées du panel représentatif. Nous prenons en compte toutes les émissions de CO2 des dépenses que nous pouvons catégoriser : chaque fois qu’une carte bancaire est utilisée, nous analysons le type de transaction (essence, hôtel, alimentation, etc.) et nous calculons le volume de CO2 associé. Pour cela, nous utilisons un facteur d’émission monétaire, exprimé en C02 par Euro, qui permet d’estimer un ordre de grandeur du contenu carbone d’un bien ou d’un service à l’aide de son prix.
+        </p>
+        <p>
+          Ces facteurs sont progressivement enrichis avec l’aide de notre communauté active de membres et la mise à jour régulière des bases de données environnementales publiques, reconnues et robustes, principalement issues des travaux de l’ADEME, de l'Aland Index et de la Banque Mondiale.
+        </p>
+        <%= link_to "En savoir plus", "https://www.hellocarbo.com/questions/methodologie/#q1", class: "mx-auto" %>
+      </div>
+    </div>
   </div>
 </div>
-
