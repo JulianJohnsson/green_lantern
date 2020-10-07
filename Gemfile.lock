@@ -95,7 +95,7 @@ GEM
       xpath (~> 3.2)
     chartjs-ror (3.6.4)
       rails (>= 3.1)
-    chartkick (3.3.0)
+    chartkick (3.4.0)
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
