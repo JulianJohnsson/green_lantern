@@ -417,6 +417,7 @@ DEPENDENCIES
   fast-stemmer
   font-awesome-rails
   groupdate
+  gsl
   high_voltage
   hub
   jbuilder (~> 2.5)
