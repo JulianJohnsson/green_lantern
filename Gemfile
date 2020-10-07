@@ -60,7 +60,6 @@ gem 'split', require: 'split/dashboard'
 gem 'shortener'
 gem 'classifier-reborn'
 gem 'fast-stemmer'
-gem 'gsl'
 
 group :development do
   gem 'better_errors'
