@@ -101,6 +101,8 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    classifier-reborn (2.2.0)
+      fast-stemmer (~> 1.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -133,6 +135,7 @@ GEM
     execjs (2.7.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
+    fast-stemmer (1.0.2)
     ffi (1.12.2)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
@@ -143,6 +146,7 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (4.1.2)
       activesupport (>= 4.2)
+    gsl (2.1.0.3)
     hashie (3.6.0)
     high_voltage (3.1.2)
     hkdf (0.3.0)
@@ -275,6 +279,8 @@ GEM
     raindrops (0.19.0)
     rake (12.3.3)
     rb-fsevent (0.10.3)
+    rb-gsl (1.16.0.6)
+      gsl
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.1.2)
@@ -403,10 +409,12 @@ DEPENDENCIES
   chartjs-ror
   chartkick
   chromedriver-helper
+  classifier-reborn
   coffee-rails (~> 4.2)
   devise (>= 4.7.1)
   devise-i18n
   devise_invitable
+  fast-stemmer
   font-awesome-rails
   groupdate
   high_voltage
@@ -426,6 +434,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rails-i18n (~> 5.1)
   rails_layout
+  rb-gsl
   rest-client
   rollbar
   sass-rails (~> 5.0)

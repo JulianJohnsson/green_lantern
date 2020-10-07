@@ -10,4 +10,12 @@ class VisitorsController < ApplicationController
     end
     render :layout => 'pages'
   end
+
+  def api
+    data = File.read("classifier.dat")
+    trained_classifier = Marshal.load data
+    @t = Transaction.order('RANDOM()').first
+    @guess = trained_classifier.classify @t.description
+    render :layout => false
+  end
 end

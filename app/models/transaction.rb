@@ -123,5 +123,4 @@ class Transaction < ApplicationRecord
       duplicates.each(&:destroy)
     end
   end
-
 end

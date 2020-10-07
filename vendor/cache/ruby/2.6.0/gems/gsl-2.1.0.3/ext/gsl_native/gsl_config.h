@@ -1,0 +1,20 @@
+#ifndef GSL_CONFIG_H
+#define GSL_CONFIG_H
+
+#define RUBY_2 1
+#define GSL_VERSION 2.6
+#define GSL_1_15_LATER 1
+#define GSL_1_15_LATER 1
+#define GSL_1_16_LATER 1
+#define GSL_2_0_LATER 1
+#define GSL_2_1_LATER 1
+#define HAVE_ROUND 1
+#define HAVE_GSL_EIGEN_FRANCIS 1
+#define HAVE_GSL_SF_MATHIEU_A_E 1
+#define HAVE_GSL_SF_MATHIEU_B_E 1
+#define HAVE_GSL_SF_MATHIEU_CE_E 1
+#define HAVE_GSL_SF_MATHIEU_SE_E 1
+#define HAVE_GSL_SF_MATHIEU_MC_E 1
+#define HAVE_GSL_SF_MATHIEU_MS_E 1
+
+#endif
