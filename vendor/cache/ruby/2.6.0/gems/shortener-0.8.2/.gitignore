@@ -1,0 +1,17 @@
+.DS_Store
+log/*
+tmp/**/*
+bin/*
+*.log
+*~
+.project
+.loadpath
+._*
+.bundle
+*.gem
+*.swp
+Gemfile.lock
+.rvmrc
+.redcar/*
+gemfiles/*.lock
+spec/dummy/tmp

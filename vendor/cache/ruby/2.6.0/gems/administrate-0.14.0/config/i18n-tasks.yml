@@ -1,0 +1,18 @@
+search:
+  paths:
+    - "app/controllers"
+    - "app/helpers"
+    - "app/pages"
+    - "app/views"
+
+data:
+  read:
+    - config/locales/administrate.%{locale}.yml
+
+ignore_unused:
+  - activerecord.*
+  - administrate.*
+  - date.*
+  - simple_form.*
+  - time.*
+  - titles.*
