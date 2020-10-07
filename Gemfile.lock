@@ -145,6 +145,7 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (5.2.1)
       activesupport (>= 5)
+    gsl (2.1.0.3)
     hashie (4.1.0)
     high_voltage (3.1.2)
     hkdf (0.3.0)
@@ -417,6 +418,7 @@ DEPENDENCIES
   fast-stemmer
   font-awesome-rails
   groupdate
+  gsl
   high_voltage
   hub
   jbuilder (~> 2.5)
