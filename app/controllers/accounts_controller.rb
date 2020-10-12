@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
 
   def index
     Account.refresh_accounts(current_user)
-    @accounts = current_user.accounts.active
+    @accounts = current_user.accounts.active.where("item_id is not null")
     @bridge = Bridge.find_by_user_id(current_user.id)
     @redirect_url = @bridge.add_item_url(current_user)
   end
