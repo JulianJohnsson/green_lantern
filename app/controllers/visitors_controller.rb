@@ -1,5 +1,4 @@
 class VisitorsController < ApplicationController
-  require "gsl"
 
   def index
     @average_history = AverageScore.where("score_kind = 1").sort_by {|c| c.created_at}
@@ -13,11 +12,4 @@ class VisitorsController < ApplicationController
     render :layout => 'pages'
   end
 
-  def api
-    data = File.read("classifier.dat")
-    trained_classifier = Marshal.load data
-    @t = Transaction.order('RANDOM()').first
-    @guess = trained_classifier.classify @t.description
-    render :layout => false
-  end
 end
