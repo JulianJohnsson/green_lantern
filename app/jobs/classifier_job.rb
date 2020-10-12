@@ -2,7 +2,6 @@ class ClassifierJob < ApplicationJob
 
   require 'classifier-reborn'
 
-
   def perform
     transactions = Transaction.all.where("description is not null and category_id is not null")
     @lsi = ClassifierReborn::LSI.new(auto_rebuild: false)

@@ -28,6 +28,8 @@ class CategoriesController < ApplicationController
   end
 
   def track
+    @transactions_history = current_user.transactions.carbone_contribution
+
     @bridge = Bridge.find_by_user_id(current_user.id)
     @categories = Category.all.parent_categories.sort_by {|c| c.id}
     @score = current_user.scores.last

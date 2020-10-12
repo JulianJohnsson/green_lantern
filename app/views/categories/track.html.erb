@@ -1,6 +1,6 @@
 <% content_for :title, "Suivre mon impact" %>
   <small class="description">
-    <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") if @score.kind.to_sym == :dynamic %>
+    <%= @bridge.last_sync_at.strftime("Dernière synchronisation le %d/%m/%Y") if @score.kind.to_sym == :dynamic && @bridge %>
   </small>
 
   <% if @score.kind.to_sym == :static %>

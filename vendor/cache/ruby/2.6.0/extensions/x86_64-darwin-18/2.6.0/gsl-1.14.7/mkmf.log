@@ -1,0 +1,331 @@
+have_library: checking for -lcblas... -------------------- yes
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib     -lruby.2.6   "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib     -lruby.2.6 -lcblas   "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: 
+15: int t(void) { ; return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for -latlas... -------------------- no
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib    -lcblas  -lruby.2.6 -latlas -lcblas   "
+ld: library not found for -latlas
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: 
+15: int t(void) { ; return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for round()... -------------------- yes
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib    -L/usr/local/lib -lgsl -lgslcblas -lcblas  -lruby.2.6 -lcblas   "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))round; return !p; }
+/* end */
+
+--------------------
+
+have_header: checking for rngextra/rngextra.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'rngextra/rngextra.h' file not found
+#include <rngextra/rngextra.h>
+         ^~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <rngextra/rngextra.h>
+/* end */
+
+--------------------
+
+have_header: checking for qrngextra/qrngextra.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'qrngextra/qrngextra.h' file not found
+#include <qrngextra/qrngextra.h>
+         ^~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <qrngextra/qrngextra.h>
+/* end */
+
+--------------------
+
+have_header: checking for ool/ool_version.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'ool/ool_version.h' file not found
+#include <ool/ool_version.h>
+         ^~~~~~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ool/ool_version.h>
+/* end */
+
+--------------------
+
+have_header: checking for tensor/tensor.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'tensor/tensor.h' file not found
+#include <tensor/tensor.h>
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <tensor/tensor.h>
+/* end */
+
+--------------------
+
+have_header: checking for jacobi.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'jacobi.h' file not found
+#include <jacobi.h>
+         ^~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <jacobi.h>
+/* end */
+
+--------------------
+
+have_header: checking for gsl/gsl_cqp.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'gsl/gsl_cqp.h' file not found
+#include <gsl/gsl_cqp.h>
+         ^~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <gsl/gsl_cqp.h>
+/* end */
+
+--------------------
+
+have_header: checking for gsl/gsl_multimin_fsdf.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'gsl/gsl_multimin_fsdf.h' file not found
+#include <gsl/gsl_multimin_fsdf.h>
+         ^~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <gsl/gsl_multimin_fsdf.h>
+/* end */
+
+--------------------
+
+have_library: checking for gsl_poly_solve_quartic() in -lgsl... -------------------- no
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib    -L/usr/local/lib -lgsl -lgslcblas -lcblas  -lruby.2.6 -lgsl -lcblas   "
+conftest.c:14:57: error: use of undeclared identifier 'gsl_poly_solve_quartic'
+int t(void) { void ((*volatile p)()); p = (void ((*)()))gsl_poly_solve_quartic; return !p; }
+                                                        ^
+1 error generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))gsl_poly_solve_quartic; return !p; }
+/* end */
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib    -L/usr/local/lib -lgsl -lgslcblas -lcblas  -lruby.2.6 -lgsl -lcblas   "
+Undefined symbols for architecture x86_64:
+  "_gsl_poly_solve_quartic", referenced from:
+      _t in conftest-aa11d4.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: extern void gsl_poly_solve_quartic();
+15: int t(void) { gsl_poly_solve_quartic(); return 0; }
+/* end */
+
+--------------------
+
+have_library: checking for gsl_eigen_francis() in -lgsl... -------------------- yes
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib    -L/usr/local/lib -lgsl -lgslcblas -lcblas  -lruby.2.6 -lgsl -lcblas   "
+conftest.c:14:57: error: use of undeclared identifier 'gsl_eigen_francis'
+int t(void) { void ((*volatile p)()); p = (void ((*)()))gsl_eigen_francis; return !p; }
+                                                        ^
+1 error generated.
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))gsl_eigen_francis; return !p; }
+/* end */
+
+"gcc -o conftest -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include conftest.c  -L. -L/Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib -L. -fstack-protector-strong -L/usr/local/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl@1.1/lib    -L/usr/local/lib -lgsl -lgslcblas -lcblas  -lruby.2.6 -lgsl -lcblas   "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return 0;
+13: }
+14: extern void gsl_eigen_francis();
+15: int t(void) { gsl_eigen_francis(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for ndlinear/gsl_multifit_ndlinear.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'ndlinear/gsl_multifit_ndlinear.h' file not found
+#include <ndlinear/gsl_multifit_ndlinear.h>
+         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ndlinear/gsl_multifit_ndlinear.h>
+/* end */
+
+--------------------
+
+have_header: checking for alf/alf.h... -------------------- no
+
+"gcc -E -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/x86_64-darwin18 -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/backward -I/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0 -I.  -I/usr/local/opt/libyaml/include -I/usr/local/opt/libksba/include -I/usr/local/opt/readline/include -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -Wall -I../include  -I/usr/local/include  conftest.c -o conftest.i"
+conftest.c:3:10: fatal error: 'alf/alf.h' file not found
+#include <alf/alf.h>
+         ^~~~~~~~~~~
+1 error generated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <alf/alf.h>
+/* end */
+
+--------------------
+
+find_executable: checking for graph... -------------------- no
+
+--------------------
+

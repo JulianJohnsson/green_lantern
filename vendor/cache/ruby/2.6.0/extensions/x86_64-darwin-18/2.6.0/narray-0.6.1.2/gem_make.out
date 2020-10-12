@@ -1,0 +1,128 @@
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/narray-0.6.1.2/src
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/bin/ruby -I /Users/julienjanson/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0 -r ./siteconf20201007-3448-1kebn44.rb extconf.rb
+checking for stdint.h... yes
+checking for u_int8_t... yes
+checking for uint8_t... yes
+checking for int16_t... yes
+checking for int32_t... yes
+checking for u_int32_t... yes
+checking for uint32_t... yes
+creating narray_config.h
+creating Makefile
+
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/narray-0.6.1.2/src
+make "DESTDIR=" clean
+
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/narray-0.6.1.2/src
+make "DESTDIR="
+compiling narray.c
+narray.c:614:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  str_len = RSTRING_LEN(str);
+          ~ ^~~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:1000:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:996:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+narray.c:614:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  str_len = RSTRING_LEN(str);
+          ~ ^~~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:1001:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+2 warnings generated.
+compiling na_array.c
+na_array.c:158:9: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  len = RARRAY_LEN(ary);
+      ~ ^~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:1058:23: note: expanded from macro 'RARRAY_LEN'
+#define RARRAY_LEN(a) rb_array_len(a)
+                      ^~~~~~~~~~~~~~~
+na_array.c:564:17: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  int sep_len = RSTRING_LEN(sep);
+      ~~~~~~~   ^~~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:1000:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:996:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+na_array.c:564:17: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  int sep_len = RSTRING_LEN(sep);
+      ~~~~~~~   ^~~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:1001:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+3 warnings generated.
+compiling na_func.c
+na_func.c:1057:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        rankv[c] = r;
+                 ~ ^
+na_func.c:1071:18: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+          rankv[c++] = r++;
+                     ~ ~^~
+2 warnings generated.
+compiling na_index.c
+na_index.c:169:21: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+    na_index_scalar(FIX2LONG(idx),shape,sl);
+    ~~~~~~~~~~~~~~~ ^~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:393:21: note: expanded from macro 'FIX2LONG'
+#define FIX2LONG(x) RB_FIX2LONG(x)
+                    ^~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:377:25: note: expanded from macro 'RB_FIX2LONG'
+#define RB_FIX2LONG(x) ((long)RSHIFT((SIGNED_VALUE)(x),1))
+                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+na_index.c:174:21: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+    na_index_scalar(NUM2LONG(idx),shape,sl);
+    ~~~~~~~~~~~~~~~ ^~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:678:21: note: expanded from macro 'NUM2LONG'
+#define NUM2LONG(x) RB_NUM2LONG(x)
+                    ^~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:677:24: note: expanded from macro 'RB_NUM2LONG'
+#define RB_NUM2LONG(x) rb_num2long_inline(x)
+                       ^~~~~~~~~~~~~~~~~~~~~
+2 warnings generated.
+compiling na_random.c
+na_random.c:155:46: warning: implicit conversion loses integer precision: 'long' to 'u_int32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+    return tv.tv_sec ^ tv.tv_usec ^ getpid() ^ n++;
+    ~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+na_random.c:169:9: warning: implicit conversion loses integer precision: 'unsigned long' to 'u_int32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+        seed = NUM2ULONG(sd);
+             ~ ^~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:688:22: note: expanded from macro 'NUM2ULONG'
+#define NUM2ULONG(x) RB_NUM2ULONG(x)
+                     ^~~~~~~~~~~~~~~
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/include/ruby-2.6.0/ruby/ruby.h:687:25: note: expanded from macro 'RB_NUM2ULONG'
+#define RB_NUM2ULONG(x) rb_num2ulong_inline(x)
+                        ^~~~~~~~~~~~~~~~~~~~~~
+na_random.c:238:25: warning: function 'TpErr' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+static void TpErr(void) {
+                        ^
+3 warnings generated.
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/bin/ruby -I. ./mkop.rb
+compiling na_op.c
+na_op.c:41:25: warning: function 'TpErr' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+static void TpErr(void) {
+                        ^
+na_op.c:48:26: warning: function 'na_zerodiv' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+static void na_zerodiv() {
+                         ^
+na_op.c:1637:19: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+      int   len = strlen(buf);
+            ~~~   ^~~~~~~~~~~
+3 warnings generated.
+/Users/julienjanson/.rvm/rubies/ruby-2.6.3/bin/ruby -I. ./mkmath.rb
+compiling na_math.c
+na_math.c:25:25: warning: function 'TpErr' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+static void TpErr(void) {
+                        ^
+1 warning generated.
+compiling na_linalg.c
+linking shared-object narray.bundle
+
+current directory: /Users/julienjanson/workspace/green_lantern/green_lantern/vendor/cache/ruby/2.6.0/gems/narray-0.6.1.2/src
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 narray.bundle ./.gem.20201007-3448-1dp2f70
+installing narray libraries
+installing default narray libraries

@@ -1,0 +1,12 @@
+doc
+doc.local
+pkg
+tmp
+.gh-pages
+Makefile
+mkmf.log
+*.so
+*.o
+extconf.h
+Gemfile.lock
+*~

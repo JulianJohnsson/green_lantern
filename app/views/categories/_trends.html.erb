@@ -119,6 +119,7 @@
           </div>
           <div class="card-body">
             <%= line_chart [{ name: 'Mon impact sur 30 jours', data: @average_history.map { |a| [a.created_at, current_user.transactions.carbone_contribution.where("date <= ? and date > ?", a.created_at, a.created_at - 1.month).sum(:carbone)] } }, { name: 'Moyenne des membres Carbo', data: @average_history.map { |a| [a.created_at, a.month_total*1000/12] } }], defer: true, points: false, :style => "margin-top:30px;", suffix: " kg", decimal: ",", max: 1500 %>
+
             <p class="description" style="margin-top:20px;">Tu es intéressé par ces informations ? Tu veux en savoir plus sur l'évolution et la répartition de ton impact carbone ? <br>Fais nous part de tes idées et suggestions et tu pourras tester en avant-première nos nouvelles fonctionnalités !</p>
             <%= button_tag "Donner mon avis", class: "btn btn-round btn-outline-primary", :id => "feedback" %>
           </div>

@@ -35,10 +35,15 @@ class AverageScore < ApplicationRecord
         detail[i] = detail[i] + score.detail[i].to_f
       end
     end
-    avg_total = total / count
-    avg_detail = [0,0,0,0,0]
-    for i in 0..4
-      avg_detail[i] = detail[i] / count
+    if count > 0
+      avg_total = total / count
+      avg_detail = [0,0,0,0,0]
+      for i in 0..4
+        avg_detail[i] = detail[i] / count
+      end
+    else
+      avg_total = 0
+      avg_detail = [0,0,0,0,0]
     end
     return avg_total, avg_detail
   end

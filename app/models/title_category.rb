@@ -1,0 +1,2 @@
+class TitleCategory < ApplicationRecord
+end

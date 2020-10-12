@@ -1,0 +1,2 @@
+class ShineCategory < ApplicationRecord
+end
