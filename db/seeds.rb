@@ -399,32 +399,3 @@ if ShineCategory.count == 0
   end
 end
 
-if User.find(151).transactions.count == 0
-  csv_text = File.read(Rails.root.join('lib', 'seeds', 'transactions.csv'))
-  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-  csv.each do |row|
-    t = Transaction.new
-    t.description = row["title"]
-    t.date = row["date"].to_date
-    t.amount = -1 * row["value"].to_f
-    t.external_id = row["transactionId"]
-    case row["bankAccountId"] when "566bf82b-d68c-4c92-b844-a161a9587b19"
-      t.user_id = 151
-    when "6dac3bd7-ec4e-4389-a5af-83e43c1a1a61"
-      t.user_id = 152
-    when "910e27d1-b80f-41b5-b7f2-a15f70a32fe0"
-      t.user_id = 153
-    when "b9920e3b-68ed-4ccc-987f-a5196f94df7a"
-      t.user_id = 154
-    when "cd94d53c-7d8e-4e2c-b134-f2ad16db2d4e"
-      t.user_id = 155
-    end
-    title = TitleCategory.find_by_title(t.description)
-    if title.present?
-      t.category_id = title.category
-    else
-      t.category_id = ShineCategory.find_by_key(row["category"]).category_id
-    end
-    t.save
-  end
-end
