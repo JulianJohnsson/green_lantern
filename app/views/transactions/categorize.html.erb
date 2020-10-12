@@ -50,7 +50,7 @@
                         <%= form.hidden_field :previous_category, :value => 115 %>
                         <%= form.hidden_field :updated_by_user, :value => true %>
 
-                        <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, {:include_blank => "Choisir une catégorie", :selected => transaction.suggested_category_id}, {:class => 'auto-select2'}) %>
+                        <%= form.grouped_collection_select(:category_id, Category.all.root_categories.order(:name), :children, :name, :id, :name, {:include_blank => "Choisir une catégorie", :selected => transaction.suggested_category_id}, {:class => 'auto-select2', :id => "transaction_category_id_#{transaction.id}"}) %>
                         <% if transaction.suggested_category_id.present? %>
                           <%= button_tag :class => "btn btn-fab btn-sm btn-outline-success" do %>
                             <i class="material-icons" data-toggle="tooltip" data-placement="bottom" title="" data-container="body" data-original-title="Valider la catégorie suggérée">check</i>

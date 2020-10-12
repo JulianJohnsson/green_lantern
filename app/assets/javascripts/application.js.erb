@@ -29,13 +29,13 @@
 
 $(document).ready(function(){
   // Turn on js-selectable class so that it becomes SELCT 2 tag
-  $('select.auto-select2').each(function() {
+  $('.auto-select2').each(function() {
     $(this).select2({
       allowClear: true,
       width: 220,
       theme: "bootstrap"
     });
-    $(this).on("select2:select", function() {
+   $(this).on("select2:select", function() {
       form = this.form;
       Rails.fire(form, 'submit');
     });
