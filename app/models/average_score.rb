@@ -120,7 +120,9 @@ class AverageScore < ApplicationRecord
     scores.each do |score|
       transactions = score.user.transactions.where("date > ? AND date <= ?", self.created_at - 1.month, self.created_at).carbone_contribution
       total = total + transactions.sum(:carbone)
-      count = count + 1
+      if transactions.sum(:carbone) > 0
+        count = count + 1
+      end
       for i in 0..4
         detail[i] = detail[i] + transactions.where("parent_category_id = ?", categories[i]).sum(:carbone)
       end
