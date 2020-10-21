@@ -14,7 +14,6 @@ class NotificationPreference < ApplicationRecord
     begin
       variable = Mailjet::Contact.find(self.user.email)
       variable.update_attributes(is_excluded_from_campaigns: "true") if variable.present?
-      p variable.attributes
     end
   end
 end
