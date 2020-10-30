@@ -8,7 +8,7 @@
         <h5 class="description">
           Suivez chaque semaine l'évolution de l'impact carbone de la consommation des français.
         </h5>
-        <%= link_to "Voir le détail", "#detail", class: "btn btn-lg btn-round btn-outline-primary" %>
+        <%= link_to "Voir le détail", "#detail", class: "btn btn-lg btn-round btn-outline-primary", :style => "margin-bottom:30px;" %>
       </div>
       <div class="col-md-6 dashboard-wrapper mt-auto mb-auto" id="indice">
         <div class="row justify-content-center align-items-center">
@@ -67,7 +67,7 @@
           <div class="col-2 emoji">
             🌱
           </div>
-          <div class="col-10" style="margin-left:-20px;">
+          <div class="col-10">
             <p class="big">
               En baisse par rapport à la semaine passée (<%= ((@week.week_total - @previous.week_total)*100 / @previous.week_total).round(0).to_i %>%)
             </p>
@@ -76,7 +76,7 @@
           <div class="col-2 emoji">
             🥵
           </div>
-          <div class="col-10" style="margin-left:-20px;">
+          <div class="col-10">
             <p class="big">
               En hausse par rapport à la semaine passée (+<%= ((@week.week_total - @previous.week_total)*100 / @previous.week_total).round(0).to_i %>%)
             </p>
@@ -87,7 +87,7 @@
         <div class="col-2 emoji">
           🔮
         </div>
-        <div class="col-10" style="margin-left:-20px;">
+        <div class="col-10">
           <p class="big">
             Sur les 4 dernières semaines, l'indice carbo atteint en moyenne
             <strong>
@@ -105,7 +105,7 @@
         <div class="col-2 emoji">
           👖
         </div>
-        <div class="col-10" style="margin-left:-20px;">
+        <div class="col-10">
           <p class="big">
             La fabrication de
             <strong>
@@ -119,7 +119,7 @@
         <div class="col-2 emoji">
           🍔
         </div>
-        <div class="col-10" style="margin-left:-20px;">
+        <div class="col-10">
           <p class="big">
             La production de
             <strong>
@@ -133,7 +133,7 @@
         <div class="col-2 emoji">
           🛴
         </div>
-        <div class="col-10" style="margin-left:-20px;">
+        <div class="col-10">
           <p class="big">
             <strong>
               <%= (@average_history.last.week_total*1000/12 / 0.125).to_i %>
