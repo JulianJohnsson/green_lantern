@@ -58,8 +58,6 @@ gem 'webpush'
 gem 'newrelic_rpm'
 gem 'split', require: 'split/dashboard'
 gem 'shortener'
-gem 'classifier-reborn'
-gem 'fast-stemmer'
 
 group :development do
   gem 'better_errors'

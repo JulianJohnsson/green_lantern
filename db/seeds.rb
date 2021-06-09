@@ -31,155 +31,34 @@ country_enrichment.each do |name,house_size,furniture,clothes,other_goods,health
   c.update(house_size: house_size, furniture: furniture,clothes: clothes,other_goods: other_goods,healthcare: healthcare,subscriptions: subscriptions,other_services: other_services)
 end
 
-# WARNING category format deprecated, seed format and content need to be updated for seeding a new environment (see script for details)
-category_list = [
-  [ "Auto & Transports", 165, 0.550308125, 0 ],
-  [ "Assurance véhicule", 247, 0.023, 165 ],
-  [ "Billets d'avion", 198, 1.12152, 165 ],
-  [ "Billets de train", 197, 0.33563, 165 ],
-  [ "Carburant", 87, 1.186, 165 ],
-  [ "Entretien véhicule", 288, 0.063295, 165 ],
-  [ "Location de véhicule", 264, 1.186, 165 ],
-  [ "Péage", 309, 0.19571, 165 ],
-  [ "Stationnement", 251, 0.19571, 165 ],
-  [ "Transports en commun", 196, 0.1186, 165 ],
-  [ "Auto & Transports Autres", 84, 0.023, 165 ],
-  [ "Logement", 161, 0.5242457823, 0 ],
-  [ "Assurance habitation", 246, nil, 161 ],
-  [ "Charges diverses", 328, 0.03623, 161 ],
-  [ "Décoration", 221, 0.06949, 161 ],
-  [ "Eau", 293, 0.01537, 161 ],
-  [ "Electricité", 217, 0.4761904762, 161 ],
-  [ "Entretien", 222, 0.03615, 161 ],
-  [ "Extérieur et jardin", 323, 0.03629, 161 ],
-  [ "Gaz", 218, 3, 161 ],
-  [ "Loyer", 216, nil, 161 ],
-  [ "Logement étudiant", 241, 0, 161 ],
-  [ "Logement Autres", 220, nil, 161 ],
-  [ "Abonnements", 171, 0.006012888889, 162 ],
-  [ "Achats de biens et services", 162, 0.008664444444, 0 ],
-  [ "Banque", 164, 0.01690333333, 162 ],
-  [ "Divers", 160, 0.004496666667, 162 ],
-  [ "Internet", 180, 0, 171 ],
-  [ "Téléphonie fixe", 258, 0, 171 ],
-  [ "Téléphonie mobile", 277, 0, 171 ],
-  [ "Abonnements Autres", 280, 0, 171 ],
-  [ "Câble / Satellite", 219, 0, 171 ],
-  [ "Livres", 243, 0.02698, 162 ],
-  [ "Vêtements/Chaussures", 272, 0.0296, 162 ],
-  [ "High Tech", 184, 0.03566, 162 ],
-  [ "Articles de sport", 262, 0.04293, 162 ],
-  [ "Tabac", 308, 0.04627, 162 ],
-  [ "Esthétique & Soins", 315, 0.023, 162 ],
-  [ "Coiffeur", 235, 0.023, 315 ],
-  [ "Cosmétique", 248, 0.023, 315 ],
-  [ "Esthétique", 321, 0.023, 315 ],
-  [ "Esthétique & Soins Autres", 317, 0.023, 315 ],
-  [ "Spa & Massage", 316, 0.023, 315 ],
-  [ "Frais Animaux", 224, 0.06334, 315 ],
-  [ "Divertissements", 269, 0.02738, 162 ],
-  [ "Hôtels", 263, 0.43479, 162 ],
-  [ "Hobbies", 226, nil, 162 ],
-  [ "Sorties culturelles", 244, 0.02738, 162 ],
-  [ "Sport", 242, nil, 162 ],
-  [ "Sports d'hiver", 310, nil, 162 ],
-  [ "Voyages / Vacances", 249, nil, 162 ],
-  [ "Remboursement emprunt", 89, nil, 164 ],
-  [ "Prêt étudiant", 259, 0, 164 ],
-  [ "Frais bancaires", 79, nil, 164 ],
-  [ "Services Bancaires", 306, nil, 164 ],
-  [ "Assurance", 278, 0.039015625, 164 ],
-  [ "Banque Autres", 195, 0, 164 ],
-  [ "Débit mensuel carte", 191, nil, 164 ],
-  [ "Epargne", 192, nil, 164 ],
-  [ "Hypothèque", 194, nil, 164 ],
-  [ "Achats & Shopping Autres", 186, 0.04293, 162 ],
-  [ "Cadeaux", 183, nil, 162 ],
-  [ "Films & DVDs", 319, nil, 162 ],
-  [ "Licenses", 441888, nil, 162 ],
-  [ "Musique", 318, nil, 162 ],
-  [ "Pressing", 324, 0.039015625, 162 ],
-  [ "Loisirs & Sorties Autres", 223, 0.10314, 162 ],
-  [ "Fournitures scolaires", 238, 0, 162 ],
-  [ "Jouets", 266, 0, 162 ],
-  [ "Alimentation & Restau.", 168, 0.070256, 0 ],
-  [ "Café", 313, 0.06334, 168 ],
-  [ "Fast foods", 260, 0.07964, 168 ],
-  [ "Restaurants", 83, 0.07964, 168 ],
-  [ "Sortie au restaurant", 320, 0.07964, 168 ],
-  [ "Supermarché / Epicerie", 273, 0.04902, 168 ],
-  [ "Bars / Clubs", 227, 0.08105, 168 ],
-  [ "Alimentation Autres", 188, 0.06334, 168 ],
-  [ "Impôts & Taxes", 159, 0.039015625, 0 ],
-  [ "Santé", 163, 0.0425625, 159 ],
-  [ "Amendes", 207, 0, 159 ],
-  [ "Impôts fonciers", 209, nil, 159 ],
-  [ "Impôts sur le revenu", 208, nil, 159 ],
-  [ "Dentiste", 325, 0.05675, 163 ],
-  [ "Médecin", 261, 0.05675, 163 ],
-  [ "Opticien / Ophtalmo.", 322, 0.05675, 163 ],
-  [ "Pharmacie", 236, 0.04387, 163 ],
-  [ "Mutuelle", 245, 0, 163 ],
-  [ "Baby-sitters & Crèches", 267, 0, 159 ],
-  [ "Ecole", 239, 0, 159 ],
-  [ "Impôts & Taxes Autres", 206, nil, 159 ],
-  [ "Taxes", 302, nil, 159 ],
-  [ "TVA", 441988, nil, 159 ],
-  [ "Santé Autres", 268, 0, 163 ],
-  [ "Scolarité & Enfants Autres", 237, 0, 159 ],
-  [ "Dépenses pro", 166, nil, 0 ],
-  [ "Comptabilité", 441889, nil, 166 ],
-  [ "Conseils", 441895, nil, 166 ],
-  [ "Cotisations Sociales", 441886, nil, 166 ],
-  [ "Dépenses pro Autres", 90, nil, 166 ],
-  [ "Fournitures de bureau", 274, nil, 166 ],
-  [ "Frais d'expéditions", 204, nil, 166 ],
-  [ "Frais d'impressions", 205, nil, 166 ],
-  [ "Frais de recrutement", 441892, nil, 166 ],
-  [ "Frais juridique", 441899, nil, 166 ],
-  [ "Maintenance bureaux", 203, nil, 166 ],
-  [ "Marketing", 441900, nil, 166 ],
-  [ "Notes de frais", 265, nil, 166 ],
-  [ "Prévoyance", 441897, nil, 166 ],
-  [ "Publicité", 202, nil, 166 ],
-  [ "Rémunérations dirigeants", 441891, nil, 166 ],
-  [ "Salaires", 441890, nil, 166 ],
-  [ "Services en ligne", 270, nil, 166 ],
-  [ "Sous-traitance", 441896, nil, 166 ],
-  [ "Taxe d'apprentissage", 441898, nil, 166 ],
-  [ "A catégoriser", 1, 0, 0 ],
-  [ "Autres dépenses", 276, 0.039015625, 1 ],
-  [ "Dons", 294, 0.039015625, 1 ],
-  [ "Pensions", 240, 0, 1 ],
-  [ "Loisirs & Sorties", 170, 0, 162 ],
-  [ "Entrées d'argent", 2, 0, 0 ],
-  [ "Allocations et pensions", 327, 0, 2 ],
-  [ "Autres rentrées", 3, 0, 2 ],
-  [ "Dépôt d'argent", 271, 0, 2 ],
-  [ "Economies", 289, 0, 2 ],
-  [ "Emprunt", 441894, 0, 2 ],
-  [ "Extra", 233, 0, 2 ],
-  [ "Intérêts", 80, 0, 2 ],
-  [ "Loyers reçus", 314, 0, 2 ],
-  [ "Remboursements", 283, 0, 2 ],
-  [ "Retraite", 279, 0, 2 ],
-  [ "Salaires", 230, 0, 2 ],
-  [ "Services", 232, 0, 2 ],
-  [ "Subventions", 441893, 0, 2 ],
-  [ "Ventes", 231, 0, 2 ],
-  [ "Virements internes", 282, 0, 2 ],
-  [ "Retraits, Chq. et Vir.", 303, 0, 0 ],
-  [ "Chèques", 88, 0, 303 ],
-  [ "Retraits", 85, 0, 303 ],
-  [ "Virements", 78, 0, 303 ],
-  [ "Virements internes", 326, 0, 303 ],
-  [ "Scolarité & Enfants", 167, 0, 159 ]
-]
 
-if Category.count == 0
-  category_list.each do |name,external_id,coeff,parent_id|
-    Category.create(name: name, external_id: external_id, coeff: coeff, parent_id: parent_id)
+if Category.count.zero?
+  csv_text = File.read(Rails.root.join('lib/seeds/categories.csv'))
+  csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
+  csv.each do |row|
+    a = Category.create(
+          name: row['name'],
+          external_id: row['external_id'].to_i,
+          coeff: row['coeff'].to_f,
+          parent_id: (Category.find_by_name(row['parent'])&.id if row['parent']),
+          color: row['color'],
+          emoji: row['emoji']
+        )
+    Rails.logger.info "#{a.name} saved"
   end
+  Rails.logger.info "There are now #{Category.count} rows in the categories table"
+end
+
+if BankinCategory.count.zero?
+  csv_text = File.read(Rails.root.join('lib/seeds/bankin_categories.csv'))
+  csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
+  csv.each do |row|
+    a = BankinCategory.create(
+          bankin_id: row['bankin_id'],
+          category_id: Category.find_by_name(row['name'])
+        )
+  end
+  Rails.logger.info "There are now #{BankinCategory.count} rows in the bankin_categories table"
 end
 
 bridges = Bridge.where("bank_connected = true")
@@ -223,17 +102,17 @@ if Equivalent.count == 0
 end
 
 modifier_list = [
-  [['Bio',0,1],[["Produits Bio", -0.05]],[40,70]],
-  [['Livraison à domicile',0,0],[["Livraison à domicile", 0.05]],[70]],
-  [['Type de nourriture',1,1],[["Vegan", -0.463],["Végétarien", -0.3955],["Carné", 0.5093]],[72,73,75]],
-  [['Type de commerce',1,0],[["Boucherie", 3.6],["Poissonnerie", 0.8],["Maraicher", -0.92],["Vin & alcools", -0.4],["Charcuterie", 1.06],["Boulangerie", -0.55],["Fromager", 0.45]],[75,77]],
-  [["Type d'énergie",1,1],[["Gaz", 0.19],["Gaz & Electricité", 0],["Electricité", -0.81]],[17]],
-  [["Part de renouvelable",1,1],[["Aucune énergie renouvelable", 0],["Partiellement renouvelable", -0.40],["100% renouvelable", -0.70]],[17]],
-  [['Occasion',0,0],[["Produit acheté d'occasion", -1]],[15,33,34,35,36,61,62,63]],
-  [["Provenance",1,0],[["Produit local", -0.10],["Produit importé", 0.03]],[15,25,70]],
-  [["Type de carburant",1,1],[["Diesel", -0.1],["Essence", 0]],[5]],
-  [["Type de train",1,0],[["TGV", -0.83],["TER", 1.35],["Transilien & RER", -0.6],["Eurostar & Thalys", 0.07]],[4]],
-  [["Type de véhicule",1,0],[["Classique", 0],["Hybride", -0.25],["Electrique", -0.87]],[7, 145, 146]]
+  [['Bio',0,1],[["Produits Bio", -0.05]],['Cosmétiques','Alimentation']],
+  [['Livraison à domicile',0,0],[["Livraison à domicile", 0.05]],['Alimentation']],
+  [['Type de nourriture',1,1],[["Vegan", -0.463],["Végétarien", -0.3955],["Carné", 0.5093]],['Fast foods','Restaurants','Supermarché / Epicerie']],
+  [['Type de commerce',1,0],[["Boucherie", 3.6],["Poissonnerie", 0.8],["Maraicher", -0.92],["Vin & alcools", -0.4],["Charcuterie", 1.06],["Boulangerie", -0.55],["Fromager", 0.45]],['Supermarché / Epicerie','Alimentation - Autres']],
+  [["Type d'énergie",1,1],[["Gaz", 0.19],["Gaz & Electricité", 0],["Electricité", -0.81]],['Énergie']],
+  [["Part de renouvelable",1,1],[["Aucune énergie renouvelable", 0],["Partiellement renouvelable", -0.40],["100% renouvelable", -0.70]],['Énergie']],
+  [['Occasion',0,0],[["Produit acheté d'occasion", -1]],['Mobilier & Décoration','Livres','Vêtements & Chaussures','Informatique & High Tech','Articles de sport','Biens - Autres','Cadeaux / Jeux / Jouets','Films & DVDs']],
+  [["Provenance",1,0],[["Produit local", -0.10],["Produit importé", 0.03]],['Mobilier & Décoration','Biens','Alimentation']],
+  [["Type de carburant",1,1],[["Diesel", -0.1],["Essence", 0]],['Carburant']],
+  [["Type de train",1,0],[["TGV", -0.83],["TER", 1.35],["Transilien & RER", -0.6],["Eurostar & Thalys", 0.07]],['Déplacement Train']],
+  [["Type de véhicule",1,0],[["Classique", 0],["Hybride", -0.25],["Electrique", -0.87]],['Location de véhicule', 'Taxi / VTC', 'Co-voiturage']]
 ]
 
 if Modifier.count == 0
@@ -244,7 +123,7 @@ if Modifier.count == 0
       mod.modifier_options.create(name: name, coeff: coeff)
     end
     categories.each do |cat|
-      mod.categories << Category.find(cat)
+      mod.categories << Category.find_by_name(cat)
     end
     mod.save
   end
@@ -325,42 +204,20 @@ users.each do |user|
   end
 end
 
-transaction_enrichments_list = [
-  ['CB Uber Paris',145,nil,nil],
-  ['CB Uber',145,nil,nil],
-  ['CB Naturalia',75,12,36],
-  ['CB Lim*ride Cost',147,nil,nil],
-  ['CB Cityscoot',147,nil,nil],
-  ['CB Txfy.me Paris',145,nil,nil],
-  ['CB Carrefour Bio',75,12,36],
-  ['CB Naturalia Paris',75,12,36],
-  ['CB Paris Feni',73,14,39],
-  ['CB Velib Metropole',147,nil,nil],
-  ['Lunchr',73,nil,nil],
-  ['Kapten',145,nil,nil],
-  ['CB Bio C Bon',75,12,36],
-  ['CB Biocoop',75,12,36],
-  ['CB Lime Sarl Paris',147,nil,nil],
-  ['CB Lunchr',73,nil,nil],
-  ['CB Mgp*vinted',34,18,54],
-  ['CB Velib Metropole Paris',147,nil,nil],
-  ['CB Uber *trip',145,nil,nil],
-  ['CB Uber Trip Help.ub',145,nil,nil],
-  ['CB Blablacar',146,nil,nil],
-  ['CB Gb Eurostar Inter',4,21,62],
-  ['CB Kapten Levallois Per',145,nil,nil],
-  ['CB Ubereats',72,nil,nil],
-  ['CB Transport Marce Paris',145,22,65],
-  ['CB Txfy.me',145,nil,nil],
-  ['CB Lim*ride Cost Paris',147,nil,nil],
-  ["CB Autolib'",7,22,65]
-]
-
-if TransactionEnrichment.auto.count < 3
-  transaction_enrichments_list.each do |desc,category,modifier,modifier_option|
-    t = TransactionEnrichment.create(description: desc, category_id: category, modifier_id: modifier, modifier_option_id: modifier_option)
+if TransactionEnrichment.auto.count.zero?
+  csv_text = File.read(Rails.root.join('lib/seeds/transaction_enrichments.csv'))
+  csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1')
+  csv.each do |row|
+    a = TransactionEnrichment.create(
+          description: row['description'],
+          category_id: Category.find_by_name(row['category']).id,
+          modifier_id: (Modifier.find_by_name(row['modifier'])&.id if row['modifier']),
+          modifier_option_id: (ModifierOption.find_by_name(row['modifier_option'])&.id if row['modifier_option']),
+          is_auto: true
+        )
+    Rails.logger.info "#{a.description} saved"
   end
-  # make them auto in rails console after, for timeout reasons
+  Rails.logger.info "There are now #{TransactionEnrichment.count} rows in the transaction_enrichments table"
 end
 
 if User.all.first.invite_encrypt == nil
@@ -374,6 +231,7 @@ if User.all.first.invite_encrypt == nil
   end
 end
 
+=begin
 if TitleCategory.count == 0
   csv_text = File.read(Rails.root.join('lib', 'seeds', 'title_categories.csv'))
   csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -398,4 +256,4 @@ if ShineCategory.count == 0
     puts "#{a.key} saved"
   end
 end
-
+=end
