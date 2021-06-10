@@ -4,25 +4,48 @@
       <div class="row">
         <div class="col-md-7">
           <div class="card-body">
-            <h3><strong>
-              <small>Ok <%= current_user.name %>, on se connait déjà un peu mieux !</small>
-              <br>
-              Suis automatiquement l’impact carbone de tes dépenses quotidiennes
-            </strong></h3>
-            <p style="margin-top:30px;">
-              Le mode dynamique est le principal intéret de Carbo, accessible gratuitement et en toute sécurité en connectant tes relévés bancaires.
-            </p>
-            <p><strong>
-              Activer ce mode va te permettre d’identifier sans effort chacun de tes choix les plus carbonés et d’être accompagné pour comprendre et réduire sensiblement l’impact de ton quotidien.
-            </strong></p>
-            <%= form_with(model: @bridge, local: true) do |form| %>
-              <div class="field">
-                <%= form.hidden_field :user_id, :value => @user.id %>
-              </div>
-              <div class="actions text-center">
-                <%= form.submit "Activer le mode dynamique", :class => 'btn btn-primary btn-round' %>
-                <%= link_to "Non merci, plus tard", '/later', class: 'btn btn-outline-primary btn-round' %>
-              </div>
+            <% if current_user.context == 'lbp' %>
+              <h3><strong>
+                <small>Ok <%= current_user.name %>, on se connait déjà un peu mieux !</small>
+                <br>
+                Suis l’impact carbone de tes dépenses bancaires avec Carbo et La Banque Postale
+              </strong></h3>
+              <p style="margin-top:30px;">
+                Allons plus loin en mesurant automatiquement l'empreinte carbone de vos dépenses !
+              </p>
+              <p>
+                En partenariat avec La Banque Postale, Carbo peut synchroniser votre compte bancaire et catégoriser instantanément vos achats, pour obtenir une estimation de leur impact.
+              </p>
+              <%= form_with(model: @bridge, local: true) do |form| %>
+                <div class="field">
+                  <%= form.hidden_field :user_id, :value => @user.id %>
+                </div>
+                <div class="actions text-center">
+                  <%= form.submit "Connecter mon compte bancaire", :class => 'btn btn-primary btn-round' %>
+                  <%= link_to "Non merci, plus tard", '/later', class: 'btn btn-outline-primary btn-round' %>
+                </div>
+              <% end %>
+            <% else %>
+              <h3><strong>
+                <small>Ok <%= current_user.name %>, on se connait déjà un peu mieux !</small>
+                <br>
+                Suis automatiquement l’impact carbone de tes dépenses quotidiennes
+              </strong></h3>
+              <p style="margin-top:30px;">
+                Le mode dynamique est le principal intéret de Carbo, accessible gratuitement et en toute sécurité en connectant tes relévés bancaires.
+              </p>
+              <p><strong>
+                Activer ce mode va te permettre d’identifier sans effort chacun de tes choix les plus carbonés et d’être accompagné pour comprendre et réduire sensiblement l’impact de ton quotidien.
+              </strong></p>
+              <%= form_with(model: @bridge, local: true) do |form| %>
+                <div class="field">
+                  <%= form.hidden_field :user_id, :value => @user.id %>
+                </div>
+                <div class="actions text-center">
+                  <%= form.submit "Activer le mode dynamique", :class => 'btn btn-primary btn-round' %>
+                  <%= link_to "Non merci, plus tard", '/later', class: 'btn btn-outline-primary btn-round' %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>

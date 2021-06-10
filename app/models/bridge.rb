@@ -20,8 +20,13 @@ class Bridge < ApplicationRecord
 
   def add_item_url(user)
     self.refresh(user)
+    if user.context == 'lbp'
+      @url = "https://sync.bankin.com/v2/connect/items/add/url?#{credential}&prefill_email=#{user.email}&bank_id=17"
+    else
+      @url = "https://sync.bankin.com/v2/connect/items/add/url?#{credential}&prefill_email=#{user.email}"
+    end
     response = RestClient::Request.execute(method: :get,
-      url: "https://sync.bankin.com/v2/connect/items/add/url?#{credential}&prefill_email=#{user.email}",
+      url: @url,
       headers: {'Bankin-Version' => '2018-06-15',
       'Authorization' => "Bearer #{token}"}
     )
@@ -187,7 +192,7 @@ class Bridge < ApplicationRecord
   end
 
   def set_credential
-    if Bridge.all.last.id < 147
+    if Bridge.all.last.present? && Bridge.all.last.id < 147
       client = Rails.application.credentials[:bridge][Rails.env.to_sym][:client_id]
       secret = Rails.application.credentials[:bridge][Rails.env.to_sym][:client_secret]
     else

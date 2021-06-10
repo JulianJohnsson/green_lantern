@@ -347,6 +347,6 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
   config.omniauth :facebook, Rails.application.credentials[:facebook_client], Rails.application.credentials[:facebook_secret], scope: 'email', token_params: { parse: :json }
   config.omniauth :google_oauth2, Rails.application.credentials[:google_client], Rails.application.credentials[:google_secret], {
-    scope: "userinfo.email"
+    scope: "https://www.googleapis.com/auth/userinfo.email"
   }
 end
