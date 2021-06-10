@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       root to: "users#index"
     end
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
+  devise_scope :user do
+    get '/connexion-la-banque-postale' => 'users/registrations#new'
+  end
   resources :users
 
   authenticated :user do

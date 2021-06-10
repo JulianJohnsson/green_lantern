@@ -21,15 +21,25 @@
   }
 }
 
+.social-line p {
+  margin-top: -5px;
+}
 .social-line a {
   color: white !important;
   margin-top: 0rem;
+  border: 1px solid white;
+  border-radius: 12px;
+  :hover {
+    background-color: $brand-primary;
+    border: 1px solid $brand-primary;
+  }
 }
 
 .registration-page {
   background-image: url(<%= asset_path('home_section1.png') %>);
   background-position: right 0% top 0%;
-  padding-top: 60px;
+  padding-top: 0px;
+  height: calc(100vh - 80px);
 }
 
 .onboarding-navigation .navbar-brand {

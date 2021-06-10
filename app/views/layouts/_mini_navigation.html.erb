@@ -2,7 +2,15 @@
   <div class="container">
     <div class="navbar-translate ml-auto mr-auto">
       <%= link_to(root_path, class: 'navbar-brand') do %>
-        <%= image_tag("Logo-Carbo-Blue.png", style: "width:40px;") %>
+        <% if current_user.context == 'lbp' %>
+          <div style="margin-bottom: 30px;">
+            <%= image_tag "Logo_Carbo_white_bg_dark.svg", class: "img-fluid", style: "margin-right:20px;width:50px;" %>
+            x
+            <%= image_tag "Logo_LBP.svg", class: "img-fluid", style: "margin-left:20px;width:50px;" %>
+          </div>
+        <% else %>
+          <%= image_tag("Logo-carbo-192.png", style: "width:40px;") %>
+        <% end %>
       <% end %>
     </div>
   </div>
