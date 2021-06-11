@@ -13,6 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
 
     begin
+      if cookies[:context] == "LBP"
+        resource.context = 'lbp'
+        resource.save
+      end
       utm = cookies[:utm]
       if utm
         resource.utm_params = utm
