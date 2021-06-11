@@ -29,7 +29,7 @@ class Reduction < ApplicationRecord
   def energy_contract(user)
     score = user.scores.last
     if score.enr == nil || score.enr.to_sym == :inconnu || score.enr.to_sym == :partiellement_renouvelable
-      category = Category.find(name: 'Énergie')
+      category = Category.find_by(name: 'Énergie')
       if score.enr == nil || score.enr.to_sym == :inconnu
         carbon_reduction = score.detail[1].to_f * 0.5 * 1000/12
       else
@@ -66,7 +66,7 @@ class Reduction < ApplicationRecord
         regime_title = "moins carné"
       end
       carbon_reduction = score.detail[4].to_f * reduction_coeff * 1000/12
-      category = Category.find(name: 'Alimentation')
+      category = Category.find_by(name: 'Alimentation')
       self.category_id = category.id
       self.parent_category_id = category.id
       self.title =  "Passer à un nouveau régime #{regime_title}"
