@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
 
   def utm
     {
-      :utm_source => (cookies[:utm_source]||""),
-      :utm_campaign => (cookies[:utm_campaign]||""),
-      :utm_medium => (cookies[:utm_medium]||""),
-      :utm_term => (cookies[:utm_term]||""),
-      :utm_content => (cookies[:utm_content]||"")
+      :utm_source => (cookies[:utm_source]||params[:utm_source]||""),
+      :utm_campaign => (cookies[:utm_campaign]||params[:utm_campaign]||""),
+      :utm_medium => (cookies[:utm_medium]||params[:utm_medium]||""),
+      :utm_term => (cookies[:utm_term]||params[:utm_term]||""),
+      :utm_content => (cookies[:utm_content]||params[:utm_content]||"")
     }
   end
 
