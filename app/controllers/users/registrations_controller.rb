@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
 
     begin
-      if cookies[:context] == "LBP"
+      if cookies[:context] == "LBP" || session[:context] == "LBP"
         resource.context = 'lbp'
         resource.save
       end
