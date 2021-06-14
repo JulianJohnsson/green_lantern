@@ -180,6 +180,8 @@ class Bridge < ApplicationRecord
   end
 
   def delete_account
+    return unless uuid.present?
+
     self.refresh(user)
     response = RestClient::Request.execute(method: :delete,
       url: "https://sync.bankin.com/v2/users/#{uuid}?password=#{user.email}_#{user.id}",
@@ -190,6 +192,10 @@ class Bridge < ApplicationRecord
         'Authorization' => "Bearer #{token}"
       }
     )
+    case response.code when 204
+      self.uuid = nil
+      self.save
+    end
   end
 
   def authenticate(user)
