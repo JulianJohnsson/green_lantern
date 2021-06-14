@@ -3,7 +3,6 @@ class ScoresController < ApplicationController
   before_action :set_score, only:[:edit, :edit_transport, :edit_plane, :edit_plane2, :edit_house, :edit_regime, :show, :update, :destroy, :edit_house2]
 
   def onboarding
-
       if current_user.scores == []
       redirect_to action: 'new'
       else
@@ -60,6 +59,10 @@ class ScoresController < ApplicationController
       current_user.invited_by_id = cookies[:invited_by].to_i
       current_user.save
       AnalyticService.new.track('Invitation accepted', nil, User.find(current_user.invited_by_id))
+    end
+    if cookies[:context] == "LBP"
+      current_user.context = 'lbp'
+      current_user.save
     end
     render :layout => 'bridges'
   end
