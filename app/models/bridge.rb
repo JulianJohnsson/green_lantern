@@ -182,7 +182,7 @@ class Bridge < ApplicationRecord
   def delete_account
     self.refresh(user)
     response = RestClient::Request.execute(method: :delete,
-      url: "https://sync.bankin.com//v2/users/#{uuid}?password=#{user.email}_#{user.id}",
+      url: "https://sync.bankin.com/v2/users/#{uuid}?password=#{user.email}_#{user.id}",
       headers: {
         'Bankin-Version' => '2019-02-18',
         'Client-Id' => Rails.application.credentials[:bridge_4][Rails.env.to_sym][:client_id],
