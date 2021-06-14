@@ -1,5 +1,6 @@
 class Bridge < ApplicationRecord
   belongs_to :user
+  before_destroy :delete_account
 
   scope :to_sync, -> {where("bank_connected = TRUE")}
 
@@ -176,6 +177,19 @@ class Bridge < ApplicationRecord
       json = JSON.parse response
       self.uuid = json['uuid']
     end
+  end
+
+  def delete_account
+    self.refresh(user)
+    response = RestClient::Request.execute(method: :delete,
+      url: "https://sync.bankin.com//v2/users/#{uuid}?password=#{user.email}_#{user.id}",
+      headers: {
+        'Bankin-Version' => '2019-02-18',
+        'Client-Id' => Rails.application.credentials[:bridge_4][Rails.env.to_sym][:client_id],
+        'Client-Secret' => Rails.application.credentials[:bridge_4][Rails.env.to_sym][:client_secret],
+        'Authorization' => "Bearer #{token}"
+      }
+    )
   end
 
   def authenticate(user)
