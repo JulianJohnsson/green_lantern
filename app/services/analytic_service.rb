@@ -8,6 +8,7 @@ class AnalyticService
         traits: {
           email: "#{ user.email }",
           name: "#{ user.name }",
+          context: "#{ user.context }",
           verified: "#{ true unless bridge.uuid == nil }",
           onboarded: "#{ user.onboarded }",
           mode: "#{score.kind.to_sym if score.present?}",
@@ -40,6 +41,7 @@ class AnalyticService
         traits: {
           email: "#{ user.email }",
           name: "#{ user.name }",
+          context: "#{ user.context }",
           onboarded: "#{ user.onboarded }",
           mode: "#{score.kind.to_sym if score.present? }",
           badges_count: user.badges.count,
