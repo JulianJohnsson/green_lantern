@@ -14,12 +14,14 @@
               <div class="col-md-6 text-left">
                 <h3>Comptes bancaires</h3>
               </div>
-              <div class="col-md-6 text-right mt-auto mb-auto">
-                <%= link_to @redirect_url do %>
-                  Ajouter un compte bancaire
-                  <i class="material-icons">add_circle</i>
-                <% end %>
-              </div>
+              <% unless current_user.context == 'lbp' %>
+                <div class="col-md-6 text-right mt-auto mb-auto">
+                  <%= link_to @redirect_url do %>
+                    Ajouter un compte bancaire
+                    <i class="material-icons">add_circle</i>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           </div>
           <table class="table">
@@ -75,6 +77,8 @@
       </div>
     </div>
   </div>
-  <%= link_to 'Ajouter un nouveau compte', @redirect_url, :class => 'btn btn-lg btn-primary btn-round' %>
+  <% unless current_user.context == 'lbp' %>
+    <%= link_to 'Ajouter un nouveau compte', @redirect_url, :class => 'btn btn-lg btn-primary btn-round' %>
+  <% end %>
 </div>
 <%= render '/scores/number_spinner' %>
